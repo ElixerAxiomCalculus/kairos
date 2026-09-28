@@ -1,0 +1,5282 @@
+[
+ {
+  "event_id": "evt_0001",
+  "parent_event_ids": [],
+  "timestamp": 0.0,
+  "wall_time": "2026-09-28T20:22:00.572+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "SessionStarted",
+  "utterance_id": null,
+  "query_version": null,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "corpus": {
+    "documents": 8,
+    "chunks": 37,
+    "dense_backend": "lsa",
+    "embedding_model": "lsa-tfidf-svd36",
+    "sparse_index": "bm25 (k1=1.5, b=0.75)",
+    "reranker": "hybrid-linear",
+    "facet_dimensions": {
+     "domestic|international|standard": [
+      "domestic",
+      "international",
+      "standard"
+     ]
+    },
+    "build_ms": 702.1,
+    "indexed_at": "2026-09-28T20:22:00.561+00:00",
+    "documents_list": [
+     {
+      "doc_id": "D01",
+      "title": "Pune Venue Catalogue",
+      "doc_type": "catalogue",
+      "effective_date": "2025-06-01",
+      "source_file": "D01-venues-pune.md",
+      "chunks": 5
+     },
+     {
+      "doc_id": "D02",
+      "title": "Mumbai Venue Catalogue",
+      "doc_type": "catalogue",
+      "effective_date": "2025-06-01",
+      "source_file": "D02-venues-mumbai.md",
+      "chunks": 4
+     },
+     {
+      "doc_id": "D03",
+      "title": "Venue Booking Terms",
+      "doc_type": "policy",
+      "effective_date": "2025-04-01",
+      "source_file": "D03-venue-booking-terms.md",
+      "chunks": 6
+     },
+     {
+      "doc_id": "D04",
+      "title": "Catering Services Guide",
+      "doc_type": "guide",
+      "effective_date": "2025-05-15",
+      "source_file": "D04-catering.md",
+      "chunks": 6
+     },
+     {
+      "doc_id": "D05",
+      "title": "Travel and Expense Reimbursement Policy",
+      "doc_type": "policy",
+      "effective_date": "2025-01-01",
+      "source_file": "D05-travel-expense-policy.md",
+      "chunks": 6
+     },
+     {
+      "doc_id": "D06",
+      "title": "Event Security and Guest Registration",
+      "doc_type": "policy",
+      "effective_date": "2025-03-01",
+      "source_file": "D06-event-security.md",
+      "chunks": 4
+     },
+     {
+      "doc_id": "D07",
+      "title": "AV and IT Support for Events",
+      "doc_type": "guide",
+      "effective_date": "2025-02-10",
+      "source_file": "D07-av-it-support.md",
+      "chunks": 3
+     },
+     {
+      "doc_id": "D08",
+      "title": "Venue Booking FAQ (2023 edition)",
+      "doc_type": "faq",
+      "effective_date": "2023-01-15",
+      "source_file": "D08-venue-faq-2023.md",
+      "chunks": 3
+     }
+    ]
+   },
+   "config": {
+    "controller_mode": "psrc",
+    "retrieval_mode": "hybrid",
+    "reranker": "hybrid-linear",
+    "synthesis_backend": "extractive",
+    "grounding_nli": "lexical",
+    "refinement": "delta"
+   },
+   "stability_model": "trained:stability.json"
+  }
+ },
+ {
+  "event_id": "evt_0002",
+  "parent_event_ids": [],
+  "timestamp": 1.5,
+  "wall_time": "2026-09-28T20:22:00.572+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "TranscriptChunkReceived",
+  "utterance_id": "u1",
+  "query_version": null,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "chunk_id": "u1.c1",
+   "seq": 1,
+   "t0": 1.0,
+   "t1": 1.5,
+   "text": "I need to",
+   "final": false,
+   "utterance_text": "I need to"
+  }
+ },
+ {
+  "event_id": "evt_0003",
+  "parent_event_ids": [
+   "evt_0002"
+  ],
+  "timestamp": 1.5001,
+  "wall_time": "2026-09-28T20:22:00.573+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "QueryFrameUpdated",
+  "utterance_id": "u1",
+  "query_version": 1,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.032,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "raw_text": "I need to",
+   "analysis_text": "I need to",
+   "normalized": "",
+   "anchor": "",
+   "repairs": [],
+   "spans": [
+    {
+     "text": "I need to",
+     "kind": "FILLER",
+     "closed": false,
+     "soft": false
+    }
+   ],
+   "candidates": [],
+   "slots": []
+  }
+ },
+ {
+  "event_id": "evt_0004",
+  "parent_event_ids": [
+   "evt_0003"
+  ],
+  "timestamp": 1.5001,
+  "wall_time": "2026-09-28T20:22:00.573+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "TurnClassified",
+  "utterance_id": "u1",
+  "query_version": 1,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": 1.0,
+  "citations": [],
+  "payload": {
+   "turn_type": "NEW_INFO",
+   "confidence": 1.0,
+   "features": {
+    "has_answer": false,
+    "transform_cue": false,
+    "elaborate_cue": false,
+    "constraint_cue": false,
+    "content_terms": [],
+    "novel_terms": [],
+    "slot_terms": []
+   },
+   "transform": {}
+  }
+ },
+ {
+  "event_id": "evt_0005",
+  "parent_event_ids": [
+   "evt_0004"
+  ],
+  "timestamp": 1.5001,
+  "wall_time": "2026-09-28T20:22:00.573+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "ProbeExecuted",
+  "utterance_id": "u1",
+  "query_version": 1,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.001,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "probes": [],
+   "retriever": "bm25-probe"
+  }
+ },
+ {
+  "event_id": "evt_0006",
+  "parent_event_ids": [
+   "evt_0005"
+  ],
+  "timestamp": 1.5001,
+  "wall_time": "2026-09-28T20:22:00.573+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "RetrievalDecision",
+  "utterance_id": "u1",
+  "query_version": 1,
+  "answer_version": null,
+  "retrieval_trigger": "NONE",
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "decision": "WAIT",
+   "reasons": [
+    "NO_CANDIDATE_NEED"
+   ],
+   "signals": {},
+   "candidates": [],
+   "turn_type": "NEW_INFO",
+   "controller_mode": "psrc",
+   "stability_model": "trained:stability.json",
+   "budget_left": 6
+  }
+ },
+ {
+  "event_id": "evt_0007",
+  "parent_event_ids": [
+   "evt_0002"
+  ],
+  "timestamp": 2.0,
+  "wall_time": "2026-09-28T20:22:00.573+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "TranscriptChunkReceived",
+  "utterance_id": "u1",
+  "query_version": null,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "chunk_id": "u1.c2",
+   "seq": 2,
+   "t0": 1.5,
+   "t1": 2.0,
+   "text": "book a",
+   "final": false,
+   "utterance_text": "I need to book a"
+  }
+ },
+ {
+  "event_id": "evt_0008",
+  "parent_event_ids": [
+   "evt_0007"
+  ],
+  "timestamp": 2.0,
+  "wall_time": "2026-09-28T20:22:00.573+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "QueryFrameUpdated",
+  "utterance_id": "u1",
+  "query_version": 2,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.027,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "raw_text": "I need to book a",
+   "analysis_text": "I need to book a",
+   "normalized": "I need to book a",
+   "anchor": "",
+   "repairs": [],
+   "spans": [
+    {
+     "text": "I need to book a",
+     "kind": "NEED",
+     "closed": false,
+     "soft": false
+    }
+   ],
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "I need to book a",
+     "need": "I need to book a",
+     "constraints": [],
+     "closed": false,
+     "anaphoric": false
+    }
+   ],
+   "slots": []
+  }
+ },
+ {
+  "event_id": "evt_0009",
+  "parent_event_ids": [
+   "evt_0008"
+  ],
+  "timestamp": 2.0002,
+  "wall_time": "2026-09-28T20:22:00.573+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "ProbeExecuted",
+  "utterance_id": "u1",
+  "query_version": 2,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.104,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "probes": [
+    {
+     "candidate": "k0",
+     "sections": [
+      "D03#2",
+      "D08#1",
+      "D08#2",
+      "D03#4",
+      "D08#3"
+     ]
+    }
+   ],
+   "retriever": "bm25-probe"
+  }
+ },
+ {
+  "event_id": "evt_0010",
+  "parent_event_ids": [
+   "evt_0009"
+  ],
+  "timestamp": 2.0002,
+  "wall_time": "2026-09-28T20:22:00.573+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "RetrievalDecision",
+  "utterance_id": "u1",
+  "query_version": 2,
+  "answer_version": null,
+  "retrieval_trigger": "NONE",
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": 0.1776,
+  "citations": [],
+  "payload": {
+   "decision": "WAIT",
+   "reasons": [
+    "INCOMPLETE_CLAUSE",
+    "BELOW_THRESHOLD",
+    "RESULTS_STILL_MOVING",
+    "AMBIGUOUS_PROBE"
+   ],
+   "signals": {
+    "rho": 0.0,
+    "chi": 0.0623,
+    "kappa": 0.1583,
+    "sigma": 0.5,
+    "cont": 0.15,
+    "pi": 0.85,
+    "nu": 1.0,
+    "s_hat": 0.1776,
+    "theta": 0.4,
+    "remaining_s": 1.5,
+    "hidden_latency_s": 1.2
+   },
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "I need to book a",
+     "action": "WAIT",
+     "trigger": "NONE",
+     "reasons": [
+      "INCOMPLETE_CLAUSE",
+      "BELOW_THRESHOLD",
+      "RESULTS_STILL_MOVING",
+      "AMBIGUOUS_PROBE"
+     ],
+     "signals": {
+      "rho": 0.0,
+      "chi": 0.0623,
+      "kappa": 0.1583,
+      "sigma": 0.5,
+      "cont": 0.15,
+      "pi": 0.85,
+      "nu": 1.0,
+      "s_hat": 0.1776,
+      "theta": 0.4,
+      "remaining_s": 1.5,
+      "hidden_latency_s": 1.2
+     },
+     "sub_query_id": null
+    }
+   ],
+   "turn_type": "NEW_INFO",
+   "controller_mode": "psrc",
+   "stability_model": "trained:stability.json",
+   "budget_left": 6
+  }
+ },
+ {
+  "event_id": "evt_0011",
+  "parent_event_ids": [
+   "evt_0007"
+  ],
+  "timestamp": 2.8,
+  "wall_time": "2026-09-28T20:22:00.573+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "TranscriptChunkReceived",
+  "utterance_id": "u1",
+  "query_version": null,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "chunk_id": "u1.c3",
+   "seq": 3,
+   "t0": 2.0,
+   "t1": 2.8,
+   "text": "workshop venue in Pune",
+   "final": false,
+   "utterance_text": "I need to book a workshop venue in Pune"
+  }
+ },
+ {
+  "event_id": "evt_0012",
+  "parent_event_ids": [
+   "evt_0011"
+  ],
+  "timestamp": 2.8001,
+  "wall_time": "2026-09-28T20:22:00.573+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "QueryFrameUpdated",
+  "utterance_id": "u1",
+  "query_version": 3,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.047,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "raw_text": "I need to book a workshop venue in Pune",
+   "analysis_text": "I need to book a workshop venue in Pune",
+   "normalized": "I need to book a workshop venue in Pune",
+   "anchor": "workshop venue pune",
+   "repairs": [],
+   "spans": [
+    {
+     "text": "I need to book a workshop venue in Pune",
+     "kind": "NEED",
+     "closed": false,
+     "soft": false
+    }
+   ],
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "I need to book a workshop venue in Pune",
+     "need": "I need to book a workshop venue in Pune",
+     "constraints": [],
+     "closed": false,
+     "anaphoric": false
+    }
+   ],
+   "slots": [
+    {
+     "key": "place",
+     "kind": "place",
+     "value": "Pune",
+     "first_seen_t": 2.8,
+     "last_changed_t": 2.8,
+     "source_chunk_id": "u1.c3",
+     "revised_from": null
+    }
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0013",
+  "parent_event_ids": [
+   "evt_0012"
+  ],
+  "timestamp": 2.8002,
+  "wall_time": "2026-09-28T20:22:00.573+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "ProbeExecuted",
+  "utterance_id": "u1",
+  "query_version": 3,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.09,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "probes": [
+    {
+     "candidate": "k0",
+     "sections": [
+      "D01#1",
+      "D03#1",
+      "D01#2",
+      "D03#2",
+      "D08#1"
+     ]
+    }
+   ],
+   "retriever": "bm25-probe"
+  }
+ },
+ {
+  "event_id": "evt_0014",
+  "parent_event_ids": [
+   "evt_0013"
+  ],
+  "timestamp": 2.8002,
+  "wall_time": "2026-09-28T20:22:00.573+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "RetrievalDecision",
+  "utterance_id": "u1",
+  "query_version": 3,
+  "answer_version": null,
+  "retrieval_trigger": "EARLY",
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": 0.5254,
+  "citations": [],
+  "payload": {
+   "decision": "RETRIEVE",
+   "reasons": [
+    "STABLE_ABOVE_THRESHOLD"
+   ],
+   "signals": {
+    "rho": 0.4243,
+    "chi": 0.1868,
+    "kappa": 0.8,
+    "sigma": 0.0,
+    "cont": 0.5,
+    "pi": 0.5,
+    "nu": 1.0,
+    "s_hat": 0.5254,
+    "theta": 0.4,
+    "remaining_s": 1.5,
+    "hidden_latency_s": 1.2
+   },
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "I need to book a workshop venue in Pune",
+     "action": "RETRIEVE",
+     "trigger": "EARLY",
+     "reasons": [
+      "STABLE_ABOVE_THRESHOLD"
+     ],
+     "signals": {
+      "rho": 0.4243,
+      "chi": 0.1868,
+      "kappa": 0.8,
+      "sigma": 0.0,
+      "cont": 0.5,
+      "pi": 0.5,
+      "nu": 1.0,
+      "s_hat": 0.5254,
+      "theta": 0.4,
+      "remaining_s": 1.5,
+      "hidden_latency_s": 1.2
+     },
+     "sub_query_id": null
+    }
+   ],
+   "turn_type": "NEW_INFO",
+   "controller_mode": "psrc",
+   "stability_model": "trained:stability.json",
+   "budget_left": 6
+  }
+ },
+ {
+  "event_id": "evt_0015",
+  "parent_event_ids": [
+   "evt_0014"
+  ],
+  "timestamp": 2.8006,
+  "wall_time": "2026-09-28T20:22:00.573+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "SubQueriesGenerated",
+  "utterance_id": "u1",
+  "query_version": 3,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "sub_queries": [
+    {
+     "id": "I01",
+     "utterance_id": "u1",
+     "label": "workshop venue pune",
+     "text": "I need to book a workshop venue in Pune",
+     "need_texts": [
+      "I need to book a workshop venue in Pune for 30 people"
+     ],
+     "constraints": [],
+     "anchor": "",
+     "facet_constraints": {},
+     "candidate_keys": [
+      "k0"
+     ],
+     "depends_on": [],
+     "dependency_type": null,
+     "footprint": [
+      "D01#1",
+      "D01#2",
+      "D08#1",
+      "D03#1",
+      "D01#5"
+     ],
+     "status": "PENDING",
+     "retrieval_count": 0,
+     "merged_from": []
+    }
+   ],
+   "assignments": [
+    {
+     "candidate": "k0",
+     "sub_query_id": "I01",
+     "created": true,
+     "merged_into": null,
+     "footprint_overlap": {}
+    }
+   ],
+   "active": [
+    "I01"
+   ],
+   "parallel": false
+  }
+ },
+ {
+  "event_id": "evt_0016",
+  "parent_event_ids": [
+   "evt_0015"
+  ],
+  "timestamp": 2.8007,
+  "wall_time": "2026-09-28T20:22:00.573+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "RetrievalStarted",
+  "utterance_id": "u1",
+  "query_version": 3,
+  "answer_version": null,
+  "retrieval_trigger": "EARLY",
+  "sub_query_id": "I01",
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "query": "I need to book a workshop venue in Pune",
+   "terms": {
+    "book": 1.0,
+    "workshop": 1.0,
+    "venue": 1.0,
+    "pune": 1.0
+   },
+   "facet_constraints": {},
+   "mode": "hybrid",
+   "label": "workshop venue pune",
+   "parallel_group": [
+    "I01"
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0017",
+  "parent_event_ids": [
+   "evt_0016"
+  ],
+  "timestamp": 2.801,
+  "wall_time": "2026-09-28T20:22:00.574+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "RetrievalCompleted",
+  "utterance_id": "u1",
+  "query_version": 3,
+  "answer_version": null,
+  "retrieval_trigger": "EARLY",
+  "sub_query_id": "I01",
+  "document_ids": [
+   "D01",
+   "D03",
+   "D08"
+  ],
+  "chunk_ids": [
+   "D01:C01",
+   "D01:C02",
+   "D08:C01",
+   "D03:C01",
+   "D01:C05"
+  ],
+  "latency_ms": 0.126,
+  "token_cost": {},
+  "confidence": 0.766,
+  "citations": [],
+  "payload": {
+   "hits": [
+    {
+     "chunk_id": "D01:C01",
+     "rank": 1,
+     "sparse_score": 7.6697,
+     "sparse_rank": 1,
+     "dense_score": 0.4151,
+     "dense_rank": 2,
+     "fused_score": 0.03252,
+     "rerank_score": 0.766,
+     "facet_match": null,
+     "doc_id": "D01",
+     "doc_title": "Pune Venue Catalogue",
+     "section_key": "D01#1",
+     "section": "1",
+     "section_title": "Overview",
+     "section_path": "Overview",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "affbb8bba3a2c0575adc3d536e3d40695c4ec890",
+     "text": "The Deccan Conference Centre in Baner, Pune is the Company's primary venue for workshops, trainings and offsites in Pune. It offers three bookable spaces: Banyan Hall, Lotus Room and Skyline Terrace. All spaces are booked through the Facilities portal."
+    },
+    {
+     "chunk_id": "D01:C02",
+     "rank": 2,
+     "sparse_score": 5.1984,
+     "sparse_rank": 3,
+     "dense_score": 0.173,
+     "dense_rank": 7,
+     "fused_score": 0.0308,
+     "rerank_score": 0.5475,
+     "facet_match": null,
+     "doc_id": "D01",
+     "doc_title": "Pune Venue Catalogue",
+     "section_key": "D01#2",
+     "section": "2",
+     "section_title": "Banyan Hall",
+     "section_path": "Banyan Hall",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "08c8d30030b4a91703ddb2945368f5bdc1715f98",
+     "text": "Banyan Hall seats up to 40 participants in a classroom layout and up to 60 participants in a theatre layout. It is suited to workshops of 20 to 40 people. The hall has a ceiling-mounted projector, two whiteboards and a ceiling microphone array. Banyan Hall is wheelchair accessible via the ground-floor entrance."
+    },
+    {
+     "chunk_id": "D08:C01",
+     "rank": 3,
+     "sparse_score": 3.474,
+     "sparse_rank": 5,
+     "dense_score": 0.8089,
+     "dense_rank": 1,
+     "fused_score": 0.03178,
+     "rerank_score": 0.4991,
+     "facet_match": null,
+     "doc_id": "D08",
+     "doc_title": "Venue Booking FAQ (2023 edition)",
+     "section_key": "D08#1",
+     "section": "1",
+     "section_title": "How far ahead should I book?",
+     "section_path": "How far ahead should I book?",
+     "facets": {},
+     "effective_date": "2023-01-15",
+     "doc_type": "faq",
+     "sha1": "2d4fdfd1806f1be6ca9a08a37cef032a885a7542",
+     "text": "Book your venue as early as possible. Popular rooms are often reserved several weeks in advance."
+    },
+    {
+     "chunk_id": "D03:C01",
+     "rank": 4,
+     "sparse_score": 5.3484,
+     "sparse_rank": 2,
+     "dense_score": 0.3406,
+     "dense_rank": 3,
+     "fused_score": 0.032,
+     "rerank_score": 0.4788,
+     "facet_match": null,
+     "doc_id": "D03",
+     "doc_title": "Venue Booking Terms",
+     "section_key": "D03#1",
+     "section": "1",
+     "section_title": "Scope",
+     "section_path": "Scope",
+     "facets": {},
+     "effective_date": "2025-04-01",
+     "doc_type": "policy",
+     "sha1": "2dbc6b1352dd9a320703db31e406f0ab38d5dc26",
+     "text": "These terms apply to every booking of a Company venue, including the Deccan Conference Centre in Pune and Harbourview Suites in Mumbai."
+    },
+    {
+     "chunk_id": "D01:C05",
+     "rank": 5,
+     "sparse_score": 3.4089,
+     "sparse_rank": 6,
+     "dense_score": 0.259,
+     "dense_rank": 4,
+     "fused_score": 0.03078,
+     "rerank_score": 0.3245,
+     "facet_match": null,
+     "doc_id": "D01",
+     "doc_title": "Pune Venue Catalogue",
+     "section_key": "D01#5",
+     "section": "5",
+     "section_title": "Parking and access",
+     "section_path": "Parking and access",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "17030ffd8e423da81eefed81e6cb894aaba1d158",
+     "text": "The Deccan Conference Centre has parking for 30 cars. The nearest metro station is Baner Road, a ten-minute walk from the venue. Visitors must collect a badge from the ground-floor reception."
+    }
+   ],
+   "duplicates": [],
+   "filtered_by_facet": [],
+   "stage_ms": {
+    "sparse_ms": 0.044,
+    "dense_ms": 0.019,
+    "fusion_ms": 0.005,
+    "rerank_ms": 0.036,
+    "dedup_ms": 0.017
+   },
+   "mode": "hybrid",
+   "started_offset_ms": 0.232,
+   "ended_offset_ms": 0.357,
+   "label": "workshop venue pune"
+  }
+ },
+ {
+  "event_id": "evt_0018",
+  "parent_event_ids": [
+   "evt_0017"
+  ],
+  "timestamp": 2.8015,
+  "wall_time": "2026-09-28T20:22:00.574+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "EvidenceFused",
+  "utterance_id": "u1",
+  "query_version": 3,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [
+   "D01",
+   "D03",
+   "D08"
+  ],
+  "chunk_ids": [
+   "D01:C01",
+   "D01:C02",
+   "D08:C01",
+   "D03:C01",
+   "D01:C05"
+  ],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "sub_queries": [
+    "I01"
+   ],
+   "evidence_count": 5,
+   "shared_across_sub_queries": [],
+   "contradictions": [],
+   "duplicates_collapsed": 0
+  }
+ },
+ {
+  "event_id": "evt_0019",
+  "parent_event_ids": [
+   "evt_0011"
+  ],
+  "timestamp": 3.4,
+  "wall_time": "2026-09-28T20:22:00.574+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "TranscriptChunkReceived",
+  "utterance_id": "u1",
+  "query_version": null,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "chunk_id": "u1.c4",
+   "seq": 4,
+   "t0": 2.8,
+   "t1": 3.4,
+   "text": "for 30 people,",
+   "final": false,
+   "utterance_text": "I need to book a workshop venue in Pune for 30 people,"
+  }
+ },
+ {
+  "event_id": "evt_0020",
+  "parent_event_ids": [
+   "evt_0019"
+  ],
+  "timestamp": 3.4001,
+  "wall_time": "2026-09-28T20:22:00.574+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "QueryFrameUpdated",
+  "utterance_id": "u1",
+  "query_version": 4,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.054,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "raw_text": "I need to book a workshop venue in Pune for 30 people,",
+   "analysis_text": "I need to book a workshop venue in Pune for 30 people,",
+   "normalized": "I need to book a workshop venue in Pune for 30 people",
+   "anchor": "workshop venue pune",
+   "repairs": [],
+   "spans": [
+    {
+     "text": "I need to book a workshop venue in Pune for 30 people",
+     "kind": "NEED",
+     "closed": true,
+     "soft": false
+    }
+   ],
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "I need to book a workshop venue in Pune for 30 people",
+     "need": "I need to book a workshop venue in Pune for 30 people",
+     "constraints": [],
+     "closed": true,
+     "anaphoric": false
+    }
+   ],
+   "slots": [
+    {
+     "key": "place",
+     "kind": "place",
+     "value": "Pune",
+     "first_seen_t": 2.8,
+     "last_changed_t": 2.8,
+     "source_chunk_id": "u1.c3",
+     "revised_from": null
+    },
+    {
+     "key": "number:people",
+     "kind": "number",
+     "value": "30",
+     "first_seen_t": 3.4,
+     "last_changed_t": 3.4,
+     "source_chunk_id": "u1.c4",
+     "revised_from": null
+    }
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0021",
+  "parent_event_ids": [
+   "evt_0020"
+  ],
+  "timestamp": 3.4007,
+  "wall_time": "2026-09-28T20:22:00.575+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "ProbeExecuted",
+  "utterance_id": "u1",
+  "query_version": 4,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.535,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "probes": [
+    {
+     "candidate": "k0",
+     "sections": [
+      "D01#1",
+      "D01#2",
+      "D01#3",
+      "D01#5",
+      "D03#1"
+     ]
+    }
+   ],
+   "retriever": "bm25-probe"
+  }
+ },
+ {
+  "event_id": "evt_0022",
+  "parent_event_ids": [
+   "evt_0021"
+  ],
+  "timestamp": 3.4007,
+  "wall_time": "2026-09-28T20:22:00.575+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "RetrievalDecision",
+  "utterance_id": "u1",
+  "query_version": 4,
+  "answer_version": null,
+  "retrieval_trigger": "REFINE",
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": 0.6255,
+  "citations": [],
+  "payload": {
+   "decision": "REFINE",
+   "reasons": [
+    "RESULTS_WOULD_CHANGE"
+   ],
+   "signals": {
+    "rho": 0.7131,
+    "chi": 0.1274,
+    "kappa": 1.0,
+    "sigma": 0.5,
+    "cont": 0.9,
+    "pi": 0.1,
+    "nu": 1.0,
+    "s_hat": 0.6255,
+    "theta": 0.4,
+    "remaining_s": 1.5,
+    "hidden_latency_s": 1.2,
+    "rho_vs_retrieved": 0.5741
+   },
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "I need to book a workshop venue in Pune for 30 people",
+     "action": "REFINE",
+     "trigger": "REFINE",
+     "reasons": [
+      "RESULTS_WOULD_CHANGE"
+     ],
+     "signals": {
+      "rho": 0.7131,
+      "chi": 0.1274,
+      "kappa": 1.0,
+      "sigma": 0.5,
+      "cont": 0.9,
+      "pi": 0.1,
+      "nu": 1.0,
+      "s_hat": 0.6255,
+      "theta": 0.4,
+      "remaining_s": 1.5,
+      "hidden_latency_s": 1.2,
+      "rho_vs_retrieved": 0.5741
+     },
+     "sub_query_id": "I01"
+    }
+   ],
+   "turn_type": "NEW_INFO",
+   "controller_mode": "psrc",
+   "stability_model": "trained:stability.json",
+   "budget_left": 5
+  }
+ },
+ {
+  "event_id": "evt_0023",
+  "parent_event_ids": [
+   "evt_0022"
+  ],
+  "timestamp": 3.4009,
+  "wall_time": "2026-09-28T20:22:00.575+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "SubQueriesGenerated",
+  "utterance_id": "u1",
+  "query_version": 4,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "sub_queries": [
+    {
+     "id": "I01",
+     "utterance_id": "u1",
+     "label": "workshop venue pune",
+     "text": "I need to book a workshop venue in Pune for 30 people",
+     "need_texts": [
+      "I need to book a workshop venue in Pune for 30 people"
+     ],
+     "constraints": [],
+     "anchor": "",
+     "facet_constraints": {},
+     "candidate_keys": [
+      "k0"
+     ],
+     "depends_on": [],
+     "dependency_type": null,
+     "footprint": [
+      "D01#2",
+      "D01#1",
+      "D01#5",
+      "D01#4",
+      "D01#3"
+     ],
+     "status": "RETRIEVED",
+     "retrieval_count": 1,
+     "merged_from": []
+    }
+   ],
+   "assignments": [
+    {
+     "candidate": "k0",
+     "sub_query_id": "I01",
+     "created": false,
+     "merged_into": null,
+     "refined": true
+    }
+   ],
+   "active": [
+    "I01"
+   ],
+   "parallel": false
+  }
+ },
+ {
+  "event_id": "evt_0024",
+  "parent_event_ids": [
+   "evt_0023"
+  ],
+  "timestamp": 3.4009,
+  "wall_time": "2026-09-28T20:22:00.575+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "RetrievalStarted",
+  "utterance_id": "u1",
+  "query_version": 4,
+  "answer_version": null,
+  "retrieval_trigger": "REFINE",
+  "sub_query_id": "I01",
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "query": "I need to book a workshop venue in Pune for 30 people",
+   "terms": {
+    "book": 1.0,
+    "workshop": 1.0,
+    "venue": 1.0,
+    "pune": 1.0,
+    "30": 1.0,
+    "people": 1.0
+   },
+   "facet_constraints": {},
+   "mode": "hybrid",
+   "label": "workshop venue pune",
+   "parallel_group": [
+    "I01"
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0025",
+  "parent_event_ids": [
+   "evt_0024"
+  ],
+  "timestamp": 3.401,
+  "wall_time": "2026-09-28T20:22:00.576+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "RetrievalCompleted",
+  "utterance_id": "u1",
+  "query_version": 4,
+  "answer_version": null,
+  "retrieval_trigger": "REFINE",
+  "sub_query_id": "I01",
+  "document_ids": [
+   "D01"
+  ],
+  "chunk_ids": [
+   "D01:C02",
+   "D01:C01",
+   "D01:C05",
+   "D01:C04",
+   "D01:C03"
+  ],
+  "latency_ms": 0.1,
+  "token_cost": {},
+  "confidence": 0.507,
+  "citations": [],
+  "payload": {
+   "hits": [
+    {
+     "chunk_id": "D01:C02",
+     "rank": 1,
+     "sparse_score": 7.6362,
+     "sparse_rank": 2,
+     "dense_score": 0.2755,
+     "dense_rank": 7,
+     "fused_score": 0.03105,
+     "rerank_score": 0.507,
+     "facet_match": null,
+     "doc_id": "D01",
+     "doc_title": "Pune Venue Catalogue",
+     "section_key": "D01#2",
+     "section": "2",
+     "section_title": "Banyan Hall",
+     "section_path": "Banyan Hall",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "08c8d30030b4a91703ddb2945368f5bdc1715f98",
+     "text": "Banyan Hall seats up to 40 participants in a classroom layout and up to 60 participants in a theatre layout. It is suited to workshops of 20 to 40 people. The hall has a ceiling-mounted projector, two whiteboards and a ceiling microphone array. Banyan Hall is wheelchair accessible via the ground-floor entrance."
+    },
+    {
+     "chunk_id": "D01:C01",
+     "rank": 2,
+     "sparse_score": 7.6697,
+     "sparse_rank": 1,
+     "dense_score": 0.3208,
+     "dense_rank": 5,
+     "fused_score": 0.03178,
+     "rerank_score": 0.5051,
+     "facet_match": null,
+     "doc_id": "D01",
+     "doc_title": "Pune Venue Catalogue",
+     "section_key": "D01#1",
+     "section": "1",
+     "section_title": "Overview",
+     "section_path": "Overview",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "affbb8bba3a2c0575adc3d536e3d40695c4ec890",
+     "text": "The Deccan Conference Centre in Baner, Pune is the Company's primary venue for workshops, trainings and offsites in Pune. It offers three bookable spaces: Banyan Hall, Lotus Room and Skyline Terrace. All spaces are booked through the Facilities portal."
+    },
+    {
+     "chunk_id": "D01:C05",
+     "rank": 3,
+     "sparse_score": 5.4854,
+     "sparse_rank": 4,
+     "dense_score": 0.355,
+     "dense_rank": 3,
+     "fused_score": 0.0315,
+     "rerank_score": 0.4075,
+     "facet_match": null,
+     "doc_id": "D01",
+     "doc_title": "Pune Venue Catalogue",
+     "section_key": "D01#5",
+     "section": "5",
+     "section_title": "Parking and access",
+     "section_path": "Parking and access",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "17030ffd8e423da81eefed81e6cb894aaba1d158",
+     "text": "The Deccan Conference Centre has parking for 30 cars. The nearest metro station is Baner Road, a ten-minute walk from the venue. Visitors must collect a badge from the ground-floor reception."
+    },
+    {
+     "chunk_id": "D01:C04",
+     "rank": 4,
+     "sparse_score": 5.316,
+     "sparse_rank": 6,
+     "dense_score": 0.4064,
+     "dense_rank": 2,
+     "fused_score": 0.03128,
+     "rerank_score": 0.3977,
+     "facet_match": null,
+     "doc_id": "D01",
+     "doc_title": "Pune Venue Catalogue",
+     "section_key": "D01#4",
+     "section": "4",
+     "section_title": "Skyline Terrace",
+     "section_path": "Skyline Terrace",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "aab4a92df1a8cc4d4fd244fce0944085f59e797f",
+     "text": "Skyline Terrace is an open-air rooftop space that holds up to 80 people standing or 50 people seated. It is suited to networking sessions and evening receptions. Skyline Terrace is not available from June to September because of the monsoon season."
+    },
+    {
+     "chunk_id": "D01:C03",
+     "rank": 5,
+     "sparse_score": 5.5455,
+     "sparse_rank": 3,
+     "dense_score": 0.3365,
+     "dense_rank": 4,
+     "fused_score": 0.0315,
+     "rerank_score": 0.3698,
+     "facet_match": null,
+     "doc_id": "D01",
+     "doc_title": "Pune Venue Catalogue",
+     "section_key": "D01#3",
+     "section": "3",
+     "section_title": "Lotus Room",
+     "section_path": "Lotus Room",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "e082d9e2c064d3942d635c489e9dfd46598d2497",
+     "text": "Lotus Room is a boardroom that seats up to 24 participants around a single table. It has a video-conferencing system with a 75-inch display. Lotus Room is not suitable for groups larger than 24 people."
+    }
+   ],
+   "duplicates": [],
+   "filtered_by_facet": [],
+   "stage_ms": {
+    "sparse_ms": 0.034,
+    "dense_ms": 0.005,
+    "fusion_ms": 0.005,
+    "rerank_ms": 0.039,
+    "dedup_ms": 0.014
+   },
+   "mode": "hybrid",
+   "started_offset_ms": 0.05,
+   "ended_offset_ms": 0.151,
+   "label": "workshop venue pune"
+  }
+ },
+ {
+  "event_id": "evt_0026",
+  "parent_event_ids": [
+   "evt_0025"
+  ],
+  "timestamp": 3.4012,
+  "wall_time": "2026-09-28T20:22:00.576+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "EvidenceFused",
+  "utterance_id": "u1",
+  "query_version": 4,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [
+   "D01"
+  ],
+  "chunk_ids": [
+   "D01:C02",
+   "D01:C01",
+   "D01:C05",
+   "D01:C04",
+   "D01:C03"
+  ],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "sub_queries": [
+    "I01"
+   ],
+   "evidence_count": 5,
+   "shared_across_sub_queries": [],
+   "contradictions": [],
+   "duplicates_collapsed": 0
+  }
+ },
+ {
+  "event_id": "evt_0027",
+  "parent_event_ids": [
+   "evt_0019"
+  ],
+  "timestamp": 4.2,
+  "wall_time": "2026-09-28T20:22:00.576+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "TranscriptChunkReceived",
+  "utterance_id": "u1",
+  "query_version": null,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "chunk_id": "u1.c5",
+   "seq": 5,
+   "t0": 3.4,
+   "t1": 4.2,
+   "text": "tell me the cancellation policy",
+   "final": false,
+   "utterance_text": "I need to book a workshop venue in Pune for 30 people, tell me the cancellation policy"
+  }
+ },
+ {
+  "event_id": "evt_0028",
+  "parent_event_ids": [
+   "evt_0027"
+  ],
+  "timestamp": 4.2001,
+  "wall_time": "2026-09-28T20:22:00.576+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "QueryFrameUpdated",
+  "utterance_id": "u1",
+  "query_version": 5,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.066,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "raw_text": "I need to book a workshop venue in Pune for 30 people, tell me the cancellation policy",
+   "analysis_text": "I need to book a workshop venue in Pune for 30 people, tell me the cancellation policy",
+   "normalized": "I need to book a workshop venue in Pune for 30 people · tell me the cancellation policy",
+   "anchor": "workshop venue pune",
+   "repairs": [],
+   "spans": [
+    {
+     "text": "I need to book a workshop venue in Pune for 30 people",
+     "kind": "NEED",
+     "closed": true,
+     "soft": false
+    },
+    {
+     "text": "tell me the cancellation policy",
+     "kind": "NEED",
+     "closed": false,
+     "soft": false
+    }
+   ],
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "I need to book a workshop venue in Pune for 30 people",
+     "need": "I need to book a workshop venue in Pune for 30 people",
+     "constraints": [],
+     "closed": true,
+     "anaphoric": false
+    },
+    {
+     "key": "k1",
+     "text": "tell me the cancellation policy",
+     "need": "tell me the cancellation policy",
+     "constraints": [],
+     "closed": false,
+     "anaphoric": false
+    }
+   ],
+   "slots": [
+    {
+     "key": "place",
+     "kind": "place",
+     "value": "Pune",
+     "first_seen_t": 2.8,
+     "last_changed_t": 2.8,
+     "source_chunk_id": "u1.c3",
+     "revised_from": null
+    },
+    {
+     "key": "number:people",
+     "kind": "number",
+     "value": "30",
+     "first_seen_t": 3.4,
+     "last_changed_t": 3.4,
+     "source_chunk_id": "u1.c4",
+     "revised_from": null
+    }
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0029",
+  "parent_event_ids": [
+   "evt_0028"
+  ],
+  "timestamp": 4.2004,
+  "wall_time": "2026-09-28T20:22:00.576+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "ProbeExecuted",
+  "utterance_id": "u1",
+  "query_version": 5,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.219,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "probes": [
+    {
+     "candidate": "k0",
+     "sections": [
+      "D01#1",
+      "D01#2",
+      "D01#3",
+      "D01#5",
+      "D03#1"
+     ]
+    },
+    {
+     "candidate": "k1",
+     "sections": [
+      "D03#3.1",
+      "D03#3.2",
+      "D05#1",
+      "D01#1",
+      "D05#5"
+     ]
+    }
+   ],
+   "retriever": "bm25-probe"
+  }
+ },
+ {
+  "event_id": "evt_0030",
+  "parent_event_ids": [
+   "evt_0029"
+  ],
+  "timestamp": 4.2004,
+  "wall_time": "2026-09-28T20:22:00.576+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "RetrievalDecision",
+  "utterance_id": "u1",
+  "query_version": 5,
+  "answer_version": null,
+  "retrieval_trigger": "EARLY",
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": 0.4706,
+  "citations": [],
+  "payload": {
+   "decision": "RETRIEVE",
+   "reasons": [
+    "STABLE_ABOVE_THRESHOLD"
+   ],
+   "signals": {
+    "rho": 0.5884,
+    "chi": 0.3356,
+    "kappa": 0.6833,
+    "sigma": 0.5,
+    "cont": 0.5,
+    "pi": 0.5,
+    "nu": 1.0,
+    "s_hat": 0.4706,
+    "theta": 0.4,
+    "remaining_s": 1.5,
+    "hidden_latency_s": 1.2
+   },
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "I need to book a workshop venue in Pune for 30 people",
+     "action": "HOLD",
+     "trigger": "NONE",
+     "reasons": [
+      "ALREADY_RETRIEVED"
+     ],
+     "signals": {
+      "rho": 1.0,
+      "chi": 0.1274,
+      "kappa": 1.0,
+      "sigma": 1.0,
+      "cont": 0.9,
+      "pi": 0.1,
+      "nu": 1.0,
+      "s_hat": 0.6479,
+      "theta": 0.4,
+      "remaining_s": 1.5,
+      "hidden_latency_s": 1.2
+     },
+     "sub_query_id": "I01"
+    },
+    {
+     "key": "k1",
+     "text": "tell me the cancellation policy",
+     "action": "RETRIEVE",
+     "trigger": "EARLY",
+     "reasons": [
+      "STABLE_ABOVE_THRESHOLD"
+     ],
+     "signals": {
+      "rho": 0.5884,
+      "chi": 0.3356,
+      "kappa": 0.6833,
+      "sigma": 0.5,
+      "cont": 0.5,
+      "pi": 0.5,
+      "nu": 1.0,
+      "s_hat": 0.4706,
+      "theta": 0.4,
+      "remaining_s": 1.5,
+      "hidden_latency_s": 1.2
+     },
+     "sub_query_id": null
+    }
+   ],
+   "turn_type": "NEW_INFO",
+   "controller_mode": "psrc",
+   "stability_model": "trained:stability.json",
+   "budget_left": 4
+  }
+ },
+ {
+  "event_id": "evt_0031",
+  "parent_event_ids": [
+   "evt_0030"
+  ],
+  "timestamp": 4.2008,
+  "wall_time": "2026-09-28T20:22:00.576+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "SubQueriesGenerated",
+  "utterance_id": "u1",
+  "query_version": 5,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "sub_queries": [
+    {
+     "id": "I01",
+     "utterance_id": "u1",
+     "label": "workshop venue pune",
+     "text": "I need to book a workshop venue in Pune for 30 people",
+     "need_texts": [
+      "I need to book a workshop venue in Pune for 30 people"
+     ],
+     "constraints": [],
+     "anchor": "",
+     "facet_constraints": {},
+     "candidate_keys": [
+      "k0"
+     ],
+     "depends_on": [],
+     "dependency_type": null,
+     "footprint": [
+      "D01#2",
+      "D01#1",
+      "D01#5",
+      "D01#4",
+      "D01#3"
+     ],
+     "status": "RETRIEVED",
+     "retrieval_count": 2,
+     "merged_from": []
+    },
+    {
+     "id": "I02",
+     "utterance_id": "u1",
+     "label": "cancellation policy",
+     "text": "tell me the cancellation policy",
+     "need_texts": [
+      "tell me the cancellation policy"
+     ],
+     "constraints": [
+      "international event"
+     ],
+     "anchor": "workshop venue pune",
+     "facet_constraints": {
+      "domestic|international|standard": "international"
+     },
+     "candidate_keys": [
+      "k1"
+     ],
+     "depends_on": [
+      "I01"
+     ],
+     "dependency_type": "soft",
+     "footprint": [
+      "D03#3",
+      "D05#1",
+      "D05#5",
+      "D05#4"
+     ],
+     "status": "PENDING",
+     "retrieval_count": 0,
+     "merged_from": []
+    }
+   ],
+   "assignments": [
+    {
+     "candidate": "k1",
+     "sub_query_id": "I02",
+     "created": true,
+     "merged_into": null,
+     "footprint_overlap": {
+      "I01": 0.0
+     }
+    }
+   ],
+   "active": [
+    "I02"
+   ],
+   "parallel": false
+  }
+ },
+ {
+  "event_id": "evt_0032",
+  "parent_event_ids": [
+   "evt_0031"
+  ],
+  "timestamp": 4.2008,
+  "wall_time": "2026-09-28T20:22:00.576+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "RetrievalStarted",
+  "utterance_id": "u1",
+  "query_version": 5,
+  "answer_version": null,
+  "retrieval_trigger": "EARLY",
+  "sub_query_id": "I02",
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "query": "tell me the cancellation policy",
+   "terms": {
+    "cancellation": 1.0,
+    "policy": 1.0,
+    "workshop": 0.4,
+    "venue": 0.4,
+    "pune": 0.4
+   },
+   "facet_constraints": {},
+   "mode": "hybrid",
+   "label": "cancellation policy",
+   "parallel_group": [
+    "I02"
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0033",
+  "parent_event_ids": [
+   "evt_0032"
+  ],
+  "timestamp": 4.2012,
+  "wall_time": "2026-09-28T20:22:00.577+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "RetrievalCompleted",
+  "utterance_id": "u1",
+  "query_version": 5,
+  "answer_version": null,
+  "retrieval_trigger": "EARLY",
+  "sub_query_id": "I02",
+  "document_ids": [
+   "D01",
+   "D03",
+   "D05"
+  ],
+  "chunk_ids": [
+   "D03:C03",
+   "D03:C04",
+   "D01:C01",
+   "D01:C02",
+   "D05:C01"
+  ],
+  "latency_ms": 0.368,
+  "token_cost": {},
+  "confidence": 0.7043,
+  "citations": [],
+  "payload": {
+   "hits": [
+    {
+     "chunk_id": "D03:C03",
+     "rank": 1,
+     "sparse_score": 7.0736,
+     "sparse_rank": 1,
+     "dense_score": 0.6921,
+     "dense_rank": 1,
+     "fused_score": 0.03279,
+     "rerank_score": 0.7043,
+     "facet_match": null,
+     "doc_id": "D03",
+     "doc_title": "Venue Booking Terms",
+     "section_key": "D03#3.1",
+     "section": "3.1",
+     "section_title": "Standard events",
+     "section_path": "Cancellation policy > Standard events",
+     "facets": {
+      "domestic|international|standard": "standard"
+     },
+     "effective_date": "2025-04-01",
+     "doc_type": "policy",
+     "sha1": "c9c0221a51484a8a7029a13b992f42494bc3cf14",
+     "text": "Cancellations made 14 or more days before a standard event are free of charge. Cancellations made 7 to 13 days before the event incur a fee of 50% of the venue fee. Cancellations made less than 7 days before the event incur the full venue fee."
+    },
+    {
+     "chunk_id": "D03:C04",
+     "rank": 2,
+     "sparse_score": 6.6991,
+     "sparse_rank": 2,
+     "dense_score": 0.6363,
+     "dense_rank": 2,
+     "fused_score": 0.03226,
+     "rerank_score": 0.682,
+     "facet_match": null,
+     "doc_id": "D03",
+     "doc_title": "Venue Booking Terms",
+     "section_key": "D03#3.2",
+     "section": "3.2",
+     "section_title": "International events",
+     "section_path": "Cancellation policy > International events",
+     "facets": {
+      "domestic|international|standard": "international"
+     },
+     "effective_date": "2025-04-01",
+     "doc_type": "policy",
+     "sha1": "dc6fcd4b2688f9faf0fa490f8a8276e6111c5258",
+     "text": "For international events, cancellations must be made at least 30 days before the event to receive a refund of the venue fee. The 25% deposit for an international event is non-refundable in all cases. Cancellations made less than 30 days before an international event incur 75% of the venue fee."
+    },
+    {
+     "chunk_id": "D01:C01",
+     "rank": 3,
+     "sparse_score": 2.5955,
+     "sparse_rank": 4,
+     "dense_score": 0.3725,
+     "dense_rank": 3,
+     "fused_score": 0.0315,
+     "rerank_score": 0.3434,
+     "facet_match": null,
+     "doc_id": "D01",
+     "doc_title": "Pune Venue Catalogue",
+     "section_key": "D01#1",
+     "section": "1",
+     "section_title": "Overview",
+     "section_path": "Overview",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "affbb8bba3a2c0575adc3d536e3d40695c4ec890",
+     "text": "The Deccan Conference Centre in Baner, Pune is the Company's primary venue for workshops, trainings and offsites in Pune. It offers three bookable spaces: Banyan Hall, Lotus Room and Skyline Terrace. All spaces are booked through the Facilities portal."
+    },
+    {
+     "chunk_id": "D01:C02",
+     "rank": 4,
+     "sparse_score": 2.0794,
+     "sparse_rank": 8,
+     "dense_score": 0.1552,
+     "dense_rank": 10,
+     "fused_score": 0.02899,
+     "rerank_score": 0.2565,
+     "facet_match": null,
+     "doc_id": "D01",
+     "doc_title": "Pune Venue Catalogue",
+     "section_key": "D01#2",
+     "section": "2",
+     "section_title": "Banyan Hall",
+     "section_path": "Banyan Hall",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "08c8d30030b4a91703ddb2945368f5bdc1715f98",
+     "text": "Banyan Hall seats up to 40 participants in a classroom layout and up to 60 participants in a theatre layout. It is suited to workshops of 20 to 40 people. The hall has a ceiling-mounted projector, two whiteboards and a ceiling microphone array. Banyan Hall is wheelchair accessible via the ground-floor entrance."
+    },
+    {
+     "chunk_id": "D05:C01",
+     "rank": 5,
+     "sparse_score": 2.7608,
+     "sparse_rank": 3,
+     "dense_score": 0.2813,
+     "dense_rank": 5,
+     "fused_score": 0.03126,
+     "rerank_score": 0.2565,
+     "facet_match": null,
+     "doc_id": "D05",
+     "doc_title": "Travel and Expense Reimbursement Policy",
+     "section_key": "D05#1",
+     "section": "1",
+     "section_title": "Scope",
+     "section_path": "Scope",
+     "facets": {},
+     "effective_date": "2025-01-01",
+     "doc_type": "policy",
+     "sha1": "33139ecba8a04c2f1055706b7b63e44452652495",
+     "text": "This policy covers reimbursement of business travel and related expenses for all employees."
+    }
+   ],
+   "duplicates": [],
+   "filtered_by_facet": [],
+   "stage_ms": {
+    "sparse_ms": 0.039,
+    "dense_ms": 0.259,
+    "fusion_ms": 0.005,
+    "rerank_ms": 0.041,
+    "dedup_ms": 0.016
+   },
+   "mode": "hybrid",
+   "started_offset_ms": 0.07,
+   "ended_offset_ms": 0.438,
+   "label": "cancellation policy"
+  }
+ },
+ {
+  "event_id": "evt_0034",
+  "parent_event_ids": [
+   "evt_0033"
+  ],
+  "timestamp": 4.2024,
+  "wall_time": "2026-09-28T20:22:00.578+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "EvidenceFused",
+  "utterance_id": "u1",
+  "query_version": 5,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [
+   "D01",
+   "D03",
+   "D05"
+  ],
+  "chunk_ids": [
+   "D03:C03",
+   "D03:C04",
+   "D01:C01",
+   "D01:C02",
+   "D05:C01"
+  ],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "sub_queries": [
+    "I02"
+   ],
+   "evidence_count": 5,
+   "shared_across_sub_queries": [],
+   "contradictions": [],
+   "duplicates_collapsed": 0
+  }
+ },
+ {
+  "event_id": "evt_0035",
+  "parent_event_ids": [
+   "evt_0027"
+  ],
+  "timestamp": 5.2,
+  "wall_time": "2026-09-28T20:22:00.578+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "TranscriptChunkReceived",
+  "utterance_id": "u1",
+  "query_version": null,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "chunk_id": "u1.c6",
+   "seq": 6,
+   "t0": 4.2,
+   "t1": 5.2,
+   "text": "and whether catering is available.",
+   "final": true,
+   "utterance_text": "I need to book a workshop venue in Pune for 30 people, tell me the cancellation policy and whether catering is available."
+  }
+ },
+ {
+  "event_id": "evt_0036",
+  "parent_event_ids": [
+   "evt_0035"
+  ],
+  "timestamp": 5.2001,
+  "wall_time": "2026-09-28T20:22:00.578+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "QueryFrameUpdated",
+  "utterance_id": "u1",
+  "query_version": 6,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.072,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "raw_text": "I need to book a workshop venue in Pune for 30 people, tell me the cancellation policy and whether catering is available.",
+   "analysis_text": "I need to book a workshop venue in Pune for 30 people, tell me the cancellation policy and whether catering is available.",
+   "normalized": "I need to book a workshop venue in Pune for 30 people · tell me the cancellation policy · whether catering is available",
+   "anchor": "workshop venue pune",
+   "repairs": [],
+   "spans": [
+    {
+     "text": "I need to book a workshop venue in Pune for 30 people",
+     "kind": "NEED",
+     "closed": true,
+     "soft": false
+    },
+    {
+     "text": "tell me the cancellation policy",
+     "kind": "NEED",
+     "closed": true,
+     "soft": false
+    },
+    {
+     "text": "whether catering is available",
+     "kind": "NEED",
+     "closed": true,
+     "soft": false
+    }
+   ],
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "I need to book a workshop venue in Pune for 30 people",
+     "need": "I need to book a workshop venue in Pune for 30 people",
+     "constraints": [],
+     "closed": true,
+     "anaphoric": false
+    },
+    {
+     "key": "k1",
+     "text": "tell me the cancellation policy",
+     "need": "tell me the cancellation policy",
+     "constraints": [],
+     "closed": true,
+     "anaphoric": false
+    },
+    {
+     "key": "k2",
+     "text": "whether catering is available",
+     "need": "whether catering is available",
+     "constraints": [],
+     "closed": true,
+     "anaphoric": false
+    }
+   ],
+   "slots": [
+    {
+     "key": "place",
+     "kind": "place",
+     "value": "Pune",
+     "first_seen_t": 2.8,
+     "last_changed_t": 2.8,
+     "source_chunk_id": "u1.c3",
+     "revised_from": null
+    },
+    {
+     "key": "number:people",
+     "kind": "number",
+     "value": "30",
+     "first_seen_t": 3.4,
+     "last_changed_t": 3.4,
+     "source_chunk_id": "u1.c4",
+     "revised_from": null
+    }
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0037",
+  "parent_event_ids": [
+   "evt_0036"
+  ],
+  "timestamp": 5.2002,
+  "wall_time": "2026-09-28T20:22:00.578+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "TurnClassified",
+  "utterance_id": "u1",
+  "query_version": 6,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": 1.0,
+  "citations": [],
+  "payload": {
+   "turn_type": "NEW_INFO",
+   "confidence": 1.0,
+   "features": {
+    "has_answer": false,
+    "transform_cue": false,
+    "elaborate_cue": false,
+    "constraint_cue": false,
+    "content_terms": [
+     "book",
+     "workshop",
+     "venue",
+     "pune",
+     "30",
+     "people",
+     "cancellation",
+     "policy",
+     "cater",
+     "available"
+    ],
+    "novel_terms": [
+     "book",
+     "workshop",
+     "venue",
+     "pune",
+     "30",
+     "people",
+     "cancellation",
+     "policy",
+     "cater",
+     "available"
+    ],
+    "slot_terms": [
+     "pune",
+     "30",
+     "people"
+    ]
+   },
+   "transform": {}
+  }
+ },
+ {
+  "event_id": "evt_0038",
+  "parent_event_ids": [
+   "evt_0037"
+  ],
+  "timestamp": 5.2005,
+  "wall_time": "2026-09-28T20:22:00.579+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "ProbeExecuted",
+  "utterance_id": "u1",
+  "query_version": 6,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.269,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "probes": [
+    {
+     "candidate": "k0",
+     "sections": [
+      "D01#1",
+      "D01#2",
+      "D01#3",
+      "D01#5",
+      "D03#1"
+     ]
+    },
+    {
+     "candidate": "k1",
+     "sections": [
+      "D03#3.1",
+      "D03#3.2",
+      "D05#1",
+      "D01#1",
+      "D05#5"
+     ]
+    },
+    {
+     "candidate": "k2",
+     "sections": [
+      "D04#1",
+      "D04#4.2",
+      "D04#2",
+      "D04#4.1",
+      "D04#5"
+     ]
+    }
+   ],
+   "retriever": "bm25-probe"
+  }
+ },
+ {
+  "event_id": "evt_0039",
+  "parent_event_ids": [
+   "evt_0038"
+  ],
+  "timestamp": 5.2005,
+  "wall_time": "2026-09-28T20:22:00.579+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "RetrievalDecision",
+  "utterance_id": "u1",
+  "query_version": 6,
+  "answer_version": null,
+  "retrieval_trigger": "END_OF_UTTERANCE",
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": 0.5534,
+  "citations": [],
+  "payload": {
+   "decision": "RETRIEVE",
+   "reasons": [
+    "END_OF_UTTERANCE"
+   ],
+   "signals": {
+    "rho": 0.5656,
+    "chi": 0.1291,
+    "kappa": 0.8833,
+    "sigma": 0.5,
+    "cont": 1.0,
+    "pi": 0.0,
+    "nu": 1.0,
+    "s_hat": 0.5534,
+    "theta": 0.9,
+    "remaining_s": 0.0,
+    "hidden_latency_s": 0.0
+   },
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "I need to book a workshop venue in Pune for 30 people",
+     "action": "HOLD",
+     "trigger": "NONE",
+     "reasons": [
+      "ALREADY_RETRIEVED"
+     ],
+     "signals": {
+      "rho": 1.0,
+      "chi": 0.1274,
+      "kappa": 1.0,
+      "sigma": 1.0,
+      "cont": 1.0,
+      "pi": 0.0,
+      "nu": 1.0,
+      "s_hat": 0.6544,
+      "theta": 0.9,
+      "remaining_s": 0.0,
+      "hidden_latency_s": 0.0
+     },
+     "sub_query_id": "I01"
+    },
+    {
+     "key": "k1",
+     "text": "tell me the cancellation policy",
+     "action": "HOLD",
+     "trigger": "NONE",
+     "reasons": [
+      "ALREADY_RETRIEVED"
+     ],
+     "signals": {
+      "rho": 1.0,
+      "chi": 0.3356,
+      "kappa": 0.8833,
+      "sigma": 0.5,
+      "cont": 1.0,
+      "pi": 0.0,
+      "nu": 1.0,
+      "s_hat": 0.695,
+      "theta": 0.9,
+      "remaining_s": 0.0,
+      "hidden_latency_s": 0.0
+     },
+     "sub_query_id": "I02"
+    },
+    {
+     "key": "k2",
+     "text": "whether catering is available",
+     "action": "RETRIEVE",
+     "trigger": "END_OF_UTTERANCE",
+     "reasons": [
+      "END_OF_UTTERANCE"
+     ],
+     "signals": {
+      "rho": 0.5656,
+      "chi": 0.1291,
+      "kappa": 0.8833,
+      "sigma": 0.5,
+      "cont": 1.0,
+      "pi": 0.0,
+      "nu": 1.0,
+      "s_hat": 0.5534,
+      "theta": 0.9,
+      "remaining_s": 0.0,
+      "hidden_latency_s": 0.0
+     },
+     "sub_query_id": null
+    }
+   ],
+   "turn_type": "NEW_INFO",
+   "controller_mode": "psrc",
+   "stability_model": "trained:stability.json",
+   "budget_left": 3
+  }
+ },
+ {
+  "event_id": "evt_0040",
+  "parent_event_ids": [
+   "evt_0039"
+  ],
+  "timestamp": 5.2009,
+  "wall_time": "2026-09-28T20:22:00.579+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "SubQueriesGenerated",
+  "utterance_id": "u1",
+  "query_version": 6,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "sub_queries": [
+    {
+     "id": "I01",
+     "utterance_id": "u1",
+     "label": "workshop venue pune",
+     "text": "I need to book a workshop venue in Pune for 30 people",
+     "need_texts": [
+      "I need to book a workshop venue in Pune for 30 people"
+     ],
+     "constraints": [],
+     "anchor": "",
+     "facet_constraints": {},
+     "candidate_keys": [
+      "k0"
+     ],
+     "depends_on": [],
+     "dependency_type": null,
+     "footprint": [
+      "D01#2",
+      "D01#1",
+      "D01#5",
+      "D01#4",
+      "D01#3"
+     ],
+     "status": "RETRIEVED",
+     "retrieval_count": 2,
+     "merged_from": []
+    },
+    {
+     "id": "I02",
+     "utterance_id": "u1",
+     "label": "cancellation policy",
+     "text": "tell me the cancellation policy",
+     "need_texts": [
+      "tell me the cancellation policy"
+     ],
+     "constraints": [
+      "international event"
+     ],
+     "anchor": "workshop venue pune",
+     "facet_constraints": {
+      "domestic|international|standard": "international"
+     },
+     "candidate_keys": [
+      "k1"
+     ],
+     "depends_on": [
+      "I01"
+     ],
+     "dependency_type": "soft",
+     "footprint": [
+      "D03#3",
+      "D05#1",
+      "D05#5",
+      "D05#4"
+     ],
+     "status": "RETRIEVED",
+     "retrieval_count": 1,
+     "merged_from": []
+    },
+    {
+     "id": "I03",
+     "utterance_id": "u1",
+     "label": "catering",
+     "text": "whether catering is available",
+     "need_texts": [
+      "whether catering is available"
+     ],
+     "constraints": [
+      "international event"
+     ],
+     "anchor": "workshop venue pune",
+     "facet_constraints": {
+      "domestic|international|standard": "international"
+     },
+     "candidate_keys": [
+      "k2"
+     ],
+     "depends_on": [
+      "I01"
+     ],
+     "dependency_type": "soft",
+     "footprint": [
+      "D04#1",
+      "D04#4",
+      "D04#2",
+      "D04#5"
+     ],
+     "status": "PENDING",
+     "retrieval_count": 0,
+     "merged_from": []
+    }
+   ],
+   "assignments": [
+    {
+     "candidate": "k2",
+     "sub_query_id": "I03",
+     "created": true,
+     "merged_into": null,
+     "footprint_overlap": {
+      "I01": 0.0,
+      "I02": 0.0
+     }
+    }
+   ],
+   "active": [
+    "I03"
+   ],
+   "parallel": false
+  }
+ },
+ {
+  "event_id": "evt_0041",
+  "parent_event_ids": [
+   "evt_0040"
+  ],
+  "timestamp": 5.2009,
+  "wall_time": "2026-09-28T20:22:00.579+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "RetrievalStarted",
+  "utterance_id": "u1",
+  "query_version": 6,
+  "answer_version": null,
+  "retrieval_trigger": "END_OF_UTTERANCE",
+  "sub_query_id": "I03",
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "query": "whether catering is available",
+   "terms": {
+    "cater": 1.0,
+    "available": 1.0,
+    "workshop": 0.4,
+    "venue": 0.4,
+    "pune": 0.4
+   },
+   "facet_constraints": {},
+   "mode": "hybrid",
+   "label": "catering",
+   "parallel_group": [
+    "I03"
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0042",
+  "parent_event_ids": [
+   "evt_0041"
+  ],
+  "timestamp": 5.2013,
+  "wall_time": "2026-09-28T20:22:00.580+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "RetrievalCompleted",
+  "utterance_id": "u1",
+  "query_version": 6,
+  "answer_version": null,
+  "retrieval_trigger": "END_OF_UTTERANCE",
+  "sub_query_id": "I03",
+  "document_ids": [
+   "D01",
+   "D04"
+  ],
+  "chunk_ids": [
+   "D04:C01",
+   "D04:C05",
+   "D04:C02",
+   "D01:C04",
+   "D01:C01"
+  ],
+  "latency_ms": 0.355,
+  "token_cost": {},
+  "confidence": 0.6764,
+  "citations": [],
+  "payload": {
+   "hits": [
+    {
+     "chunk_id": "D04:C01",
+     "rank": 1,
+     "sparse_score": 4.9726,
+     "sparse_rank": 1,
+     "dense_score": 0.7373,
+     "dense_rank": 1,
+     "fused_score": 0.03279,
+     "rerank_score": 0.6764,
+     "facet_match": null,
+     "doc_id": "D04",
+     "doc_title": "Catering Services Guide",
+     "section_key": "D04#1",
+     "section": "1",
+     "section_title": "Catering availability",
+     "section_path": "Catering availability",
+     "facets": {},
+     "effective_date": "2025-05-15",
+     "doc_type": "guide",
+     "sha1": "24109ef252c03be8eed6d57ae4f35732f4ea2cce",
+     "text": "In-house catering is available at Banyan Hall and Skyline Terrace through Saffron Kitchen, the Deccan Conference Centre's catering partner. Lotus Room is limited to beverages and light snacks. External caterers are not permitted at the Deccan Conference Centre."
+    },
+    {
+     "chunk_id": "D04:C05",
+     "rank": 2,
+     "sparse_score": 4.7511,
+     "sparse_rank": 2,
+     "dense_score": 0.4097,
+     "dense_rank": 3,
+     "fused_score": 0.032,
+     "rerank_score": 0.5454,
+     "facet_match": null,
+     "doc_id": "D04",
+     "doc_title": "Catering Services Guide",
+     "section_key": "D04#4.2",
+     "section": "4.2",
+     "section_title": "International events",
+     "section_path": "Catering for events > International events",
+     "facets": {
+      "domestic|international|standard": "international"
+     },
+     "effective_date": "2025-05-15",
+     "doc_type": "guide",
+     "sha1": "dc93d01b7eea393d5c94b2fa8fc2b997b8de48ac",
+     "text": "For international events, menus must be confirmed 10 working days before the event. Continental and pan-Asian menus are available for international delegations, and halal-certified meals can be arranged on request."
+    },
+    {
+     "chunk_id": "D04:C02",
+     "rank": 3,
+     "sparse_score": 4.2457,
+     "sparse_rank": 3,
+     "dense_score": 0.3072,
+     "dense_rank": 6,
+     "fused_score": 0.03102,
+     "rerank_score": 0.5044,
+     "facet_match": null,
+     "doc_id": "D04",
+     "doc_title": "Catering Services Guide",
+     "section_key": "D04#2",
+     "section": "2",
+     "section_title": "Menus and dietary options",
+     "section_path": "Menus and dietary options",
+     "facets": {},
+     "effective_date": "2025-05-15",
+     "doc_type": "guide",
+     "sha1": "e8fa524453e1b2aa26d3094157b9b28ad08f4f8c",
+     "text": "Vegetarian, vegan, Jain and gluten-free meals are available on request with 5 working days' notice. The standard lunch buffet costs ₹850 per person."
+    },
+    {
+     "chunk_id": "D01:C04",
+     "rank": 4,
+     "sparse_score": 2.876,
+     "sparse_rank": 6,
+     "dense_score": 0.3038,
+     "dense_rank": 7,
+     "fused_score": 0.03008,
+     "rerank_score": 0.4132,
+     "facet_match": null,
+     "doc_id": "D01",
+     "doc_title": "Pune Venue Catalogue",
+     "section_key": "D01#4",
+     "section": "4",
+     "section_title": "Skyline Terrace",
+     "section_path": "Skyline Terrace",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "aab4a92df1a8cc4d4fd244fce0944085f59e797f",
+     "text": "Skyline Terrace is an open-air rooftop space that holds up to 80 people standing or 50 people seated. It is suited to networking sessions and evening receptions. Skyline Terrace is not available from June to September because of the monsoon season."
+    },
+    {
+     "chunk_id": "D01:C01",
+     "rank": 5,
+     "sparse_score": 2.5955,
+     "sparse_rank": 8,
+     "dense_score": 0.3867,
+     "dense_rank": 4,
+     "fused_score": 0.03033,
+     "rerank_score": 0.3732,
+     "facet_match": null,
+     "doc_id": "D01",
+     "doc_title": "Pune Venue Catalogue",
+     "section_key": "D01#1",
+     "section": "1",
+     "section_title": "Overview",
+     "section_path": "Overview",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "affbb8bba3a2c0575adc3d536e3d40695c4ec890",
+     "text": "The Deccan Conference Centre in Baner, Pune is the Company's primary venue for workshops, trainings and offsites in Pune. It offers three bookable spaces: Banyan Hall, Lotus Room and Skyline Terrace. All spaces are booked through the Facilities portal."
+    }
+   ],
+   "duplicates": [],
+   "filtered_by_facet": [],
+   "stage_ms": {
+    "sparse_ms": 0.041,
+    "dense_ms": 0.251,
+    "fusion_ms": 0.006,
+    "rerank_ms": 0.038,
+    "dedup_ms": 0.016
+   },
+   "mode": "hybrid",
+   "started_offset_ms": 0.057,
+   "ended_offset_ms": 0.412,
+   "label": "catering"
+  }
+ },
+ {
+  "event_id": "evt_0043",
+  "parent_event_ids": [
+   "evt_0042"
+  ],
+  "timestamp": 5.202,
+  "wall_time": "2026-09-28T20:22:00.580+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "EvidenceFused",
+  "utterance_id": "u1",
+  "query_version": 6,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [
+   "D01",
+   "D04"
+  ],
+  "chunk_ids": [
+   "D04:C01",
+   "D04:C05",
+   "D04:C02",
+   "D01:C04",
+   "D01:C01"
+  ],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "sub_queries": [
+    "I03"
+   ],
+   "evidence_count": 5,
+   "shared_across_sub_queries": [],
+   "contradictions": [],
+   "duplicates_collapsed": 0
+  }
+ },
+ {
+  "event_id": "evt_0044",
+  "parent_event_ids": [
+   "evt_0026",
+   "evt_0034",
+   "evt_0043"
+  ],
+  "timestamp": 5.2076,
+  "wall_time": "2026-09-28T20:22:00.586+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "ClaimsGenerated",
+  "utterance_id": "u1",
+  "query_version": 6,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 5.412,
+  "token_cost": {
+   "llm_prompt": 0,
+   "llm_completion": 0,
+   "context_est": 751
+  },
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "backend": "extractive",
+   "per_sub_query": [
+    {
+     "sub_query_id": "I01",
+     "backend": "extractive",
+     "gap": null,
+     "latency_ms": 1.694,
+     "claims": [
+      {
+       "claim_id": "C01",
+       "lineage_id": "L01",
+       "text": "Banyan Hall: It is suited to workshops of 20 to 40 people.",
+       "evidence": [
+        "D01:C02"
+       ],
+       "quote": "It is suited to workshops of 20 to 40 people.",
+       "score": 0.567,
+       "status": "NEW",
+       "derived_from": []
+      },
+      {
+       "claim_id": "C02",
+       "lineage_id": "L02",
+       "text": "The Deccan Conference Centre in Baner, Pune is the Company's primary venue for workshops, trainings and offsites in Pune.",
+       "evidence": [
+        "D01:C01"
+       ],
+       "quote": "The Deccan Conference Centre in Baner, Pune is the Company's primary venue for workshops, trainings and offsites in Pune.",
+       "score": 0.442,
+       "status": "NEW",
+       "derived_from": []
+      }
+     ]
+    },
+    {
+     "sub_query_id": "I02",
+     "backend": "extractive",
+     "gap": null,
+     "latency_ms": 1.929,
+     "claims": [
+      {
+       "claim_id": "C03",
+       "lineage_id": "L03",
+       "text": "Cancellations made less than 7 days before the event incur the full venue fee.",
+       "evidence": [
+        "D03:C03"
+       ],
+       "quote": "Cancellations made less than 7 days before the event incur the full venue fee.",
+       "score": 0.6563,
+       "status": "NEW",
+       "derived_from": []
+      },
+      {
+       "claim_id": "C04",
+       "lineage_id": "L04",
+       "text": "Cancellations made 14 or more days before a standard event are free of charge.",
+       "evidence": [
+        "D03:C03"
+       ],
+       "quote": "Cancellations made 14 or more days before a standard event are free of charge.",
+       "score": 0.5975,
+       "status": "NEW",
+       "derived_from": []
+      }
+     ]
+    },
+    {
+     "sub_query_id": "I03",
+     "backend": "extractive",
+     "gap": null,
+     "latency_ms": 1.789,
+     "claims": [
+      {
+       "claim_id": "C05",
+       "lineage_id": "L05",
+       "text": "In-house catering is available at Banyan Hall and Skyline Terrace through Saffron Kitchen, the Deccan Conference Centre's catering partner.",
+       "evidence": [
+        "D04:C01"
+       ],
+       "quote": "In-house catering is available at Banyan Hall and Skyline Terrace through Saffron Kitchen, the Deccan Conference Centre's catering partner.",
+       "score": 0.676,
+       "status": "NEW",
+       "derived_from": []
+      },
+      {
+       "claim_id": "C06",
+       "lineage_id": "L06",
+       "text": "Continental and pan-Asian menus are available for international delegations, and halal-certified meals can be arranged on request.",
+       "evidence": [
+        "D04:C05"
+       ],
+       "quote": "Continental and pan-Asian menus are available for international delegations, and halal-certified meals can be arranged on request.",
+       "score": 0.4354,
+       "status": "NEW",
+       "derived_from": []
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0045",
+  "parent_event_ids": [
+   "evt_0044"
+  ],
+  "timestamp": 5.2083,
+  "wall_time": "2026-09-28T20:22:00.586+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "GroundingVerified",
+  "utterance_id": "u1",
+  "query_version": 6,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.722,
+  "token_cost": {},
+  "confidence": 1.0,
+  "citations": [
+   "D01:C01",
+   "D01:C02",
+   "D03:C03",
+   "D04:C01",
+   "D04:C05"
+  ],
+  "payload": {
+   "results": [
+    {
+     "claim_id": "C01",
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "invalid_ids": [],
+     "conflicts": [],
+     "missing_anchors": [],
+     "repaired": false,
+     "text": "Banyan Hall: It is suited to workshops of 20 to 40 people.",
+     "evidence": [
+      "D01:C02"
+     ],
+     "sub_query_id": "I01"
+    },
+    {
+     "claim_id": "C02",
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "invalid_ids": [],
+     "conflicts": [],
+     "missing_anchors": [],
+     "repaired": false,
+     "text": "The Deccan Conference Centre in Baner, Pune is the Company's primary venue for workshops, trainings and offsites in Pune.",
+     "evidence": [
+      "D01:C01"
+     ],
+     "sub_query_id": "I01"
+    },
+    {
+     "claim_id": "C03",
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "invalid_ids": [],
+     "conflicts": [],
+     "missing_anchors": [],
+     "repaired": false,
+     "text": "Cancellations made less than 7 days before the event incur the full venue fee.",
+     "evidence": [
+      "D03:C03"
+     ],
+     "sub_query_id": "I02"
+    },
+    {
+     "claim_id": "C04",
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "invalid_ids": [],
+     "conflicts": [],
+     "missing_anchors": [],
+     "repaired": false,
+     "text": "Cancellations made 14 or more days before a standard event are free of charge.",
+     "evidence": [
+      "D03:C03"
+     ],
+     "sub_query_id": "I02"
+    },
+    {
+     "claim_id": "C05",
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "invalid_ids": [],
+     "conflicts": [],
+     "missing_anchors": [],
+     "repaired": false,
+     "text": "In-house catering is available at Banyan Hall and Skyline Terrace through Saffron Kitchen, the Deccan Conference Centre's catering partner.",
+     "evidence": [
+      "D04:C01"
+     ],
+     "sub_query_id": "I03"
+    },
+    {
+     "claim_id": "C06",
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "invalid_ids": [],
+     "conflicts": [],
+     "missing_anchors": [],
+     "repaired": false,
+     "text": "Continental and pan-Asian menus are available for international delegations, and halal-certified meals can be arranged on request.",
+     "evidence": [
+      "D04:C05"
+     ],
+     "sub_query_id": "I03"
+    }
+   ],
+   "summary": {
+    "checked": 6,
+    "supported": 6,
+    "partial": 0,
+    "conflicting": 0,
+    "unsupported": 0,
+    "invalid_citation": 0,
+    "fabricated_ids_blocked": 0,
+    "citations_valid": 6,
+    "emitted": 6,
+    "status": "PASS"
+   },
+   "checks": [
+    "CITATION_IN_SESSION_RETRIEVAL",
+    "CORPUS_SHA_MATCH",
+    "VERBATIM_QUOTE",
+    "ANCHORS",
+    "SUPPORT_LEXICAL",
+    "NUMERIC_CONFLICT"
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0046",
+  "parent_event_ids": [
+   "evt_0045"
+  ],
+  "timestamp": 5.2085,
+  "wall_time": "2026-09-28T20:22:00.587+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "AnswerVersionCreated",
+  "utterance_id": "u1",
+  "query_version": 6,
+  "answer_version": 1,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [
+   "D01",
+   "D03",
+   "D04"
+  ],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {
+   "llm_prompt": 0,
+   "llm_completion": 0,
+   "context_est": 751
+  },
+  "confidence": null,
+  "citations": [
+   "D01:C01",
+   "D01:C02",
+   "D03:C03",
+   "D04:C01",
+   "D04:C05"
+  ],
+  "payload": {
+   "version": 1,
+   "parent_version": null,
+   "trigger": "NEW_INFO",
+   "kind": "SEMANTIC",
+   "utterance_id": "u1",
+   "query_version": 6,
+   "blocks": [
+    {
+     "sub_query_id": "I01",
+     "title": "workshop venue pune",
+     "style": "paragraph",
+     "claim_ids": [
+      "C01",
+      "C02"
+     ],
+     "uncertainty": null
+    },
+    {
+     "sub_query_id": "I02",
+     "title": "cancellation policy",
+     "style": "paragraph",
+     "claim_ids": [
+      "C03",
+      "C04"
+     ],
+     "uncertainty": null
+    },
+    {
+     "sub_query_id": "I03",
+     "title": "catering",
+     "style": "paragraph",
+     "claim_ids": [
+      "C05",
+      "C06"
+     ],
+     "uncertainty": null
+    }
+   ],
+   "claims": [
+    {
+     "claim_id": "C01",
+     "lineage_id": "L01",
+     "text": "Banyan Hall: It is suited to workshops of 20 to 40 people.",
+     "sub_query_id": "I01",
+     "evidence": [
+      "D01:C02"
+     ],
+     "quote": "It is suited to workshops of 20 to 40 people.",
+     "score": 0.567,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "NEW",
+     "derived_from": [],
+     "conflicts_with": [],
+     "conditioned_on": [],
+     "repaired": false,
+     "version_created": 1
+    },
+    {
+     "claim_id": "C02",
+     "lineage_id": "L02",
+     "text": "The Deccan Conference Centre in Baner, Pune is the Company's primary venue for workshops, trainings and offsites in Pune.",
+     "sub_query_id": "I01",
+     "evidence": [
+      "D01:C01"
+     ],
+     "quote": "The Deccan Conference Centre in Baner, Pune is the Company's primary venue for workshops, trainings and offsites in Pune.",
+     "score": 0.442,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "NEW",
+     "derived_from": [],
+     "conflicts_with": [],
+     "conditioned_on": [],
+     "repaired": false,
+     "version_created": 1
+    },
+    {
+     "claim_id": "C03",
+     "lineage_id": "L03",
+     "text": "Cancellations made less than 7 days before the event incur the full venue fee.",
+     "sub_query_id": "I02",
+     "evidence": [
+      "D03:C03"
+     ],
+     "quote": "Cancellations made less than 7 days before the event incur the full venue fee.",
+     "score": 0.6563,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "NEW",
+     "derived_from": [],
+     "conflicts_with": [],
+     "conditioned_on": [],
+     "repaired": false,
+     "version_created": 1
+    },
+    {
+     "claim_id": "C04",
+     "lineage_id": "L04",
+     "text": "Cancellations made 14 or more days before a standard event are free of charge.",
+     "sub_query_id": "I02",
+     "evidence": [
+      "D03:C03"
+     ],
+     "quote": "Cancellations made 14 or more days before a standard event are free of charge.",
+     "score": 0.5975,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "NEW",
+     "derived_from": [],
+     "conflicts_with": [],
+     "conditioned_on": [],
+     "repaired": false,
+     "version_created": 1
+    },
+    {
+     "claim_id": "C05",
+     "lineage_id": "L05",
+     "text": "In-house catering is available at Banyan Hall and Skyline Terrace through Saffron Kitchen, the Deccan Conference Centre's catering partner.",
+     "sub_query_id": "I03",
+     "evidence": [
+      "D04:C01"
+     ],
+     "quote": "In-house catering is available at Banyan Hall and Skyline Terrace through Saffron Kitchen, the Deccan Conference Centre's catering partner.",
+     "score": 0.676,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "NEW",
+     "derived_from": [],
+     "conflicts_with": [],
+     "conditioned_on": [],
+     "repaired": false,
+     "version_created": 1
+    },
+    {
+     "claim_id": "C06",
+     "lineage_id": "L06",
+     "text": "Continental and pan-Asian menus are available for international delegations, and halal-certified meals can be arranged on request.",
+     "sub_query_id": "I03",
+     "evidence": [
+      "D04:C05"
+     ],
+     "quote": "Continental and pan-Asian menus are available for international delegations, and halal-certified meals can be arranged on request.",
+     "score": 0.4354,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "NEW",
+     "derived_from": [],
+     "conflicts_with": [],
+     "conditioned_on": [],
+     "repaired": false,
+     "version_created": 1
+    }
+   ],
+   "uncertainty": [],
+   "conflicts": [],
+   "diff": {
+    "kept": [],
+    "revised": [],
+    "added": [
+     "C01",
+     "C02",
+     "C03",
+     "C04",
+     "C05",
+     "C06"
+    ],
+    "retracted": []
+   },
+   "constraint": null,
+   "transform": null,
+   "retrievals_used": [
+    "D01:C01",
+    "D01:C02",
+    "D03:C03",
+    "D04:C01",
+    "D04:C05"
+   ],
+   "tokens": {
+    "llm_prompt": 0,
+    "llm_completion": 0,
+    "context_est": 751
+   },
+   "counterfactual": {},
+   "created_t": 5.208,
+   "notes": [],
+   "rendering": "Banyan Hall: It is suited to workshops of 20 to 40 people. [D01:C02] The Deccan Conference Centre in Baner, Pune is the Company's primary venue for workshops, trainings and offsites in Pune. [D01:C01]\nCancellations made less than 7 days before the event incur the full venue fee. [D03:C03] Cancellations made 14 or more days before a standard event are free of charge. [D03:C03]\nIn-house catering is available at Banyan Hall and Skyline Terrace through Saffron Kitchen, the Deccan Conference Centre's catering partner. [D04:C01] Continental and pan-Asian menus are available for international delegations, and halal-certified meals can be arranged on request. [D04:C05]"
+  }
+ },
+ {
+  "event_id": "evt_0047",
+  "parent_event_ids": [
+   "evt_0046"
+  ],
+  "timestamp": 5.2086,
+  "wall_time": "2026-09-28T20:22:00.587+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "TelemetryEmitted",
+  "utterance_id": "u1",
+  "query_version": 6,
+  "answer_version": 1,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {
+   "llm_prompt": 0,
+   "llm_completion": 0,
+   "context_est": 751
+  },
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "turn_type": "NEW_INFO",
+   "retrievals": 4,
+   "early_retrievals": 3,
+   "first_retrieval_t": 2.8007,
+   "utterance_end_t": 5.2,
+   "retrieval_lead_s": 2.3993,
+   "retrieval_latency_ms_mean": 0.237,
+   "post_utterance_latency_ms": 8.41,
+   "sub_queries": [
+    "I01",
+    "I02",
+    "I03"
+   ],
+   "suppressed": false,
+   "answer_version": 1,
+   "claims": 6,
+   "pipeline_latency_ema_s": 1.2
+  }
+ },
+ {
+  "event_id": "evt_0048",
+  "parent_event_ids": [],
+  "timestamp": 8.5,
+  "wall_time": "2026-09-28T20:22:00.587+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "TranscriptChunkReceived",
+  "utterance_id": "u2",
+  "query_version": null,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "chunk_id": "u2.c1",
+   "seq": 1,
+   "t0": 8.0,
+   "t1": 8.5,
+   "text": "Actually, this is for an",
+   "final": false,
+   "utterance_text": "Actually, this is for an"
+  }
+ },
+ {
+  "event_id": "evt_0049",
+  "parent_event_ids": [
+   "evt_0048"
+  ],
+  "timestamp": 8.5,
+  "wall_time": "2026-09-28T20:22:00.587+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "QueryFrameUpdated",
+  "utterance_id": "u2",
+  "query_version": 7,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.019,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "raw_text": "Actually, this is for an",
+   "analysis_text": "Actually, this is for an",
+   "normalized": "",
+   "anchor": "",
+   "repairs": [],
+   "spans": [
+    {
+     "text": "Actually",
+     "kind": "FILLER",
+     "closed": true,
+     "soft": false
+    },
+    {
+     "text": "this is for an",
+     "kind": "FILLER",
+     "closed": false,
+     "soft": false
+    }
+   ],
+   "candidates": [],
+   "slots": []
+  }
+ },
+ {
+  "event_id": "evt_0050",
+  "parent_event_ids": [
+   "evt_0049"
+  ],
+  "timestamp": 8.5001,
+  "wall_time": "2026-09-28T20:22:00.587+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "TurnClassified",
+  "utterance_id": "u2",
+  "query_version": 7,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": 0.55,
+  "citations": [],
+  "payload": {
+   "turn_type": "CONSTRAINT",
+   "confidence": 0.55,
+   "features": {
+    "has_answer": true,
+    "transform_cue": false,
+    "elaborate_cue": false,
+    "constraint_cue": true,
+    "content_terms": [],
+    "novel_terms": [],
+    "slot_terms": []
+   },
+   "transform": {}
+  }
+ },
+ {
+  "event_id": "evt_0051",
+  "parent_event_ids": [
+   "evt_0050"
+  ],
+  "timestamp": 8.5001,
+  "wall_time": "2026-09-28T20:22:00.587+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "RetrievalDecision",
+  "utterance_id": "u2",
+  "query_version": 7,
+  "answer_version": 1,
+  "retrieval_trigger": "NONE",
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "decision": "WAIT",
+   "reasons": [
+    "CONSTRAINT_INCOMPLETE"
+   ],
+   "signals": {},
+   "candidates": [],
+   "turn_type": "CONSTRAINT",
+   "controller_mode": "psrc",
+   "stability_model": "trained:stability.json",
+   "budget_left": 6
+  }
+ },
+ {
+  "event_id": "evt_0052",
+  "parent_event_ids": [
+   "evt_0048"
+  ],
+  "timestamp": 9.1,
+  "wall_time": "2026-09-28T20:22:00.587+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "TranscriptChunkReceived",
+  "utterance_id": "u2",
+  "query_version": null,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "chunk_id": "u2.c2",
+   "seq": 2,
+   "t0": 8.5,
+   "t1": 9.1,
+   "text": "international event.",
+   "final": true,
+   "utterance_text": "Actually, this is for an international event."
+  }
+ },
+ {
+  "event_id": "evt_0053",
+  "parent_event_ids": [
+   "evt_0052"
+  ],
+  "timestamp": 9.1001,
+  "wall_time": "2026-09-28T20:22:00.587+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "QueryFrameUpdated",
+  "utterance_id": "u2",
+  "query_version": 8,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.04,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "raw_text": "Actually, this is for an international event.",
+   "analysis_text": "Actually, this is for an international event.",
+   "normalized": "this is for an international event",
+   "anchor": "international event",
+   "repairs": [],
+   "spans": [
+    {
+     "text": "Actually",
+     "kind": "FILLER",
+     "closed": true,
+     "soft": false
+    },
+    {
+     "text": "this is for an international event",
+     "kind": "CONSTRAINT",
+     "closed": true,
+     "soft": false
+    }
+   ],
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "this is for an international event",
+     "need": "this is for an international event",
+     "constraints": [],
+     "closed": true,
+     "anaphoric": false
+    }
+   ],
+   "slots": [
+    {
+     "key": "domestic|international|standard",
+     "kind": "qualifier",
+     "value": "international",
+     "first_seen_t": 9.1,
+     "last_changed_t": 9.1,
+     "source_chunk_id": "u2.c2",
+     "revised_from": null
+    }
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0054",
+  "parent_event_ids": [
+   "evt_0053"
+  ],
+  "timestamp": 9.1001,
+  "wall_time": "2026-09-28T20:22:00.587+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "TurnClassified",
+  "utterance_id": "u2",
+  "query_version": 8,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": 0.9,
+  "citations": [],
+  "payload": {
+   "turn_type": "CONSTRAINT",
+   "confidence": 0.9,
+   "features": {
+    "has_answer": true,
+    "transform_cue": false,
+    "elaborate_cue": false,
+    "constraint_cue": true,
+    "content_terms": [
+     "international",
+     "event"
+    ],
+    "novel_terms": [],
+    "slot_terms": [
+     "international",
+     "event"
+    ]
+   },
+   "transform": {}
+  }
+ },
+ {
+  "event_id": "evt_0055",
+  "parent_event_ids": [
+   "evt_0054"
+  ],
+  "timestamp": 9.1012,
+  "wall_time": "2026-09-28T20:22:00.588+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "RetrievalDecision",
+  "utterance_id": "u2",
+  "query_version": 8,
+  "answer_version": 1,
+  "retrieval_trigger": "DELTA",
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "decision": "REFINE",
+   "reasons": [
+    "LATE_CONSTRAINT"
+   ],
+   "signals": {
+    "affected": 2,
+    "total": 3
+   },
+   "candidates": [
+    {
+     "sub_query_id": "I02",
+     "reasons": [
+      "CONSTRAINT_SPECIFIC_EVIDENCE",
+      "FACET_IN_EVIDENCE"
+     ]
+    },
+    {
+     "sub_query_id": "I03",
+     "reasons": [
+      "FACET_IN_EVIDENCE"
+     ]
+    }
+   ],
+   "turn_type": "CONSTRAINT",
+   "controller_mode": "psrc",
+   "stability_model": "trained:stability.json",
+   "budget_left": 6
+  }
+ },
+ {
+  "event_id": "evt_0056",
+  "parent_event_ids": [
+   "evt_0055"
+  ],
+  "timestamp": 9.1013,
+  "wall_time": "2026-09-28T20:22:00.588+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "RetrievalStarted",
+  "utterance_id": "u2",
+  "query_version": 8,
+  "answer_version": null,
+  "retrieval_trigger": "DELTA",
+  "sub_query_id": "I02",
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "query": "tell me the cancellation policy [international event; ]",
+   "terms": {
+    "cancellation": 1.0,
+    "policy": 1.0,
+    "international": 1.0,
+    "event": 1.0,
+    "workshop": 0.4,
+    "venue": 0.4,
+    "pune": 0.4
+   },
+   "facet_constraints": {
+    "domestic|international|standard": "international"
+   },
+   "mode": "hybrid",
+   "label": "cancellation policy",
+   "parallel_group": [
+    "I02",
+    "I03"
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0057",
+  "parent_event_ids": [
+   "evt_0055"
+  ],
+  "timestamp": 9.1013,
+  "wall_time": "2026-09-28T20:22:00.588+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "RetrievalStarted",
+  "utterance_id": "u2",
+  "query_version": 8,
+  "answer_version": null,
+  "retrieval_trigger": "DELTA",
+  "sub_query_id": "I03",
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "query": "whether catering is available [international event; ]",
+   "terms": {
+    "cater": 1.0,
+    "available": 1.0,
+    "international": 1.0,
+    "event": 1.0,
+    "workshop": 0.4,
+    "venue": 0.4,
+    "pune": 0.4
+   },
+   "facet_constraints": {
+    "domestic|international|standard": "international"
+   },
+   "mode": "hybrid",
+   "label": "catering",
+   "parallel_group": [
+    "I02",
+    "I03"
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0058",
+  "parent_event_ids": [
+   "evt_0056"
+  ],
+  "timestamp": 9.1021,
+  "wall_time": "2026-09-28T20:22:00.589+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "RetrievalCompleted",
+  "utterance_id": "u2",
+  "query_version": 8,
+  "answer_version": null,
+  "retrieval_trigger": "DELTA",
+  "sub_query_id": "I02",
+  "document_ids": [
+   "D01",
+   "D03",
+   "D04",
+   "D05",
+   "D06"
+  ],
+  "chunk_ids": [
+   "D03:C04",
+   "D05:C04",
+   "D06:C03",
+   "D04:C05",
+   "D01:C01"
+  ],
+  "latency_ms": 0.727,
+  "token_cost": {},
+  "confidence": 0.9599,
+  "citations": [],
+  "payload": {
+   "hits": [
+    {
+     "chunk_id": "D03:C04",
+     "rank": 1,
+     "sparse_score": 11.913,
+     "sparse_rank": 1,
+     "dense_score": 0.944,
+     "dense_rank": 1,
+     "fused_score": 0.03279,
+     "rerank_score": 0.9599,
+     "facet_match": true,
+     "doc_id": "D03",
+     "doc_title": "Venue Booking Terms",
+     "section_key": "D03#3.2",
+     "section": "3.2",
+     "section_title": "International events",
+     "section_path": "Cancellation policy > International events",
+     "facets": {
+      "domestic|international|standard": "international"
+     },
+     "effective_date": "2025-04-01",
+     "doc_type": "policy",
+     "sha1": "dc6fcd4b2688f9faf0fa490f8a8276e6111c5258",
+     "text": "For international events, cancellations must be made at least 30 days before the event to receive a refund of the venue fee. The 25% deposit for an international event is non-refundable in all cases. Cancellations made less than 30 days before an international event incur 75% of the venue fee."
+    },
+    {
+     "chunk_id": "D05:C04",
+     "rank": 2,
+     "sparse_score": 5.4816,
+     "sparse_rank": 3,
+     "dense_score": 0.2132,
+     "dense_rank": 5,
+     "fused_score": 0.03126,
+     "rerank_score": 0.4234,
+     "facet_match": true,
+     "doc_id": "D05",
+     "doc_title": "Travel and Expense Reimbursement Policy",
+     "section_key": "D05#3.2",
+     "section": "3.2",
+     "section_title": "International travel",
+     "section_path": "Travel > International travel",
+     "facets": {
+      "domestic|international|standard": "international"
+     },
+     "effective_date": "2025-01-01",
+     "doc_type": "policy",
+     "sha1": "f705af18815a1fb4341c0a3dae31e1c2e0fd52d3",
+     "text": "International travel requires pre-approval from the department head at least 21 days before departure. International flights under 8 hours are reimbursed at economy class, and flights of 8 hours or more at premium economy. Claims for international travel must be submitted within 45 days of return. The international per diem follows the country schedule, with a default of US$75 per day. Company-arranged travel insurance is mandatory for international trips."
+    },
+    {
+     "chunk_id": "D06:C03",
+     "rank": 3,
+     "sparse_score": 4.8518,
+     "sparse_rank": 5,
+     "dense_score": 0.2316,
+     "dense_rank": 3,
+     "fused_score": 0.03126,
+     "rerank_score": 0.3834,
+     "facet_match": true,
+     "doc_id": "D06",
+     "doc_title": "Event Security and Guest Registration",
+     "section_key": "D06#2.2",
+     "section": "2.2",
+     "section_title": "International events",
+     "section_path": "Guest lists for events > International events",
+     "facets": {
+      "domestic|international|standard": "international"
+     },
+     "effective_date": "2025-03-01",
+     "doc_type": "policy",
+     "sha1": "c6e47032f7d7a52a136d1c7842355d50788b9ebf",
+     "text": "For international events, the guest list with passport details must be submitted to Security 21 days before the event. Foreign nationals must carry their passport on the day of the event. Security will provide a short briefing to the event owner."
+    },
+    {
+     "chunk_id": "D04:C05",
+     "rank": 4,
+     "sparse_score": 5.267,
+     "sparse_rank": 4,
+     "dense_score": 0.223,
+     "dense_rank": 4,
+     "fused_score": 0.03125,
+     "rerank_score": 0.38,
+     "facet_match": true,
+     "doc_id": "D04",
+     "doc_title": "Catering Services Guide",
+     "section_key": "D04#4.2",
+     "section": "4.2",
+     "section_title": "International events",
+     "section_path": "Catering for events > International events",
+     "facets": {
+      "domestic|international|standard": "international"
+     },
+     "effective_date": "2025-05-15",
+     "doc_type": "guide",
+     "sha1": "dc93d01b7eea393d5c94b2fa8fc2b997b8de48ac",
+     "text": "For international events, menus must be confirmed 10 working days before the event. Continental and pan-Asian menus are available for international delegations, and halal-certified meals can be arranged on request."
+    },
+    {
+     "chunk_id": "D01:C01",
+     "rank": 5,
+     "sparse_score": 2.5955,
+     "sparse_rank": 7,
+     "dense_score": 0.1883,
+     "dense_rank": 6,
+     "fused_score": 0.03008,
+     "rerank_score": 0.2079,
+     "facet_match": null,
+     "doc_id": "D01",
+     "doc_title": "Pune Venue Catalogue",
+     "section_key": "D01#1",
+     "section": "1",
+     "section_title": "Overview",
+     "section_path": "Overview",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "affbb8bba3a2c0575adc3d536e3d40695c4ec890",
+     "text": "The Deccan Conference Centre in Baner, Pune is the Company's primary venue for workshops, trainings and offsites in Pune. It offers three bookable spaces: Banyan Hall, Lotus Room and Skyline Terrace. All spaces are booked through the Facilities portal."
+    }
+   ],
+   "duplicates": [],
+   "filtered_by_facet": [
+    "D03:C03"
+   ],
+   "stage_ms": {
+    "sparse_ms": 0.045,
+    "dense_ms": 0.61,
+    "fusion_ms": 0.005,
+    "rerank_ms": 0.046,
+    "dedup_ms": 0.018
+   },
+   "mode": "hybrid",
+   "started_offset_ms": 0.116,
+   "ended_offset_ms": 0.843,
+   "label": "cancellation policy"
+  }
+ },
+ {
+  "event_id": "evt_0059",
+  "parent_event_ids": [
+   "evt_0057"
+  ],
+  "timestamp": 9.1023,
+  "wall_time": "2026-09-28T20:22:00.589+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "RetrievalCompleted",
+  "utterance_id": "u2",
+  "query_version": 8,
+  "answer_version": null,
+  "retrieval_trigger": "DELTA",
+  "sub_query_id": "I03",
+  "document_ids": [
+   "D03",
+   "D04",
+   "D05",
+   "D06"
+  ],
+  "chunk_ids": [
+   "D04:C05",
+   "D03:C04",
+   "D04:C01",
+   "D06:C03",
+   "D05:C04"
+  ],
+  "latency_ms": 0.622,
+  "token_cost": {},
+  "confidence": 0.8286,
+  "citations": [],
+  "payload": {
+   "hits": [
+    {
+     "chunk_id": "D04:C05",
+     "rank": 1,
+     "sparse_score": 10.0181,
+     "sparse_rank": 1,
+     "dense_score": 0.68,
+     "dense_rank": 1,
+     "fused_score": 0.03279,
+     "rerank_score": 0.8286,
+     "facet_match": true,
+     "doc_id": "D04",
+     "doc_title": "Catering Services Guide",
+     "section_key": "D04#4.2",
+     "section": "4.2",
+     "section_title": "International events",
+     "section_path": "Catering for events > International events",
+     "facets": {
+      "domestic|international|standard": "international"
+     },
+     "effective_date": "2025-05-15",
+     "doc_type": "guide",
+     "sha1": "dc93d01b7eea393d5c94b2fa8fc2b997b8de48ac",
+     "text": "For international events, menus must be confirmed 10 working days before the event. Continental and pan-Asian menus are available for international delegations, and halal-certified meals can be arranged on request."
+    },
+    {
+     "chunk_id": "D03:C04",
+     "rank": 2,
+     "sparse_score": 5.5892,
+     "sparse_rank": 2,
+     "dense_score": 0.6434,
+     "dense_rank": 2,
+     "fused_score": 0.03226,
+     "rerank_score": 0.5797,
+     "facet_match": true,
+     "doc_id": "D03",
+     "doc_title": "Venue Booking Terms",
+     "section_key": "D03#3.2",
+     "section": "3.2",
+     "section_title": "International events",
+     "section_path": "Cancellation policy > International events",
+     "facets": {
+      "domestic|international|standard": "international"
+     },
+     "effective_date": "2025-04-01",
+     "doc_type": "policy",
+     "sha1": "dc6fcd4b2688f9faf0fa490f8a8276e6111c5258",
+     "text": "For international events, cancellations must be made at least 30 days before the event to receive a refund of the venue fee. The 25% deposit for an international event is non-refundable in all cases. Cancellations made less than 30 days before an international event incur 75% of the venue fee."
+    },
+    {
+     "chunk_id": "D04:C01",
+     "rank": 3,
+     "sparse_score": 4.9726,
+     "sparse_rank": 4,
+     "dense_score": 0.4231,
+     "dense_rank": 3,
+     "fused_score": 0.0315,
+     "rerank_score": 0.4196,
+     "facet_match": null,
+     "doc_id": "D04",
+     "doc_title": "Catering Services Guide",
+     "section_key": "D04#1",
+     "section": "1",
+     "section_title": "Catering availability",
+     "section_path": "Catering availability",
+     "facets": {},
+     "effective_date": "2025-05-15",
+     "doc_type": "guide",
+     "sha1": "24109ef252c03be8eed6d57ae4f35732f4ea2cce",
+     "text": "In-house catering is available at Banyan Hall and Skyline Terrace through Saffron Kitchen, the Deccan Conference Centre's catering partner. Lotus Room is limited to beverages and light snacks. External caterers are not permitted at the Deccan Conference Centre."
+    },
+    {
+     "chunk_id": "D06:C03",
+     "rank": 4,
+     "sparse_score": 4.8518,
+     "sparse_rank": 5,
+     "dense_score": 0.274,
+     "dense_rank": 5,
+     "fused_score": 0.03077,
+     "rerank_score": 0.4158,
+     "facet_match": true,
+     "doc_id": "D06",
+     "doc_title": "Event Security and Guest Registration",
+     "section_key": "D06#2.2",
+     "section": "2.2",
+     "section_title": "International events",
+     "section_path": "Guest lists for events > International events",
+     "facets": {
+      "domestic|international|standard": "international"
+     },
+     "effective_date": "2025-03-01",
+     "doc_type": "policy",
+     "sha1": "c6e47032f7d7a52a136d1c7842355d50788b9ebf",
+     "text": "For international events, the guest list with passport details must be submitted to Security 21 days before the event. Foreign nationals must carry their passport on the day of the event. Security will provide a short briefing to the event owner."
+    },
+    {
+     "chunk_id": "D05:C04",
+     "rank": 5,
+     "sparse_score": 3.8703,
+     "sparse_rank": 7,
+     "dense_score": 0.207,
+     "dense_rank": 7,
+     "fused_score": 0.02985,
+     "rerank_score": 0.3341,
+     "facet_match": true,
+     "doc_id": "D05",
+     "doc_title": "Travel and Expense Reimbursement Policy",
+     "section_key": "D05#3.2",
+     "section": "3.2",
+     "section_title": "International travel",
+     "section_path": "Travel > International travel",
+     "facets": {
+      "domestic|international|standard": "international"
+     },
+     "effective_date": "2025-01-01",
+     "doc_type": "policy",
+     "sha1": "f705af18815a1fb4341c0a3dae31e1c2e0fd52d3",
+     "text": "International travel requires pre-approval from the department head at least 21 days before departure. International flights under 8 hours are reimbursed at economy class, and flights of 8 hours or more at premium economy. Claims for international travel must be submitted within 45 days of return. The international per diem follows the country schedule, with a default of US$75 per day. Company-arranged travel insurance is mandatory for international trips."
+    }
+   ],
+   "duplicates": [],
+   "filtered_by_facet": [
+    "D04:C04"
+   ],
+   "stage_ms": {
+    "sparse_ms": 0.053,
+    "dense_ms": 0.495,
+    "fusion_ms": 0.006,
+    "rerank_ms": 0.045,
+    "dedup_ms": 0.019
+   },
+   "mode": "hybrid",
+   "started_offset_ms": 0.408,
+   "ended_offset_ms": 1.031,
+   "label": "catering"
+  }
+ },
+ {
+  "event_id": "evt_0060",
+  "parent_event_ids": [
+   "evt_0058",
+   "evt_0059"
+  ],
+  "timestamp": 9.1044,
+  "wall_time": "2026-09-28T20:22:00.591+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "EvidenceFused",
+  "utterance_id": "u2",
+  "query_version": 8,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [
+   "D01",
+   "D03",
+   "D04",
+   "D05",
+   "D06"
+  ],
+  "chunk_ids": [
+   "D03:C04",
+   "D05:C04",
+   "D06:C03",
+   "D04:C05",
+   "D01:C01",
+   "D04:C01"
+  ],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "sub_queries": [
+    "I02",
+    "I03"
+   ],
+   "evidence_count": 6,
+   "shared_across_sub_queries": [
+    "D03:C04",
+    "D04:C05",
+    "D05:C04",
+    "D06:C03"
+   ],
+   "contradictions": [],
+   "duplicates_collapsed": 0
+  }
+ },
+ {
+  "event_id": "evt_0061",
+  "parent_event_ids": [
+   "evt_0055",
+   "evt_0060"
+  ],
+  "timestamp": 9.105,
+  "wall_time": "2026-09-28T20:22:00.592+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "DeltaPlanComputed",
+  "utterance_id": "u2",
+  "query_version": 8,
+  "answer_version": 1,
+  "retrieval_trigger": "DELTA",
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "constraint": {
+    "text": "Actually, this is for an international event.",
+    "facets": {
+     "domestic|international|standard": "international"
+    },
+    "slots": [
+     {
+      "key": "domestic|international|standard",
+      "kind": "qualifier",
+      "value": "international",
+      "first_seen_t": 9.1,
+      "last_changed_t": 9.1,
+      "source_chunk_id": "u2.c2",
+      "revised_from": null
+     }
+    ],
+    "terms": [
+     "international",
+     "event"
+    ]
+   },
+   "affected_sub_queries": [
+    {
+     "sub_query_id": "I02",
+     "reasons": [
+      "CONSTRAINT_SPECIFIC_EVIDENCE",
+      "FACET_IN_EVIDENCE"
+     ]
+    },
+    {
+     "sub_query_id": "I03",
+     "reasons": [
+      "FACET_IN_EVIDENCE"
+     ]
+    }
+   ],
+   "unaffected_sub_queries": [
+    {
+     "sub_query_id": "I01",
+     "reasons": [
+      "NO_DEPENDENCY_ON_CONSTRAINT"
+     ],
+     "shadow_top": [
+      "D03:C04",
+      "D01:C02"
+     ]
+    }
+   ],
+   "plan": {
+    "C01": {
+     "action": "KEEP",
+     "reasons": [
+      "SUBQUERY_UNAFFECTED"
+     ]
+    },
+    "C02": {
+     "action": "KEEP",
+     "reasons": [
+      "SUBQUERY_UNAFFECTED"
+     ]
+    },
+    "C03": {
+     "action": "REVISE",
+     "reasons": [
+      "FACET_CONFLICT"
+     ]
+    },
+    "C04": {
+     "action": "REVISE",
+     "reasons": [
+      "FACET_CONFLICT"
+     ]
+    },
+    "C05": {
+     "action": "KEEP",
+     "reasons": [
+      "GENERAL_RULE_STILL_APPLIES"
+     ]
+    },
+    "C06": {
+     "action": "KEEP",
+     "reasons": [
+      "GENERAL_RULE_STILL_APPLIES"
+     ]
+    }
+   },
+   "base_version": 1,
+   "counterfactual": {
+    "full_restart_retrievals": 3,
+    "delta_retrievals": 2,
+    "full_restart_context_tokens_est": 860,
+    "delta_context_tokens_est": 598,
+    "retrieval_savings_ratio": 0.3333
+   },
+   "claims_invalidated": 2,
+   "claims_total": 6
+  }
+ },
+ {
+  "event_id": "evt_0062",
+  "parent_event_ids": [
+   "evt_0061"
+  ],
+  "timestamp": 9.1089,
+  "wall_time": "2026-09-28T20:22:00.596+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "ClaimsGenerated",
+  "utterance_id": "u2",
+  "query_version": 8,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 3.734,
+  "token_cost": {
+   "llm_prompt": 0,
+   "llm_completion": 0,
+   "context_est": 598
+  },
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "backend": "extractive",
+   "per_sub_query": [
+    {
+     "sub_query_id": "I02",
+     "backend": "extractive",
+     "gap": null,
+     "latency_ms": 2.067,
+     "claims": [
+      {
+       "claim_id": "C07",
+       "lineage_id": "L03",
+       "text": "Cancellations made less than 30 days before an international event incur 75% of the venue fee.",
+       "evidence": [
+        "D03:C04"
+       ],
+       "quote": "Cancellations made less than 30 days before an international event incur 75% of the venue fee.",
+       "score": 0.9838,
+       "status": "REVISED",
+       "derived_from": [
+        "C03"
+       ]
+      },
+      {
+       "claim_id": "C08",
+       "lineage_id": "L04",
+       "text": "The 25% deposit for an international event is non-refundable in all cases.",
+       "evidence": [
+        "D03:C04"
+       ],
+       "quote": "The 25% deposit for an international event is non-refundable in all cases.",
+       "score": 0.8759,
+       "status": "REVISED",
+       "derived_from": [
+        "C04"
+       ]
+      },
+      {
+       "claim_id": "C09",
+       "lineage_id": "L09",
+       "text": "For international events, cancellations must be made at least 30 days before the event to receive a refund of the venue fee.",
+       "evidence": [
+        "D03:C04"
+       ],
+       "quote": "For international events, cancellations must be made at least 30 days before the event to receive a refund of the venue fee.",
+       "score": 0.9833,
+       "status": "ADDED",
+       "derived_from": []
+      }
+     ]
+    },
+    {
+     "sub_query_id": "I03",
+     "backend": "extractive",
+     "gap": null,
+     "latency_ms": 1.667,
+     "claims": [
+      {
+       "claim_id": "C10",
+       "lineage_id": "L10",
+       "text": "For international events, menus must be confirmed 10 working days before the event.",
+       "evidence": [
+        "D04:C05"
+       ],
+       "quote": "For international events, menus must be confirmed 10 working days before the event.",
+       "score": 0.7357,
+       "status": "ADDED",
+       "derived_from": []
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0063",
+  "parent_event_ids": [
+   "evt_0062"
+  ],
+  "timestamp": 9.1099,
+  "wall_time": "2026-09-28T20:22:00.597+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "GroundingVerified",
+  "utterance_id": "u2",
+  "query_version": 8,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.988,
+  "token_cost": {},
+  "confidence": 1.0,
+  "citations": [
+   "D03:C04",
+   "D04:C05"
+  ],
+  "payload": {
+   "results": [
+    {
+     "claim_id": "C07",
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "invalid_ids": [],
+     "conflicts": [],
+     "missing_anchors": [],
+     "repaired": false,
+     "text": "Cancellations made less than 30 days before an international event incur 75% of the venue fee.",
+     "evidence": [
+      "D03:C04"
+     ],
+     "sub_query_id": "I02"
+    },
+    {
+     "claim_id": "C08",
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "invalid_ids": [],
+     "conflicts": [],
+     "missing_anchors": [],
+     "repaired": false,
+     "text": "The 25% deposit for an international event is non-refundable in all cases.",
+     "evidence": [
+      "D03:C04"
+     ],
+     "sub_query_id": "I02"
+    },
+    {
+     "claim_id": "C09",
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "invalid_ids": [],
+     "conflicts": [],
+     "missing_anchors": [],
+     "repaired": false,
+     "text": "For international events, cancellations must be made at least 30 days before the event to receive a refund of the venue fee.",
+     "evidence": [
+      "D03:C04"
+     ],
+     "sub_query_id": "I02"
+    },
+    {
+     "claim_id": "C10",
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "invalid_ids": [],
+     "conflicts": [],
+     "missing_anchors": [],
+     "repaired": false,
+     "text": "For international events, menus must be confirmed 10 working days before the event.",
+     "evidence": [
+      "D04:C05"
+     ],
+     "sub_query_id": "I03"
+    }
+   ],
+   "summary": {
+    "checked": 4,
+    "supported": 4,
+    "partial": 0,
+    "conflicting": 0,
+    "unsupported": 0,
+    "invalid_citation": 0,
+    "fabricated_ids_blocked": 0,
+    "citations_valid": 4,
+    "emitted": 4,
+    "status": "PASS"
+   },
+   "checks": [
+    "CITATION_IN_SESSION_RETRIEVAL",
+    "CORPUS_SHA_MATCH",
+    "VERBATIM_QUOTE",
+    "ANCHORS",
+    "SUPPORT_LEXICAL",
+    "NUMERIC_CONFLICT"
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0064",
+  "parent_event_ids": [
+   "evt_0063",
+   "evt_0061"
+  ],
+  "timestamp": 9.1104,
+  "wall_time": "2026-09-28T20:22:00.597+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "AnswerVersionCreated",
+  "utterance_id": "u2",
+  "query_version": 8,
+  "answer_version": 2,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [
+   "D01",
+   "D03",
+   "D04"
+  ],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {
+   "llm_prompt": 0,
+   "llm_completion": 0,
+   "context_est": 598
+  },
+  "confidence": null,
+  "citations": [
+   "D01:C01",
+   "D01:C02",
+   "D03:C04",
+   "D04:C01",
+   "D04:C05"
+  ],
+  "payload": {
+   "version": 2,
+   "parent_version": 1,
+   "trigger": "CONSTRAINT",
+   "kind": "SEMANTIC",
+   "utterance_id": "u2",
+   "query_version": 8,
+   "blocks": [
+    {
+     "sub_query_id": "I01",
+     "title": "workshop venue pune",
+     "style": "paragraph",
+     "claim_ids": [
+      "C01",
+      "C02"
+     ],
+     "uncertainty": null
+    },
+    {
+     "sub_query_id": "I02",
+     "title": "cancellation policy",
+     "style": "paragraph",
+     "claim_ids": [
+      "C07",
+      "C08",
+      "C09"
+     ],
+     "uncertainty": null
+    },
+    {
+     "sub_query_id": "I03",
+     "title": "catering",
+     "style": "paragraph",
+     "claim_ids": [
+      "C05",
+      "C06",
+      "C10"
+     ],
+     "uncertainty": null
+    }
+   ],
+   "claims": [
+    {
+     "claim_id": "C01",
+     "lineage_id": "L01",
+     "text": "Banyan Hall: It is suited to workshops of 20 to 40 people.",
+     "sub_query_id": "I01",
+     "evidence": [
+      "D01:C02"
+     ],
+     "quote": "It is suited to workshops of 20 to 40 people.",
+     "score": 0.567,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "KEEP",
+     "derived_from": [],
+     "conflicts_with": [],
+     "conditioned_on": [],
+     "repaired": false,
+     "version_created": 1
+    },
+    {
+     "claim_id": "C02",
+     "lineage_id": "L02",
+     "text": "The Deccan Conference Centre in Baner, Pune is the Company's primary venue for workshops, trainings and offsites in Pune.",
+     "sub_query_id": "I01",
+     "evidence": [
+      "D01:C01"
+     ],
+     "quote": "The Deccan Conference Centre in Baner, Pune is the Company's primary venue for workshops, trainings and offsites in Pune.",
+     "score": 0.442,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "KEEP",
+     "derived_from": [],
+     "conflicts_with": [],
+     "conditioned_on": [],
+     "repaired": false,
+     "version_created": 1
+    },
+    {
+     "claim_id": "C07",
+     "lineage_id": "L03",
+     "text": "Cancellations made less than 30 days before an international event incur 75% of the venue fee.",
+     "sub_query_id": "I02",
+     "evidence": [
+      "D03:C04"
+     ],
+     "quote": "Cancellations made less than 30 days before an international event incur 75% of the venue fee.",
+     "score": 0.9838,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "REVISED",
+     "derived_from": [
+      "C03"
+     ],
+     "conflicts_with": [],
+     "conditioned_on": [
+      "international event"
+     ],
+     "repaired": false,
+     "version_created": 2
+    },
+    {
+     "claim_id": "C08",
+     "lineage_id": "L04",
+     "text": "The 25% deposit for an international event is non-refundable in all cases.",
+     "sub_query_id": "I02",
+     "evidence": [
+      "D03:C04"
+     ],
+     "quote": "The 25% deposit for an international event is non-refundable in all cases.",
+     "score": 0.8759,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "REVISED",
+     "derived_from": [
+      "C04"
+     ],
+     "conflicts_with": [],
+     "conditioned_on": [
+      "international event"
+     ],
+     "repaired": false,
+     "version_created": 2
+    },
+    {
+     "claim_id": "C09",
+     "lineage_id": "L09",
+     "text": "For international events, cancellations must be made at least 30 days before the event to receive a refund of the venue fee.",
+     "sub_query_id": "I02",
+     "evidence": [
+      "D03:C04"
+     ],
+     "quote": "For international events, cancellations must be made at least 30 days before the event to receive a refund of the venue fee.",
+     "score": 0.9833,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "ADDED",
+     "derived_from": [],
+     "conflicts_with": [],
+     "conditioned_on": [
+      "international event"
+     ],
+     "repaired": false,
+     "version_created": 2
+    },
+    {
+     "claim_id": "C05",
+     "lineage_id": "L05",
+     "text": "In-house catering is available at Banyan Hall and Skyline Terrace through Saffron Kitchen, the Deccan Conference Centre's catering partner.",
+     "sub_query_id": "I03",
+     "evidence": [
+      "D04:C01"
+     ],
+     "quote": "In-house catering is available at Banyan Hall and Skyline Terrace through Saffron Kitchen, the Deccan Conference Centre's catering partner.",
+     "score": 0.676,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "KEEP",
+     "derived_from": [],
+     "conflicts_with": [],
+     "conditioned_on": [],
+     "repaired": false,
+     "version_created": 1
+    },
+    {
+     "claim_id": "C06",
+     "lineage_id": "L06",
+     "text": "Continental and pan-Asian menus are available for international delegations, and halal-certified meals can be arranged on request.",
+     "sub_query_id": "I03",
+     "evidence": [
+      "D04:C05"
+     ],
+     "quote": "Continental and pan-Asian menus are available for international delegations, and halal-certified meals can be arranged on request.",
+     "score": 0.4354,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "KEEP",
+     "derived_from": [],
+     "conflicts_with": [],
+     "conditioned_on": [],
+     "repaired": false,
+     "version_created": 1
+    },
+    {
+     "claim_id": "C10",
+     "lineage_id": "L10",
+     "text": "For international events, menus must be confirmed 10 working days before the event.",
+     "sub_query_id": "I03",
+     "evidence": [
+      "D04:C05"
+     ],
+     "quote": "For international events, menus must be confirmed 10 working days before the event.",
+     "score": 0.7357,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "ADDED",
+     "derived_from": [],
+     "conflicts_with": [],
+     "conditioned_on": [
+      "international event"
+     ],
+     "repaired": false,
+     "version_created": 2
+    }
+   ],
+   "uncertainty": [],
+   "conflicts": [],
+   "diff": {
+    "kept": [
+     "C01",
+     "C02",
+     "C05",
+     "C06"
+    ],
+    "revised": [
+     {
+      "from": "C03",
+      "to": "C07",
+      "reasons": [
+       "FACET_CONFLICT"
+      ]
+     },
+     {
+      "from": "C04",
+      "to": "C08",
+      "reasons": [
+       "FACET_CONFLICT"
+      ]
+     }
+    ],
+    "added": [
+     "C09",
+     "C10"
+    ],
+    "retracted": []
+   },
+   "constraint": {
+    "text": "Actually, this is for an international event.",
+    "facets": {
+     "domestic|international|standard": "international"
+    },
+    "slots": [
+     {
+      "key": "domestic|international|standard",
+      "kind": "qualifier",
+      "value": "international",
+      "first_seen_t": 9.1,
+      "last_changed_t": 9.1,
+      "source_chunk_id": "u2.c2",
+      "revised_from": null
+     }
+    ],
+    "terms": [
+     "international",
+     "event"
+    ]
+   },
+   "transform": null,
+   "retrievals_used": [
+    "D01:C01",
+    "D01:C02",
+    "D03:C04",
+    "D04:C01",
+    "D04:C05"
+   ],
+   "tokens": {
+    "llm_prompt": 0,
+    "llm_completion": 0,
+    "context_est": 598
+   },
+   "counterfactual": {
+    "full_restart_retrievals": 3,
+    "delta_retrievals": 2,
+    "full_restart_context_tokens_est": 860,
+    "delta_context_tokens_est": 598,
+    "retrieval_savings_ratio": 0.3333
+   },
+   "created_t": 9.11,
+   "notes": [],
+   "rendering": "Banyan Hall: It is suited to workshops of 20 to 40 people. [D01:C02] The Deccan Conference Centre in Baner, Pune is the Company's primary venue for workshops, trainings and offsites in Pune. [D01:C01]\nCancellations made less than 30 days before an international event incur 75% of the venue fee. [D03:C04] The 25% deposit for an international event is non-refundable in all cases. [D03:C04] For international events, cancellations must be made at least 30 days before the event to receive a refund of the venue fee. [D03:C04]\nIn-house catering is available at Banyan Hall and Skyline Terrace through Saffron Kitchen, the Deccan Conference Centre's catering partner. [D04:C01] Continental and pan-Asian menus are available for international delegations, and halal-certified meals can be arranged on request. [D04:C05] For international events, menus must be confirmed 10 working days before the event. [D04:C05]"
+  }
+ },
+ {
+  "event_id": "evt_0065",
+  "parent_event_ids": [
+   "evt_0064"
+  ],
+  "timestamp": 9.1105,
+  "wall_time": "2026-09-28T20:22:00.597+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "TelemetryEmitted",
+  "utterance_id": "u2",
+  "query_version": 8,
+  "answer_version": 2,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {
+   "llm_prompt": 0,
+   "llm_completion": 0,
+   "context_est": 598
+  },
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "turn_type": "CONSTRAINT",
+   "retrievals": 2,
+   "early_retrievals": 0,
+   "first_retrieval_t": 9.1013,
+   "utterance_end_t": 9.1,
+   "retrieval_lead_s": -0.0013,
+   "retrieval_latency_ms_mean": 0.674,
+   "post_utterance_latency_ms": 10.329,
+   "sub_queries": [],
+   "suppressed": false,
+   "answer_version": 2,
+   "claims": 8,
+   "pipeline_latency_ema_s": 1.2
+  }
+ },
+ {
+  "event_id": "evt_0066",
+  "parent_event_ids": [],
+  "timestamp": 12.6,
+  "wall_time": "2026-09-28T20:22:00.597+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "TranscriptChunkReceived",
+  "utterance_id": "u3",
+  "query_version": null,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "chunk_id": "u3.c1",
+   "seq": 1,
+   "t0": 12.0,
+   "t1": 12.6,
+   "text": "Make that shorter.",
+   "final": true,
+   "utterance_text": "Make that shorter."
+  }
+ },
+ {
+  "event_id": "evt_0067",
+  "parent_event_ids": [
+   "evt_0066"
+  ],
+  "timestamp": 12.6001,
+  "wall_time": "2026-09-28T20:22:00.597+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "QueryFrameUpdated",
+  "utterance_id": "u3",
+  "query_version": 9,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.033,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "raw_text": "Make that shorter.",
+   "analysis_text": "Make that shorter.",
+   "normalized": "Make that shorter",
+   "anchor": "make shorter",
+   "repairs": [],
+   "spans": [
+    {
+     "text": "Make that shorter",
+     "kind": "NEED",
+     "closed": true,
+     "soft": false
+    }
+   ],
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "Make that shorter",
+     "need": "Make that shorter",
+     "constraints": [],
+     "closed": true,
+     "anaphoric": true
+    }
+   ],
+   "slots": []
+  }
+ },
+ {
+  "event_id": "evt_0068",
+  "parent_event_ids": [
+   "evt_0067"
+  ],
+  "timestamp": 12.6004,
+  "wall_time": "2026-09-28T20:22:00.598+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "TurnClassified",
+  "utterance_id": "u3",
+  "query_version": 9,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": 0.95,
+  "citations": [],
+  "payload": {
+   "turn_type": "TRANSFORM",
+   "confidence": 0.95,
+   "features": {
+    "has_answer": true,
+    "transform_cue": true,
+    "elaborate_cue": false,
+    "constraint_cue": false,
+    "content_terms": [
+     "make",
+     "shorter"
+    ],
+    "novel_terms": [],
+    "slot_terms": []
+   },
+   "transform": {
+    "ops": [
+     "condense"
+    ]
+   }
+  }
+ },
+ {
+  "event_id": "evt_0069",
+  "parent_event_ids": [
+   "evt_0068"
+  ],
+  "timestamp": 12.6004,
+  "wall_time": "2026-09-28T20:22:00.598+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "RetrievalDecision",
+  "utterance_id": "u3",
+  "query_version": 9,
+  "answer_version": 2,
+  "retrieval_trigger": "NONE",
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "decision": "SUPPRESS",
+   "reasons": [
+    "PRESENTATION_TRANSFORMATION"
+   ],
+   "signals": {},
+   "candidates": [],
+   "turn_type": "TRANSFORM",
+   "controller_mode": "psrc",
+   "stability_model": "trained:stability.json",
+   "budget_left": 6
+  }
+ },
+ {
+  "event_id": "evt_0070",
+  "parent_event_ids": [
+   "evt_0069"
+  ],
+  "timestamp": 12.6004,
+  "wall_time": "2026-09-28T20:22:00.598+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "RetrievalSuppressed",
+  "utterance_id": "u3",
+  "query_version": 9,
+  "answer_version": 2,
+  "retrieval_trigger": "NONE",
+  "sub_query_id": null,
+  "document_ids": [
+   "D01",
+   "D03",
+   "D04"
+  ],
+  "chunk_ids": [
+   "D01:C01",
+   "D01:C02",
+   "D03:C04",
+   "D04:C01",
+   "D04:C05"
+  ],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "reason": "PRESENTATION_TRANSFORMATION",
+   "reused_answer_version": 2,
+   "evidence_reused": 5,
+   "skipped": [
+    "VECTOR_SEARCH",
+    "BM25",
+    "RERANKER",
+    "FUSION"
+   ],
+   "transform": {
+    "ops": [
+     "condense"
+    ]
+   }
+  }
+ },
+ {
+  "event_id": "evt_0071",
+  "parent_event_ids": [
+   "evt_0070"
+  ],
+  "timestamp": 12.6008,
+  "wall_time": "2026-09-28T20:22:00.598+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "TransformVerified",
+  "utterance_id": "u3",
+  "query_version": null,
+  "answer_version": 2,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.305,
+  "token_cost": {
+   "llm_prompt": 0,
+   "llm_completion": 0
+  },
+  "confidence": null,
+  "citations": [
+   "D01:C02",
+   "D03:C04",
+   "D04:C05"
+  ],
+  "payload": {
+   "passed": true,
+   "violations": [],
+   "checks": [
+    "DERIVED_FROM_PARENT",
+    "CITATIONS_SUBSET",
+    "NO_NEW_NUMERIC_ANCHORS"
+   ],
+   "citations_subset": true,
+   "ops": [
+    "condense"
+   ],
+   "notes": [],
+   "claims": [
+    "C01",
+    "C07",
+    "C10"
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0072",
+  "parent_event_ids": [
+   "evt_0071"
+  ],
+  "timestamp": 12.6009,
+  "wall_time": "2026-09-28T20:22:00.598+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "AnswerVersionCreated",
+  "utterance_id": "u3",
+  "query_version": 9,
+  "answer_version": 3,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [
+   "D01",
+   "D03",
+   "D04"
+  ],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {
+   "llm_prompt": 0,
+   "llm_completion": 0,
+   "context_est": 0
+  },
+  "confidence": null,
+  "citations": [
+   "D01:C02",
+   "D03:C04",
+   "D04:C05"
+  ],
+  "payload": {
+   "version": 3,
+   "parent_version": 2,
+   "trigger": "TRANSFORM",
+   "kind": "PRESENTATION",
+   "utterance_id": "u3",
+   "query_version": 9,
+   "blocks": [
+    {
+     "sub_query_id": "I01",
+     "title": "workshop venue pune",
+     "style": "paragraph",
+     "claim_ids": [
+      "C01"
+     ],
+     "uncertainty": null
+    },
+    {
+     "sub_query_id": "I02",
+     "title": "cancellation policy",
+     "style": "paragraph",
+     "claim_ids": [
+      "C07"
+     ],
+     "uncertainty": null
+    },
+    {
+     "sub_query_id": "I03",
+     "title": "catering",
+     "style": "paragraph",
+     "claim_ids": [
+      "C10"
+     ],
+     "uncertainty": null
+    }
+   ],
+   "claims": [
+    {
+     "claim_id": "C01",
+     "lineage_id": "L01",
+     "text": "Banyan Hall: It is suited to workshops of 20 to 40 people.",
+     "sub_query_id": "I01",
+     "evidence": [
+      "D01:C02"
+     ],
+     "quote": "It is suited to workshops of 20 to 40 people.",
+     "score": 0.567,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "KEEP",
+     "derived_from": [],
+     "conflicts_with": [],
+     "conditioned_on": [],
+     "repaired": false,
+     "version_created": 1
+    },
+    {
+     "claim_id": "C07",
+     "lineage_id": "L03",
+     "text": "Cancellations made less than 30 days before an international event incur 75% of the venue fee.",
+     "sub_query_id": "I02",
+     "evidence": [
+      "D03:C04"
+     ],
+     "quote": "Cancellations made less than 30 days before an international event incur 75% of the venue fee.",
+     "score": 0.9838,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "KEEP",
+     "derived_from": [
+      "C03"
+     ],
+     "conflicts_with": [],
+     "conditioned_on": [
+      "international event"
+     ],
+     "repaired": false,
+     "version_created": 2
+    },
+    {
+     "claim_id": "C10",
+     "lineage_id": "L10",
+     "text": "For international events, menus must be confirmed 10 working days before the event.",
+     "sub_query_id": "I03",
+     "evidence": [
+      "D04:C05"
+     ],
+     "quote": "For international events, menus must be confirmed 10 working days before the event.",
+     "score": 0.7357,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "KEEP",
+     "derived_from": [],
+     "conflicts_with": [],
+     "conditioned_on": [
+      "international event"
+     ],
+     "repaired": false,
+     "version_created": 2
+    }
+   ],
+   "uncertainty": [],
+   "conflicts": [],
+   "diff": {
+    "kept": [
+     "C01",
+     "C07",
+     "C10"
+    ],
+    "revised": [],
+    "added": [],
+    "retracted": [
+     "C02",
+     "C08",
+     "C09",
+     "C05",
+     "C06"
+    ]
+   },
+   "constraint": null,
+   "transform": {
+    "ops": [
+     "condense"
+    ]
+   },
+   "retrievals_used": [
+    "D01:C02",
+    "D03:C04",
+    "D04:C05"
+   ],
+   "tokens": {
+    "llm_prompt": 0,
+    "llm_completion": 0,
+    "context_est": 0
+   },
+   "counterfactual": {},
+   "created_t": 12.601,
+   "notes": [],
+   "rendering": "Banyan Hall: It is suited to workshops of 20 to 40 people. [D01:C02]\nCancellations made less than 30 days before an international event incur 75% of the venue fee. [D03:C04]\nFor international events, menus must be confirmed 10 working days before the event. [D04:C05]"
+  }
+ },
+ {
+  "event_id": "evt_0073",
+  "parent_event_ids": [
+   "evt_0072"
+  ],
+  "timestamp": 12.6009,
+  "wall_time": "2026-09-28T20:22:00.598+00:00",
+  "session_id": "rec-pune-demo",
+  "event_type": "TelemetryEmitted",
+  "utterance_id": "u3",
+  "query_version": 9,
+  "answer_version": 3,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {
+   "llm_prompt": 0,
+   "llm_completion": 0,
+   "context_est": 0
+  },
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "turn_type": "TRANSFORM",
+   "retrievals": 0,
+   "early_retrievals": 0,
+   "first_retrieval_t": null,
+   "utterance_end_t": 12.6,
+   "retrieval_lead_s": null,
+   "retrieval_latency_ms_mean": null,
+   "post_utterance_latency_ms": 0.82,
+   "sub_queries": [],
+   "suppressed": true,
+   "answer_version": 3,
+   "claims": 3,
+   "pipeline_latency_ema_s": 1.2
+  }
+ }
+]

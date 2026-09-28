@@ -1,0 +1,30 @@
+[
+ {
+  "id": "conflict-demo",
+  "title": "Headcount changes \u2014 contradictory sources",
+  "description": "Two documents state different notice periods for headcount changes; the answer surfaces both with citations instead of silently picking one.",
+  "chunks": 2,
+  "duration_s": 2.6
+ },
+ {
+  "id": "pune-demo",
+  "title": "Workshop venue in Pune \u2014 multi-intent, late constraint, presentation request",
+  "description": "Early retrieval, three intents retrieved in parallel, an 'international event' late constraint handled by delta refinement, and 'make that shorter' suppressed.",
+  "chunks": 9,
+  "duration_s": 12.6
+ },
+ {
+  "id": "reimbursement-demo",
+  "title": "Reimbursement policy \u2014 V1 \u2192 V2 (international) \u2192 V3 (two bullets)",
+  "description": "A single-intent summary refined by a late 'international travel' constraint, then re-rendered as two bullets without retrieval.",
+  "chunks": 5,
+  "duration_s": 9.8
+ },
+ {
+  "id": "self-repair-demo",
+  "title": "Self-repair \u2014 'Pune, sorry, Mumbai'",
+  "description": "The speaker corrects the city mid-utterance; the slot is revised before retrieval commits.",
+  "chunks": 3,
+  "duration_s": 3.2
+ }
+]

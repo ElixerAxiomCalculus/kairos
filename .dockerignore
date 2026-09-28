@@ -1,0 +1,12 @@
+.env
+**/.env
+**/__pycache__
+**/*.pyc
+.pytest_cache
+runs/
+web/node_modules
+web/dist
+web/storybook-static
+web/cypress/screenshots
+web/cypress/videos
+*.log

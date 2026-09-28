@@ -1,0 +1,785 @@
+{
+ "name": "kairos-dev-v1",
+ "note": "Team-authored development sessions over corpus/sample. Used for tuning and regression only; final claims must come from the official benchmark. Chunk timings are assigned by the runner (0.3 s/word + 0.1 s per chunk). eligible_chunk = first chunk after which the information need (as finally answered) is determinable by a human annotator.",
+ "sessions": [
+  {
+   "id": "S01",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "Can you tell me",
+      "which room in Pune",
+      "fits a team of 20,",
+      "and what AV support",
+      "I can request?"
+     ],
+     "eligible_chunk": 3,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D01#2",
+        "D01#3"
+       ]
+      },
+      {
+       "id": "B",
+       "gold_sections": [
+        "D07#1",
+        "D07#2"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S02",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "What is the",
+      "per diem for",
+      "domestic travel?"
+     ],
+     "eligible_chunk": 3,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D05#3.1"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S03",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "I'm planning an",
+      "international trip next month,",
+      "what approvals do I need",
+      "and are receipts required",
+      "for small expenses?"
+     ],
+     "eligible_chunk": 3,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D05#3.2"
+       ]
+      },
+      {
+       "id": "B",
+       "gold_sections": [
+        "D05#2"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S04",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "Can I change the",
+      "headcount",
+      "after booking a room?"
+     ],
+     "eligible_chunk": 2,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D03#4",
+        "D08#2"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S05",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "Is alcohol",
+      "served at company venues?"
+     ],
+     "eligible_chunk": 1,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D04#5"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "u2",
+     "type": "TRANSFORM",
+     "chunks": [
+      "Make it",
+      "one line."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S06",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "What is the cancellation",
+      "policy for venue bookings?"
+     ],
+     "eligible_chunk": 1,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D03#3.1",
+        "D03#3.2"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "u2",
+     "type": "CONSTRAINT",
+     "chunks": [
+      "Actually it's an",
+      "international event."
+     ],
+     "affected_intents": [
+      "A"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S07",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "For a hybrid offsite",
+      "in Mumbai,",
+      "which hall seats 60 people,",
+      "do I need the streaming kit reserved early,",
+      "and is parking available?"
+     ],
+     "eligible_chunk": 3,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D02#2"
+       ]
+      },
+      {
+       "id": "B",
+       "gold_sections": [
+        "D07#3"
+       ]
+      },
+      {
+       "id": "C",
+       "gold_sections": [
+        "D02#4"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S08",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "Is there a",
+      "swimming pool",
+      "at the Pune venue?"
+     ],
+     "eligible_chunk": 2,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [],
+       "unanswerable": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S09",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "How early must I",
+      "register external guests",
+      "for an international event?"
+     ],
+     "eligible_chunk": 3,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D06#2.2"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S10",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "I need catering",
+      "for a workshop at Banyan Hall,",
+      "what menus are available",
+      "and when do I confirm numbers?"
+     ],
+     "eligible_chunk": 2,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D04#1"
+       ]
+      },
+      {
+       "id": "B",
+       "gold_sections": [
+        "D04#2"
+       ]
+      },
+      {
+       "id": "C",
+       "gold_sections": [
+        "D04#4.1",
+        "D04#4.2",
+        "D03#4"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "u2",
+     "type": "CONSTRAINT",
+     "chunks": [
+      "Actually",
+      "it's an international delegation."
+     ],
+     "affected_intents": [
+      "B",
+      "C"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S11",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "Summarize the",
+      "travel reimbursement rules."
+     ],
+     "eligible_chunk": 2,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D05#1",
+        "D05#2",
+        "D05#3.1",
+        "D05#3.2"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "u2",
+     "type": "TRANSFORM",
+     "chunks": [
+      "Shorter please."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S12",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "Which Pune room",
+      "has video conferencing?"
+     ],
+     "eligible_chunk": 2,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D01#3"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S13",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "What happens if",
+      "I cancel a standard event",
+      "five days before?"
+     ],
+     "eligible_chunk": 2,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D03#3.1"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S14",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "When will my",
+      "approved expense claim",
+      "be paid?"
+     ],
+     "eligible_chunk": 3,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D05#5"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S15",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "Can guests",
+      "enter the server room",
+      "if escorted?"
+     ],
+     "eligible_chunk": 2,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D06#3"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S16",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "Tell me about",
+      "Skyline Terrace."
+     ],
+     "eligible_chunk": 2,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D01#4"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "u2",
+     "type": "ELABORATE",
+     "chunks": [
+      "Tell me more about it."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S17",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "How far in advance",
+      "do I book a venue",
+      "through the Facilities portal?"
+     ],
+     "eligible_chunk": 2,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D03#2",
+        "D08#1"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S18",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "What is the deposit",
+      "for a venue booking",
+      "and when is the rest invoiced?"
+     ],
+     "eligible_chunk": 2,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D03#2",
+        "D03#3.2"
+       ]
+      },
+      {
+       "id": "B",
+       "gold_sections": [
+        "D03#5"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S19",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "Which rooms can seat",
+      "100 people in Pune,",
+      "sorry, Mumbai?"
+     ],
+     "eligible_chunk": 3,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D02#2"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S20",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "Which caterer",
+      "serves Banyan Hall?"
+     ],
+     "eligible_chunk": 2,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D04#1"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "u2",
+     "type": "TRANSFORM",
+     "chunks": [
+      "Translate that",
+      "into Hindi."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S21",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "Do I need a technician",
+      "for the first part of my event,",
+      "and what equipment",
+      "is standard in every room?"
+     ],
+     "eligible_chunk": 2,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D07#2"
+       ]
+      },
+      {
+       "id": "B",
+       "gold_sections": [
+        "D07#1"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S22",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "What rooms are",
+      "available in Pune",
+      "for a board meeting?"
+     ],
+     "eligible_chunk": 3,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D01#3",
+        "D01#1"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "u2",
+     "type": "CONSTRAINT",
+     "chunks": [
+      "Actually,",
+      "make it Mumbai."
+     ],
+     "affected_intents": [
+      "A"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S23",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "Can I bring my dog",
+      "to the Pune venue,",
+      "and where is the nearest metro?"
+     ],
+     "eligible_chunk": 2,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [],
+       "unanswerable": true
+      },
+      {
+       "id": "B",
+       "gold_sections": [
+        "D01#5"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S24",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "Tell me the",
+      "flight class rules",
+      "for long international flights."
+     ],
+     "eligible_chunk": 3,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D05#3.2"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "u2",
+     "type": "TRANSFORM",
+     "chunks": [
+      "Give it to me",
+      "in two bullets."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S25",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "I need a room in Pune",
+      "for 20 people,",
+      "what AV equipment is standard",
+      "and how do guests register?"
+     ],
+     "eligible_chunk": 2,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D01#2",
+        "D01#3"
+       ]
+      },
+      {
+       "id": "B",
+       "gold_sections": [
+        "D07#1"
+       ]
+      },
+      {
+       "id": "C",
+       "gold_sections": [
+        "D06#1",
+        "D06#2.1",
+        "D06#2.2"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "u2",
+     "type": "CONSTRAINT",
+     "chunks": [
+      "Actually,",
+      "it's an international event."
+     ],
+     "affected_intents": [
+      "C"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S26",
+   "utterances": [
+    {
+     "id": "u1",
+     "type": "NEW_INFO",
+     "chunks": [
+      "What's the domestic per diem",
+      "and which expenses are not reimbursed?"
+     ],
+     "eligible_chunk": 1,
+     "intents": [
+      {
+       "id": "A",
+       "gold_sections": [
+        "D05#3.1"
+       ]
+      },
+      {
+       "id": "B",
+       "gold_sections": [
+        "D05#4"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "u2",
+     "type": "CONSTRAINT",
+     "chunks": [
+      "Actually",
+      "the trip is international."
+     ],
+     "affected_intents": [
+      "A"
+     ]
+    }
+   ]
+  }
+ ]
+}

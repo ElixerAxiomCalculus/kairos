@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kairos"
+version = "0.1.0"
+description = "Kairos: a streaming live RAG engine built as incremental computation"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "fastapi>=0.110",
+  "uvicorn[standard]>=0.27",
+  "pydantic>=2.5",
+  "numpy>=1.26",
+  "scikit-learn>=1.4",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+neural = ["sentence-transformers>=2.7", "torch>=2.1"]
+llm = ["google-genai>=1.30", "ollama>=0.3"]
+dev = ["pytest>=8", "pytest-asyncio>=0.23", "httpx>=0.27"]
+
+[tool.setuptools.packages.find]
+include = ["kairos*", "benchmark*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "--basetemp=runs/pytest-tmp -p no:cacheprovider"

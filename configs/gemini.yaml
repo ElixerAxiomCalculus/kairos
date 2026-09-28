@@ -1,0 +1,4 @@
+# Generative synthesis with Gemini (free tier). Requires GEMINI_API_KEY in kairos/.env.
+# Every call is cached under runs/llm_cache; set llm_mode: replay to re-run from cache only.
+synthesis:
+  backend: gemini

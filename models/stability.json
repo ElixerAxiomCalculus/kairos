@@ -1,0 +1,23 @@
+{
+  "weights": {
+    "rho": 1.483,
+    "chi": -0.1703,
+    "kappa": 0.929,
+    "sigma": -0.6574,
+    "cont": 0.2896,
+    "bias": -1.3839
+  },
+  "trained_on": "benchmark/datasets/train/utterances.txt",
+  "examples": 42,
+  "positive_rate": 0.4286,
+  "train_accuracy": 0.7381,
+  "tau_y": 0.7,
+  "features": [
+    "rho",
+    "chi",
+    "kappa",
+    "sigma",
+    "cont"
+  ],
+  "label": "RBO(top-k now, top-k final) >= tau_y"
+}

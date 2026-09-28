@@ -1,0 +1,26 @@
+# Training streams for the stability model (self-supervised labels — no gold needed).
+# One utterance per line; " | " marks chunk boundaries. Kept disjoint from benchmark/datasets/dev.
+I want to know | the minimum number of guests | for a buffet lunch
+Where can I park | at the Deccan Conference Centre?
+What does the | standard lunch buffet | cost per person?
+Is Lotus Room | big enough | for twelve people?
+Which documents | do foreign nationals | need to carry | on the day?
+How do I | reserve the hybrid streaming kit?
+What is the hotel limit | per night | for domestic trips?
+Are traffic fines | reimbursed?
+Who approves | my expense claims?
+What layouts | does Banyan Hall support | and how many people fit?
+How long before | the event | do I send the guest list | to Security?
+Can outside caterers | come to | the Pune venue?
+What happens to the deposit | if I cancel | an international event?
+Is the rooftop terrace | open | in July?
+How many days do I have | to submit | a domestic travel claim?
+Tell me which | wireless microphones | are available | and how to book a technician
+When is travel insurance | mandatory?
+What is the nearest | railway station | to Harbourview Suites?
+I need a meeting room | in Mumbai | for sixteen people
+Do I need | pre-approval | for a trip abroad | and who gives it?
+What meals are available | for gluten-free | guests?
+How is the remaining | venue fee | billed?
+Can I change | rooms | after the booking is confirmed?
+What should visitors | show at reception | to get a badge?

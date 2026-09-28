@@ -1,0 +1,1953 @@
+[
+ {
+  "event_id": "evt_0001",
+  "parent_event_ids": [],
+  "timestamp": 0.0,
+  "wall_time": "2026-09-28T20:22:00.628+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "SessionStarted",
+  "utterance_id": null,
+  "query_version": null,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "corpus": {
+    "documents": 8,
+    "chunks": 37,
+    "dense_backend": "lsa",
+    "embedding_model": "lsa-tfidf-svd36",
+    "sparse_index": "bm25 (k1=1.5, b=0.75)",
+    "reranker": "hybrid-linear",
+    "facet_dimensions": {
+     "domestic|international|standard": [
+      "domestic",
+      "international",
+      "standard"
+     ]
+    },
+    "build_ms": 702.1,
+    "indexed_at": "2026-09-28T20:22:00.561+00:00",
+    "documents_list": [
+     {
+      "doc_id": "D01",
+      "title": "Pune Venue Catalogue",
+      "doc_type": "catalogue",
+      "effective_date": "2025-06-01",
+      "source_file": "D01-venues-pune.md",
+      "chunks": 5
+     },
+     {
+      "doc_id": "D02",
+      "title": "Mumbai Venue Catalogue",
+      "doc_type": "catalogue",
+      "effective_date": "2025-06-01",
+      "source_file": "D02-venues-mumbai.md",
+      "chunks": 4
+     },
+     {
+      "doc_id": "D03",
+      "title": "Venue Booking Terms",
+      "doc_type": "policy",
+      "effective_date": "2025-04-01",
+      "source_file": "D03-venue-booking-terms.md",
+      "chunks": 6
+     },
+     {
+      "doc_id": "D04",
+      "title": "Catering Services Guide",
+      "doc_type": "guide",
+      "effective_date": "2025-05-15",
+      "source_file": "D04-catering.md",
+      "chunks": 6
+     },
+     {
+      "doc_id": "D05",
+      "title": "Travel and Expense Reimbursement Policy",
+      "doc_type": "policy",
+      "effective_date": "2025-01-01",
+      "source_file": "D05-travel-expense-policy.md",
+      "chunks": 6
+     },
+     {
+      "doc_id": "D06",
+      "title": "Event Security and Guest Registration",
+      "doc_type": "policy",
+      "effective_date": "2025-03-01",
+      "source_file": "D06-event-security.md",
+      "chunks": 4
+     },
+     {
+      "doc_id": "D07",
+      "title": "AV and IT Support for Events",
+      "doc_type": "guide",
+      "effective_date": "2025-02-10",
+      "source_file": "D07-av-it-support.md",
+      "chunks": 3
+     },
+     {
+      "doc_id": "D08",
+      "title": "Venue Booking FAQ (2023 edition)",
+      "doc_type": "faq",
+      "effective_date": "2023-01-15",
+      "source_file": "D08-venue-faq-2023.md",
+      "chunks": 3
+     }
+    ]
+   },
+   "config": {
+    "controller_mode": "psrc",
+    "retrieval_mode": "hybrid",
+    "reranker": "hybrid-linear",
+    "synthesis_backend": "extractive",
+    "grounding_nli": "lexical",
+    "refinement": "delta"
+   },
+   "stability_model": "trained:stability.json"
+  }
+ },
+ {
+  "event_id": "evt_0002",
+  "parent_event_ids": [],
+  "timestamp": 1.8,
+  "wall_time": "2026-09-28T20:22:00.628+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "TranscriptChunkReceived",
+  "utterance_id": "u1",
+  "query_version": null,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "chunk_id": "u1.c1",
+   "seq": 1,
+   "t0": 1.0,
+   "t1": 1.8,
+   "text": "Which rooms can seat",
+   "final": false,
+   "utterance_text": "Which rooms can seat"
+  }
+ },
+ {
+  "event_id": "evt_0003",
+  "parent_event_ids": [
+   "evt_0002"
+  ],
+  "timestamp": 1.8001,
+  "wall_time": "2026-09-28T20:22:00.628+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "QueryFrameUpdated",
+  "utterance_id": "u1",
+  "query_version": 1,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.039,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "raw_text": "Which rooms can seat",
+   "analysis_text": "Which rooms can seat",
+   "normalized": "Which rooms can seat",
+   "anchor": "room seat",
+   "repairs": [],
+   "spans": [
+    {
+     "text": "Which rooms can seat",
+     "kind": "NEED",
+     "closed": false,
+     "soft": false
+    }
+   ],
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "Which rooms can seat",
+     "need": "Which rooms can seat",
+     "constraints": [],
+     "closed": false,
+     "anaphoric": false
+    }
+   ],
+   "slots": []
+  }
+ },
+ {
+  "event_id": "evt_0004",
+  "parent_event_ids": [
+   "evt_0003"
+  ],
+  "timestamp": 1.8001,
+  "wall_time": "2026-09-28T20:22:00.628+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "TurnClassified",
+  "utterance_id": "u1",
+  "query_version": 1,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": 1.0,
+  "citations": [],
+  "payload": {
+   "turn_type": "NEW_INFO",
+   "confidence": 1.0,
+   "features": {
+    "has_answer": false,
+    "transform_cue": false,
+    "elaborate_cue": false,
+    "constraint_cue": false,
+    "content_terms": [
+     "room",
+     "seat"
+    ],
+    "novel_terms": [
+     "room",
+     "seat"
+    ],
+    "slot_terms": []
+   },
+   "transform": {}
+  }
+ },
+ {
+  "event_id": "evt_0005",
+  "parent_event_ids": [
+   "evt_0004"
+  ],
+  "timestamp": 1.8003,
+  "wall_time": "2026-09-28T20:22:00.629+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "ProbeExecuted",
+  "utterance_id": "u1",
+  "query_version": 1,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.167,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "probes": [
+    {
+     "candidate": "k0",
+     "sections": [
+      "D02#3",
+      "D01#3",
+      "D02#2",
+      "D01#4",
+      "D06#3"
+     ]
+    }
+   ],
+   "retriever": "bm25-probe"
+  }
+ },
+ {
+  "event_id": "evt_0006",
+  "parent_event_ids": [
+   "evt_0005"
+  ],
+  "timestamp": 1.8003,
+  "wall_time": "2026-09-28T20:22:00.629+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "RetrievalDecision",
+  "utterance_id": "u1",
+  "query_version": 1,
+  "answer_version": null,
+  "retrieval_trigger": "EARLY",
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": 0.5163,
+  "citations": [],
+  "payload": {
+   "decision": "RETRIEVE",
+   "reasons": [
+    "STABLE_ABOVE_THRESHOLD"
+   ],
+   "signals": {
+    "rho": 0.7095,
+    "chi": 0.3164,
+    "kappa": 0.6833,
+    "sigma": 0.5,
+    "cont": 0.5,
+    "pi": 0.5,
+    "nu": 1.0,
+    "s_hat": 0.5163,
+    "theta": 0.4,
+    "remaining_s": 1.5,
+    "hidden_latency_s": 1.2
+   },
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "Which rooms can seat",
+     "action": "RETRIEVE",
+     "trigger": "EARLY",
+     "reasons": [
+      "STABLE_ABOVE_THRESHOLD"
+     ],
+     "signals": {
+      "rho": 0.7095,
+      "chi": 0.3164,
+      "kappa": 0.6833,
+      "sigma": 0.5,
+      "cont": 0.5,
+      "pi": 0.5,
+      "nu": 1.0,
+      "s_hat": 0.5163,
+      "theta": 0.4,
+      "remaining_s": 1.5,
+      "hidden_latency_s": 1.2
+     },
+     "sub_query_id": null
+    }
+   ],
+   "turn_type": "NEW_INFO",
+   "controller_mode": "psrc",
+   "stability_model": "trained:stability.json",
+   "budget_left": 6
+  }
+ },
+ {
+  "event_id": "evt_0007",
+  "parent_event_ids": [
+   "evt_0006"
+  ],
+  "timestamp": 1.8008,
+  "wall_time": "2026-09-28T20:22:00.629+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "SubQueriesGenerated",
+  "utterance_id": "u1",
+  "query_version": 1,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "sub_queries": [
+    {
+     "id": "I01",
+     "utterance_id": "u1",
+     "label": "rooms seat",
+     "text": "Which rooms can seat",
+     "need_texts": [
+      "Which rooms can seat 100 people in Mumbai"
+     ],
+     "constraints": [],
+     "anchor": "",
+     "facet_constraints": {},
+     "candidate_keys": [
+      "k0"
+     ],
+     "depends_on": [],
+     "dependency_type": null,
+     "footprint": [
+      "D01#3",
+      "D02#3",
+      "D06#3",
+      "D08#1",
+      "D01#2"
+     ],
+     "status": "PENDING",
+     "retrieval_count": 0,
+     "merged_from": []
+    }
+   ],
+   "assignments": [
+    {
+     "candidate": "k0",
+     "sub_query_id": "I01",
+     "created": true,
+     "merged_into": null,
+     "footprint_overlap": {}
+    }
+   ],
+   "active": [
+    "I01"
+   ],
+   "parallel": false
+  }
+ },
+ {
+  "event_id": "evt_0008",
+  "parent_event_ids": [
+   "evt_0007"
+  ],
+  "timestamp": 1.8009,
+  "wall_time": "2026-09-28T20:22:00.629+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "RetrievalStarted",
+  "utterance_id": "u1",
+  "query_version": 1,
+  "answer_version": null,
+  "retrieval_trigger": "EARLY",
+  "sub_query_id": "I01",
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "query": "Which rooms can seat",
+   "terms": {
+    "room": 1.0,
+    "seat": 1.0
+   },
+   "facet_constraints": {},
+   "mode": "hybrid",
+   "label": "rooms seat",
+   "parallel_group": [
+    "I01"
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0009",
+  "parent_event_ids": [
+   "evt_0008"
+  ],
+  "timestamp": 1.8013,
+  "wall_time": "2026-09-28T20:22:00.630+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "RetrievalCompleted",
+  "utterance_id": "u1",
+  "query_version": 1,
+  "answer_version": null,
+  "retrieval_trigger": "EARLY",
+  "sub_query_id": "I01",
+  "document_ids": [
+   "D01",
+   "D02",
+   "D06",
+   "D08"
+  ],
+  "chunk_ids": [
+   "D01:C03",
+   "D02:C03",
+   "D06:C04",
+   "D08:C01",
+   "D01:C02"
+  ],
+  "latency_ms": 0.116,
+  "token_cost": {},
+  "confidence": 0.6,
+  "citations": [],
+  "payload": {
+   "hits": [
+    {
+     "chunk_id": "D01:C03",
+     "rank": 1,
+     "sparse_score": 4.5703,
+     "sparse_rank": 2,
+     "dense_score": -0.0001,
+     "dense_rank": null,
+     "fused_score": 0.01613,
+     "rerank_score": 0.6,
+     "facet_match": null,
+     "doc_id": "D01",
+     "doc_title": "Pune Venue Catalogue",
+     "section_key": "D01#3",
+     "section": "3",
+     "section_title": "Lotus Room",
+     "section_path": "Lotus Room",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "e082d9e2c064d3942d635c489e9dfd46598d2497",
+     "text": "Lotus Room is a boardroom that seats up to 24 participants around a single table. It has a video-conferencing system with a 75-inch display. Lotus Room is not suitable for groups larger than 24 people."
+    },
+    {
+     "chunk_id": "D02:C03",
+     "rank": 2,
+     "sparse_score": 5.0422,
+     "sparse_rank": 1,
+     "dense_score": -0.0005,
+     "dense_rank": null,
+     "fused_score": 0.01639,
+     "rerank_score": 0.6,
+     "facet_match": null,
+     "doc_id": "D02",
+     "doc_title": "Mumbai Venue Catalogue",
+     "section_key": "D02#3",
+     "section": "3",
+     "section_title": "Pearl Room",
+     "section_path": "Pearl Room",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "a2337f62f324ea9f7ea9ae3a2bbaa1df1ba7c9e5",
+     "text": "Pearl Room is a meeting room that seats up to 16 participants. It is intended for small working sessions and interviews."
+    },
+    {
+     "chunk_id": "D06:C04",
+     "rank": 3,
+     "sparse_score": 1.7145,
+     "sparse_rank": 5,
+     "dense_score": 0.7106,
+     "dense_rank": 1,
+     "fused_score": 0.03178,
+     "rerank_score": 0.5462,
+     "facet_match": null,
+     "doc_id": "D06",
+     "doc_title": "Event Security and Guest Registration",
+     "section_key": "D06#3",
+     "section": "3",
+     "section_title": "Restricted areas",
+     "section_path": "Restricted areas",
+     "facets": {},
+     "effective_date": "2025-03-01",
+     "doc_type": "policy",
+     "sha1": "03b7df0b90b1f1fa439468280efe20d92e6150da",
+     "text": "Guests may not enter server rooms, laboratories or other restricted areas, even when escorted."
+    },
+    {
+     "chunk_id": "D08:C01",
+     "rank": 4,
+     "sparse_score": 1.5504,
+     "sparse_rank": 9,
+     "dense_score": 0.6773,
+     "dense_rank": 2,
+     "fused_score": 0.03062,
+     "rerank_score": 0.5328,
+     "facet_match": null,
+     "doc_id": "D08",
+     "doc_title": "Venue Booking FAQ (2023 edition)",
+     "section_key": "D08#1",
+     "section": "1",
+     "section_title": "How far ahead should I book?",
+     "section_path": "How far ahead should I book?",
+     "facets": {},
+     "effective_date": "2023-01-15",
+     "doc_type": "faq",
+     "sha1": "2d4fdfd1806f1be6ca9a08a37cef032a885a7542",
+     "text": "Book your venue as early as possible. Popular rooms are often reserved several weeks in advance."
+    },
+    {
+     "chunk_id": "D01:C02",
+     "rank": 5,
+     "sparse_score": 1.6149,
+     "sparse_rank": 6,
+     "dense_score": -0.0001,
+     "dense_rank": null,
+     "fused_score": 0.01515,
+     "rerank_score": 0.3381,
+     "facet_match": null,
+     "doc_id": "D01",
+     "doc_title": "Pune Venue Catalogue",
+     "section_key": "D01#2",
+     "section": "2",
+     "section_title": "Banyan Hall",
+     "section_path": "Banyan Hall",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "08c8d30030b4a91703ddb2945368f5bdc1715f98",
+     "text": "Banyan Hall seats up to 40 participants in a classroom layout and up to 60 participants in a theatre layout. It is suited to workshops of 20 to 40 people. The hall has a ceiling-mounted projector, two whiteboards and a ceiling microphone array. Banyan Hall is wheelchair accessible via the ground-floor entrance."
+    }
+   ],
+   "duplicates": [],
+   "filtered_by_facet": [],
+   "stage_ms": {
+    "sparse_ms": 0.033,
+    "dense_ms": 0.02,
+    "fusion_ms": 0.006,
+    "rerank_ms": 0.037,
+    "dedup_ms": 0.018
+   },
+   "mode": "hybrid",
+   "started_offset_ms": 0.275,
+   "ended_offset_ms": 0.392,
+   "label": "rooms seat"
+  }
+ },
+ {
+  "event_id": "evt_0010",
+  "parent_event_ids": [
+   "evt_0009"
+  ],
+  "timestamp": 1.802,
+  "wall_time": "2026-09-28T20:22:00.630+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "EvidenceFused",
+  "utterance_id": "u1",
+  "query_version": 1,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [
+   "D01",
+   "D02",
+   "D06",
+   "D08"
+  ],
+  "chunk_ids": [
+   "D01:C03",
+   "D02:C03",
+   "D06:C04",
+   "D08:C01",
+   "D01:C02"
+  ],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "sub_queries": [
+    "I01"
+   ],
+   "evidence_count": 5,
+   "shared_across_sub_queries": [],
+   "contradictions": [],
+   "duplicates_collapsed": 0
+  }
+ },
+ {
+  "event_id": "evt_0011",
+  "parent_event_ids": [
+   "evt_0002"
+  ],
+  "timestamp": 2.6,
+  "wall_time": "2026-09-28T20:22:00.630+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "TranscriptChunkReceived",
+  "utterance_id": "u1",
+  "query_version": null,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "chunk_id": "u1.c2",
+   "seq": 2,
+   "t0": 1.8,
+   "t1": 2.6,
+   "text": "100 people in Pune,",
+   "final": false,
+   "utterance_text": "Which rooms can seat 100 people in Pune,"
+  }
+ },
+ {
+  "event_id": "evt_0012",
+  "parent_event_ids": [
+   "evt_0011"
+  ],
+  "timestamp": 2.6001,
+  "wall_time": "2026-09-28T20:22:00.630+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "QueryFrameUpdated",
+  "utterance_id": "u1",
+  "query_version": 2,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.046,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "raw_text": "Which rooms can seat 100 people in Pune,",
+   "analysis_text": "Which rooms can seat 100 people in Pune,",
+   "normalized": "Which rooms can seat 100 people in Pune",
+   "anchor": "room seat pune",
+   "repairs": [],
+   "spans": [
+    {
+     "text": "Which rooms can seat 100 people in Pune",
+     "kind": "NEED",
+     "closed": true,
+     "soft": false
+    }
+   ],
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "Which rooms can seat 100 people in Pune",
+     "need": "Which rooms can seat 100 people in Pune",
+     "constraints": [],
+     "closed": true,
+     "anaphoric": false
+    }
+   ],
+   "slots": [
+    {
+     "key": "number:people",
+     "kind": "number",
+     "value": "100",
+     "first_seen_t": 2.6,
+     "last_changed_t": 2.6,
+     "source_chunk_id": "u1.c2",
+     "revised_from": null
+    },
+    {
+     "key": "place",
+     "kind": "place",
+     "value": "Pune",
+     "first_seen_t": 2.6,
+     "last_changed_t": 2.6,
+     "source_chunk_id": "u1.c2",
+     "revised_from": null
+    }
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0013",
+  "parent_event_ids": [
+   "evt_0012"
+  ],
+  "timestamp": 2.6006,
+  "wall_time": "2026-09-28T20:22:00.631+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "ProbeExecuted",
+  "utterance_id": "u1",
+  "query_version": 2,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.5,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "probes": [
+    {
+     "candidate": "k0",
+     "sections": [
+      "D01#3",
+      "D02#3",
+      "D01#4",
+      "D01#2",
+      "D01#1"
+     ]
+    }
+   ],
+   "retriever": "bm25-probe"
+  }
+ },
+ {
+  "event_id": "evt_0014",
+  "parent_event_ids": [
+   "evt_0013"
+  ],
+  "timestamp": 2.6006,
+  "wall_time": "2026-09-28T20:22:00.631+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "RetrievalDecision",
+  "utterance_id": "u1",
+  "query_version": 2,
+  "answer_version": null,
+  "retrieval_trigger": "REFINE",
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": 0.6763,
+  "citations": [],
+  "payload": {
+   "decision": "REFINE",
+   "reasons": [
+    "RESULTS_WOULD_CHANGE"
+   ],
+   "signals": {
+    "rho": 0.655,
+    "chi": 0.2367,
+    "kappa": 1.0,
+    "sigma": 0.0,
+    "cont": 0.9,
+    "pi": 0.1,
+    "nu": 1.0,
+    "s_hat": 0.6763,
+    "theta": 0.4,
+    "remaining_s": 1.5,
+    "hidden_latency_s": 1.2,
+    "rho_vs_retrieved": 0.5839
+   },
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "Which rooms can seat 100 people in Pune",
+     "action": "REFINE",
+     "trigger": "REFINE",
+     "reasons": [
+      "RESULTS_WOULD_CHANGE"
+     ],
+     "signals": {
+      "rho": 0.655,
+      "chi": 0.2367,
+      "kappa": 1.0,
+      "sigma": 0.0,
+      "cont": 0.9,
+      "pi": 0.1,
+      "nu": 1.0,
+      "s_hat": 0.6763,
+      "theta": 0.4,
+      "remaining_s": 1.5,
+      "hidden_latency_s": 1.2,
+      "rho_vs_retrieved": 0.5839
+     },
+     "sub_query_id": "I01"
+    }
+   ],
+   "turn_type": "NEW_INFO",
+   "controller_mode": "psrc",
+   "stability_model": "trained:stability.json",
+   "budget_left": 5
+  }
+ },
+ {
+  "event_id": "evt_0015",
+  "parent_event_ids": [
+   "evt_0014"
+  ],
+  "timestamp": 2.6008,
+  "wall_time": "2026-09-28T20:22:00.631+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "SubQueriesGenerated",
+  "utterance_id": "u1",
+  "query_version": 2,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "sub_queries": [
+    {
+     "id": "I01",
+     "utterance_id": "u1",
+     "label": "rooms seat pune",
+     "text": "Which rooms can seat 100 people in Pune",
+     "need_texts": [
+      "Which rooms can seat 100 people in Mumbai"
+     ],
+     "constraints": [],
+     "anchor": "",
+     "facet_constraints": {},
+     "candidate_keys": [
+      "k0"
+     ],
+     "depends_on": [],
+     "dependency_type": null,
+     "footprint": [
+      "D01#3",
+      "D01#4",
+      "D01#2",
+      "D01#1",
+      "D06#3"
+     ],
+     "status": "RETRIEVED",
+     "retrieval_count": 1,
+     "merged_from": []
+    }
+   ],
+   "assignments": [
+    {
+     "candidate": "k0",
+     "sub_query_id": "I01",
+     "created": false,
+     "merged_into": null,
+     "refined": true
+    }
+   ],
+   "active": [
+    "I01"
+   ],
+   "parallel": false
+  }
+ },
+ {
+  "event_id": "evt_0016",
+  "parent_event_ids": [
+   "evt_0015"
+  ],
+  "timestamp": 2.6008,
+  "wall_time": "2026-09-28T20:22:00.631+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "RetrievalStarted",
+  "utterance_id": "u1",
+  "query_version": 2,
+  "answer_version": null,
+  "retrieval_trigger": "REFINE",
+  "sub_query_id": "I01",
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "query": "Which rooms can seat 100 people in Pune",
+   "terms": {
+    "room": 1.0,
+    "seat": 1.0,
+    "100": 1.0,
+    "people": 1.0,
+    "pune": 1.0
+   },
+   "facet_constraints": {},
+   "mode": "hybrid",
+   "label": "rooms seat pune",
+   "parallel_group": [
+    "I01"
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0017",
+  "parent_event_ids": [
+   "evt_0016"
+  ],
+  "timestamp": 2.6009,
+  "wall_time": "2026-09-28T20:22:00.631+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "RetrievalCompleted",
+  "utterance_id": "u1",
+  "query_version": 2,
+  "answer_version": null,
+  "retrieval_trigger": "REFINE",
+  "sub_query_id": "I01",
+  "document_ids": [
+   "D01",
+   "D06"
+  ],
+  "chunk_ids": [
+   "D01:C03",
+   "D01:C04",
+   "D01:C02",
+   "D01:C01",
+   "D06:C04"
+  ],
+  "latency_ms": 0.082,
+  "token_cost": {},
+  "confidence": 0.5406,
+  "citations": [],
+  "payload": {
+   "hits": [
+    {
+     "chunk_id": "D01:C03",
+     "rank": 1,
+     "sparse_score": 9.3178,
+     "sparse_rank": 1,
+     "dense_score": 0.4342,
+     "dense_rank": 2,
+     "fused_score": 0.03252,
+     "rerank_score": 0.5406,
+     "facet_match": null,
+     "doc_id": "D01",
+     "doc_title": "Pune Venue Catalogue",
+     "section_key": "D01#3",
+     "section": "3",
+     "section_title": "Lotus Room",
+     "section_path": "Lotus Room",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "e082d9e2c064d3942d635c489e9dfd46598d2497",
+     "text": "Lotus Room is a boardroom that seats up to 24 participants around a single table. It has a video-conferencing system with a 75-inch display. Lotus Room is not suitable for groups larger than 24 people."
+    },
+    {
+     "chunk_id": "D01:C04",
+     "rank": 2,
+     "sparse_score": 6.3258,
+     "sparse_rank": 3,
+     "dense_score": 0.5453,
+     "dense_rank": 1,
+     "fused_score": 0.03227,
+     "rerank_score": 0.5045,
+     "facet_match": null,
+     "doc_id": "D01",
+     "doc_title": "Pune Venue Catalogue",
+     "section_key": "D01#4",
+     "section": "4",
+     "section_title": "Skyline Terrace",
+     "section_path": "Skyline Terrace",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "aab4a92df1a8cc4d4fd244fce0944085f59e797f",
+     "text": "Skyline Terrace is an open-air rooftop space that holds up to 80 people standing or 50 people seated. It is suited to networking sessions and evening receptions. Skyline Terrace is not available from June to September because of the monsoon season."
+    },
+    {
+     "chunk_id": "D01:C02",
+     "rank": 3,
+     "sparse_score": 6.2642,
+     "sparse_rank": 4,
+     "dense_score": 0.3555,
+     "dense_rank": 6,
+     "fused_score": 0.03078,
+     "rerank_score": 0.4286,
+     "facet_match": null,
+     "doc_id": "D01",
+     "doc_title": "Pune Venue Catalogue",
+     "section_key": "D01#2",
+     "section": "2",
+     "section_title": "Banyan Hall",
+     "section_path": "Banyan Hall",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "08c8d30030b4a91703ddb2945368f5bdc1715f98",
+     "text": "Banyan Hall seats up to 40 participants in a classroom layout and up to 60 participants in a theatre layout. It is suited to workshops of 20 to 40 people. The hall has a ceiling-mounted projector, two whiteboards and a ceiling microphone array. Banyan Hall is wheelchair accessible via the ground-floor entrance."
+    },
+    {
+     "chunk_id": "D01:C01",
+     "rank": 4,
+     "sparse_score": 4.4606,
+     "sparse_rank": 5,
+     "dense_score": 0.3653,
+     "dense_rank": 5,
+     "fused_score": 0.03077,
+     "rerank_score": 0.3217,
+     "facet_match": null,
+     "doc_id": "D01",
+     "doc_title": "Pune Venue Catalogue",
+     "section_key": "D01#1",
+     "section": "1",
+     "section_title": "Overview",
+     "section_path": "Overview",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "affbb8bba3a2c0575adc3d536e3d40695c4ec890",
+     "text": "The Deccan Conference Centre in Baner, Pune is the Company's primary venue for workshops, trainings and offsites in Pune. It offers three bookable spaces: Banyan Hall, Lotus Room and Skyline Terrace. All spaces are booked through the Facilities portal."
+    },
+    {
+     "chunk_id": "D06:C04",
+     "rank": 5,
+     "sparse_score": 1.7145,
+     "sparse_rank": 9,
+     "dense_score": 0.3932,
+     "dense_rank": 3,
+     "fused_score": 0.03037,
+     "rerank_score": 0.2379,
+     "facet_match": null,
+     "doc_id": "D06",
+     "doc_title": "Event Security and Guest Registration",
+     "section_key": "D06#3",
+     "section": "3",
+     "section_title": "Restricted areas",
+     "section_path": "Restricted areas",
+     "facets": {},
+     "effective_date": "2025-03-01",
+     "doc_type": "policy",
+     "sha1": "03b7df0b90b1f1fa439468280efe20d92e6150da",
+     "text": "Guests may not enter server rooms, laboratories or other restricted areas, even when escorted."
+    }
+   ],
+   "duplicates": [],
+   "filtered_by_facet": [],
+   "stage_ms": {
+    "sparse_ms": 0.023,
+    "dense_ms": 0.006,
+    "fusion_ms": 0.004,
+    "rerank_ms": 0.033,
+    "dedup_ms": 0.014
+   },
+   "mode": "hybrid",
+   "started_offset_ms": 0.046,
+   "ended_offset_ms": 0.129,
+   "label": "rooms seat pune"
+  }
+ },
+ {
+  "event_id": "evt_0018",
+  "parent_event_ids": [
+   "evt_0017"
+  ],
+  "timestamp": 2.6014,
+  "wall_time": "2026-09-28T20:22:00.632+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "EvidenceFused",
+  "utterance_id": "u1",
+  "query_version": 2,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [
+   "D01",
+   "D06"
+  ],
+  "chunk_ids": [
+   "D01:C03",
+   "D01:C04",
+   "D01:C02",
+   "D01:C01",
+   "D06:C04"
+  ],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "sub_queries": [
+    "I01"
+   ],
+   "evidence_count": 5,
+   "shared_across_sub_queries": [],
+   "contradictions": [],
+   "duplicates_collapsed": 0
+  }
+ },
+ {
+  "event_id": "evt_0019",
+  "parent_event_ids": [
+   "evt_0011"
+  ],
+  "timestamp": 3.2,
+  "wall_time": "2026-09-28T20:22:00.632+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "TranscriptChunkReceived",
+  "utterance_id": "u1",
+  "query_version": null,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "chunk_id": "u1.c3",
+   "seq": 3,
+   "t0": 2.6,
+   "t1": 3.2,
+   "text": "sorry, Mumbai?",
+   "final": true,
+   "utterance_text": "Which rooms can seat 100 people in Pune, sorry, Mumbai?"
+  }
+ },
+ {
+  "event_id": "evt_0020",
+  "parent_event_ids": [
+   "evt_0019"
+  ],
+  "timestamp": 3.2002,
+  "wall_time": "2026-09-28T20:22:00.632+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "QueryFrameUpdated",
+  "utterance_id": "u1",
+  "query_version": 3,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.139,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "raw_text": "Which rooms can seat 100 people in Pune, sorry, Mumbai?",
+   "analysis_text": "Which rooms can seat 100 people in Mumbai?",
+   "normalized": "Which rooms can seat 100 people in Mumbai",
+   "anchor": "room seat mumbai",
+   "repairs": [
+    {
+     "kind": "place",
+     "from": "Pune",
+     "to": "Mumbai"
+    }
+   ],
+   "spans": [
+    {
+     "text": "Which rooms can seat 100 people in Mumbai",
+     "kind": "NEED",
+     "closed": true,
+     "soft": false
+    }
+   ],
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "Which rooms can seat 100 people in Mumbai",
+     "need": "Which rooms can seat 100 people in Mumbai",
+     "constraints": [],
+     "closed": true,
+     "anaphoric": false
+    }
+   ],
+   "slots": [
+    {
+     "key": "number:people",
+     "kind": "number",
+     "value": "100",
+     "first_seen_t": 2.6,
+     "last_changed_t": 2.6,
+     "source_chunk_id": "u1.c2",
+     "revised_from": null
+    },
+    {
+     "key": "place",
+     "kind": "place",
+     "value": "Mumbai",
+     "first_seen_t": 2.6,
+     "last_changed_t": 3.2,
+     "source_chunk_id": "u1.c3",
+     "revised_from": "Pune"
+    }
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0021",
+  "parent_event_ids": [
+   "evt_0020"
+  ],
+  "timestamp": 3.2002,
+  "wall_time": "2026-09-28T20:22:00.632+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "TurnClassified",
+  "utterance_id": "u1",
+  "query_version": 3,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": 1.0,
+  "citations": [],
+  "payload": {
+   "turn_type": "NEW_INFO",
+   "confidence": 1.0,
+   "features": {
+    "has_answer": false,
+    "transform_cue": false,
+    "elaborate_cue": false,
+    "constraint_cue": true,
+    "content_terms": [
+     "room",
+     "seat",
+     "100",
+     "people",
+     "pune",
+     "sorry",
+     "mumbai"
+    ],
+    "novel_terms": [
+     "room",
+     "seat",
+     "100",
+     "people",
+     "pune",
+     "sorry",
+     "mumbai"
+    ],
+    "slot_terms": [
+     "100",
+     "people",
+     "pune",
+     "mumbai"
+    ]
+   },
+   "transform": {}
+  }
+ },
+ {
+  "event_id": "evt_0022",
+  "parent_event_ids": [
+   "evt_0021"
+  ],
+  "timestamp": 3.2003,
+  "wall_time": "2026-09-28T20:22:00.632+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "ProbeExecuted",
+  "utterance_id": "u1",
+  "query_version": 3,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.101,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "probes": [
+    {
+     "candidate": "k0",
+     "sections": [
+      "D02#3",
+      "D02#2",
+      "D01#3",
+      "D02#1",
+      "D01#2"
+     ]
+    }
+   ],
+   "retriever": "bm25-probe"
+  }
+ },
+ {
+  "event_id": "evt_0023",
+  "parent_event_ids": [
+   "evt_0022"
+  ],
+  "timestamp": 3.2003,
+  "wall_time": "2026-09-28T20:22:00.632+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "RetrievalDecision",
+  "utterance_id": "u1",
+  "query_version": 3,
+  "answer_version": null,
+  "retrieval_trigger": "REFINE",
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": 0.6016,
+  "citations": [],
+  "payload": {
+   "decision": "REFINE",
+   "reasons": [
+    "SLOT_REVISED"
+   ],
+   "signals": {
+    "rho": 0.6413,
+    "chi": 0.2627,
+    "kappa": 1.0,
+    "sigma": 0.5,
+    "cont": 1.0,
+    "pi": 0.0,
+    "nu": 1.0,
+    "s_hat": 0.6016,
+    "theta": 0.9,
+    "remaining_s": 0.0,
+    "hidden_latency_s": 0.0,
+    "slot_revised": 1.0
+   },
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "Which rooms can seat 100 people in Mumbai",
+     "action": "REFINE",
+     "trigger": "REFINE",
+     "reasons": [
+      "SLOT_REVISED"
+     ],
+     "signals": {
+      "rho": 0.6413,
+      "chi": 0.2627,
+      "kappa": 1.0,
+      "sigma": 0.5,
+      "cont": 1.0,
+      "pi": 0.0,
+      "nu": 1.0,
+      "s_hat": 0.6016,
+      "theta": 0.9,
+      "remaining_s": 0.0,
+      "hidden_latency_s": 0.0,
+      "slot_revised": 1.0
+     },
+     "sub_query_id": "I01"
+    }
+   ],
+   "turn_type": "NEW_INFO",
+   "controller_mode": "psrc",
+   "stability_model": "trained:stability.json",
+   "budget_left": 4
+  }
+ },
+ {
+  "event_id": "evt_0024",
+  "parent_event_ids": [
+   "evt_0023"
+  ],
+  "timestamp": 3.2007,
+  "wall_time": "2026-09-28T20:22:00.632+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "SubQueriesGenerated",
+  "utterance_id": "u1",
+  "query_version": 3,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "sub_queries": [
+    {
+     "id": "I01",
+     "utterance_id": "u1",
+     "label": "rooms seat mumbai",
+     "text": "Which rooms can seat 100 people in Mumbai",
+     "need_texts": [
+      "Which rooms can seat 100 people in Mumbai"
+     ],
+     "constraints": [],
+     "anchor": "",
+     "facet_constraints": {},
+     "candidate_keys": [
+      "k0"
+     ],
+     "depends_on": [],
+     "dependency_type": null,
+     "footprint": [
+      "D02#3",
+      "D02#1",
+      "D02#2",
+      "D06#3",
+      "D08#1"
+     ],
+     "status": "RETRIEVED",
+     "retrieval_count": 2,
+     "merged_from": []
+    }
+   ],
+   "assignments": [
+    {
+     "candidate": "k0",
+     "sub_query_id": "I01",
+     "created": false,
+     "merged_into": null,
+     "refined": true
+    }
+   ],
+   "active": [
+    "I01"
+   ],
+   "parallel": false
+  }
+ },
+ {
+  "event_id": "evt_0025",
+  "parent_event_ids": [
+   "evt_0024"
+  ],
+  "timestamp": 3.2008,
+  "wall_time": "2026-09-28T20:22:00.632+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "RetrievalStarted",
+  "utterance_id": "u1",
+  "query_version": 3,
+  "answer_version": null,
+  "retrieval_trigger": "REFINE",
+  "sub_query_id": "I01",
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "query": "Which rooms can seat 100 people in Mumbai",
+   "terms": {
+    "room": 1.0,
+    "seat": 1.0,
+    "100": 1.0,
+    "people": 1.0,
+    "mumbai": 1.0
+   },
+   "facet_constraints": {},
+   "mode": "hybrid",
+   "label": "rooms seat mumbai",
+   "parallel_group": [
+    "I01"
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0026",
+  "parent_event_ids": [
+   "evt_0025"
+  ],
+  "timestamp": 3.2009,
+  "wall_time": "2026-09-28T20:22:00.633+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "RetrievalCompleted",
+  "utterance_id": "u1",
+  "query_version": 3,
+  "answer_version": null,
+  "retrieval_trigger": "REFINE",
+  "sub_query_id": "I01",
+  "document_ids": [
+   "D02",
+   "D06",
+   "D08"
+  ],
+  "chunk_ids": [
+   "D02:C03",
+   "D02:C01",
+   "D02:C02",
+   "D06:C04",
+   "D08:C01"
+  ],
+  "latency_ms": 0.092,
+  "token_cost": {},
+  "confidence": 0.4748,
+  "citations": [],
+  "payload": {
+   "hits": [
+    {
+     "chunk_id": "D02:C03",
+     "rank": 1,
+     "sparse_score": 9.8671,
+     "sparse_rank": 1,
+     "dense_score": 0.2609,
+     "dense_rank": 8,
+     "fused_score": 0.0311,
+     "rerank_score": 0.4748,
+     "facet_match": null,
+     "doc_id": "D02",
+     "doc_title": "Mumbai Venue Catalogue",
+     "section_key": "D02#3",
+     "section": "3",
+     "section_title": "Pearl Room",
+     "section_path": "Pearl Room",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "a2337f62f324ea9f7ea9ae3a2bbaa1df1ba7c9e5",
+     "text": "Pearl Room is a meeting room that seats up to 16 participants. It is intended for small working sessions and interviews."
+    },
+    {
+     "chunk_id": "D02:C01",
+     "rank": 2,
+     "sparse_score": 5.2227,
+     "sparse_rank": 4,
+     "dense_score": 0.5405,
+     "dense_rank": 1,
+     "fused_score": 0.03202,
+     "rerank_score": 0.3981,
+     "facet_match": null,
+     "doc_id": "D02",
+     "doc_title": "Mumbai Venue Catalogue",
+     "section_key": "D02#1",
+     "section": "1",
+     "section_title": "Overview",
+     "section_path": "Overview",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "cd87b4426727cc4d7f70bc739c4b5d17b42adfd7",
+     "text": "Harbourview Suites in Lower Parel, Mumbai is the Company's venue for events in Mumbai. It offers two bookable spaces: Marine Hall and Pearl Room."
+    },
+    {
+     "chunk_id": "D02:C02",
+     "rank": 3,
+     "sparse_score": 7.1179,
+     "sparse_rank": 2,
+     "dense_score": 0.2257,
+     "dense_rank": 9,
+     "fused_score": 0.03062,
+     "rerank_score": 0.3813,
+     "facet_match": null,
+     "doc_id": "D02",
+     "doc_title": "Mumbai Venue Catalogue",
+     "section_key": "D02#2",
+     "section": "2",
+     "section_title": "Marine Hall",
+     "section_path": "Marine Hall",
+     "facets": {},
+     "effective_date": "2025-06-01",
+     "doc_type": "catalogue",
+     "sha1": "80e19b7cb763c32c539a3f18d90132aaf5bf6571",
+     "text": "Marine Hall seats up to 120 participants in a theatre layout and up to 70 participants in a classroom layout. It includes a stage, two projectors and a wireless microphone kit."
+    },
+    {
+     "chunk_id": "D06:C04",
+     "rank": 4,
+     "sparse_score": 1.7145,
+     "sparse_rank": 9,
+     "dense_score": 0.419,
+     "dense_rank": 2,
+     "fused_score": 0.03062,
+     "rerank_score": 0.247,
+     "facet_match": null,
+     "doc_id": "D06",
+     "doc_title": "Event Security and Guest Registration",
+     "section_key": "D06#3",
+     "section": "3",
+     "section_title": "Restricted areas",
+     "section_path": "Restricted areas",
+     "facets": {},
+     "effective_date": "2025-03-01",
+     "doc_type": "policy",
+     "sha1": "03b7df0b90b1f1fa439468280efe20d92e6150da",
+     "text": "Guests may not enter server rooms, laboratories or other restricted areas, even when escorted."
+    },
+    {
+     "chunk_id": "D08:C01",
+     "rank": 5,
+     "sparse_score": 1.5504,
+     "sparse_rank": null,
+     "dense_score": 0.3993,
+     "dense_rank": 4,
+     "fused_score": 0.01562,
+     "rerank_score": 0.2391,
+     "facet_match": null,
+     "doc_id": "D08",
+     "doc_title": "Venue Booking FAQ (2023 edition)",
+     "section_key": "D08#1",
+     "section": "1",
+     "section_title": "How far ahead should I book?",
+     "section_path": "How far ahead should I book?",
+     "facets": {},
+     "effective_date": "2023-01-15",
+     "doc_type": "faq",
+     "sha1": "2d4fdfd1806f1be6ca9a08a37cef032a885a7542",
+     "text": "Book your venue as early as possible. Popular rooms are often reserved several weeks in advance."
+    }
+   ],
+   "duplicates": [],
+   "filtered_by_facet": [],
+   "stage_ms": {
+    "sparse_ms": 0.022,
+    "dense_ms": 0.006,
+    "fusion_ms": 0.004,
+    "rerank_ms": 0.042,
+    "dedup_ms": 0.014
+   },
+   "mode": "hybrid",
+   "started_offset_ms": 0.043,
+   "ended_offset_ms": 0.135,
+   "label": "rooms seat mumbai"
+  }
+ },
+ {
+  "event_id": "evt_0027",
+  "parent_event_ids": [
+   "evt_0026"
+  ],
+  "timestamp": 3.2014,
+  "wall_time": "2026-09-28T20:22:00.633+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "EvidenceFused",
+  "utterance_id": "u1",
+  "query_version": 3,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [
+   "D02",
+   "D06",
+   "D08"
+  ],
+  "chunk_ids": [
+   "D02:C03",
+   "D02:C01",
+   "D02:C02",
+   "D06:C04",
+   "D08:C01"
+  ],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "sub_queries": [
+    "I01"
+   ],
+   "evidence_count": 5,
+   "shared_across_sub_queries": [],
+   "contradictions": [],
+   "duplicates_collapsed": 0
+  }
+ },
+ {
+  "event_id": "evt_0028",
+  "parent_event_ids": [
+   "evt_0010",
+   "evt_0018",
+   "evt_0027"
+  ],
+  "timestamp": 3.2032,
+  "wall_time": "2026-09-28T20:22:00.635+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "ClaimsGenerated",
+  "utterance_id": "u1",
+  "query_version": 3,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 1.513,
+  "token_cost": {
+   "llm_prompt": 0,
+   "llm_completion": 0,
+   "context_est": 136
+  },
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "backend": "extractive",
+   "per_sub_query": [
+    {
+     "sub_query_id": "I01",
+     "backend": "extractive",
+     "gap": null,
+     "latency_ms": 1.513,
+     "claims": [
+      {
+       "claim_id": "C01",
+       "lineage_id": "L01",
+       "text": "Marine Hall seats up to 120 participants in a theatre layout and up to 70 participants in a classroom layout.",
+       "evidence": [
+        "D02:C02"
+       ],
+       "quote": "Marine Hall seats up to 120 participants in a theatre layout and up to 70 participants in a classroom layout.",
+       "score": 0.4375,
+       "status": "NEW",
+       "derived_from": []
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0029",
+  "parent_event_ids": [
+   "evt_0028"
+  ],
+  "timestamp": 3.2033,
+  "wall_time": "2026-09-28T20:22:00.635+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "GroundingVerified",
+  "utterance_id": "u1",
+  "query_version": 3,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.136,
+  "token_cost": {},
+  "confidence": 1.0,
+  "citations": [
+   "D02:C02"
+  ],
+  "payload": {
+   "results": [
+    {
+     "claim_id": "C01",
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "invalid_ids": [],
+     "conflicts": [],
+     "missing_anchors": [],
+     "repaired": false,
+     "text": "Marine Hall seats up to 120 participants in a theatre layout and up to 70 participants in a classroom layout.",
+     "evidence": [
+      "D02:C02"
+     ],
+     "sub_query_id": "I01"
+    }
+   ],
+   "summary": {
+    "checked": 1,
+    "supported": 1,
+    "partial": 0,
+    "conflicting": 0,
+    "unsupported": 0,
+    "invalid_citation": 0,
+    "fabricated_ids_blocked": 0,
+    "citations_valid": 1,
+    "emitted": 1,
+    "status": "PASS"
+   },
+   "checks": [
+    "CITATION_IN_SESSION_RETRIEVAL",
+    "CORPUS_SHA_MATCH",
+    "VERBATIM_QUOTE",
+    "ANCHORS",
+    "SUPPORT_LEXICAL",
+    "NUMERIC_CONFLICT"
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0030",
+  "parent_event_ids": [
+   "evt_0029"
+  ],
+  "timestamp": 3.2034,
+  "wall_time": "2026-09-28T20:22:00.635+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "AnswerVersionCreated",
+  "utterance_id": "u1",
+  "query_version": 3,
+  "answer_version": 1,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [
+   "D02"
+  ],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {
+   "llm_prompt": 0,
+   "llm_completion": 0,
+   "context_est": 136
+  },
+  "confidence": null,
+  "citations": [
+   "D02:C02"
+  ],
+  "payload": {
+   "version": 1,
+   "parent_version": null,
+   "trigger": "NEW_INFO",
+   "kind": "SEMANTIC",
+   "utterance_id": "u1",
+   "query_version": 3,
+   "blocks": [
+    {
+     "sub_query_id": "I01",
+     "title": "rooms seat mumbai",
+     "style": "paragraph",
+     "claim_ids": [
+      "C01"
+     ],
+     "uncertainty": null
+    }
+   ],
+   "claims": [
+    {
+     "claim_id": "C01",
+     "lineage_id": "L01",
+     "text": "Marine Hall seats up to 120 participants in a theatre layout and up to 70 participants in a classroom layout.",
+     "sub_query_id": "I01",
+     "evidence": [
+      "D02:C02"
+     ],
+     "quote": "Marine Hall seats up to 120 participants in a theatre layout and up to 70 participants in a classroom layout.",
+     "score": 0.4375,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "NEW",
+     "derived_from": [],
+     "conflicts_with": [],
+     "conditioned_on": [],
+     "repaired": false,
+     "version_created": 1
+    }
+   ],
+   "uncertainty": [],
+   "conflicts": [],
+   "diff": {
+    "kept": [],
+    "revised": [],
+    "added": [
+     "C01"
+    ],
+    "retracted": []
+   },
+   "constraint": null,
+   "transform": null,
+   "retrievals_used": [
+    "D02:C02"
+   ],
+   "tokens": {
+    "llm_prompt": 0,
+    "llm_completion": 0,
+    "context_est": 136
+   },
+   "counterfactual": {},
+   "created_t": 3.203,
+   "notes": [],
+   "rendering": "Marine Hall seats up to 120 participants in a theatre layout and up to 70 participants in a classroom layout. [D02:C02]"
+  }
+ },
+ {
+  "event_id": "evt_0031",
+  "parent_event_ids": [
+   "evt_0030"
+  ],
+  "timestamp": 3.2034,
+  "wall_time": "2026-09-28T20:22:00.635+00:00",
+  "session_id": "rec-self-repair-demo",
+  "event_type": "TelemetryEmitted",
+  "utterance_id": "u1",
+  "query_version": 3,
+  "answer_version": 1,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {
+   "llm_prompt": 0,
+   "llm_completion": 0,
+   "context_est": 136
+  },
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "turn_type": "NEW_INFO",
+   "retrievals": 3,
+   "early_retrievals": 2,
+   "first_retrieval_t": 1.8009,
+   "utterance_end_t": 3.2,
+   "retrieval_lead_s": 1.3991,
+   "retrieval_latency_ms_mean": 0.097,
+   "post_utterance_latency_ms": 3.364,
+   "sub_queries": [
+    "I01"
+   ],
+   "suppressed": false,
+   "answer_version": 1,
+   "claims": 1,
+   "pipeline_latency_ema_s": 1.2
+  }
+ }
+]

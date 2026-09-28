@@ -1,0 +1,2609 @@
+[
+ {
+  "event_id": "evt_0001",
+  "parent_event_ids": [],
+  "timestamp": 0.0,
+  "wall_time": "2026-09-28T20:22:00.602+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "SessionStarted",
+  "utterance_id": null,
+  "query_version": null,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "corpus": {
+    "documents": 8,
+    "chunks": 37,
+    "dense_backend": "lsa",
+    "embedding_model": "lsa-tfidf-svd36",
+    "sparse_index": "bm25 (k1=1.5, b=0.75)",
+    "reranker": "hybrid-linear",
+    "facet_dimensions": {
+     "domestic|international|standard": [
+      "domestic",
+      "international",
+      "standard"
+     ]
+    },
+    "build_ms": 702.1,
+    "indexed_at": "2026-09-28T20:22:00.561+00:00",
+    "documents_list": [
+     {
+      "doc_id": "D01",
+      "title": "Pune Venue Catalogue",
+      "doc_type": "catalogue",
+      "effective_date": "2025-06-01",
+      "source_file": "D01-venues-pune.md",
+      "chunks": 5
+     },
+     {
+      "doc_id": "D02",
+      "title": "Mumbai Venue Catalogue",
+      "doc_type": "catalogue",
+      "effective_date": "2025-06-01",
+      "source_file": "D02-venues-mumbai.md",
+      "chunks": 4
+     },
+     {
+      "doc_id": "D03",
+      "title": "Venue Booking Terms",
+      "doc_type": "policy",
+      "effective_date": "2025-04-01",
+      "source_file": "D03-venue-booking-terms.md",
+      "chunks": 6
+     },
+     {
+      "doc_id": "D04",
+      "title": "Catering Services Guide",
+      "doc_type": "guide",
+      "effective_date": "2025-05-15",
+      "source_file": "D04-catering.md",
+      "chunks": 6
+     },
+     {
+      "doc_id": "D05",
+      "title": "Travel and Expense Reimbursement Policy",
+      "doc_type": "policy",
+      "effective_date": "2025-01-01",
+      "source_file": "D05-travel-expense-policy.md",
+      "chunks": 6
+     },
+     {
+      "doc_id": "D06",
+      "title": "Event Security and Guest Registration",
+      "doc_type": "policy",
+      "effective_date": "2025-03-01",
+      "source_file": "D06-event-security.md",
+      "chunks": 4
+     },
+     {
+      "doc_id": "D07",
+      "title": "AV and IT Support for Events",
+      "doc_type": "guide",
+      "effective_date": "2025-02-10",
+      "source_file": "D07-av-it-support.md",
+      "chunks": 3
+     },
+     {
+      "doc_id": "D08",
+      "title": "Venue Booking FAQ (2023 edition)",
+      "doc_type": "faq",
+      "effective_date": "2023-01-15",
+      "source_file": "D08-venue-faq-2023.md",
+      "chunks": 3
+     }
+    ]
+   },
+   "config": {
+    "controller_mode": "psrc",
+    "retrieval_mode": "hybrid",
+    "reranker": "hybrid-linear",
+    "synthesis_backend": "extractive",
+    "grounding_nli": "lexical",
+    "refinement": "delta"
+   },
+   "stability_model": "trained:stability.json"
+  }
+ },
+ {
+  "event_id": "evt_0002",
+  "parent_event_ids": [],
+  "timestamp": 1.6,
+  "wall_time": "2026-09-28T20:22:00.602+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "TranscriptChunkReceived",
+  "utterance_id": "u1",
+  "query_version": null,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "chunk_id": "u1.c1",
+   "seq": 1,
+   "t0": 1.0,
+   "t1": 1.6,
+   "text": "Summarize the",
+   "final": false,
+   "utterance_text": "Summarize the"
+  }
+ },
+ {
+  "event_id": "evt_0003",
+  "parent_event_ids": [
+   "evt_0002"
+  ],
+  "timestamp": 1.6001,
+  "wall_time": "2026-09-28T20:22:00.602+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "QueryFrameUpdated",
+  "utterance_id": "u1",
+  "query_version": 1,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.037,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "raw_text": "Summarize the",
+   "analysis_text": "Summarize the",
+   "normalized": "Summarize the",
+   "anchor": "summarize",
+   "repairs": [],
+   "spans": [
+    {
+     "text": "Summarize the",
+     "kind": "NEED",
+     "closed": false,
+     "soft": false
+    }
+   ],
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "Summarize the",
+     "need": "Summarize the",
+     "constraints": [],
+     "closed": false,
+     "anaphoric": false
+    }
+   ],
+   "slots": []
+  }
+ },
+ {
+  "event_id": "evt_0004",
+  "parent_event_ids": [
+   "evt_0003"
+  ],
+  "timestamp": 1.6001,
+  "wall_time": "2026-09-28T20:22:00.602+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "TurnClassified",
+  "utterance_id": "u1",
+  "query_version": 1,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": 1.0,
+  "citations": [],
+  "payload": {
+   "turn_type": "NEW_INFO",
+   "confidence": 1.0,
+   "features": {
+    "has_answer": false,
+    "transform_cue": false,
+    "elaborate_cue": false,
+    "constraint_cue": false,
+    "content_terms": [
+     "summarize"
+    ],
+    "novel_terms": [],
+    "slot_terms": []
+   },
+   "transform": {}
+  }
+ },
+ {
+  "event_id": "evt_0005",
+  "parent_event_ids": [
+   "evt_0004"
+  ],
+  "timestamp": 1.6002,
+  "wall_time": "2026-09-28T20:22:00.602+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "ProbeExecuted",
+  "utterance_id": "u1",
+  "query_version": 1,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.073,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "probes": [
+    {
+     "candidate": "k0",
+     "sections": []
+    }
+   ],
+   "retriever": "bm25-probe"
+  }
+ },
+ {
+  "event_id": "evt_0006",
+  "parent_event_ids": [
+   "evt_0005"
+  ],
+  "timestamp": 1.6002,
+  "wall_time": "2026-09-28T20:22:00.602+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "RetrievalDecision",
+  "utterance_id": "u1",
+  "query_version": 1,
+  "answer_version": null,
+  "retrieval_trigger": "NONE",
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": 0.1792,
+  "citations": [],
+  "payload": {
+   "decision": "WAIT",
+   "reasons": [
+    "INCOMPLETE_CLAUSE",
+    "BELOW_THRESHOLD",
+    "RESULTS_STILL_MOVING",
+    "AMBIGUOUS_PROBE"
+   ],
+   "signals": {
+    "rho": 0.0,
+    "chi": 0.0,
+    "kappa": 0.1583,
+    "sigma": 0.5,
+    "cont": 0.15,
+    "pi": 0.85,
+    "nu": 1.0,
+    "s_hat": 0.1792,
+    "theta": 0.4,
+    "remaining_s": 1.5,
+    "hidden_latency_s": 1.2
+   },
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "Summarize the",
+     "action": "WAIT",
+     "trigger": "NONE",
+     "reasons": [
+      "INCOMPLETE_CLAUSE",
+      "BELOW_THRESHOLD",
+      "RESULTS_STILL_MOVING",
+      "AMBIGUOUS_PROBE"
+     ],
+     "signals": {
+      "rho": 0.0,
+      "chi": 0.0,
+      "kappa": 0.1583,
+      "sigma": 0.5,
+      "cont": 0.15,
+      "pi": 0.85,
+      "nu": 1.0,
+      "s_hat": 0.1792,
+      "theta": 0.4,
+      "remaining_s": 1.5,
+      "hidden_latency_s": 1.2
+     },
+     "sub_query_id": null
+    }
+   ],
+   "turn_type": "NEW_INFO",
+   "controller_mode": "psrc",
+   "stability_model": "trained:stability.json",
+   "budget_left": 6
+  }
+ },
+ {
+  "event_id": "evt_0007",
+  "parent_event_ids": [
+   "evt_0002"
+  ],
+  "timestamp": 2.5,
+  "wall_time": "2026-09-28T20:22:00.602+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "TranscriptChunkReceived",
+  "utterance_id": "u1",
+  "query_version": null,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "chunk_id": "u1.c2",
+   "seq": 2,
+   "t0": 1.6,
+   "t1": 2.5,
+   "text": "reimbursement policy for travel.",
+   "final": true,
+   "utterance_text": "Summarize the reimbursement policy for travel."
+  }
+ },
+ {
+  "event_id": "evt_0008",
+  "parent_event_ids": [
+   "evt_0007"
+  ],
+  "timestamp": 2.5,
+  "wall_time": "2026-09-28T20:22:00.602+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "QueryFrameUpdated",
+  "utterance_id": "u1",
+  "query_version": 2,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.032,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "raw_text": "Summarize the reimbursement policy for travel.",
+   "analysis_text": "Summarize the reimbursement policy for travel.",
+   "normalized": "Summarize the reimbursement policy for travel",
+   "anchor": "summarize reimbursement policy travel",
+   "repairs": [],
+   "spans": [
+    {
+     "text": "Summarize the reimbursement policy for travel",
+     "kind": "NEED",
+     "closed": true,
+     "soft": false
+    }
+   ],
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "Summarize the reimbursement policy for travel",
+     "need": "Summarize the reimbursement policy for travel",
+     "constraints": [],
+     "closed": true,
+     "anaphoric": false
+    }
+   ],
+   "slots": []
+  }
+ },
+ {
+  "event_id": "evt_0009",
+  "parent_event_ids": [
+   "evt_0008"
+  ],
+  "timestamp": 2.5001,
+  "wall_time": "2026-09-28T20:22:00.602+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "TurnClassified",
+  "utterance_id": "u1",
+  "query_version": 2,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": 1.0,
+  "citations": [],
+  "payload": {
+   "turn_type": "NEW_INFO",
+   "confidence": 1.0,
+   "features": {
+    "has_answer": false,
+    "transform_cue": false,
+    "elaborate_cue": false,
+    "constraint_cue": false,
+    "content_terms": [
+     "summarize",
+     "reimbursement",
+     "policy",
+     "travel"
+    ],
+    "novel_terms": [
+     "reimbursement",
+     "policy",
+     "travel"
+    ],
+    "slot_terms": []
+   },
+   "transform": {}
+  }
+ },
+ {
+  "event_id": "evt_0010",
+  "parent_event_ids": [
+   "evt_0009"
+  ],
+  "timestamp": 2.5002,
+  "wall_time": "2026-09-28T20:22:00.602+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "ProbeExecuted",
+  "utterance_id": "u1",
+  "query_version": 2,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.1,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "probes": [
+    {
+     "candidate": "k0",
+     "sections": [
+      "D05#1",
+      "D05#3.1",
+      "D05#5",
+      "D05#4",
+      "D05#2"
+     ]
+    }
+   ],
+   "retriever": "bm25-probe"
+  }
+ },
+ {
+  "event_id": "evt_0011",
+  "parent_event_ids": [
+   "evt_0010"
+  ],
+  "timestamp": 2.5002,
+  "wall_time": "2026-09-28T20:22:00.602+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "RetrievalDecision",
+  "utterance_id": "u1",
+  "query_version": 2,
+  "answer_version": null,
+  "retrieval_trigger": "END_OF_UTTERANCE",
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": 0.3739,
+  "citations": [],
+  "payload": {
+   "decision": "RETRIEVE",
+   "reasons": [
+    "END_OF_UTTERANCE"
+   ],
+   "signals": {
+    "rho": 0.0,
+    "chi": 0.1252,
+    "kappa": 1.0,
+    "sigma": 0.5,
+    "cont": 1.0,
+    "pi": 0.0,
+    "nu": 1.0,
+    "s_hat": 0.3739,
+    "theta": 0.9,
+    "remaining_s": 0.0,
+    "hidden_latency_s": 0.0
+   },
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "Summarize the reimbursement policy for travel",
+     "action": "RETRIEVE",
+     "trigger": "END_OF_UTTERANCE",
+     "reasons": [
+      "END_OF_UTTERANCE"
+     ],
+     "signals": {
+      "rho": 0.0,
+      "chi": 0.1252,
+      "kappa": 1.0,
+      "sigma": 0.5,
+      "cont": 1.0,
+      "pi": 0.0,
+      "nu": 1.0,
+      "s_hat": 0.3739,
+      "theta": 0.9,
+      "remaining_s": 0.0,
+      "hidden_latency_s": 0.0
+     },
+     "sub_query_id": null
+    }
+   ],
+   "turn_type": "NEW_INFO",
+   "controller_mode": "psrc",
+   "stability_model": "trained:stability.json",
+   "budget_left": 6
+  }
+ },
+ {
+  "event_id": "evt_0012",
+  "parent_event_ids": [
+   "evt_0011"
+  ],
+  "timestamp": 2.5008,
+  "wall_time": "2026-09-28T20:22:00.603+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "SubQueriesGenerated",
+  "utterance_id": "u1",
+  "query_version": 2,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "sub_queries": [
+    {
+     "id": "I01",
+     "utterance_id": "u1",
+     "label": "reimbursement travel policy",
+     "text": "Summarize the reimbursement policy for travel",
+     "need_texts": [
+      "Summarize the reimbursement policy for travel"
+     ],
+     "constraints": [
+      "international travel"
+     ],
+     "anchor": "",
+     "facet_constraints": {
+      "domestic|international|standard": "international"
+     },
+     "candidate_keys": [
+      "k0"
+     ],
+     "depends_on": [],
+     "dependency_type": null,
+     "footprint": [
+      "D05#1",
+      "D05#3",
+      "D05#5",
+      "D05#4"
+     ],
+     "status": "PENDING",
+     "retrieval_count": 0,
+     "merged_from": []
+    }
+   ],
+   "assignments": [
+    {
+     "candidate": "k0",
+     "sub_query_id": "I01",
+     "created": true,
+     "merged_into": null,
+     "footprint_overlap": {}
+    }
+   ],
+   "active": [
+    "I01"
+   ],
+   "parallel": false
+  }
+ },
+ {
+  "event_id": "evt_0013",
+  "parent_event_ids": [
+   "evt_0012"
+  ],
+  "timestamp": 2.5008,
+  "wall_time": "2026-09-28T20:22:00.603+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "RetrievalStarted",
+  "utterance_id": "u1",
+  "query_version": 2,
+  "answer_version": null,
+  "retrieval_trigger": "END_OF_UTTERANCE",
+  "sub_query_id": "I01",
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "query": "Summarize the reimbursement policy for travel",
+   "terms": {
+    "summarize": 1.0,
+    "reimbursement": 1.0,
+    "policy": 1.0,
+    "travel": 1.0
+   },
+   "facet_constraints": {},
+   "mode": "hybrid",
+   "label": "reimbursement travel policy",
+   "parallel_group": [
+    "I01"
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0014",
+  "parent_event_ids": [
+   "evt_0013"
+  ],
+  "timestamp": 2.5014,
+  "wall_time": "2026-09-28T20:22:00.604+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "RetrievalCompleted",
+  "utterance_id": "u1",
+  "query_version": 2,
+  "answer_version": null,
+  "retrieval_trigger": "END_OF_UTTERANCE",
+  "sub_query_id": "I01",
+  "document_ids": [
+   "D05"
+  ],
+  "chunk_ids": [
+   "D05:C01",
+   "D05:C03",
+   "D05:C06",
+   "D05:C04",
+   "D05:C05"
+  ],
+  "latency_ms": 0.133,
+  "token_cost": {},
+  "confidence": 0.6284,
+  "citations": [],
+  "payload": {
+   "hits": [
+    {
+     "chunk_id": "D05:C01",
+     "rank": 1,
+     "sparse_score": 9.2717,
+     "sparse_rank": 1,
+     "dense_score": 0.7649,
+     "dense_rank": 1,
+     "fused_score": 0.03279,
+     "rerank_score": 0.6284,
+     "facet_match": null,
+     "doc_id": "D05",
+     "doc_title": "Travel and Expense Reimbursement Policy",
+     "section_key": "D05#1",
+     "section": "1",
+     "section_title": "Scope",
+     "section_path": "Scope",
+     "facets": {},
+     "effective_date": "2025-01-01",
+     "doc_type": "policy",
+     "sha1": "33139ecba8a04c2f1055706b7b63e44452652495",
+     "text": "This policy covers reimbursement of business travel and related expenses for all employees."
+    },
+    {
+     "chunk_id": "D05:C03",
+     "rank": 2,
+     "sparse_score": 7.8057,
+     "sparse_rank": 2,
+     "dense_score": 0.5703,
+     "dense_rank": 2,
+     "fused_score": 0.03226,
+     "rerank_score": 0.5505,
+     "facet_match": null,
+     "doc_id": "D05",
+     "doc_title": "Travel and Expense Reimbursement Policy",
+     "section_key": "D05#3.1",
+     "section": "3.1",
+     "section_title": "Domestic travel",
+     "section_path": "Travel > Domestic travel",
+     "facets": {
+      "domestic|international|standard": "domestic"
+     },
+     "effective_date": "2025-01-01",
+     "doc_type": "policy",
+     "sha1": "e9c4c5168df7b578b46d5e9232e39c4908d6819c",
+     "text": "Domestic flights are reimbursed at economy class. Claims for domestic travel must be submitted within 30 days of return. The domestic per diem for meals and incidentals is ₹2,500 per day, and hotel stays are reimbursed up to ₹6,000 per night."
+    },
+    {
+     "chunk_id": "D05:C06",
+     "rank": 3,
+     "sparse_score": 7.804,
+     "sparse_rank": 3,
+     "dense_score": 0.4745,
+     "dense_rank": 3,
+     "fused_score": 0.03175,
+     "rerank_score": 0.5122,
+     "facet_match": null,
+     "doc_id": "D05",
+     "doc_title": "Travel and Expense Reimbursement Policy",
+     "section_key": "D05#5",
+     "section": "5",
+     "section_title": "Payment timeline",
+     "section_path": "Payment timeline",
+     "facets": {},
+     "effective_date": "2025-01-01",
+     "doc_type": "policy",
+     "sha1": "6525b8cf5e5b7a7f0316ed56a174a7dd9e922a1b",
+     "text": "Approved claims are paid to the employee's salary account within 10 working days of approval."
+    },
+    {
+     "chunk_id": "D05:C04",
+     "rank": 4,
+     "sparse_score": 6.9225,
+     "sparse_rank": 6,
+     "dense_score": 0.4685,
+     "dense_rank": 4,
+     "fused_score": 0.03078,
+     "rerank_score": 0.5098,
+     "facet_match": null,
+     "doc_id": "D05",
+     "doc_title": "Travel and Expense Reimbursement Policy",
+     "section_key": "D05#3.2",
+     "section": "3.2",
+     "section_title": "International travel",
+     "section_path": "Travel > International travel",
+     "facets": {
+      "domestic|international|standard": "international"
+     },
+     "effective_date": "2025-01-01",
+     "doc_type": "policy",
+     "sha1": "f705af18815a1fb4341c0a3dae31e1c2e0fd52d3",
+     "text": "International travel requires pre-approval from the department head at least 21 days before departure. International flights under 8 hours are reimbursed at economy class, and flights of 8 hours or more at premium economy. Claims for international travel must be submitted within 45 days of return. The international per diem follows the country schedule, with a default of US$75 per day. Company-arranged travel insurance is mandatory for international trips."
+    },
+    {
+     "chunk_id": "D05:C05",
+     "rank": 5,
+     "sparse_score": 7.7118,
+     "sparse_rank": 4,
+     "dense_score": 0.444,
+     "dense_rank": 5,
+     "fused_score": 0.03101,
+     "rerank_score": 0.5,
+     "facet_match": null,
+     "doc_id": "D05",
+     "doc_title": "Travel and Expense Reimbursement Policy",
+     "section_key": "D05#4",
+     "section": "4",
+     "section_title": "Non-reimbursable expenses",
+     "section_path": "Non-reimbursable expenses",
+     "facets": {},
+     "effective_date": "2025-01-01",
+     "doc_type": "policy",
+     "sha1": "985c5f51df27e401517a78f108766fa35ee1d300",
+     "text": "Alcohol, personal entertainment, traffic fines and personally chosen upgrades are not reimbursed."
+    }
+   ],
+   "duplicates": [],
+   "filtered_by_facet": [],
+   "stage_ms": {
+    "sparse_ms": 0.047,
+    "dense_ms": 0.022,
+    "fusion_ms": 0.005,
+    "rerank_ms": 0.034,
+    "dedup_ms": 0.019
+   },
+   "mode": "hybrid",
+   "started_offset_ms": 0.45,
+   "ended_offset_ms": 0.583,
+   "label": "reimbursement travel policy"
+  }
+ },
+ {
+  "event_id": "evt_0015",
+  "parent_event_ids": [
+   "evt_0014"
+  ],
+  "timestamp": 2.5016,
+  "wall_time": "2026-09-28T20:22:00.604+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "EvidenceFused",
+  "utterance_id": "u1",
+  "query_version": 2,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [
+   "D05"
+  ],
+  "chunk_ids": [
+   "D05:C01",
+   "D05:C03",
+   "D05:C06",
+   "D05:C04",
+   "D05:C05"
+  ],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "sub_queries": [
+    "I01"
+   ],
+   "evidence_count": 5,
+   "shared_across_sub_queries": [],
+   "contradictions": [],
+   "duplicates_collapsed": 0
+  }
+ },
+ {
+  "event_id": "evt_0016",
+  "parent_event_ids": [
+   "evt_0015"
+  ],
+  "timestamp": 2.5036,
+  "wall_time": "2026-09-28T20:22:00.606+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "ClaimsGenerated",
+  "utterance_id": "u1",
+  "query_version": 2,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 1.812,
+  "token_cost": {
+   "llm_prompt": 0,
+   "llm_completion": 0,
+   "context_est": 201
+  },
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "backend": "extractive",
+   "per_sub_query": [
+    {
+     "sub_query_id": "I01",
+     "backend": "extractive",
+     "gap": null,
+     "latency_ms": 1.812,
+     "claims": [
+      {
+       "claim_id": "C01",
+       "lineage_id": "L01",
+       "text": "Scope: This policy covers reimbursement of business travel and related expenses for all employees.",
+       "evidence": [
+        "D05:C01"
+       ],
+       "quote": "This policy covers reimbursement of business travel and related expenses for all employees.",
+       "score": 0.5932,
+       "status": "NEW",
+       "derived_from": []
+      },
+      {
+       "claim_id": "C02",
+       "lineage_id": "L02",
+       "text": "Claims for domestic travel must be submitted within 30 days of return.",
+       "evidence": [
+        "D05:C03"
+       ],
+       "quote": "Claims for domestic travel must be submitted within 30 days of return.",
+       "score": 0.4506,
+       "status": "NEW",
+       "derived_from": []
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0017",
+  "parent_event_ids": [
+   "evt_0016"
+  ],
+  "timestamp": 2.5038,
+  "wall_time": "2026-09-28T20:22:00.606+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "GroundingVerified",
+  "utterance_id": "u1",
+  "query_version": 2,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.146,
+  "token_cost": {},
+  "confidence": 1.0,
+  "citations": [
+   "D05:C01",
+   "D05:C03"
+  ],
+  "payload": {
+   "results": [
+    {
+     "claim_id": "C01",
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "invalid_ids": [],
+     "conflicts": [],
+     "missing_anchors": [],
+     "repaired": false,
+     "text": "Scope: This policy covers reimbursement of business travel and related expenses for all employees.",
+     "evidence": [
+      "D05:C01"
+     ],
+     "sub_query_id": "I01"
+    },
+    {
+     "claim_id": "C02",
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "invalid_ids": [],
+     "conflicts": [],
+     "missing_anchors": [],
+     "repaired": false,
+     "text": "Claims for domestic travel must be submitted within 30 days of return.",
+     "evidence": [
+      "D05:C03"
+     ],
+     "sub_query_id": "I01"
+    }
+   ],
+   "summary": {
+    "checked": 2,
+    "supported": 2,
+    "partial": 0,
+    "conflicting": 0,
+    "unsupported": 0,
+    "invalid_citation": 0,
+    "fabricated_ids_blocked": 0,
+    "citations_valid": 2,
+    "emitted": 2,
+    "status": "PASS"
+   },
+   "checks": [
+    "CITATION_IN_SESSION_RETRIEVAL",
+    "CORPUS_SHA_MATCH",
+    "VERBATIM_QUOTE",
+    "ANCHORS",
+    "SUPPORT_LEXICAL",
+    "NUMERIC_CONFLICT"
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0018",
+  "parent_event_ids": [
+   "evt_0017"
+  ],
+  "timestamp": 2.5039,
+  "wall_time": "2026-09-28T20:22:00.606+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "AnswerVersionCreated",
+  "utterance_id": "u1",
+  "query_version": 2,
+  "answer_version": 1,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [
+   "D05"
+  ],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {
+   "llm_prompt": 0,
+   "llm_completion": 0,
+   "context_est": 201
+  },
+  "confidence": null,
+  "citations": [
+   "D05:C01",
+   "D05:C03"
+  ],
+  "payload": {
+   "version": 1,
+   "parent_version": null,
+   "trigger": "NEW_INFO",
+   "kind": "SEMANTIC",
+   "utterance_id": "u1",
+   "query_version": 2,
+   "blocks": [
+    {
+     "sub_query_id": "I01",
+     "title": "reimbursement travel policy",
+     "style": "paragraph",
+     "claim_ids": [
+      "C01",
+      "C02"
+     ],
+     "uncertainty": null
+    }
+   ],
+   "claims": [
+    {
+     "claim_id": "C01",
+     "lineage_id": "L01",
+     "text": "Scope: This policy covers reimbursement of business travel and related expenses for all employees.",
+     "sub_query_id": "I01",
+     "evidence": [
+      "D05:C01"
+     ],
+     "quote": "This policy covers reimbursement of business travel and related expenses for all employees.",
+     "score": 0.5932,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "NEW",
+     "derived_from": [],
+     "conflicts_with": [],
+     "conditioned_on": [],
+     "repaired": false,
+     "version_created": 1
+    },
+    {
+     "claim_id": "C02",
+     "lineage_id": "L02",
+     "text": "Claims for domestic travel must be submitted within 30 days of return.",
+     "sub_query_id": "I01",
+     "evidence": [
+      "D05:C03"
+     ],
+     "quote": "Claims for domestic travel must be submitted within 30 days of return.",
+     "score": 0.4506,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "NEW",
+     "derived_from": [],
+     "conflicts_with": [],
+     "conditioned_on": [],
+     "repaired": false,
+     "version_created": 1
+    }
+   ],
+   "uncertainty": [],
+   "conflicts": [],
+   "diff": {
+    "kept": [],
+    "revised": [],
+    "added": [
+     "C01",
+     "C02"
+    ],
+    "retracted": []
+   },
+   "constraint": null,
+   "transform": null,
+   "retrievals_used": [
+    "D05:C01",
+    "D05:C03"
+   ],
+   "tokens": {
+    "llm_prompt": 0,
+    "llm_completion": 0,
+    "context_est": 201
+   },
+   "counterfactual": {},
+   "created_t": 2.504,
+   "notes": [],
+   "rendering": "Scope: This policy covers reimbursement of business travel and related expenses for all employees. [D05:C01] Claims for domestic travel must be submitted within 30 days of return. [D05:C03]"
+  }
+ },
+ {
+  "event_id": "evt_0019",
+  "parent_event_ids": [
+   "evt_0018"
+  ],
+  "timestamp": 2.5039,
+  "wall_time": "2026-09-28T20:22:00.606+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "TelemetryEmitted",
+  "utterance_id": "u1",
+  "query_version": 2,
+  "answer_version": 1,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {
+   "llm_prompt": 0,
+   "llm_completion": 0,
+   "context_est": 201
+  },
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "turn_type": "NEW_INFO",
+   "retrievals": 1,
+   "early_retrievals": 0,
+   "first_retrieval_t": 2.5008,
+   "utterance_end_t": 2.5,
+   "retrieval_lead_s": -0.0008,
+   "retrieval_latency_ms_mean": 0.133,
+   "post_utterance_latency_ms": 3.858,
+   "sub_queries": [
+    "I01"
+   ],
+   "suppressed": false,
+   "answer_version": 1,
+   "claims": 2,
+   "pipeline_latency_ema_s": 1.2
+  }
+ },
+ {
+  "event_id": "evt_0020",
+  "parent_event_ids": [],
+  "timestamp": 5.6,
+  "wall_time": "2026-09-28T20:22:00.606+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "TranscriptChunkReceived",
+  "utterance_id": "u2",
+  "query_version": null,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "chunk_id": "u2.c1",
+   "seq": 1,
+   "t0": 5.0,
+   "t1": 5.6,
+   "text": "Actually, this is for",
+   "final": false,
+   "utterance_text": "Actually, this is for"
+  }
+ },
+ {
+  "event_id": "evt_0021",
+  "parent_event_ids": [
+   "evt_0020"
+  ],
+  "timestamp": 5.6,
+  "wall_time": "2026-09-28T20:22:00.606+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "QueryFrameUpdated",
+  "utterance_id": "u2",
+  "query_version": 3,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.02,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "raw_text": "Actually, this is for",
+   "analysis_text": "Actually, this is for",
+   "normalized": "",
+   "anchor": "",
+   "repairs": [],
+   "spans": [
+    {
+     "text": "Actually",
+     "kind": "FILLER",
+     "closed": true,
+     "soft": false
+    },
+    {
+     "text": "this is for",
+     "kind": "FILLER",
+     "closed": false,
+     "soft": false
+    }
+   ],
+   "candidates": [],
+   "slots": []
+  }
+ },
+ {
+  "event_id": "evt_0022",
+  "parent_event_ids": [
+   "evt_0021"
+  ],
+  "timestamp": 5.6001,
+  "wall_time": "2026-09-28T20:22:00.606+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "TurnClassified",
+  "utterance_id": "u2",
+  "query_version": 3,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": 0.55,
+  "citations": [],
+  "payload": {
+   "turn_type": "CONSTRAINT",
+   "confidence": 0.55,
+   "features": {
+    "has_answer": true,
+    "transform_cue": false,
+    "elaborate_cue": false,
+    "constraint_cue": true,
+    "content_terms": [],
+    "novel_terms": [],
+    "slot_terms": []
+   },
+   "transform": {}
+  }
+ },
+ {
+  "event_id": "evt_0023",
+  "parent_event_ids": [
+   "evt_0022"
+  ],
+  "timestamp": 5.6001,
+  "wall_time": "2026-09-28T20:22:00.606+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "RetrievalDecision",
+  "utterance_id": "u2",
+  "query_version": 3,
+  "answer_version": 1,
+  "retrieval_trigger": "NONE",
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "decision": "WAIT",
+   "reasons": [
+    "CONSTRAINT_INCOMPLETE"
+   ],
+   "signals": {},
+   "candidates": [],
+   "turn_type": "CONSTRAINT",
+   "controller_mode": "psrc",
+   "stability_model": "trained:stability.json",
+   "budget_left": 6
+  }
+ },
+ {
+  "event_id": "evt_0024",
+  "parent_event_ids": [
+   "evt_0020"
+  ],
+  "timestamp": 6.3,
+  "wall_time": "2026-09-28T20:22:00.606+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "TranscriptChunkReceived",
+  "utterance_id": "u2",
+  "query_version": null,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "chunk_id": "u2.c2",
+   "seq": 2,
+   "t0": 5.6,
+   "t1": 6.3,
+   "text": "international travel.",
+   "final": true,
+   "utterance_text": "Actually, this is for international travel."
+  }
+ },
+ {
+  "event_id": "evt_0025",
+  "parent_event_ids": [
+   "evt_0024"
+  ],
+  "timestamp": 6.3001,
+  "wall_time": "2026-09-28T20:22:00.606+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "QueryFrameUpdated",
+  "utterance_id": "u2",
+  "query_version": 4,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.041,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "raw_text": "Actually, this is for international travel.",
+   "analysis_text": "Actually, this is for international travel.",
+   "normalized": "this is for international travel",
+   "anchor": "international travel",
+   "repairs": [],
+   "spans": [
+    {
+     "text": "Actually",
+     "kind": "FILLER",
+     "closed": true,
+     "soft": false
+    },
+    {
+     "text": "this is for international travel",
+     "kind": "NEED",
+     "closed": true,
+     "soft": false
+    }
+   ],
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "this is for international travel",
+     "need": "this is for international travel",
+     "constraints": [],
+     "closed": true,
+     "anaphoric": true
+    }
+   ],
+   "slots": [
+    {
+     "key": "domestic|international|standard",
+     "kind": "qualifier",
+     "value": "international",
+     "first_seen_t": 6.3,
+     "last_changed_t": 6.3,
+     "source_chunk_id": "u2.c2",
+     "revised_from": null
+    }
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0026",
+  "parent_event_ids": [
+   "evt_0025"
+  ],
+  "timestamp": 6.3001,
+  "wall_time": "2026-09-28T20:22:00.606+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "TurnClassified",
+  "utterance_id": "u2",
+  "query_version": 4,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": 0.9,
+  "citations": [],
+  "payload": {
+   "turn_type": "CONSTRAINT",
+   "confidence": 0.9,
+   "features": {
+    "has_answer": true,
+    "transform_cue": false,
+    "elaborate_cue": false,
+    "constraint_cue": true,
+    "content_terms": [
+     "international",
+     "travel"
+    ],
+    "novel_terms": [
+     "international"
+    ],
+    "slot_terms": [
+     "international"
+    ]
+   },
+   "transform": {}
+  }
+ },
+ {
+  "event_id": "evt_0027",
+  "parent_event_ids": [
+   "evt_0026"
+  ],
+  "timestamp": 6.3005,
+  "wall_time": "2026-09-28T20:22:00.607+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "RetrievalDecision",
+  "utterance_id": "u2",
+  "query_version": 4,
+  "answer_version": 1,
+  "retrieval_trigger": "DELTA",
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "decision": "REFINE",
+   "reasons": [
+    "LATE_CONSTRAINT"
+   ],
+   "signals": {
+    "affected": 1,
+    "total": 1
+   },
+   "candidates": [
+    {
+     "sub_query_id": "I01",
+     "reasons": [
+      "CONSTRAINT_SPECIFIC_EVIDENCE",
+      "FACET_IN_EVIDENCE"
+     ]
+    }
+   ],
+   "turn_type": "CONSTRAINT",
+   "controller_mode": "psrc",
+   "stability_model": "trained:stability.json",
+   "budget_left": 6
+  }
+ },
+ {
+  "event_id": "evt_0028",
+  "parent_event_ids": [
+   "evt_0027"
+  ],
+  "timestamp": 6.3006,
+  "wall_time": "2026-09-28T20:22:00.607+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "RetrievalStarted",
+  "utterance_id": "u2",
+  "query_version": 4,
+  "answer_version": null,
+  "retrieval_trigger": "DELTA",
+  "sub_query_id": "I01",
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "query": "Summarize the reimbursement policy for travel [international travel; ]",
+   "terms": {
+    "summarize": 1.0,
+    "reimbursement": 1.0,
+    "policy": 1.0,
+    "travel": 1.0,
+    "international": 1.0
+   },
+   "facet_constraints": {
+    "domestic|international|standard": "international"
+   },
+   "mode": "hybrid",
+   "label": "reimbursement travel policy",
+   "parallel_group": [
+    "I01"
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0029",
+  "parent_event_ids": [
+   "evt_0028"
+  ],
+  "timestamp": 6.301,
+  "wall_time": "2026-09-28T20:22:00.607+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "RetrievalCompleted",
+  "utterance_id": "u2",
+  "query_version": 4,
+  "answer_version": null,
+  "retrieval_trigger": "DELTA",
+  "sub_query_id": "I01",
+  "document_ids": [
+   "D05"
+  ],
+  "chunk_ids": [
+   "D05:C04",
+   "D05:C01",
+   "D05:C06",
+   "D05:C05",
+   "D05:C02"
+  ],
+  "latency_ms": 0.353,
+  "token_cost": {},
+  "confidence": 0.8053,
+  "citations": [],
+  "payload": {
+   "hits": [
+    {
+     "chunk_id": "D05:C04",
+     "rank": 1,
+     "sparse_score": 10.7929,
+     "sparse_rank": 1,
+     "dense_score": 0.8286,
+     "dense_rank": 1,
+     "fused_score": 0.03279,
+     "rerank_score": 0.8053,
+     "facet_match": true,
+     "doc_id": "D05",
+     "doc_title": "Travel and Expense Reimbursement Policy",
+     "section_key": "D05#3.2",
+     "section": "3.2",
+     "section_title": "International travel",
+     "section_path": "Travel > International travel",
+     "facets": {
+      "domestic|international|standard": "international"
+     },
+     "effective_date": "2025-01-01",
+     "doc_type": "policy",
+     "sha1": "f705af18815a1fb4341c0a3dae31e1c2e0fd52d3",
+     "text": "International travel requires pre-approval from the department head at least 21 days before departure. International flights under 8 hours are reimbursed at economy class, and flights of 8 hours or more at premium economy. Claims for international travel must be submitted within 45 days of return. The international per diem follows the country schedule, with a default of US$75 per day. Company-arranged travel insurance is mandatory for international trips."
+    },
+    {
+     "chunk_id": "D05:C01",
+     "rank": 2,
+     "sparse_score": 9.2717,
+     "sparse_rank": 2,
+     "dense_score": 0.5705,
+     "dense_rank": 2,
+     "fused_score": 0.03226,
+     "rerank_score": 0.4907,
+     "facet_match": null,
+     "doc_id": "D05",
+     "doc_title": "Travel and Expense Reimbursement Policy",
+     "section_key": "D05#1",
+     "section": "1",
+     "section_title": "Scope",
+     "section_path": "Scope",
+     "facets": {},
+     "effective_date": "2025-01-01",
+     "doc_type": "policy",
+     "sha1": "33139ecba8a04c2f1055706b7b63e44452652495",
+     "text": "This policy covers reimbursement of business travel and related expenses for all employees."
+    },
+    {
+     "chunk_id": "D05:C06",
+     "rank": 3,
+     "sparse_score": 7.804,
+     "sparse_rank": 4,
+     "dense_score": 0.3477,
+     "dense_rank": 4,
+     "fused_score": 0.03125,
+     "rerank_score": 0.4016,
+     "facet_match": null,
+     "doc_id": "D05",
+     "doc_title": "Travel and Expense Reimbursement Policy",
+     "section_key": "D05#5",
+     "section": "5",
+     "section_title": "Payment timeline",
+     "section_path": "Payment timeline",
+     "facets": {},
+     "effective_date": "2025-01-01",
+     "doc_type": "policy",
+     "sha1": "6525b8cf5e5b7a7f0316ed56a174a7dd9e922a1b",
+     "text": "Approved claims are paid to the employee's salary account within 10 working days of approval."
+    },
+    {
+     "chunk_id": "D05:C05",
+     "rank": 4,
+     "sparse_score": 7.7118,
+     "sparse_rank": 5,
+     "dense_score": 0.3253,
+     "dense_rank": 5,
+     "fused_score": 0.03077,
+     "rerank_score": 0.3926,
+     "facet_match": null,
+     "doc_id": "D05",
+     "doc_title": "Travel and Expense Reimbursement Policy",
+     "section_key": "D05#4",
+     "section": "4",
+     "section_title": "Non-reimbursable expenses",
+     "section_path": "Non-reimbursable expenses",
+     "facets": {},
+     "effective_date": "2025-01-01",
+     "doc_type": "policy",
+     "sha1": "985c5f51df27e401517a78f108766fa35ee1d300",
+     "text": "Alcohol, personal entertainment, traffic fines and personally chosen upgrades are not reimbursed."
+    },
+    {
+     "chunk_id": "D05:C02",
+     "rank": 5,
+     "sparse_score": 7.2818,
+     "sparse_rank": 6,
+     "dense_score": 0.2926,
+     "dense_rank": 6,
+     "fused_score": 0.0303,
+     "rerank_score": 0.3796,
+     "facet_match": null,
+     "doc_id": "D05",
+     "doc_title": "Travel and Expense Reimbursement Policy",
+     "section_key": "D05#2",
+     "section": "2",
+     "section_title": "Submitting claims",
+     "section_path": "Submitting claims",
+     "facets": {},
+     "effective_date": "2025-01-01",
+     "doc_type": "policy",
+     "sha1": "90b1c8e0f7b1af8a20c5ded2a8b8af7c312d6c88",
+     "text": "Expense claims are submitted through the expense portal and approved by the employee's line manager. An itemised receipt is required for every expense above ₹500."
+    }
+   ],
+   "duplicates": [],
+   "filtered_by_facet": [
+    "D05:C03",
+    "D03:C03"
+   ],
+   "stage_ms": {
+    "sparse_ms": 0.037,
+    "dense_ms": 0.259,
+    "fusion_ms": 0.005,
+    "rerank_ms": 0.03,
+    "dedup_ms": 0.017
+   },
+   "mode": "hybrid",
+   "started_offset_ms": 0.059,
+   "ended_offset_ms": 0.412,
+   "label": "reimbursement travel policy"
+  }
+ },
+ {
+  "event_id": "evt_0030",
+  "parent_event_ids": [
+   "evt_0029"
+  ],
+  "timestamp": 6.3011,
+  "wall_time": "2026-09-28T20:22:00.607+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "EvidenceFused",
+  "utterance_id": "u2",
+  "query_version": 4,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [
+   "D05"
+  ],
+  "chunk_ids": [
+   "D05:C04",
+   "D05:C01",
+   "D05:C06",
+   "D05:C05",
+   "D05:C02"
+  ],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "sub_queries": [
+    "I01"
+   ],
+   "evidence_count": 5,
+   "shared_across_sub_queries": [],
+   "contradictions": [],
+   "duplicates_collapsed": 0
+  }
+ },
+ {
+  "event_id": "evt_0031",
+  "parent_event_ids": [
+   "evt_0027",
+   "evt_0030"
+  ],
+  "timestamp": 6.3013,
+  "wall_time": "2026-09-28T20:22:00.608+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "DeltaPlanComputed",
+  "utterance_id": "u2",
+  "query_version": 4,
+  "answer_version": 1,
+  "retrieval_trigger": "DELTA",
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "constraint": {
+    "text": "Actually, this is for international travel.",
+    "facets": {
+     "domestic|international|standard": "international"
+    },
+    "slots": [
+     {
+      "key": "domestic|international|standard",
+      "kind": "qualifier",
+      "value": "international",
+      "first_seen_t": 6.3,
+      "last_changed_t": 6.3,
+      "source_chunk_id": "u2.c2",
+      "revised_from": null
+     }
+    ],
+    "terms": [
+     "international",
+     "travel"
+    ]
+   },
+   "affected_sub_queries": [
+    {
+     "sub_query_id": "I01",
+     "reasons": [
+      "CONSTRAINT_SPECIFIC_EVIDENCE",
+      "FACET_IN_EVIDENCE"
+     ]
+    }
+   ],
+   "unaffected_sub_queries": [],
+   "plan": {
+    "C01": {
+     "action": "KEEP",
+     "reasons": [
+      "GENERAL_RULE_STILL_APPLIES"
+     ]
+    },
+    "C02": {
+     "action": "REVISE",
+     "reasons": [
+      "FACET_CONFLICT"
+     ]
+    }
+   },
+   "base_version": 1,
+   "counterfactual": {
+    "full_restart_retrievals": 1,
+    "delta_retrievals": 1,
+    "full_restart_context_tokens_est": 177,
+    "delta_context_tokens_est": 177,
+    "retrieval_savings_ratio": 0.0
+   },
+   "claims_invalidated": 1,
+   "claims_total": 2
+  }
+ },
+ {
+  "event_id": "evt_0032",
+  "parent_event_ids": [
+   "evt_0031"
+  ],
+  "timestamp": 6.303,
+  "wall_time": "2026-09-28T20:22:00.609+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "ClaimsGenerated",
+  "utterance_id": "u2",
+  "query_version": 4,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 1.514,
+  "token_cost": {
+   "llm_prompt": 0,
+   "llm_completion": 0,
+   "context_est": 177
+  },
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "backend": "extractive",
+   "per_sub_query": [
+    {
+     "sub_query_id": "I01",
+     "backend": "extractive",
+     "gap": null,
+     "latency_ms": 1.514,
+     "claims": [
+      {
+       "claim_id": "C03",
+       "lineage_id": "L02",
+       "text": "Claims for international travel must be submitted within 45 days of return.",
+       "evidence": [
+        "D05:C04"
+       ],
+       "quote": "Claims for international travel must be submitted within 45 days of return.",
+       "score": 0.806,
+       "status": "REVISED",
+       "derived_from": [
+        "C02"
+       ]
+      },
+      {
+       "claim_id": "C04",
+       "lineage_id": "L04",
+       "text": "International travel requires pre-approval from the department head at least 21 days before departure.",
+       "evidence": [
+        "D05:C04"
+       ],
+       "quote": "International travel requires pre-approval from the department head at least 21 days before departure.",
+       "score": 0.7804,
+       "status": "ADDED",
+       "derived_from": []
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0033",
+  "parent_event_ids": [
+   "evt_0032"
+  ],
+  "timestamp": 6.3032,
+  "wall_time": "2026-09-28T20:22:00.609+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "GroundingVerified",
+  "utterance_id": "u2",
+  "query_version": 4,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.225,
+  "token_cost": {},
+  "confidence": 1.0,
+  "citations": [
+   "D05:C04"
+  ],
+  "payload": {
+   "results": [
+    {
+     "claim_id": "C03",
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "invalid_ids": [],
+     "conflicts": [],
+     "missing_anchors": [],
+     "repaired": false,
+     "text": "Claims for international travel must be submitted within 45 days of return.",
+     "evidence": [
+      "D05:C04"
+     ],
+     "sub_query_id": "I01"
+    },
+    {
+     "claim_id": "C04",
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "invalid_ids": [],
+     "conflicts": [],
+     "missing_anchors": [],
+     "repaired": false,
+     "text": "International travel requires pre-approval from the department head at least 21 days before departure.",
+     "evidence": [
+      "D05:C04"
+     ],
+     "sub_query_id": "I01"
+    }
+   ],
+   "summary": {
+    "checked": 2,
+    "supported": 2,
+    "partial": 0,
+    "conflicting": 0,
+    "unsupported": 0,
+    "invalid_citation": 0,
+    "fabricated_ids_blocked": 0,
+    "citations_valid": 2,
+    "emitted": 2,
+    "status": "PASS"
+   },
+   "checks": [
+    "CITATION_IN_SESSION_RETRIEVAL",
+    "CORPUS_SHA_MATCH",
+    "VERBATIM_QUOTE",
+    "ANCHORS",
+    "SUPPORT_LEXICAL",
+    "NUMERIC_CONFLICT"
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0034",
+  "parent_event_ids": [
+   "evt_0033",
+   "evt_0031"
+  ],
+  "timestamp": 6.3034,
+  "wall_time": "2026-09-28T20:22:00.610+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "AnswerVersionCreated",
+  "utterance_id": "u2",
+  "query_version": 4,
+  "answer_version": 2,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [
+   "D05"
+  ],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {
+   "llm_prompt": 0,
+   "llm_completion": 0,
+   "context_est": 177
+  },
+  "confidence": null,
+  "citations": [
+   "D05:C01",
+   "D05:C04"
+  ],
+  "payload": {
+   "version": 2,
+   "parent_version": 1,
+   "trigger": "CONSTRAINT",
+   "kind": "SEMANTIC",
+   "utterance_id": "u2",
+   "query_version": 4,
+   "blocks": [
+    {
+     "sub_query_id": "I01",
+     "title": "reimbursement travel policy",
+     "style": "paragraph",
+     "claim_ids": [
+      "C01",
+      "C03",
+      "C04"
+     ],
+     "uncertainty": null
+    }
+   ],
+   "claims": [
+    {
+     "claim_id": "C01",
+     "lineage_id": "L01",
+     "text": "Scope: This policy covers reimbursement of business travel and related expenses for all employees.",
+     "sub_query_id": "I01",
+     "evidence": [
+      "D05:C01"
+     ],
+     "quote": "This policy covers reimbursement of business travel and related expenses for all employees.",
+     "score": 0.5932,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "KEEP",
+     "derived_from": [],
+     "conflicts_with": [],
+     "conditioned_on": [],
+     "repaired": false,
+     "version_created": 1
+    },
+    {
+     "claim_id": "C03",
+     "lineage_id": "L02",
+     "text": "Claims for international travel must be submitted within 45 days of return.",
+     "sub_query_id": "I01",
+     "evidence": [
+      "D05:C04"
+     ],
+     "quote": "Claims for international travel must be submitted within 45 days of return.",
+     "score": 0.806,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "REVISED",
+     "derived_from": [
+      "C02"
+     ],
+     "conflicts_with": [],
+     "conditioned_on": [
+      "international travel"
+     ],
+     "repaired": false,
+     "version_created": 2
+    },
+    {
+     "claim_id": "C04",
+     "lineage_id": "L04",
+     "text": "International travel requires pre-approval from the department head at least 21 days before departure.",
+     "sub_query_id": "I01",
+     "evidence": [
+      "D05:C04"
+     ],
+     "quote": "International travel requires pre-approval from the department head at least 21 days before departure.",
+     "score": 0.7804,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "ADDED",
+     "derived_from": [],
+     "conflicts_with": [],
+     "conditioned_on": [
+      "international travel"
+     ],
+     "repaired": false,
+     "version_created": 2
+    }
+   ],
+   "uncertainty": [],
+   "conflicts": [],
+   "diff": {
+    "kept": [
+     "C01"
+    ],
+    "revised": [
+     {
+      "from": "C02",
+      "to": "C03",
+      "reasons": [
+       "FACET_CONFLICT"
+      ]
+     }
+    ],
+    "added": [
+     "C04"
+    ],
+    "retracted": []
+   },
+   "constraint": {
+    "text": "Actually, this is for international travel.",
+    "facets": {
+     "domestic|international|standard": "international"
+    },
+    "slots": [
+     {
+      "key": "domestic|international|standard",
+      "kind": "qualifier",
+      "value": "international",
+      "first_seen_t": 6.3,
+      "last_changed_t": 6.3,
+      "source_chunk_id": "u2.c2",
+      "revised_from": null
+     }
+    ],
+    "terms": [
+     "international",
+     "travel"
+    ]
+   },
+   "transform": null,
+   "retrievals_used": [
+    "D05:C01",
+    "D05:C04"
+   ],
+   "tokens": {
+    "llm_prompt": 0,
+    "llm_completion": 0,
+    "context_est": 177
+   },
+   "counterfactual": {
+    "full_restart_retrievals": 1,
+    "delta_retrievals": 1,
+    "full_restart_context_tokens_est": 177,
+    "delta_context_tokens_est": 177,
+    "retrieval_savings_ratio": 0.0
+   },
+   "created_t": 6.303,
+   "notes": [],
+   "rendering": "Scope: This policy covers reimbursement of business travel and related expenses for all employees. [D05:C01] Claims for international travel must be submitted within 45 days of return. [D05:C04] International travel requires pre-approval from the department head at least 21 days before departure. [D05:C04]"
+  }
+ },
+ {
+  "event_id": "evt_0035",
+  "parent_event_ids": [
+   "evt_0034"
+  ],
+  "timestamp": 6.3034,
+  "wall_time": "2026-09-28T20:22:00.610+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "TelemetryEmitted",
+  "utterance_id": "u2",
+  "query_version": 4,
+  "answer_version": 2,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {
+   "llm_prompt": 0,
+   "llm_completion": 0,
+   "context_est": 177
+  },
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "turn_type": "CONSTRAINT",
+   "retrievals": 1,
+   "early_retrievals": 0,
+   "first_retrieval_t": 6.3006,
+   "utterance_end_t": 6.3,
+   "retrieval_lead_s": -0.0006,
+   "retrieval_latency_ms_mean": 0.353,
+   "post_utterance_latency_ms": 3.315,
+   "sub_queries": [],
+   "suppressed": false,
+   "answer_version": 2,
+   "claims": 3,
+   "pipeline_latency_ema_s": 1.2
+  }
+ },
+ {
+  "event_id": "evt_0036",
+  "parent_event_ids": [],
+  "timestamp": 9.8,
+  "wall_time": "2026-09-28T20:22:00.610+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "TranscriptChunkReceived",
+  "utterance_id": "u3",
+  "query_version": null,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "chunk_id": "u3.c1",
+   "seq": 1,
+   "t0": 9.0,
+   "t1": 9.8,
+   "text": "Give it to me in two bullets.",
+   "final": true,
+   "utterance_text": "Give it to me in two bullets."
+  }
+ },
+ {
+  "event_id": "evt_0037",
+  "parent_event_ids": [
+   "evt_0036"
+  ],
+  "timestamp": 9.8001,
+  "wall_time": "2026-09-28T20:22:00.610+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "QueryFrameUpdated",
+  "utterance_id": "u3",
+  "query_version": 5,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.038,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "raw_text": "Give it to me in two bullets.",
+   "analysis_text": "Give it to me in two bullets.",
+   "normalized": "Give it to me in two bullets",
+   "anchor": "two bullet",
+   "repairs": [],
+   "spans": [
+    {
+     "text": "Give it to me in two bullets",
+     "kind": "NEED",
+     "closed": true,
+     "soft": false
+    }
+   ],
+   "candidates": [
+    {
+     "key": "k0",
+     "text": "Give it to me in two bullets",
+     "need": "Give it to me in two bullets",
+     "constraints": [],
+     "closed": true,
+     "anaphoric": true
+    }
+   ],
+   "slots": []
+  }
+ },
+ {
+  "event_id": "evt_0038",
+  "parent_event_ids": [
+   "evt_0037"
+  ],
+  "timestamp": 9.8001,
+  "wall_time": "2026-09-28T20:22:00.610+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "TurnClassified",
+  "utterance_id": "u3",
+  "query_version": 5,
+  "answer_version": null,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": 0.95,
+  "citations": [],
+  "payload": {
+   "turn_type": "TRANSFORM",
+   "confidence": 0.95,
+   "features": {
+    "has_answer": true,
+    "transform_cue": true,
+    "elaborate_cue": false,
+    "constraint_cue": false,
+    "content_terms": [
+     "two",
+     "bullet"
+    ],
+    "novel_terms": [],
+    "slot_terms": []
+   },
+   "transform": {
+    "ops": [
+     "bullets"
+    ],
+    "bullets": 2
+   }
+  }
+ },
+ {
+  "event_id": "evt_0039",
+  "parent_event_ids": [
+   "evt_0038"
+  ],
+  "timestamp": 9.8001,
+  "wall_time": "2026-09-28T20:22:00.610+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "RetrievalDecision",
+  "utterance_id": "u3",
+  "query_version": 5,
+  "answer_version": 2,
+  "retrieval_trigger": "NONE",
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "decision": "SUPPRESS",
+   "reasons": [
+    "PRESENTATION_TRANSFORMATION"
+   ],
+   "signals": {},
+   "candidates": [],
+   "turn_type": "TRANSFORM",
+   "controller_mode": "psrc",
+   "stability_model": "trained:stability.json",
+   "budget_left": 6
+  }
+ },
+ {
+  "event_id": "evt_0040",
+  "parent_event_ids": [
+   "evt_0039"
+  ],
+  "timestamp": 9.8001,
+  "wall_time": "2026-09-28T20:22:00.610+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "RetrievalSuppressed",
+  "utterance_id": "u3",
+  "query_version": 5,
+  "answer_version": 2,
+  "retrieval_trigger": "NONE",
+  "sub_query_id": null,
+  "document_ids": [
+   "D05"
+  ],
+  "chunk_ids": [
+   "D05:C01",
+   "D05:C04"
+  ],
+  "latency_ms": null,
+  "token_cost": {},
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "reason": "PRESENTATION_TRANSFORMATION",
+   "reused_answer_version": 2,
+   "evidence_reused": 2,
+   "skipped": [
+    "VECTOR_SEARCH",
+    "BM25",
+    "RERANKER",
+    "FUSION"
+   ],
+   "transform": {
+    "ops": [
+     "bullets"
+    ],
+    "bullets": 2
+   }
+  }
+ },
+ {
+  "event_id": "evt_0041",
+  "parent_event_ids": [
+   "evt_0040"
+  ],
+  "timestamp": 9.8004,
+  "wall_time": "2026-09-28T20:22:00.610+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "TransformVerified",
+  "utterance_id": "u3",
+  "query_version": null,
+  "answer_version": 2,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": 0.23,
+  "token_cost": {
+   "llm_prompt": 0,
+   "llm_completion": 0
+  },
+  "confidence": null,
+  "citations": [
+   "D05:C01",
+   "D05:C04"
+  ],
+  "payload": {
+   "passed": true,
+   "violations": [],
+   "checks": [
+    "DERIVED_FROM_PARENT",
+    "CITATIONS_SUBSET",
+    "NO_NEW_NUMERIC_ANCHORS"
+   ],
+   "citations_subset": true,
+   "ops": [
+    "bullets"
+   ],
+   "notes": [],
+   "claims": [
+    "C01",
+    "C03",
+    "C04"
+   ]
+  }
+ },
+ {
+  "event_id": "evt_0042",
+  "parent_event_ids": [
+   "evt_0041"
+  ],
+  "timestamp": 9.8004,
+  "wall_time": "2026-09-28T20:22:00.610+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "AnswerVersionCreated",
+  "utterance_id": "u3",
+  "query_version": 5,
+  "answer_version": 3,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [
+   "D05"
+  ],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {
+   "llm_prompt": 0,
+   "llm_completion": 0,
+   "context_est": 0
+  },
+  "confidence": null,
+  "citations": [
+   "D05:C01",
+   "D05:C04"
+  ],
+  "payload": {
+   "version": 3,
+   "parent_version": 2,
+   "trigger": "TRANSFORM",
+   "kind": "PRESENTATION",
+   "utterance_id": "u3",
+   "query_version": 5,
+   "blocks": [
+    {
+     "sub_query_id": "I01",
+     "title": "reimbursement travel policy",
+     "style": "bullet",
+     "claim_ids": [
+      "C01",
+      "C03"
+     ],
+     "uncertainty": null
+    },
+    {
+     "sub_query_id": "I01",
+     "title": "reimbursement travel policy",
+     "style": "bullet",
+     "claim_ids": [
+      "C04"
+     ],
+     "uncertainty": null
+    }
+   ],
+   "claims": [
+    {
+     "claim_id": "C01",
+     "lineage_id": "L01",
+     "text": "Scope: This policy covers reimbursement of business travel and related expenses for all employees.",
+     "sub_query_id": "I01",
+     "evidence": [
+      "D05:C01"
+     ],
+     "quote": "This policy covers reimbursement of business travel and related expenses for all employees.",
+     "score": 0.5932,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "KEEP",
+     "derived_from": [],
+     "conflicts_with": [],
+     "conditioned_on": [],
+     "repaired": false,
+     "version_created": 1
+    },
+    {
+     "claim_id": "C03",
+     "lineage_id": "L02",
+     "text": "Claims for international travel must be submitted within 45 days of return.",
+     "sub_query_id": "I01",
+     "evidence": [
+      "D05:C04"
+     ],
+     "quote": "Claims for international travel must be submitted within 45 days of return.",
+     "score": 0.806,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "KEEP",
+     "derived_from": [
+      "C02"
+     ],
+     "conflicts_with": [],
+     "conditioned_on": [
+      "international travel"
+     ],
+     "repaired": false,
+     "version_created": 2
+    },
+    {
+     "claim_id": "C04",
+     "lineage_id": "L04",
+     "text": "International travel requires pre-approval from the department head at least 21 days before departure.",
+     "sub_query_id": "I01",
+     "evidence": [
+      "D05:C04"
+     ],
+     "quote": "International travel requires pre-approval from the department head at least 21 days before departure.",
+     "score": 0.7804,
+     "verdict": "SUPPORTED",
+     "support": 1.0,
+     "anchors_ok": true,
+     "quote_ok": true,
+     "status": "KEEP",
+     "derived_from": [],
+     "conflicts_with": [],
+     "conditioned_on": [
+      "international travel"
+     ],
+     "repaired": false,
+     "version_created": 2
+    }
+   ],
+   "uncertainty": [],
+   "conflicts": [],
+   "diff": {
+    "kept": [
+     "C01",
+     "C03",
+     "C04"
+    ],
+    "revised": [],
+    "added": [],
+    "retracted": []
+   },
+   "constraint": null,
+   "transform": {
+    "ops": [
+     "bullets"
+    ],
+    "bullets": 2
+   },
+   "retrievals_used": [
+    "D05:C01",
+    "D05:C04"
+   ],
+   "tokens": {
+    "llm_prompt": 0,
+    "llm_completion": 0,
+    "context_est": 0
+   },
+   "counterfactual": {},
+   "created_t": 9.8,
+   "notes": [],
+   "rendering": "- Scope: This policy covers reimbursement of business travel and related expenses for all employees. [D05:C01] Claims for international travel must be submitted within 45 days of return. [D05:C04]\n- International travel requires pre-approval from the department head at least 21 days before departure. [D05:C04]"
+  }
+ },
+ {
+  "event_id": "evt_0043",
+  "parent_event_ids": [
+   "evt_0042"
+  ],
+  "timestamp": 9.8005,
+  "wall_time": "2026-09-28T20:22:00.610+00:00",
+  "session_id": "rec-reimbursement-demo",
+  "event_type": "TelemetryEmitted",
+  "utterance_id": "u3",
+  "query_version": 5,
+  "answer_version": 3,
+  "retrieval_trigger": null,
+  "sub_query_id": null,
+  "document_ids": [],
+  "chunk_ids": [],
+  "latency_ms": null,
+  "token_cost": {
+   "llm_prompt": 0,
+   "llm_completion": 0,
+   "context_est": 0
+  },
+  "confidence": null,
+  "citations": [],
+  "payload": {
+   "turn_type": "TRANSFORM",
+   "retrievals": 0,
+   "early_retrievals": 0,
+   "first_retrieval_t": null,
+   "utterance_end_t": 9.8,
+   "retrieval_lead_s": null,
+   "retrieval_latency_ms_mean": null,
+   "post_utterance_latency_ms": 0.408,
+   "sub_queries": [],
+   "suppressed": true,
+   "answer_version": 3,
+   "claims": 3,
+   "pipeline_latency_ema_s": 1.2
+  }
+ }
+]

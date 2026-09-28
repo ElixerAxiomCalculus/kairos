@@ -1,0 +1,10 @@
+{
+  "id": "self-repair-demo",
+  "title": "Self-repair — 'Pune, sorry, Mumbai'",
+  "description": "The speaker corrects the city mid-utterance; the slot is revised before retrieval commits.",
+  "chunks": [
+    {"utterance_id": "u1", "t0": 1.0, "t1": 1.8, "text": "Which rooms can seat"},
+    {"utterance_id": "u1", "t0": 1.8, "t1": 2.6, "text": "100 people in Pune,"},
+    {"utterance_id": "u1", "t0": 2.6, "t1": 3.2, "text": "sorry, Mumbai?", "final": true}
+  ]
+}

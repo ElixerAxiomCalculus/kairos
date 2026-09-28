@@ -1,0 +1,162 @@
+.timeline {
+  height: var(--timeline-h);
+  border-top: 1px solid var(--border);
+  background: var(--surface-raised);
+  display: grid;
+  grid-template-rows: 38px 1fr;
+  flex-shrink: 0;
+  position: sticky;
+  bottom: 0;
+  z-index: var(--z-sticky);
+}
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 0 var(--sp-4);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+.controls .spacer {
+  flex: 1;
+}
+.speed {
+  display: flex;
+  gap: 2px;
+}
+.lanes {
+  position: relative;
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  min-height: 0;
+}
+.laneLabels {
+  display: grid;
+  border-right: 1px solid var(--border);
+  color: var(--text-muted);
+}
+.laneLabels span {
+  display: flex;
+  align-items: center;
+  padding-left: var(--sp-4);
+  border-bottom: 1px solid var(--grid-line);
+}
+.track {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.inner {
+  position: relative;
+  height: 100%;
+}
+.laneLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid var(--grid-line);
+}
+.evt {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 2px;
+  border: 1px solid var(--surface-raised);
+  cursor: pointer;
+  padding: 0;
+}
+.evt:hover,
+.evt[data-selected="true"] {
+  outline: 1.5px solid var(--text-primary);
+  outline-offset: 1px;
+}
+.evtLabel {
+  position: absolute;
+  transform: translate(-50%, 8px);
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-secondary);
+  pointer-events: none;
+}
+.playhead {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--text-primary);
+  pointer-events: none;
+}
+.playhead::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -3px;
+  width: 7px;
+  height: 7px;
+  background: var(--text-primary);
+}
+.readout {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.scripts {
+  height: 30px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-secondary);
+  color: var(--text-primary);
+  padding: 0 8px;
+  font: inherit;
+  font-size: 12px;
+}
+
+/* event inspector sheet */
+.sheet {
+  position: fixed;
+  left: 8px;
+  right: 8px;
+  bottom: calc(var(--timeline-h) + 8px);
+  max-height: 46vh;
+  z-index: var(--z-drawer);
+  background: var(--surface-raised);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-overlay);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.sheetBody {
+  overflow: auto;
+  padding: var(--sp-4);
+}
+.schema {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 4px var(--sp-4);
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+}
+.schema dt {
+  color: var(--text-muted);
+}
+.schema dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.json {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  white-space: pre-wrap;
+  margin: 0;
+  color: var(--text-secondary);
+}
+.tabs {
+  display: flex;
+  gap: 2px;
+}

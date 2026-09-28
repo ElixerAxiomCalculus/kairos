@@ -1,0 +1,96 @@
+# Kairos default configuration.
+# Every value here is a tunable. Tune on benchmark/datasets/dev only — never on official test data.
+
+corpus:
+  path: corpus/sample
+
+retrieval:
+  mode: hybrid                 # hybrid | dense | sparse            (ablation B)
+  dense_backend: lsa           # lsa (no download, deterministic) | sentence-transformers
+  dense_model: BAAI/bge-small-en-v1.5
+  lsa_dims: 128
+  bm25_k1: 1.5
+  bm25_b: 0.75
+  heading_boost: 2             # heading path tokens are repeated this many times in the BM25 doc
+  rrf_k: 60
+  candidates: 10               # per-retriever candidate depth before fusion (scale with corpus size)
+  top_k: 5                     # evidence chunks kept per sub-query after rerank + dedup
+  probe_k: 10                  # probe depth (BM25 only, section level)
+  reranker: hybrid-linear      # hybrid-linear | cross-encoder | none
+  cross_encoder_model: cross-encoder/ms-marco-MiniLM-L-6-v2
+  dedup_threshold: 0.92
+  facet_bonus: 0.10
+  place_mismatch_penalty: 0.5  # gazetteer consistency: chunk names only a different place than the query
+
+controller:
+  mode: psrc                   # psrc | fixed_tokens | eou          (ablation A)
+  fixed_tokens_n: 6
+  stability_model: models/stability.json   # trained by `python -m kairos train-stability`; falls back to default_weights
+  default_weights: {rho: 2.2, chi: 2.0, kappa: 2.4, sigma: 0.8, cont: 1.2, bias: -4.2}
+  # lambda_latency, theta_min, rho_min, kappa_min: tuned label-free on the TRAINING streams by
+  # `python -m kairos tune-controller` (max early rate s.t. premature ≤ 20%); dev is held out.
+  lambda_latency: 0.5          # value of one second of hidden latency
+  cost_retrieval: 0.4          # λ_C · C_r
+  cost_noise: 0.6              # λ_N · N
+  pipeline_latency_prior_s: 1.2  # downstream latency early retrieval can hide (generative deployment)
+  adapt_latency: false          # true: learn it from measured latency (EMA)
+  remaining_prior_s: 1.5
+  theta_min: 0.30
+  theta_max: 0.90
+  rho_min: 0.3
+  kappa_min: 0.45
+  nu_min: 0.08
+  hysteresis: 0.05
+  tau_refine: 0.6
+  budget_per_utterance: 6
+
+decomposer:
+  mode: efis                   # efis | single                     (ablation E)
+  theta_merge: 0.4             # parent-section footprint RBO(p=0.8) at/above which two needs are one intent
+  theta_sem: 0.9               # dense cosine at/above which two needs are the same intent
+  chi_min: 0.12                # clarity floor for a standalone intent
+  anchor_weight: 0.4           # query weight of propagated anchor context
+
+synthesis:
+  backend: extractive          # extractive | gemini | ollama   (configs/gemini.yaml switches to Gemini)
+  gemini_model: gemini-flash-latest   # free-tier alias; resolved model is recorded in telemetry
+  gemini_thinking_level: low   # latency-sensitive route
+  gemini_timeout_s: 30
+  ollama_model: qwen2.5:7b-instruct
+  llm_cache_dir: runs/llm_cache
+  llm_mode: record             # record (call + cache) | replay (cache only)
+  sentences_per_subquery: 2
+  tau_sufficiency: 0.30        # min rerank relevance of the best chunk for a sub-query to be answerable
+  tau_sentence: 0.34           # min sentence relevance for extraction
+
+grounding:
+  nli: lexical                 # lexical | cross-encoder
+  nli_model: cross-encoder/nli-deberta-v3-small
+  tau_support: 0.80
+  tau_partial: 0.50
+  conflict_overlap: 0.35
+
+delta:
+  refinement: delta            # delta | full_restart                (ablation C)
+  max_added_per_subquery: 1
+
+session:
+  ttl_s: 1800
+  max_sessions: 64
+
+telemetry:
+  trace_dir: runs/traces
+  sqlite_path: runs/telemetry.sqlite
+  trace_content: true
+
+bench:
+  results_dir: runs/bench
+  targets:
+    early_retrieval_rate: {op: ">=", value: 0.80, gate: G2}
+    intent_recall: {op: ">=", value: 0.70, gate: G3}
+    grounded_claim_rate: {op: ">=", value: 0.85, gate: G4}
+    fabricated_doc_ids: {op: "==", value: 0, gate: G4}
+    delta_retrieval_ratio: {op: "<", value: 1.0, gate: G5}
+    false_retrieval_rate: {op: "==", value: 0.0, gate: G5}
+    telemetry_coverage: {op: "==", value: 1.0, gate: G6}
+    reproducibility_delta: {op: "==", value: 0.0, gate: G1}

@@ -1,0 +1,16 @@
+{
+  "id": "pune-demo",
+  "title": "Workshop venue in Pune — multi-intent, late constraint, presentation request",
+  "description": "Early retrieval, three intents retrieved in parallel, an 'international event' late constraint handled by delta refinement, and 'make that shorter' suppressed.",
+  "chunks": [
+    {"utterance_id": "u1", "t0": 1.0, "t1": 1.5, "text": "I need to"},
+    {"utterance_id": "u1", "t0": 1.5, "t1": 2.0, "text": "book a"},
+    {"utterance_id": "u1", "t0": 2.0, "t1": 2.8, "text": "workshop venue in Pune"},
+    {"utterance_id": "u1", "t0": 2.8, "t1": 3.4, "text": "for 30 people,"},
+    {"utterance_id": "u1", "t0": 3.4, "t1": 4.2, "text": "tell me the cancellation policy"},
+    {"utterance_id": "u1", "t0": 4.2, "t1": 5.2, "text": "and whether catering is available.", "final": true},
+    {"utterance_id": "u2", "t0": 8.0, "t1": 8.5, "text": "Actually, this is for an"},
+    {"utterance_id": "u2", "t0": 8.5, "t1": 9.1, "text": "international event.", "final": true},
+    {"utterance_id": "u3", "t0": 12.0, "t1": 12.6, "text": "Make that shorter.", "final": true}
+  ]
+}

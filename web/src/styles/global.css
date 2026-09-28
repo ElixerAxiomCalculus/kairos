@@ -1,0 +1,376 @@
+@import "../tokens/tokens.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--surface-base);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01", "cv11";
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--selection-bg);
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 1.5px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--r-xs);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- typography roles ---------- */
+.px {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-pixel);
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+.px-lg {
+  font-family: var(--font-pixel);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.ed {
+  font-family: var(--font-editorial);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.ed-i {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-weight: 500;
+}
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--fs-telemetry);
+  font-variant-numeric: tabular-nums;
+}
+.num {
+  font-variant-numeric: tabular-nums;
+}
+.muted {
+  color: var(--text-muted);
+}
+.secondary {
+  color: var(--text-secondary);
+}
+
+/* ---------- surfaces ---------- */
+.panel {
+  position: relative;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-panel);
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 1px solid var(--border);
+  min-height: 40px;
+  flex-shrink: 0;
+}
+.panel-body {
+  padding: var(--sp-4);
+  overflow: auto;
+  min-height: 0;
+  flex: 1;
+}
+.subpanel {
+  background: var(--surface-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+}
+.hairline {
+  height: 1px;
+  background: var(--border);
+  border: 0;
+  margin: var(--sp-3) 0;
+}
+
+/* scrollbars: thin and quiet */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+/* ---------- controls ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  height: 30px;
+  padding: 0 var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-standard), color var(--dur-fast), border-color var(--dur-fast),
+    transform var(--dur-fast);
+  white-space: nowrap;
+}
+.btn:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn[aria-pressed="true"],
+.btn[data-state="on"] {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+  background: var(--surface-secondary);
+}
+.btn-primary {
+  color: var(--surface-base);
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+}
+.btn-primary:hover {
+  color: var(--surface-base);
+  background: var(--text-secondary);
+}
+.btn-icon {
+  width: 30px;
+  padding: 0;
+  justify-content: center;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  padding: 0 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xs);
+  color: var(--text-secondary);
+  background: var(--surface-secondary);
+  white-space: nowrap;
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.kbd {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: var(--r-xs);
+  padding: 0 5px;
+  color: var(--text-muted);
+}
+
+/* ---------- workspace bento ---------- */
+.app {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-color: var(--surface-base);
+}
+
+.workspace {
+  /* fixed height (not flex: 1): a flex item's automatic minimum would otherwise grow to the grid's content */
+  flex: 0 0 auto;
+  display: grid;
+  gap: var(--layout-gutter);
+  padding: var(--layout-gutter);
+  height: calc(100vh - var(--header-h) - var(--timeline-h));
+  min-height: 560px;
+}
+
+.workspace[data-focus="split"] {
+  grid-template-columns: minmax(270px, 3fr) minmax(0, 5.4fr) minmax(300px, 3.6fr);
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1.12fr);
+  grid-template-areas:
+    "transcript control telemetry"
+    "transcript answer evidence";
+}
+.workspace[data-focus="answer"] {
+  grid-template-columns: minmax(260px, 2.6fr) minmax(0, 6.4fr) minmax(290px, 3fr);
+  grid-template-rows: minmax(0, 0.55fr) minmax(0, 1.45fr);
+  grid-template-areas:
+    "transcript control telemetry"
+    "transcript answer telemetry";
+}
+.workspace[data-focus="evidence"] {
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  grid-template-rows: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  grid-template-areas:
+    "control evidence"
+    "answer evidence";
+}
+.workspace[data-focus="systems"] {
+  grid-template-columns: minmax(270px, 3fr) minmax(0, 6fr) minmax(300px, 3fr);
+  grid-template-rows: minmax(0, 1.35fr) minmax(0, 0.65fr);
+  grid-template-areas:
+    "transcript control telemetry"
+    "transcript answer telemetry";
+}
+
+.area-transcript { grid-area: transcript; }
+.area-control { grid-area: control; }
+.area-telemetry { grid-area: telemetry; }
+.area-answer { grid-area: answer; }
+.area-evidence { grid-area: evidence; }
+
+.hidden-area {
+  display: none !important;
+}
+
+@media (max-width: 1200px) {
+  .workspace[data-focus] {
+    grid-template-columns: minmax(250px, 3fr) minmax(0, 7fr);
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "transcript control"
+      "transcript answer"
+      "telemetry evidence";
+    height: auto;
+  }
+  .workspace[data-focus] .hidden-area {
+    display: flex !important;
+  }
+}
+
+@media (max-width: 860px) {
+  .workspace[data-focus] {
+    display: none;
+  }
+}
+
+.mobile-tabs {
+  display: none;
+}
+@media (max-width: 860px) {
+  .mobile-tabs {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: var(--layout-gutter);
+    gap: var(--layout-gutter);
+  }
+}
+
+/* ---------- misc ---------- */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  color: var(--text-muted);
+  text-align: center;
+  height: 100%;
+  min-height: 120px;
+  padding: var(--sp-5);
+}
+
+.blink {
+  animation: blink 1.1s steps(2, start) infinite;
+}
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+.fade-in {
+  animation: fade-in var(--dur-graph) var(--ease-standard) both;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* one-time stroke draw for SVG paths with pathLength="1" (geometry may change afterwards) */
+.draw-in {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  animation: draw-in var(--dur-graph) var(--ease-standard) both;
+}
+@keyframes draw-in {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+.scan {
+  position: relative;
+  overflow: hidden;
+}
+.scan::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 -30%;
+  width: 30%;
+  background: linear-gradient(90deg, transparent, var(--glow-retrieve), transparent);
+  animation: scan 1.1s var(--ease-standard) infinite;
+}
+@keyframes scan {
+  to {
+    left: 110%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blink,
+  .scan::after,
+  .fade-in,
+  .draw-in {
+    animation: none;
+  }
+}

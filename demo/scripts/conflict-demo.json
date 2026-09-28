@@ -1,0 +1,9 @@
+{
+  "id": "conflict-demo",
+  "title": "Headcount changes — contradictory sources",
+  "description": "Two documents state different notice periods for headcount changes; the answer surfaces both with citations instead of silently picking one.",
+  "chunks": [
+    {"utterance_id": "u1", "t0": 1.0, "t1": 1.7, "text": "How late can I change"},
+    {"utterance_id": "u1", "t0": 1.7, "t1": 2.6, "text": "the expected headcount for a venue booking?", "final": true}
+  ]
+}

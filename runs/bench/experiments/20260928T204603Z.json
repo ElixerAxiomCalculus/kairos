@@ -1,0 +1,215 @@
+{
+ "status": "MEASURED",
+ "run_id": "20260928T204603Z",
+ "dataset": "dev",
+ "experiments": {
+  "A": {
+   "title": "Predictive controller vs fixed-threshold retrieval",
+   "hypothesis": "PSRC retrieves early on more utterances than end-of-utterance retrieval with fewer retrievals per utterance than fixed token triggers, at a bounded premature rate.",
+   "status": "MEASURED",
+   "metrics": [
+    "early_retrieval_rate",
+    "premature_retrieval_rate",
+    "evidence_survival_rate",
+    "retrievals_per_utterance",
+    "intent_recall"
+   ],
+   "arms": {
+    "psrc": {
+     "overrides": {},
+     "metrics": {
+      "early_retrieval_rate": 0.6875,
+      "premature_retrieval_rate": 0.1852,
+      "evidence_survival_rate": 0.763,
+      "retrievals_per_utterance": 1.808,
+      "intent_recall": 0.9722
+     }
+    },
+    "fixed_tokens_4": {
+     "overrides": {
+      "controller.mode": "fixed_tokens",
+      "controller.fixed_tokens_n": 4
+     },
+     "metrics": {
+      "early_retrieval_rate": 0.9375,
+      "premature_retrieval_rate": 0.2571,
+      "evidence_survival_rate": 0.7257,
+      "retrievals_per_utterance": 2.346,
+      "intent_recall": 0.9722
+     }
+    },
+    "fixed_tokens_8": {
+     "overrides": {
+      "controller.mode": "fixed_tokens",
+      "controller.fixed_tokens_n": 8
+     },
+     "metrics": {
+      "early_retrieval_rate": 0.625,
+      "premature_retrieval_rate": 0.2143,
+      "evidence_survival_rate": 0.8571,
+      "retrievals_per_utterance": 1.615,
+      "intent_recall": 0.9722
+     }
+    },
+    "end_of_utterance": {
+     "overrides": {
+      "controller.mode": "eou"
+     },
+     "metrics": {
+      "early_retrieval_rate": 0.0,
+      "premature_retrieval_rate": null,
+      "evidence_survival_rate": null,
+      "retrievals_per_utterance": 1.423,
+      "intent_recall": 0.9722
+     }
+    }
+   }
+  },
+  "B": {
+   "title": "Hybrid retrieval vs dense-only vs sparse-only",
+   "hypothesis": "Hybrid fusion finds gold sections at least as often as either retriever alone; the reranker's absolute relevance is what makes abstention possible.",
+   "status": "MEASURED",
+   "metrics": [
+    "gold_section_mrr",
+    "intent_recall",
+    "intent_precision",
+    "abstention_accuracy",
+    "grounded_claim_rate",
+    "retrieval_latency_ms_mean"
+   ],
+   "arms": {
+    "hybrid_rerank": {
+     "overrides": {},
+     "metrics": {
+      "gold_section_mrr": 0.8528,
+      "intent_recall": 0.9722,
+      "intent_precision": 0.9459,
+      "abstention_accuracy": 1.0,
+      "grounded_claim_rate": 1.0,
+      "retrieval_latency_ms_mean": 0.882
+     }
+    },
+    "dense_only": {
+     "overrides": {
+      "retrieval.mode": "dense"
+     },
+     "metrics": {
+      "gold_section_mrr": 0.8528,
+      "intent_recall": 0.9722,
+      "intent_precision": 0.9211,
+      "abstention_accuracy": 1.0,
+      "grounded_claim_rate": 1.0,
+      "retrieval_latency_ms_mean": 0.791
+     }
+    },
+    "sparse_only": {
+     "overrides": {
+      "retrieval.mode": "sparse"
+     },
+     "metrics": {
+      "gold_section_mrr": 0.8528,
+      "intent_recall": 0.9722,
+      "intent_precision": 0.9459,
+      "abstention_accuracy": 1.0,
+      "grounded_claim_rate": 1.0,
+      "retrieval_latency_ms_mean": 1.263
+     }
+    },
+    "hybrid_no_rerank": {
+     "overrides": {
+      "retrieval.reranker": "none"
+     },
+     "metrics": {
+      "gold_section_mrr": 0.8056,
+      "intent_recall": 0.9167,
+      "intent_precision": 0.8919,
+      "abstention_accuracy": 1.0,
+      "grounded_claim_rate": 1.0,
+      "retrieval_latency_ms_mean": 0.789
+     }
+    }
+   }
+  },
+  "C": {
+   "title": "Delta refinement vs full pipeline restart",
+   "hypothesis": "Delta maintenance re-retrieves fewer sub-queries and processes less context than a full restart, with zero churn in unaffected claims.",
+   "status": "MEASURED",
+   "metrics": [
+    "delta_retrieval_ratio",
+    "update_retrievals",
+    "full_restart_retrievals",
+    "update_context_tokens_est",
+    "unnecessary_claim_churn",
+    "refinement_correctness",
+    "grounded_claim_rate"
+   ],
+   "arms": {
+    "delta": {
+     "overrides": {},
+     "metrics": {
+      "delta_retrieval_ratio": 0.8667,
+      "update_retrievals": 7,
+      "full_restart_retrievals": 9,
+      "update_context_tokens_est": 1784,
+      "unnecessary_claim_churn": 2,
+      "refinement_correctness": 0.6,
+      "grounded_claim_rate": 1.0
+     }
+    },
+    "full_restart": {
+     "overrides": {
+      "delta.refinement": "full_restart"
+     },
+     "metrics": {
+      "delta_retrieval_ratio": 1.0,
+      "update_retrievals": 9,
+      "full_restart_retrievals": 9,
+      "update_context_tokens_est": 2357,
+      "unnecessary_claim_churn": 2,
+      "refinement_correctness": 0.4,
+      "grounded_claim_rate": 1.0
+     }
+    }
+   }
+  },
+  "E": {
+   "title": "Evidence-footprint decomposition vs no decomposition",
+   "hypothesis": "EFIS identifies more gold intents than a single whole-utterance query.",
+   "status": "MEASURED",
+   "metrics": [
+    "intent_recall",
+    "intent_precision",
+    "intent_count_accuracy",
+    "grounded_claim_rate"
+   ],
+   "arms": {
+    "efis": {
+     "overrides": {},
+     "metrics": {
+      "intent_recall": 0.9722,
+      "intent_precision": 0.9459,
+      "intent_count_accuracy": 0.9615,
+      "grounded_claim_rate": 1.0
+     }
+    },
+    "single_query": {
+     "overrides": {
+      "decomposer.mode": "single"
+     },
+     "metrics": {
+      "intent_recall": 0.6944,
+      "intent_precision": 0.9615,
+      "intent_count_accuracy": 0.6538,
+      "grounded_claim_rate": 1.0
+     }
+    }
+   }
+  },
+  "D": {
+   "title": "Evidence graph + grounding firewall vs flat context concatenation",
+   "hypothesis": "With a generative synthesizer, closed evidence handles and the firewall remove fabricated IDs and reduce unsupported claims versus free-form citations over flat context.",
+   "status": "NOT_RUN",
+   "reason": "Requires a generative backend (configs/gemini.yaml). The extractive default emits verbatim quotes, so this comparison would be vacuous. Run: python -m kairos ablate --only D --config configs/gemini.yaml"
+  }
+ }
+}

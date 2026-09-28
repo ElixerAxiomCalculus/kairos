@@ -1,0 +1,12 @@
+{
+  "id": "reimbursement-demo",
+  "title": "Reimbursement policy — V1 → V2 (international) → V3 (two bullets)",
+  "description": "A single-intent summary refined by a late 'international travel' constraint, then re-rendered as two bullets without retrieval.",
+  "chunks": [
+    {"utterance_id": "u1", "t0": 1.0, "t1": 1.6, "text": "Summarize the"},
+    {"utterance_id": "u1", "t0": 1.6, "t1": 2.5, "text": "reimbursement policy for travel.", "final": true},
+    {"utterance_id": "u2", "t0": 5.0, "t1": 5.6, "text": "Actually, this is for"},
+    {"utterance_id": "u2", "t0": 5.6, "t1": 6.3, "text": "international travel.", "final": true},
+    {"utterance_id": "u3", "t0": 9.0, "t1": 9.8, "text": "Give it to me in two bullets.", "final": true}
+  ]
+}

@@ -1,0 +1,16 @@
+# One command:  docker compose up --build     → http://localhost:8000
+# Reproduce:    docker compose --profile bench run --rm bench
+services:
+  kairos:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - path: kairos/.env      # optional: GEMINI_API_KEY for configs/gemini.yaml
+        required: false
+  bench:
+    build: .
+    profiles: ["bench"]
+    command: ["python", "-m", "kairos", "reproduce"]
+    volumes:
+      - ./runs:/app/runs
