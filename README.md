@@ -6,6 +6,18 @@ Kairos retrieves while you are still talking, splits your question where the evi
 add a constraint it rewrites only the sentences that depend on it. Every sentence is verified against the
 corpus before it is shown, and every decision is an event you can trace.
 
+## Demo videos
+
+> [!NOTE]
+> **Full Kairos tutorial on YouTube — coming soon.** The published YouTube link will be added here.
+
+### Live voice demonstration
+
+[▶ Watch the Kairos voice demo (MP4, 151 MB)](demos/Kairos_voice_demo.mp4)
+
+This recording demonstrates live microphone input driving the incremental transcript, retrieval controller,
+intent decomposition, evidence inspection, grounding state, and answer updates in the existing interface.
+
 ```
 speech chunks ─▶ QueryFrame ─▶ Retrieval Controller ─▶ Intent Decomposer ─▶ Hybrid Retrieval (parallel)
                   (slots,        WAIT / RETRIEVE /        (evidence-footprint     BM25 + dense → RRF →
