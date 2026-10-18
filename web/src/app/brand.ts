@@ -3,7 +3,7 @@ export const BRAND = {
   name: "KAIROS",
   mark: "KAIROS/RAG",
   tagline: "Streaming Evidence Engine",
-  eyebrow: "SAMSUNG PRISM / LIVE RAG",
+  eyebrow: "LIVE RAG",
   hero: ["Retrieval,", "before", "the sentence ends."],
   lede:
     "A streaming evidence engine that predicts retrieval, decomposes intent, refines answers by delta, and exposes every decision.",
