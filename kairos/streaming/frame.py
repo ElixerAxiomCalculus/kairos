@@ -1,4 +1,4 @@
-"""QueryFrame construction: utterance prefix -> clauses, candidate needs, slots, self-repairs.
+"""Incremental QueryFrame construction: utterance prefix -> clauses, candidate needs, slots, repairs.
 
 A *candidate need* is a clause that asks for information. Constraint clauses
 ("for 30 people", "in Pune") attach to the need they modify. Candidates are keyed by their
@@ -282,3 +282,59 @@ class FrameBuilder:
             else:
                 slots[key] = prev
         return Frame(raw_text, analysis, spans, candidates, slots, repairs, anchor_of(candidates))
+
+
+# Preserve the original implementation for explicit benchmark ablation only.
+LegacyCandidateNeed = CandidateNeed
+LegacyFrame = Frame
+LegacySlot = Slot
+legacy_apply_repairs = apply_repairs
+legacy_segment = segment
+legacy_build_candidates = build_candidates
+legacy_extract_slots = extract_slots
+legacy_anchor_of = anchor_of
+
+
+class LegacyFrameBuilder:
+    """Frozen V1 frame builder used only by the original-vs-improved benchmark arm."""
+
+    def __init__(self, corpus: Corpus) -> None:
+        self.corpus = corpus
+
+    def build(self, raw_text: str, prev_slots: dict[str, LegacySlot], t: float, chunk_id: str) -> LegacyFrame:
+        analysis, repairs = legacy_apply_repairs(raw_text, self.corpus)
+        spans = legacy_segment(analysis, self.corpus)
+        candidates = legacy_build_candidates(spans)
+        slots: dict[str, LegacySlot] = {}
+        for key, (kind, value) in legacy_extract_slots(analysis, self.corpus).items():
+            prev = prev_slots.get(key)
+            if prev is None:
+                slots[key] = LegacySlot(key, kind, value, t, t, chunk_id)
+            elif prev.value.lower() != value.lower():
+                slots[key] = LegacySlot(key, kind, value, prev.first_seen_t, t, chunk_id, revised_from=prev.value)
+            else:
+                slots[key] = prev
+        return LegacyFrame(raw_text, analysis, spans, candidates, slots, repairs, legacy_anchor_of(candidates))
+
+# V2 implementation.  These explicit re-exports keep the original public import path stable for
+# the engine, tests and downstream integrations while the legacy definitions above remain useful
+# to the original-vs-improved ablation.
+from kairos.streaming.frame_v2 import (  # noqa: E402,F401
+    DEFAULT_PLACES,
+    UNIT_WORDS,
+    CandidateNeed,
+    Frame,
+    FrameBuilder,
+    ScopedConstraint,
+    Slot,
+    Span,
+    anchor_of,
+    apply_repairs,
+    build_candidates,
+    classify_span,
+    completeness,
+    continuation_hazard,
+    extract_slots,
+    extract_typed_constraints,
+    segment,
+)

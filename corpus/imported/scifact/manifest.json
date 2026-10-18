@@ -1,0 +1,84 @@
+{
+  "adapter": "beir",
+  "config": "corpus",
+  "dataset": "BeIR/scifact",
+  "documents": [
+    {
+      "content_checksum_sha256": "a904a3f60c73b7791f967a791802e93dab72076ee9e16d0366af89370fa544c4",
+      "doc_id": "SCIFACT:118568",
+      "source_record_id": "118568"
+    },
+    {
+      "content_checksum_sha256": "382e91a1492314b3ac3cbf615702bde18f674df00581189141264ed70695ef22",
+      "doc_id": "SCIFACT:123859",
+      "source_record_id": "123859"
+    },
+    {
+      "content_checksum_sha256": "7293bbf72495acf88a61a784fe1c542768d69a56739ea63b166aa3aa2b0b2059",
+      "doc_id": "SCIFACT:140874",
+      "source_record_id": "140874"
+    },
+    {
+      "content_checksum_sha256": "94b60d67ee42f05dd88629df2801d94bf292a8cb5fc42553723ea25ceeeac3f7",
+      "doc_id": "SCIFACT:164189",
+      "source_record_id": "164189"
+    },
+    {
+      "content_checksum_sha256": "b8a9ac1ebd57cb218126d4c1f2f80aa11f5678f05c97a575e4991d0d764d7860",
+      "doc_id": "SCIFACT:164985",
+      "source_record_id": "164985"
+    },
+    {
+      "content_checksum_sha256": "5872cefed0f0e22cfce9199ab26d54ea473b880c6f9a8db1c6ad00c15d5f3274",
+      "doc_id": "SCIFACT:18670",
+      "source_record_id": "18670"
+    },
+    {
+      "content_checksum_sha256": "1c7f190214285647b372cf174b0f7de2ff6b41441c2a9c03ea9de3aae4516a64",
+      "doc_id": "SCIFACT:19238",
+      "source_record_id": "19238"
+    },
+    {
+      "content_checksum_sha256": "c5fe79cd37942ee706068ec5a927bb705294bcc6a8346b433c0920b857c87696",
+      "doc_id": "SCIFACT:202259",
+      "source_record_id": "202259"
+    },
+    {
+      "content_checksum_sha256": "f5c4f6a567c22c2090bbe547254cf86189557bdffc2a3c95421cef39fe2722f4",
+      "doc_id": "SCIFACT:226488",
+      "source_record_id": "226488"
+    },
+    {
+      "content_checksum_sha256": "aabc44875a71c1732798592e7410f4acfba01980a00dc73112349545d86c5205",
+      "doc_id": "SCIFACT:70490",
+      "source_record_id": "70490"
+    },
+    {
+      "content_checksum_sha256": "7a41088c49ca28e6663691bbdd0a631e5d5446c237e091583a12df8abb9c7ba8",
+      "doc_id": "SCIFACT:72159",
+      "source_record_id": "72159"
+    },
+    {
+      "content_checksum_sha256": "bb9ae5d4dd749c2de66dcdd2d2f5597bdcacd41f7c38cdd75d8cbd4e82662496",
+      "doc_id": "SCIFACT:87758",
+      "source_record_id": "87758"
+    }
+  ],
+  "evaluation_labels": 0,
+  "exported_documents": 12,
+  "input_records": 48,
+  "license": "cc-by-sa-4.0",
+  "namespace": "SCIFACT",
+  "rejected": [],
+  "rejected_records": 0,
+  "requested_limit": 12,
+  "revision": "b3b5335604bf5ee3c4447671af975ea25143d4f5",
+  "schema_version": 1,
+  "seed": 42,
+  "source_checksum_sha256": "ebd68a151093e62b046312d869cd84d90b63e7d27cb8c11cc672f780767b7fb6",
+  "source_ref": "https://datasets-server.huggingface.co/rows?dataset=BeIR%2Fscifact&config=corpus&split=corpus&offset=0&length=48",
+  "source_url": "https://huggingface.co/datasets/BeIR/scifact",
+  "split": "corpus",
+  "transformation": "source passage to Markdown; questions/answers/qrels remain separate labels",
+  "valid_records": 48
+}

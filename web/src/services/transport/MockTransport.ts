@@ -1,6 +1,6 @@
 import { loadFixture } from "@/mocks";
 import { parseWireEvent, type WireEvent } from "@/schemas/events";
-import type { OutgoingChunk, StreamingTransport, TransportHandlers } from "./StreamingTransport";
+import type { OutgoingChunk, StreamingTransport, TranscriptSnapshotOutgoing, TransportHandlers } from "./StreamingTransport";
 
 /**
  * Deterministic mock transport. It does not invent events: it serves traces recorded from the real engine
@@ -35,6 +35,10 @@ export class MockTransport implements StreamingTransport {
 
   sendTranscriptChunk(_chunk: OutgoingChunk): void {
     this.handlers?.onError("Mock mode replays recorded sessions; connect the backend to stream your own speech.");
+  }
+
+  sendTranscriptSnapshot(_snapshot: TranscriptSnapshotOutgoing): void {
+    this.handlers?.onError("Microphone input needs the live backend.");
   }
 
   endUtterance(_utteranceId: string): void {

@@ -13,6 +13,7 @@ Checks, in order:
 from __future__ import annotations
 
 import re
+import unicodedata
 from dataclasses import dataclass, field
 
 from kairos.corpus.ingest import Chunk
@@ -33,12 +34,14 @@ class Verification:
     invalid_ids: list[str] = field(default_factory=list)
     conflicts: list[dict] = field(default_factory=list)
     missing_anchors: list[str] = field(default_factory=list)
+    checksum_ok: bool = True
 
     def to_public(self) -> dict:
         return {
             "claim_id": self.claim_id, "verdict": self.verdict, "support": round(self.support, 4),
             "anchors_ok": self.anchors_ok, "quote_ok": self.quote_ok, "invalid_ids": self.invalid_ids,
             "conflicts": self.conflicts, "missing_anchors": self.missing_anchors,
+            "checksum_ok": self.checksum_ok,
         }
 
 
@@ -54,7 +57,7 @@ def _num_units(text: str) -> set[tuple[str, str]]:
 
 
 def _norm_ws(s: str) -> str:
-    return re.sub(r"\s+", " ", s).strip()
+    return re.sub(r"\s+", " ", unicodedata.normalize("NFKC", s).casefold()).strip()
 
 
 class GroundingFirewall:
@@ -98,6 +101,13 @@ class GroundingFirewall:
             verdict = "INVALID_CITATION" if invalid else "UNSUPPORTED"
             return Verification(claim.claim_id, verdict, 0.0, False, False, invalid)
         chunks = [corpus.chunk(cid) for cid in valid]
+        checksum_ok = (not self.cfg.get("verify_checksums", True)) or all(
+            not claim.evidence_checksums.get(chunk.chunk_id)
+            or claim.evidence_checksums[chunk.chunk_id] == chunk.sha1 for chunk in chunks
+        )
+        if not checksum_ok:
+            return Verification(claim.claim_id, "INVALID_CITATION", 0.0, False, False, invalid,
+                                missing_anchors=[], checksum_ok=False)
         cited_text = " ".join(f"{c.section_title} {c.text}" for c in chunks)
         quote_ok = bool(claim.quote) and any(_norm_ws(claim.quote) in _norm_ws(c.text) for c in chunks)
         claim_anchors = anchors(claim.text)
@@ -107,13 +117,15 @@ class GroundingFirewall:
         support = self.support_score(claim.text, chunks)
         conflicts = self._conflicts(claim, chunks, peer_chunk_ids)
 
-        if support >= self.cfg["tau_support"] and anchors_ok:
+        quote_required = self.cfg.get("require_quote", True) and bool(claim.quote)
+        if support >= self.cfg["tau_support"] and anchors_ok and (quote_ok or not quote_required):
             verdict = "CONFLICTING" if conflicts else "SUPPORTED"
-        elif support >= self.cfg["tau_partial"] or (quote_ok and not anchors_ok):
+        elif quote_ok and (support >= self.cfg["tau_partial"] or not anchors_ok):
             verdict = "PARTIAL"
         else:
             verdict = "UNSUPPORTED"
-        return Verification(claim.claim_id, verdict, support, anchors_ok, quote_ok, invalid, conflicts, missing)
+        return Verification(claim.claim_id, verdict, support, anchors_ok, quote_ok, invalid, conflicts, missing,
+                            checksum_ok)
 
     def _conflicts(self, claim: Claim, cited: list[Chunk], peer_chunk_ids: list[str]) -> list[dict]:
         claim_nums = _num_units(claim.quote or claim.text)

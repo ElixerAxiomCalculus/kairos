@@ -48,7 +48,8 @@ class JsonlSink:
 
 
 class SqliteSink:
-    def __init__(self, path: Path) -> None:
+    def __init__(self, path: Path, include_content: bool = True) -> None:
+        self.include_content = include_content
         path.parent.mkdir(parents=True, exist_ok=True)
         self._conn = sqlite3.connect(str(path), check_same_thread=False)
         self._conn.execute(
@@ -59,11 +60,14 @@ class SqliteSink:
         self._lock = threading.Lock()
 
     def __call__(self, event: Event) -> None:
+        data = event.model_dump()
+        if not self.include_content:
+            data["payload"] = _redact(data["payload"])
         with self._lock:
             self._conn.execute(
                 "INSERT OR REPLACE INTO events VALUES (?,?,?,?,?,?,?)",
                 (event.event_id, event.session_id, event.event_type, event.timestamp, event.utterance_id,
-                 event.latency_ms, event.model_dump_json()),
+                 event.latency_ms, json.dumps(data, ensure_ascii=False)),
             )
             self._conn.commit()
 
@@ -73,6 +77,20 @@ class QueueSink:
 
     def __init__(self, loop: asyncio.AbstractEventLoop, queue: asyncio.Queue, session_id: str) -> None:
         self.loop, self.queue, self.session_id = loop, queue, session_id
+        self.overflowed = False
+
+    def _put(self, event: Event) -> None:
+        if self.overflowed:
+            return
+        try:
+            self.queue.put_nowait(event)
+        except asyncio.QueueFull:
+            self.overflowed = True
+            try:
+                self.queue.get_nowait()
+            except asyncio.QueueEmpty:
+                pass
+            self.queue.put_nowait(None)
 
     def __call__(self, event: Event) -> None:
         if event.session_id != self.session_id:
@@ -82,15 +100,22 @@ class QueueSink:
         except RuntimeError:
             running = None
         if running is self.loop:
-            self.queue.put_nowait(event)
+            self._put(event)
         else:
-            self.loop.call_soon_threadsafe(self.queue.put_nowait, event)
+            self.loop.call_soon_threadsafe(self._put, event)
 
 
 def _redact(payload: dict) -> dict:
+    sensitive = {
+        "text", "quote", "rendering", "utterance_text", "raw_text", "analysis_text", "normalized",
+        "authoritative_text", "query", "query_text", "need", "anchor", "label", "title", "value",
+        "from", "to", "constraints", "facet_constraints", "facets", "terms", "repairs", "spans",
+        "candidates", "slots", "content_terms", "novel_terms", "slot_terms",
+    }
     out = {}
     for key, value in payload.items():
-        if key in {"text", "quote", "rendering", "utterance_text"}:
+        lower_key = key.lower()
+        if key in sensitive or any(marker in lower_key for marker in ("text", "query", "quote", "render")):
             out[key] = f"<redacted:{len(str(value))} chars>"
         elif isinstance(value, dict):
             out[key] = _redact(value)

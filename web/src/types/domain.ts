@@ -255,7 +255,7 @@ export interface GroundingResult {
   fabricatedIdsBlocked: number;
   citationsValid: number;
   emitted: number;
-  status: "PASS" | "BLOCKED";
+  status: "SUPPORTED" | "CONFLICTING" | "PARTIAL" | "INSUFFICIENT_EVIDENCE" | "INVALID_GROUNDING";
   results: {
     claim_id: string;
     verdict: Verdict;

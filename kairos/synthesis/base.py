@@ -84,6 +84,9 @@ def score_sentences(index: HybridIndex, query: RetrievalQuery, hits: list[Hit],
         avoid_terms |= {m for m in corpus.contrast_groups.get(group, set()) if m != value}
     qvec = index.encode(query.dense_text)
     want_people = _people_counts(query.dense_text)
+    people_words = {"headcount", "people", "person", "persons", "participant", "participants",
+                    "attendee", "attendees", "guest", "guests", "pax"}
+    people_topic = bool(people_words & set(lower_tokens(query.dense_text)))
     out: list[EvidenceSentence] = []
     for hit in hits:
         chunk = corpus.chunk(hit.chunk_id)
@@ -97,6 +100,8 @@ def score_sentences(index: HybridIndex, query: RetrievalQuery, hits: list[Hit],
         for sent, vec in zip(sents, vecs):
             terms = set(content_terms(sent))
             if avoid_terms & terms:
+                continue
+            if people_topic and not (people_words & set(lower_tokens(sent))):
                 continue
             rel = 0.5 * _sentence_coverage(index, query.terms, sent, context) + 0.3 * max(float(np.dot(vec, qvec)), 0.0) \
                 + 0.2 * hit.rerank_score

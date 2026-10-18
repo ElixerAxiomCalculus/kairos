@@ -35,16 +35,92 @@ python -m kairos serve             # → http://localhost:8000  (API + UI)
 The UI also runs without the backend. It then replays traces recorded from the real engine (`MOCK`), which
 is the safe mode for a projector demo.
 
+### Live microphone demo
+
+Build the UI, start `python -m kairos serve`, open `http://localhost:8000/live`, click **GO LIVE**, then
+click the microphone button. Start/Stop defines one conversational turn; browser recognition segment
+boundaries do not. While speaking, the UI labels the mutable browser hypothesis as **PROVISIONAL** and
+renders only backend-committed transcript chunks in the event stream.
+
+Chrome or Edge is recommended because Web Speech recognition support is browser-dependent. Recognition
+may use a browser/vendor speech service; Kairos does not persist raw audio and does not claim transcription
+is local. HTTPS and WSS are required when the demo is hosted remotely.
+
+The microphone protocol sends cumulative, revisioned snapshots:
+
+```json
+{"type":"transcript_snapshot","utterance_id":"mic-1","revision":7,"text":"I need a workshop venue in Pune","asr_final":false,"end_of_turn":false,"source":"microphone"}
+```
+
+The server responds with `transcript_ack` (`accepted`, `duplicate`, `stale`, or `finalized`) and continues
+to emit ordinary `{ "type": "event", "event": ... }` engine messages. Stop sends one final snapshot with
+`end_of_turn: true`; it does not also send `utterance_end`. Reconnect uses
+`/ws?session_id=<id>&after_event_id=<id>` and replays missed authoritative events. Legacy `chunk`,
+`utterance_end`, `replay`, and `end_session` messages remain supported.
+
+Transcript text is included in JSONL/SQLite telemetry by default. Set `telemetry.trace_content: false` in
+configuration to redact text-bearing payload fields while retaining event IDs and causal lineage.
+
 | Command | What it does |
 |---|---|
 | `python -m kairos serve` | API, WebSocket and UI on :8000 |
 | `python -m kairos replay pune-demo` | Runs a demo script through the engine and prints the event trace and lineage coverage |
 | `python -m kairos bench` | Dev benchmark (two repeats plus a reproducibility check) → `runs/bench/benchmark/latest.json` |
+| `python -m kairos semantic-bench` | V2 intent, relevance, grounding, streaming, scale, and ablation report → `runs/bench/semantic/latest.json` |
 | `python -m kairos ablate` | Ablations A, B, C and E → `runs/bench/experiments/latest.json` |
 | `python -m kairos train-stability` | Fits the stability model on the training streams (self-supervised) |
 | `python -m kairos tune-controller` | Label-free tuning of controller cost weights on the training streams |
 | `python -m kairos record-demo` | Re-records the UI's mock fixtures from the real engine |
+| `python -m kairos replay multi-domain-stress` | Runs the long mixed-domain/OOD speech regression through the real engine |
+| `python -m kairos import-corpus --dataset squad --destination corpus/imported/squad --dry-run` | Validates a bounded external-corpus import without writing it |
 | `python -m kairos reproduce` | train → bench → ablate, in one command (`docker compose --profile bench run --rm bench`) |
+
+## V2 semantic reliability upgrade
+
+V2 adds stable reconciled QueryFrame candidates, typed intent-owned constraints, explicit topic transitions,
+evidence-footprint validity, domain-aware retrieval, relevance admission, truthful insufficient-evidence
+states, evidence checksums, exact quote validation, sparse deduplication, probe caching, and corrected selective
+delta updates. It also includes reproducible bounded SciFact and SQuAD importers; SQuAD answers remain outside
+the retrievable index.
+
+Semantic run `20261018T095654Z` measured 1.00 intent F1 on 8 engineering cases / 15 intents, 1.00 Recall@5
+on four positive profile queries, 1.00 OOD rejection on four negative queries, and 0.00 false grounding
+acceptance on five adversarial checks. These samples are intentionally small: relevant-evidence precision was
+0.5789, SQuAD Recall@5 was 0.8333 over 12 labels, and revised EFIS scored 2/3 on its small ablation. Read the
+full [V2 engineering report](docs/KAIROS_V2_REPORT.md) and [corpus provenance](docs/CORPUS_PROVENANCE.md)
+before interpreting the numbers.
+
+### Current published metrics
+
+Final V2 development run `20261018T095654Z` uses the same 26-session project-authored development set as
+the preserved baseline. Targets and measurements remain separate on the `/benchmark` page.
+
+| Gate | Metric | Target | V2 measured | Status |
+|---|---|---:|---:|---|
+| G1 | Reproducibility delta | = 0 | 0.0000 | PASS |
+| G2 | Early retrieval rate | >= 0.80 | **0.6875** | **FAIL** |
+| G3 | Intent recall | >= 0.70 | 0.9444 | PASS |
+| G4 | Grounded claim rate | >= 0.85 | 1.0000 | PASS |
+| G4 | Fabricated document IDs | = 0 | 0 | PASS |
+| G5 | Delta retrieval ratio | < 1.00 | 0.7000 | PASS |
+| G5 | Presentation-turn false retrieval | = 0 | 0.0000 | PASS |
+| G6 | Telemetry lineage coverage | = 1.00 | 1.0000 | PASS |
+
+Additional V2 development measurements: intent precision 0.9189, intent-count accuracy 0.9231,
+refinement correctness 1.0000, evidence survival 0.7231, premature retrieval 0.3077, mean retrieval latency
+1.952 ms, and post-utterance latency p50/p95 of 8.015/12.961 ms. These are development measurements on
+the 37-chunk sample corpus, not official third-party benchmark scores.
+
+### RAG corpus datasets, licenses, and citations
+
+| Corpus | Indexed subset | License | Required attribution |
+|---|---:|---|---|
+| Project sample corpus | 8 documents / 37 chunks | Project-authored fictional demo content | KAIROS project |
+| [SciFact via BEIR](https://huggingface.co/datasets/BeIR/scifact) | 12 documents / 29 chunks | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | [Wadden et al., 2020](https://aclanthology.org/2020.emnlp-main.609/) and [Thakur et al., 2021](https://openreview.net/forum?id=wCu6T5xFjeJ) |
+| [SQuAD 1.1](https://huggingface.co/datasets/rajpurkar/squad) | 8 contexts / 16 chunks; 12 Q&A labels kept outside retrieval | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | [Rajpurkar et al., 2016](https://aclanthology.org/D16-1264/) |
+
+The exact revisions, response and document SHA-256 values, source-ID mappings, import commands, and
+share-alike/usage cautions are recorded in [Corpus provenance](docs/CORPUS_PROVENANCE.md).
 
 ## What makes it different
 
@@ -58,9 +134,10 @@ is the safe mode for a projector demo.
 | Opaque behaviour | Every stage emits a parented event, and a lineage validator checks six invariants on every run | `kairos/telemetry/` |
 
 Facets such as `standard | domestic | international` are **derived from the corpus**: sibling headings that
-differ only by their leading modifier. No domain vocabulary is hardcoded.
+differ only by their leading modifier. V2's separate domain router uses a small configured, explainable
+lexicon; it does not change how facets are discovered.
 
-## Measured results (dev set)
+## Preserved pre-V2 measured results (dev set)
 
 Run `20260928T201927Z` · `benchmark/datasets/dev` (26 sessions, 36 utterances) · extractive synthesis ·
 2 repeats. These are **development-set measurements**. The dev set was authored by the same team that built
@@ -101,10 +178,13 @@ their provenance. Targets are never displayed as measurements.
 
 - **G2 is not met on dev** (0.69 < 0.80). Short two-chunk questions often only become determinable in their last chunk.
 - **Tuning disclosure:** the controller was tuned label-free on the training streams, not on dev. The decomposer, delta rules and sufficiency check were iterated while inspecting dev failures.
-- **Coarse delta detection.** It is document-level, and over-triggers when one document mixes general and constraint-specific sections (e.g. S26). Refinement correctness is 0.60.
+- **Historical delta result.** The pre-V2 implementation over-triggered when one document mixed general and constraint-specific sections (for example S26), scoring 0.60 on the original run. V2's scope guard reaches 1.00 exact refinement correctness on the same development cases, but that set was used during iteration and is not an independent test.
 - **Automatic grounding judge.** It is lexical (verbatim quote, token recall and numeric anchors) and independent of the firewall's IDF-weighted score. `runs/bench/benchmark/audit_sheet.csv` is prepared for a human audit, which has **not** been done yet.
 - **Extractive by default.** Every claim is a quoted sentence. That makes grounding strong by construction but prose less fluent; generative synthesis (Gemini) is optional and held to the same firewall.
 - **Sample corpus.** It is small (8 documents, 37 chunks), and retriever differences need a larger corpus to show.
+- **Browser speech recognition.** Availability, accuracy, and network behavior depend on the browser and
+  speech provider. Automated tests simulate the browser API; a real microphone smoke test is still required
+  on the machine used for the presentation.
 
 ## Generative synthesis with Gemini (optional, free tier)
 
@@ -149,7 +229,7 @@ web/                    React + TypeScript UI (see web/README.md)
 ## Tests
 
 ```bash
-python -m pytest -q                                   # 17 backend tests
+python -m pytest -q                                   # 41 backend tests
 cd web && npm run build && npx vite preview --port 4173 &
 npx cypress run                                       # 10 UI acceptance tests (mock mode)
 npx cypress run --spec cypress/e2e/live.cy.ts --config baseUrl=http://127.0.0.1:8000 --env LIVE=1   # against the live backend

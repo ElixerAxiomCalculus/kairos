@@ -14,16 +14,16 @@ type Story = StoryObj<typeof GroundingFirewall>;
 const pass = viewAt("pune", at.version(1)).grounding.at(-1) ?? null;
 
 /** Recorded: the firewall verdict for the Pune demo's first answer. */
-export const PASS: Story = { args: { result: pass, transform: null } };
+export const SUPPORTED: Story = { args: { result: pass, transform: null } };
 
 /**
- * Synthetic visual fixture (not an engine recording): the BLOCKED state for component review.
+ * Synthetic visual fixture (not an engine recording): INVALID GROUNDING for component review.
  * It mirrors what the firewall emits when a claim cites an ID that was never retrieved.
  */
 const blocked: GroundingResult | null = pass
   ? {
       ...pass,
-      status: "BLOCKED",
+      status: "INVALID_GROUNDING",
       unsupported: 1,
       invalidCitation: 1,
       fabricatedIdsBlocked: 1,

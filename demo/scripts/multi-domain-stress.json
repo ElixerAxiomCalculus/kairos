@@ -1,0 +1,21 @@
+{
+  "id": "multi-domain-stress",
+  "title": "Real-speech multi-domain abstention regression",
+  "description": "Housing repair, numeric ambiguity, independent housing, AI, medical, location and travel topics against the sample corporate-events corpus.",
+  "chunks": [
+    {"utterance_id": "u1", "t0": 0.0, "t1": 0.3, "text": "find me"},
+    {"utterance_id": "u1", "t0": 0.3, "t1": 0.7, "text": "houses in Pune"},
+    {"utterance_id": "u1", "t0": 0.7, "t1": 1.0, "text": "sorry Mumbai"},
+    {"utterance_id": "u1", "t0": 1.0, "t1": 1.3, "text": "under 2BHK"},
+    {"utterance_id": "u1", "t0": 1.3, "t1": 1.7, "text": "starting from 20 lakh"},
+    {"utterance_id": "u1", "t0": 1.7, "t1": 2.1, "text": "3 lakhs per month"},
+    {"utterance_id": "u1", "t0": 2.1, "t1": 2.4, "text": "5 percent interest rate"},
+    {"utterance_id": "u1", "t0": 2.4, "t1": 2.9, "text": "find 3BHK houses in Delhi over 40 lakh"},
+    {"utterance_id": "u1", "t0": 2.9, "t1": 3.3, "text": "what is the definition of an AI agent"},
+    {"utterance_id": "u1", "t0": 3.3, "t1": 3.7, "text": "what does this agent do"},
+    {"utterance_id": "u1", "t0": 3.7, "t1": 4.1, "text": "tell me about fever and cough and cold"},
+    {"utterance_id": "u1", "t0": 4.1, "t1": 4.5, "text": "tell me the nearest hospital from my location"},
+    {"utterance_id": "u1", "t0": 4.5, "t1": 4.9, "text": "suggest travel plans to Goa"},
+    {"utterance_id": "u1", "t0": 4.9, "t1": 5.3, "text": "tell me more about the medicine", "final": true}
+  ]
+}

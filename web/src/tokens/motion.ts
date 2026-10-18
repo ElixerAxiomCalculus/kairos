@@ -32,6 +32,8 @@ export const STATUS_VAR: Record<string, string> = {
   PARTIAL: "var(--status-suppress)",
   UNSUPPORTED: "var(--status-fail)",
   INVALID_CITATION: "var(--status-fail)",
+  INSUFFICIENT_EVIDENCE: "var(--status-wait)",
+  INVALID_GROUNDING: "var(--status-fail)",
   EARLY: "var(--status-retrieve)",
   END_OF_UTTERANCE: "var(--status-retrieve)",
   DELTA: "var(--status-refine)",

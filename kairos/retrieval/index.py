@@ -12,6 +12,7 @@ Every stage exists for a measured reason (see ablation B):
 from __future__ import annotations
 
 import time
+import re
 from dataclasses import dataclass, field
 
 import numpy as np
@@ -20,6 +21,17 @@ from kairos.corpus.ingest import Chunk, Corpus
 from kairos.retrieval.bm25 import BM25
 from kairos.retrieval.dense import build_encoder
 from kairos.textutil import content_terms
+
+
+DOMAIN_TERMS = {
+    "corporate_events": {"venue", "workshop", "catering", "cancellation", "event", "booking", "reimbursement", "per diem"},
+    "housing": {"house", "housing", "apartment", "property", "bhk", "listing", "mortgage"},
+    "finance": {"finance", "financial", "interest", "loan", "compound", "investment", "bank"},
+    "biomedical_research": {"fever", "cough", "medicine", "medical", "disease", "clinical", "patient", "hospital"},
+    "travel": {"travel", "tourism", "flight", "hotel", "destination", "itinerary"},
+    "scientific_literature": {"study", "research", "protein", "gene", "cell", "scientific", "experiment"},
+    "general_knowledge": {"definition", "history", "agent", "university", "encyclopedia"},
+}
 
 
 @dataclass
@@ -57,6 +69,10 @@ class Hit:
     rerank_score: float
     facet_match: bool | None
     duplicate_of: str | None = None
+    accepted: bool = True
+    relevance_status: str = "RELEVANT_SUFFICIENT"
+    query_coverage: float = 0.0
+    relevance_reasons: list[str] = field(default_factory=list)
 
     def to_public(self) -> dict:
         return {
@@ -69,6 +85,10 @@ class Hit:
             "fused_score": round(self.fused_score, 5),
             "rerank_score": round(self.rerank_score, 4),
             "facet_match": self.facet_match,
+            "accepted": self.accepted,
+            "relevance_status": self.relevance_status,
+            "query_coverage": round(self.query_coverage, 4),
+            "relevance_reasons": self.relevance_reasons,
         }
 
 
@@ -79,6 +99,13 @@ class SearchResult:
     filtered: list[str]                         # chunk ids removed by facet constraints
     stage_ms: dict[str, float]
     mode: str
+    evidence_status: str = "NO_RELEVANT_EVIDENCE"
+    domain: str = "unknown"
+    domain_confidence: float = 0.0
+
+    @property
+    def relevant_hits(self) -> list[Hit]:
+        return [hit for hit in self.hits if hit.accepted]
 
 
 class HybridIndex:
@@ -89,8 +116,10 @@ class HybridIndex:
         self.pos = {c.chunk_id: i for i, c in enumerate(self.chunks)}
         boost = int(cfg.get("heading_boost", 2))
         self.doc_terms: list[list[str]] = []
+        self.heading_term_sets: list[set[str]] = []
         for c in self.chunks:
             heading = content_terms(f"{c.doc_title} {c.section_path}")
+            self.heading_term_sets.append(set(heading))
             self.doc_terms.append(heading * boost + content_terms(c.text))
         self.term_sets = [set(t) for t in self.doc_terms]
         self.bm25 = BM25(self.doc_terms, k1=cfg["bm25_k1"], b=cfg["bm25_b"])
@@ -106,17 +135,52 @@ class HybridIndex:
 
             self.cross_encoder = CrossEncoder(cfg["cross_encoder_model"])
         self._encode_cache: dict[str, np.ndarray] = {}
+        self._probe_cache: dict[tuple, list[tuple[str, float]]] = {}
+        self.probe_cache_hits = 0
+        self.probe_cache_misses = 0
         self.chunk_places = [self.term_sets[i] & corpus.places for i in range(len(self.chunks))]
+        self.chunk_domains = [self._infer_chunk_domain(c, self.term_sets[i]) for i, c in enumerate(self.chunks)]
+        self.available_domains = {d for d in self.chunk_domains if d != "unknown"}
 
     # ------------------------------------------------------------------ helpers
     @staticmethod
-    def _tfidf_vectors(texts: list[str]) -> np.ndarray:
+    def _tfidf_vectors(texts: list[str]):
+        """Keep TF-IDF sparse; dense materialisation dominated memory on imported corpora."""
         from sklearn.feature_extraction.text import TfidfVectorizer
+        from sklearn.preprocessing import normalize
 
-        mat = TfidfVectorizer(sublinear_tf=True).fit_transform(texts).toarray()
-        norms = np.linalg.norm(mat, axis=1, keepdims=True)
-        norms[norms == 0] = 1.0
-        return mat / norms
+        return normalize(TfidfVectorizer(sublinear_tf=True).fit_transform(texts), norm="l2", copy=False).tocsr()
+
+    @staticmethod
+    def _infer_chunk_domain(chunk: Chunk, terms: set[str]) -> str:
+        source = (chunk.source_dataset or "").lower()
+        doc_type = (chunk.doc_type or "").lower()
+        title = chunk.doc_title.lower()
+        if "scifact" in source or "scientific" in doc_type:
+            return "scientific_literature"
+        if "squad" in source or "encyclopedic" in doc_type:
+            return "general_knowledge"
+        if not source and any(marker in title for marker in (
+            "venue", "catering", "travel and expense", "event security", "av and it support"
+        )):
+            return "corporate_events"
+        scores = {domain: len(words & terms) for domain, words in DOMAIN_TERMS.items()}
+        best = max(scores, key=scores.get)
+        return best if scores[best] else "unknown"
+
+    def route_domain(self, text: str) -> tuple[str, float, bool]:
+        terms = set(content_terms(text))
+        scores = {domain: len(words & terms) for domain, words in DOMAIN_TERMS.items()}
+        best = max(scores, key=scores.get)
+        matched = scores[best]
+        if not matched:
+            return "unknown", 0.0, True
+        confidence = min(1.0, matched / max(2, len(terms)))
+        compatible = best in self.available_domains
+        # Travel reimbursement belongs to the corporate-policy corpus, while live travel planning does not.
+        if best == "travel" and {"reimbursement", "policy"} & terms and "corporate_events" in self.available_domains:
+            return "corporate_events", confidence, True
+        return best, confidence, compatible
 
     def encode(self, text: str) -> np.ndarray:
         vec = self._encode_cache.get(text)
@@ -147,6 +211,13 @@ class HybridIndex:
         k = k or self.cfg["probe_k"]
         if not terms:
             return []
+        cache_key = (tuple(sorted((term, round(weight, 4)) for term, weight in terms.items())), k)
+        if self.cfg.get("probe_cache_enabled", True):
+            cached = self._probe_cache.get(cache_key)
+            if cached is not None:
+                self.probe_cache_hits += 1
+                return list(cached)
+        self.probe_cache_misses += 1
         scores = self.bm25.scores(terms)
         order = np.argsort(-scores, kind="stable")
         out: list[tuple[str, float]] = []
@@ -161,6 +232,10 @@ class HybridIndex:
             out.append((key, float(scores[i])))
             if len(out) >= k:
                 break
+        if self.cfg.get("probe_cache_enabled", True):
+            if len(self._probe_cache) >= int(self.cfg.get("probe_cache_size", 4096)):
+                self._probe_cache.pop(next(iter(self._probe_cache)))
+            self._probe_cache[cache_key] = list(out)
         return out
 
     # ------------------------------------------------------------------ search
@@ -193,9 +268,11 @@ class HybridIndex:
 
         t = time.perf_counter()
         candidates = sorted(fused, key=lambda i: (-fused[i], i))
-        query_places = set(query.terms) & self.corpus.places
+        # A place inherited through low-weight anchor context must not become a hard entity filter
+        # for a later, independently worded request (for example cancellation policy after Pune venue).
+        query_places = {term for term, weight in query.terms.items() if weight >= 0.9} & self.corpus.places
         filtered: list[str] = []
-        scored: list[tuple[float, int, bool | None]] = []
+        scored: list[tuple[float, int, bool | None, float]] = []
         ce_scores = None
         if self.cross_encoder is not None and candidates:
             pairs = [(query.text, self.chunks[i].index_text) for i in candidates]
@@ -224,25 +301,60 @@ class HybridIndex:
                 rel = 0.6 * self.coverage(query.terms, i) + 0.4 * max(float(dense[i]), 0.0)
             if match:
                 rel += cfg["facet_bonus"]
+            if any(weight >= 0.95 and term in self.heading_term_sets[i] for term, weight in query.terms.items()):
+                rel += float(cfg.get("heading_focus_bonus", 0.12))
             if query_places and self.chunk_places[i] and not (query_places & self.chunk_places[i]):
                 rel *= cfg.get("place_mismatch_penalty", 0.5)  # names only a different place than asked
-            scored.append((rel, i, match))
+            scored.append((rel, i, match, self.coverage(query.terms, i)))
         scored.sort(key=lambda x: (-x[0], x[1]))
         stage["rerank_ms"] = (time.perf_counter() - t) * 1000
 
         t = time.perf_counter()
         hits: list[Hit] = []
         duplicates: list[tuple[str, str]] = []
-        for rel, i, match in scored:
+        domain, domain_confidence, domain_available = self.route_domain(query.text)
+        query_negative = bool(re.search(
+            r"\b(?:not|non[- ]?reimbursable|excluded|ineligible|without)\b", query.text, re.I
+        ))
+        gate = bool(cfg.get("relevance_gate", True))
+        for rel, i, match, coverage in scored:
             dup_of = None
             for h in hits:
                 j = self.pos[h.chunk_id]
-                if float(self._dedup_vectors[i] @ self._dedup_vectors[j]) >= cfg["dedup_threshold"]:
+                similarity = float(self._dedup_vectors[i].multiply(self._dedup_vectors[j]).sum())
+                if similarity >= cfg["dedup_threshold"]:
                     dup_of = h.chunk_id
                     break
             if dup_of:
                 duplicates.append((self.chunks[i].chunk_id, dup_of))
                 continue
+            focus_present = sum(1 for term, weight in query.terms.items()
+                                if weight >= 0.95 and term in self.term_sets[i])
+            reasons: list[str] = []
+            if not domain_available and domain != "unknown":
+                reasons.append("DOMAIN_NOT_AVAILABLE")
+            elif cfg.get("domain_routing", True) and domain != "unknown" and self.chunk_domains[i] not in {domain, "unknown"}:
+                reasons.append("DOMAIN_MISMATCH")
+            if coverage < float(cfg.get("relevance_min_coverage", 0.16)):
+                reasons.append("LOW_IDF_COVERAGE")
+            if rel < float(cfg.get("relevance_min_rerank", 0.28)):
+                reasons.append("LOW_RERANK_SCORE")
+            if float(dense[i]) < float(cfg.get("relevance_min_dense", 0.08)) and sparse[i] <= 0:
+                reasons.append("NO_SPARSE_OR_DENSE_SUPPORT")
+            if focus_present < int(cfg.get("relevance_min_focus_terms", 1)):
+                reasons.append("NO_FOCUS_TERM")
+            if query_places and not (query_places & self.chunk_places[i]):
+                reasons.append("QUERY_ENTITY_NOT_IN_EVIDENCE")
+            if query_negative and not re.search(
+                r"\b(?:not|non[- ]?reimbursable|excluded|ineligible|without)\b", self.chunks[i].index_text,
+                re.I
+            ):
+                reasons.append("NEGATION_SCOPE_MISMATCH")
+            accepted = not gate or not reasons
+            relevance_status = "RELEVANT_SUFFICIENT" if accepted and coverage >= 0.35 else (
+                "RELEVANT_PARTIAL" if accepted else "OUT_OF_DOMAIN" if "DOMAIN_NOT_AVAILABLE" in reasons
+                else "NO_RELEVANT_EVIDENCE"
+            )
             hits.append(Hit(
                 chunk_id=self.chunks[i].chunk_id,
                 rank=len(hits) + 1,
@@ -253,11 +365,22 @@ class HybridIndex:
                 fused_score=fused[i],
                 rerank_score=min(rel, 1.0),
                 facet_match=match,
+                accepted=accepted,
+                relevance_status=relevance_status,
+                query_coverage=coverage,
+                relevance_reasons=reasons,
             ))
             if len(hits) >= top_k:
                 break
         stage["dedup_ms"] = (time.perf_counter() - t) * 1000
-        return SearchResult(hits, duplicates, filtered, stage, mode)
+        relevant = [hit for hit in hits if hit.accepted]
+        if relevant:
+            evidence_status = "RELEVANT_SUFFICIENT" if relevant[0].relevance_status == "RELEVANT_SUFFICIENT" else "RELEVANT_PARTIAL"
+        elif domain != "unknown" and not domain_available:
+            evidence_status = "OUT_OF_DOMAIN"
+        else:
+            evidence_status = "NO_RELEVANT_EVIDENCE"
+        return SearchResult(hits, duplicates, filtered, stage, mode, evidence_status, domain, domain_confidence)
 
     def status(self) -> dict:
         return {
@@ -269,4 +392,8 @@ class HybridIndex:
             "reranker": self.cfg["reranker"] if self.cross_encoder is None else self.cfg["cross_encoder_model"],
             "facet_dimensions": {g: sorted(m) for g, m in self.corpus.contrast_groups.items()},
             "build_ms": round(self.build_ms, 1),
+            "corpus_profiles": sorted({c.corpus_profile for c in self.chunks if c.corpus_profile}),
+            "available_domains": sorted(self.available_domains),
+            "probe_cache": {"hits": self.probe_cache_hits, "misses": self.probe_cache_misses,
+                            "entries": len(self._probe_cache)},
         }

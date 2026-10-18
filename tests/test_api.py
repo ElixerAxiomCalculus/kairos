@@ -12,6 +12,7 @@ def test_rest_and_websocket_session(cfg, tmp_path):
     corpus = client.get("/api/corpus").json()
     assert corpus["status"] == "READY" and corpus["chunks"] > 0
     assert client.get("/api/benchmark/latest").json()["status"] == "NOT_MEASURED"
+    assert client.get("/api/semantic-benchmark/latest").json()["status"] == "NOT_MEASURED"
     assert any(s["id"] == "pune-demo" for s in client.get("/api/scripts").json())
 
     with client.websocket_connect("/ws") as ws:

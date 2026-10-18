@@ -94,10 +94,12 @@ class DeltaEngine:
             if replaced:
                 reasons.append("SLOT_REPLACED")
             new_q = self.constrained_query(sq, constraint, replaced)
-            shadow = self.index.search(new_q, top_k=2).hits
+            shadow = self.index.search(new_q, top_k=3).relevant_hits
             docs = {ch.doc_id for ch in evidence}
             specific = [h.chunk_id for h in shadow if h.chunk_id not in cited
-                        and h.chunk_id.split(":")[0] in docs and self._chunk_carries(h.chunk_id, constraint)]
+                        and self.corpus.chunk(h.chunk_id).doc_id in docs
+                        and self._chunk_carries(h.chunk_id, constraint)
+                        and self._scope_compatible(sq, h.chunk_id, constraint)]
             if specific:
                 reasons.append("CONSTRAINT_SPECIFIC_EVIDENCE")
             if reasons:
@@ -115,6 +117,29 @@ class DeltaEngine:
         if any(ch.facets.get(g) == v for g, v in constraint.facets.items()):
             return True
         return bool(set(constraint.terms) & set(content_terms(f"{ch.section_path} {ch.text}")) - {"event"})
+
+    def _scope_compatible(self, sq: SubQuery, chunk_id: str, constraint: Constraint) -> bool:
+        """Require a constraint-specific shadow hit to address this intent's local subject.
+
+        This prevents a broad document-level facet from invalidating unrelated sibling claims
+        (for example, an international-travel change must not churn non-reimbursable expenses).
+        """
+        if not self.cfg.get("scope_guard", True):
+            return True
+        chunk = self.corpus.chunk(chunk_id)
+        if chunk is None:
+            return False
+        sq_text = sq.text.lower()
+        chunk_text = f"{chunk.section_path} {chunk.text}".lower()
+        negative = bool(re.search(r"\b(?:not|non[- ]?reimbursable|excluded|ineligible|without)\b", sq_text))
+        if negative and not re.search(r"\b(?:not|non[- ]?reimbursable|excluded|ineligible|without)\b", chunk_text):
+            return False
+        from kairos.synthesis.base import focus_terms
+
+        generic = set(constraint.terms) | {"event", "events", "travel", "policy", "rule", "expense", "expenses"}
+        local = set(focus_terms(self.index, sq.need_texts, k=3)) - generic
+        present = set(content_terms(chunk_text))
+        return bool(local & present)
 
     def constrained_query(self, sq: SubQuery, constraint: Constraint, replaced: list[dict]) -> RetrievalQuery:
         needs = list(sq.need_texts)

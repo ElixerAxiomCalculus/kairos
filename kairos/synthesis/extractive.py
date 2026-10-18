@@ -17,7 +17,7 @@ from kairos.synthesis.base import (
     evidence_covers_focus,
     score_sentences,
 )
-from kairos.textutil import jaccard, lower_tokens
+from kairos.textutil import content_terms, jaccard, lower_tokens
 
 
 class ExtractiveSynthesizer:
@@ -41,6 +41,11 @@ class ExtractiveSynthesizer:
         ranked = score_sentences(self.index, sq.query, hits, avoid_facets, prefer_terms)
         ranked = [s for s in ranked if s.relevance >= self.cfg["tau_sentence"]
                   and s.text not in (exclude_quotes or set())]
+        if self.cfg.get("require_sentence_focus", True) and focus:
+            focus_set = set(content_terms(" ".join(focus)))
+            direct = [sentence for sentence in ranked if focus_set & set(content_terms(sentence.text))]
+            if direct:
+                ranked = direct
         if not ranked:
             return SynthesisResult([], self.gap_text(sq), tokens, ctx)
         chosen = [ranked[0]]

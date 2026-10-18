@@ -21,6 +21,10 @@ COPY corpus/ corpus/
 COPY demo/ demo/
 COPY models/ models/
 COPY tests/ tests/
+# Published benchmark evidence only; runtime traces and timestamped reruns stay outside the image.
+COPY runs/bench/benchmark/latest.json runs/bench/benchmark/audit_sheet.csv runs/bench/benchmark/
+COPY runs/bench/experiments/latest.json runs/bench/experiments/
+COPY runs/bench/semantic/latest.json runs/bench/semantic/
 COPY --from=web /web/dist web/dist
 EXPOSE 8000
 HEALTHCHECK --interval=15s --timeout=3s CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/health')"

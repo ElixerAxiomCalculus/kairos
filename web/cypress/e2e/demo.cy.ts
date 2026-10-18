@@ -36,7 +36,7 @@ describe("Kairos live workspace — recorded demo", () => {
     cy.get("[data-testid=graph-node-chunk]").should("have.length.greaterThan", 3);
     cy.get("[data-testid=answer-subtitle]").should("contain.text", "ANSWER V01");
     cy.get("[data-testid=claim]").should("have.length.greaterThan", 3);
-    cy.get("[data-testid=grounding-firewall]").should("have.attr", "data-status", "PASS");
+    cy.get("[data-testid=grounding-firewall]").should("have.attr", "data-status", "SUPPORTED");
     cy.wait(1000);
     cy.screenshot("04-v1", { capture: "viewport" });
   });
@@ -113,10 +113,15 @@ describe("Kairos live workspace — recorded demo", () => {
 
 describe("Benchmark and supporting views", () => {
   it("never shows targets as measurements", () => {
-    cy.intercept("GET", "/api/**", { statusCode: 503, body: {} });
+    // A deployment without local run artifacts must fall back to the published bundled snapshots.
+    cy.intercept("GET", "/api/benchmark/latest", { statusCode: 200, body: { status: "NOT_MEASURED" } });
+    cy.intercept("GET", "/api/semantic-benchmark/latest", { statusCode: 200, body: { status: "NOT_MEASURED" } });
     cy.visit("/benchmark");
     cy.get("[data-testid=gate-table]").should("contain.text", "TARGET").and("contain.text", "MEASURED");
     cy.get("[data-testid=benchmark-provenance]").should("contain.text", "run");
+    cy.get("[data-testid=semantic-benchmark]").should("contain.text", "V2 SEMANTIC RELIABILITY");
+    cy.get("[data-testid=semantic-metric-grid]").should("contain.text", "SQuAD Recall@5").and("contain.text", "57.9%");
+    cy.get("[data-testid=corpus-attribution]").should("contain.text", "CC BY-SA 4.0").and("contain.text", "Wadden et al.").and("contain.text", "Rajpurkar et al.");
     cy.screenshot("10-benchmark", { capture: "viewport" });
     cy.visit("/experiments");
     cy.get("[data-testid=experiment-D]").should("contain.text", "NOT RUN");

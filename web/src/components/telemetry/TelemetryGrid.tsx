@@ -52,7 +52,9 @@ export function TelemetryGrid({ className }: { className?: string }) {
           <MetricCard label="Retrievals" value={int(t.retrievalCount)} testId="metric-retrievals"
             detail={`early ${t.earlyRetrievalCount} · refine ${t.refineCount} · delta ${t.deltaCount}`} />
           <MetricCard label="Grounding" value={groundScore !== undefined ? ratio(groundScore) : DASH} testId="metric-grounding"
-            accent={g ? (g.status === "PASS" ? STATUS_VAR.PASS : STATUS_VAR.FAIL) : undefined}
+            accent={g ? (g.status === "SUPPORTED" ? STATUS_VAR.PASS
+              : g.status === "CONFLICTING" ? STATUS_VAR.CONFLICTING
+                : g.status === "INVALID_GROUNDING" ? STATUS_VAR.FAIL : STATUS_VAR.WAIT) : undefined}
             detail={g ? `${g.emitted}/${g.checked} claims · ${g.citationsValid} citations` : undefined} />
           <MetricCard label="Delta ratio" value={hasCf ? `${cf.delta_retrievals}/${cf.full_restart_retrievals}` : DASH}
             detail={hasCf ? `saved ${ratio(cf.retrieval_savings_ratio)} vs full restart` : "no late constraint yet"} testId="metric-delta" />

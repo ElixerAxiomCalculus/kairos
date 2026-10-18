@@ -1,0 +1,16 @@
+# Netlify: static UI only. The API/WebSocket runs on Render (see render.yaml).
+[build]
+  base = "web"
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+  CYPRESS_INSTALL_BINARY = "0"      # skip the Cypress binary download in CI builds
+  # VITE_API_BASE is set in the Netlify UI: https://<your-render-service>.onrender.com
+
+# single-page app routes (/live, /benchmark, ...)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

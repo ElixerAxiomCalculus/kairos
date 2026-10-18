@@ -1,7 +1,7 @@
 const stories = [
   ["retrievalcontroller--retrieve", "RETRIEVE"],
   ["retrievalcontroller--suppress", "SUPPRESS"],
-  ["groundingfirewall--fail", "BLOCKED"],
+  ["groundingfirewall--fail", "INVALID GROUNDING"],
   ["workspace--answer-delta-update", "DELTA UPDATE"],
   ["workspace--evidence-graph-conflict", "EVIDENCE GRAPH"],
   ["workspace--intent-graph-multi", "3 ACTIVE INTENTS"],

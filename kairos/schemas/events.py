@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field
 
 EventType = Literal[
     "SessionStarted",
+    "TranscriptReconciled",
     "TranscriptChunkReceived",
     "QueryFrameUpdated",
     "TurnClassified",

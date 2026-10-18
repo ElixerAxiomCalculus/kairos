@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import os
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
@@ -27,6 +28,7 @@ from kairos.config import Config, resolve_path
 from kairos.engine import ChunkIn, EngineContext
 from kairos.replay import list_scripts, load_script
 from kairos.session.store import SessionStore
+from kairos.streaming.transcript import TranscriptSnapshot
 from kairos.telemetry.bus import JsonlSink, QueueSink, SqliteSink
 from kairos.telemetry.validator import validate
 
@@ -37,11 +39,13 @@ def create_app(cfg: Config) -> FastAPI:
     ctx = EngineContext(cfg)
     tel = cfg["telemetry"]
     ctx.bus.subscribe(JsonlSink(resolve_path(tel["trace_dir"]), tel["trace_content"]))
-    ctx.bus.subscribe(SqliteSink(resolve_path(tel["sqlite_path"])))
+    ctx.bus.subscribe(SqliteSink(resolve_path(tel["sqlite_path"]), tel["trace_content"]))
     store = SessionStore(ctx, cfg["session"]["ttl_s"], cfg["session"]["max_sessions"])
 
     app = FastAPI(title="Kairos — Streaming Live RAG", version=__version__)
-    app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+    # Split hosting (UI on another origin): KAIROS_CORS_ORIGINS=https://your-site.netlify.app
+    origins = [o.strip() for o in os.environ.get("KAIROS_CORS_ORIGINS", "*").split(",") if o.strip()]
+    app.add_middleware(CORSMiddleware, allow_origins=origins, allow_methods=["*"], allow_headers=["*"])
     app.state.ctx, app.state.store = ctx, store
 
     @app.get("/api/health")
@@ -72,8 +76,9 @@ def create_app(cfg: Config) -> FastAPI:
         engine = store.get(session_id)
         if engine is None:
             raise HTTPException(404, "session not found or expired")
-        events = [e.model_dump() for e in engine.events]
-        return {"events": events, "validation": validate(engine.events)}
+        active = engine.active_events()
+        events = [e.model_dump() for e in active]
+        return {"events": events, "validation": validate(active)}
 
     @app.delete("/api/sessions/{session_id}")
     async def end_session(session_id: str) -> dict:
@@ -89,16 +94,26 @@ def create_app(cfg: Config) -> FastAPI:
     def benchmark_latest() -> JSONResponse:
         return _latest("benchmark")
 
+    @app.get("/api/semantic-benchmark/latest")
+    def semantic_benchmark_latest() -> JSONResponse:
+        return _latest("semantic")
+
     @app.get("/api/experiments/latest")
     def experiments_latest() -> JSONResponse:
         return _latest("experiments")
 
     @app.websocket("/ws")
     async def ws(websocket: WebSocket) -> None:
+        origin = websocket.headers.get("origin")
+        if origin and "*" not in origins and origin not in origins:
+            await websocket.close(code=1008, reason="origin not allowed")
+            return
         await websocket.accept()
-        queue: asyncio.Queue = asyncio.Queue()
+        live_cfg = cfg.get("live", {})
+        queue: asyncio.Queue = asyncio.Queue(maxsize=int(live_cfg.get("outbound_queue_size", 256)))
         requested = websocket.query_params.get("session_id")
         engine = store.get(requested) if requested else None
+        resumed = engine is not None
         loop = asyncio.get_running_loop()
         sink = None
         if engine is None:
@@ -112,13 +127,33 @@ def create_app(cfg: Config) -> FastAPI:
         else:
             sink = QueueSink(loop, queue, engine.id)
             unsubscribe = ctx.bus.subscribe(sink)
-        await websocket.send_json({"type": "hello", "session_id": engine.id, "corpus": ctx.corpus_status(),
-                                   "config": ctx.config_summary()})
+        ingestion = store.ingestion(engine.id)
+        send_lock = asyncio.Lock()
+
+        async def send_json(payload: dict) -> None:
+            async with send_lock:
+                await websocket.send_json(payload)
+
+        await send_json({"type": "hello", "session_id": engine.id, "resumed": resumed,
+                         "corpus": ctx.corpus_status(), "config": ctx.config_summary()})
+
+        if resumed:
+            after_event_id = websocket.query_params.get("after_event_id")
+            active = engine.active_events()
+            start = 0
+            if after_event_id:
+                match = next((i for i, event in enumerate(active) if event.event_id == after_event_id), None)
+                start = match + 1 if match is not None else 0
+            for event in active[start:]:
+                await send_json({"type": "event", "event": event.model_dump()})
 
         async def pump() -> None:
             while True:
                 ev = await queue.get()
-                await websocket.send_json({"type": "event", "event": ev.model_dump()})
+                if ev is None:
+                    await websocket.close(code=1013, reason="client event queue overflow; reconnect to resume")
+                    return
+                await send_json({"type": "event", "event": ev.model_dump()})
 
         async def run_replay(script_id: str, speed: float) -> None:
             data = load_script(script_id)
@@ -139,7 +174,18 @@ def create_app(cfg: Config) -> FastAPI:
         replay_task: asyncio.Task | None = None
         try:
             while True:
-                msg = await websocket.receive_json()
+                raw = await websocket.receive_text()
+                if len(raw.encode("utf-8")) > int(live_cfg.get("max_message_bytes", 16384)):
+                    await websocket.close(code=1009, reason="message too large")
+                    return
+                try:
+                    msg = json.loads(raw)
+                except json.JSONDecodeError:
+                    await send_json({"type": "error", "message": "bad message: invalid JSON"})
+                    continue
+                if not isinstance(msg, dict):
+                    await send_json({"type": "error", "message": "bad message: message must be a JSON object"})
+                    continue
                 kind = msg.get("type")
                 try:
                     if kind == "chunk":
@@ -147,22 +193,35 @@ def create_app(cfg: Config) -> FastAPI:
                         if payload.get("t1") is None:
                             payload["t1"] = engine.wall_elapsed()
                         await engine.on_chunk(ChunkIn(**payload))
+                    elif kind == "transcript_snapshot":
+                        if ingestion is None:
+                            raise ValueError("transcript ingestion is unavailable for this session")
+                        snapshot = TranscriptSnapshot.model_validate(msg)
+                        ack = await ingestion.ingest(snapshot)
+                        await send_json(ack.to_wire())
                     elif kind == "utterance_end":
                         await engine.end_utterance(msg["utterance_id"])
                     elif kind == "replay":
                         if replay_task and not replay_task.done():
                             replay_task.cancel()
-                        replay_task = asyncio.create_task(run_replay(msg["script_id"], float(msg.get("speed", 1.0))))
+                        speed = float(msg.get("speed", 1.0))
+                        if speed <= 0 or speed > 16:
+                            raise ValueError("replay speed must be greater than 0 and at most 16")
+                        replay_task = asyncio.create_task(run_replay(msg["script_id"], speed))
                     elif kind == "end_session":
                         await store.end(engine.id)
                         await asyncio.sleep(0.05)
                         await websocket.close()
                         return
                     else:
-                        await websocket.send_json({"type": "error", "message": f"unknown message type {kind!r}"})
-                except (ValidationError, KeyError, FileNotFoundError) as exc:
-                    await websocket.send_json({"type": "error", "message": f"bad message: {exc}"})
-        except WebSocketDisconnect:
+                        await send_json({"type": "error", "message": f"unknown message type {kind!r}"})
+                except ValidationError as exc:
+                    detail = "; ".join(f"{'.'.join(map(str, issue['loc']))}: {issue['msg']}"
+                                       for issue in exc.errors(include_input=False))
+                    await send_json({"type": "error", "message": f"bad message: {detail}"})
+                except (KeyError, FileNotFoundError, ValueError, TypeError) as exc:
+                    await send_json({"type": "error", "message": f"bad message: {exc}"})
+        except (WebSocketDisconnect, RuntimeError):
             pass
         finally:
             unsubscribe()

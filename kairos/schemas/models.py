@@ -23,8 +23,13 @@ class SubQuery:
     status: str = "PENDING"              # PENDING | RETRIEVED | STALE
     retrieval_count: int = 0
     hits: list[Hit] = field(default_factory=list)
+    candidate_hits: list[Hit] = field(default_factory=list)
     query: RetrievalQuery | None = None
     merged_from: list[str] = field(default_factory=list)
+    typed_constraints: list[dict] = field(default_factory=list)
+    evidence_status: str = "NO_RELEVANT_EVIDENCE"
+    selected_domain: str = "unknown"
+    footprint_quality: float = 0.0
 
     @property
     def text(self) -> str:
@@ -45,6 +50,10 @@ class SubQuery:
             "depends_on": self.depends_on, "dependency_type": self.dependency_type,
             "footprint": self.footprint, "status": self.status, "retrieval_count": self.retrieval_count,
             "merged_from": self.merged_from,
+            "typed_constraints": self.typed_constraints,
+            "evidence_status": self.evidence_status,
+            "selected_domain": self.selected_domain,
+            "footprint_quality": round(self.footprint_quality, 4),
         }
 
 
@@ -67,6 +76,7 @@ class Claim:
     conditioned_on: list[str] = field(default_factory=list)
     repaired: bool = False
     version_created: int = 0
+    evidence_checksums: dict[str, str] = field(default_factory=dict)
 
     def to_public(self) -> dict:
         return asdict(self)

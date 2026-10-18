@@ -2,7 +2,14 @@
 # Every value here is a tunable. Tune on benchmark/datasets/dev only — never on official test data.
 
 corpus:
+  profile: sample
   path: corpus/sample
+  profiles:
+    sample: [corpus/sample]
+    science: [corpus/imported/scifact]
+    general: [corpus/imported/squad]
+    multi_domain_demo: [corpus/sample, corpus/imported/scifact, corpus/imported/squad]
+  places: [Pune, Mumbai, Delhi, New Delhi, Goa, Bengaluru, Bangalore, Chennai, Hyderabad, Kolkata, Jaipur, Ahmedabad, Gurugram, Noida]
 
 retrieval:
   mode: hybrid                 # hybrid | dense | sparse            (ablation B)
@@ -20,7 +27,16 @@ retrieval:
   cross_encoder_model: cross-encoder/ms-marco-MiniLM-L-6-v2
   dedup_threshold: 0.92
   facet_bonus: 0.10
+  heading_focus_bonus: 0.12
   place_mismatch_penalty: 0.5  # gazetteer consistency: chunk names only a different place than the query
+  relevance_gate: true
+  domain_routing: true
+  relevance_min_coverage: 0.16
+  relevance_min_rerank: 0.28
+  relevance_min_dense: 0.08
+  relevance_min_focus_terms: 1
+  probe_cache_size: 4096
+  probe_cache_enabled: true
 
 controller:
   mode: psrc                   # psrc | fixed_tokens | eou          (ablation A)
@@ -50,6 +66,10 @@ decomposer:
   theta_sem: 0.9               # dense cosine at/above which two needs are the same intent
   chi_min: 0.12                # clarity floor for a standalone intent
   anchor_weight: 0.4           # query weight of propagated anchor context
+  footprint_validity_gate: true
+  footprint_min_relevance: 0.35
+  lexical_merge_min: 0.28
+  topic_shift_guard: true
 
 synthesis:
   backend: extractive          # extractive | gemini | ollama   (configs/gemini.yaml switches to Gemini)
@@ -62,6 +82,7 @@ synthesis:
   sentences_per_subquery: 2
   tau_sufficiency: 0.30        # min rerank relevance of the best chunk for a sub-query to be answerable
   tau_sentence: 0.34           # min sentence relevance for extraction
+  require_sentence_focus: true
 
 grounding:
   nli: lexical                 # lexical | cross-encoder
@@ -69,14 +90,23 @@ grounding:
   tau_support: 0.80
   tau_partial: 0.50
   conflict_overlap: 0.35
+  require_quote: true
+  verify_checksums: true
 
 delta:
   refinement: delta            # delta | full_restart                (ablation C)
   max_added_per_subquery: 1
+  scope_guard: true
 
 session:
   ttl_s: 1800
   max_sessions: 64
+
+live:
+  mutable_tail_tokens: 2       # keep this many agreeing ASR tokens provisional before incremental commit
+  max_utterance_chars: 4000    # hard limit for one cumulative microphone transcript
+  max_message_bytes: 16384     # WebSocket inbound payload limit
+  outbound_queue_size: 256     # bounded per-client engine-event queue
 
 telemetry:
   trace_dir: runs/traces

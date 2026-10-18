@@ -109,11 +109,24 @@
   background: var(--text-primary);
 }
 
+.inputArea {
+  flex-shrink: 0;
+  border-top: 1px solid var(--border);
+}
+.preview {
+  padding: var(--sp-2) var(--sp-4) 0;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+.preview span {
+  margin-right: var(--sp-2);
+  color: var(--status-wait);
+}
 .input {
   display: flex;
   gap: var(--sp-2);
   padding: var(--sp-3) var(--sp-4);
-  border-top: 1px solid var(--border);
   flex-shrink: 0;
 }
 .input input {

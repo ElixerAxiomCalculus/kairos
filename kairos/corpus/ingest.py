@@ -15,6 +15,7 @@ import hashlib
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
+from collections.abc import Sequence
 
 import yaml
 
@@ -63,6 +64,13 @@ class Chunk:
     effective_date: str | None
     doc_type: str | None
     ordinal: int
+    source_dataset: str | None = None
+    source_record_id: str | None = None
+    source_url: str | None = None
+    license: str | None = None
+    dataset_revision: str | None = None
+    content_checksum: str | None = None
+    corpus_profile: str | None = None
 
     @property
     def index_text(self) -> str:
@@ -81,6 +89,13 @@ class Chunk:
             "effective_date": self.effective_date,
             "doc_type": self.doc_type,
             "sha1": self.sha1,
+            "source_dataset": self.source_dataset,
+            "source_record_id": self.source_record_id,
+            "source_url": self.source_url,
+            "license": self.license,
+            "dataset_revision": self.dataset_revision,
+            "content_checksum": self.content_checksum,
+            "corpus_profile": self.corpus_profile,
         }
         if include_text:
             data["text"] = self.text
@@ -232,20 +247,29 @@ def _gazetteer(docs: list[tuple[dict, str]]) -> tuple[set[str], set[str]]:
     return proper, places
 
 
-def load_corpus(path: Path) -> Corpus:
-    files = sorted(Path(path).glob("*.md"))
+def load_corpus(path: Path | Sequence[Path], profile: str | None = None) -> Corpus:
+    """Load one or more prepared Markdown roots without changing legacy citation IDs.
+
+    Imported adapters provide already-namespaced ``doc_id`` values (for example
+    ``SCIFACT:123``).  Duplicate IDs are rejected rather than silently overwriting provenance.
+    """
+    roots = [Path(p) for p in path] if isinstance(path, Sequence) and not isinstance(path, (str, Path)) else [Path(path)]
+    files = sorted({f.resolve() for root in roots for f in root.glob("*.md")})
     if not files:
-        raise FileNotFoundError(f"No markdown documents found in {path}")
+        raise FileNotFoundError(f"No markdown documents found in {roots}")
     parsed: list[tuple[dict, str]] = []
     for f in files:
         meta, body = _parse_front_matter(f.read_text(encoding="utf-8"))
         meta.setdefault("doc_id", f.stem.split("-")[0])
         meta.setdefault("title", f.stem)
         meta["source_file"] = f.name
+        meta.setdefault("corpus_profile", profile)
         parsed.append((meta, body))
 
     doc_sections: dict[str, list[Section]] = {}
     for meta, body in parsed:
+        if meta["doc_id"] in doc_sections:
+            raise ValueError(f"Duplicate corpus doc_id: {meta['doc_id']}")
         doc_sections[meta["doc_id"]] = _parse_sections(meta["doc_id"], body)
     everything = [s for secs in doc_sections.values() for s in secs]
     groups, heads = _contrast_groups(everything)
@@ -282,6 +306,13 @@ def load_corpus(path: Path) -> Corpus:
                         effective_date=str(meta.get("effective_date")) if meta.get("effective_date") else None,
                         doc_type=meta.get("doc_type"),
                         ordinal=ordinal,
+                        source_dataset=meta.get("source_dataset"),
+                        source_record_id=str(meta.get("source_record_id")) if meta.get("source_record_id") is not None else None,
+                        source_url=meta.get("source_url"),
+                        license=meta.get("license"),
+                        dataset_revision=meta.get("dataset_revision"),
+                        content_checksum=meta.get("content_checksum"),
+                        corpus_profile=meta.get("corpus_profile"),
                     )
                 )
         documents[doc_id] = {
@@ -291,6 +322,13 @@ def load_corpus(path: Path) -> Corpus:
             "effective_date": str(meta.get("effective_date")) if meta.get("effective_date") else None,
             "source_file": meta["source_file"],
             "chunks": ordinal,
+            "source_dataset": meta.get("source_dataset"),
+            "source_record_id": meta.get("source_record_id"),
+            "source_url": meta.get("source_url"),
+            "license": meta.get("license"),
+            "dataset_revision": meta.get("dataset_revision"),
+            "content_checksum": meta.get("content_checksum"),
+            "corpus_profile": meta.get("corpus_profile"),
         }
     return Corpus(chunks, documents, groups, qualifier_group, places, proper, sections_by_key, heads)
 

@@ -1,0 +1,64 @@
+{
+  "adapter": "squad",
+  "config": "plain_text",
+  "dataset": "rajpurkar/squad",
+  "documents": [
+    {
+      "content_checksum_sha256": "3787a46bd23562af4506bf8b742459ff83347ad4a029818d5d8541f4f9b6e109",
+      "doc_id": "SQUAD:3787a46bd23562af",
+      "source_record_id": "3787a46bd23562af"
+    },
+    {
+      "content_checksum_sha256": "827dab666a13cddec0287e44ee479902a1d5f4a676cd6a2643a49fc801d34e50",
+      "doc_id": "SQUAD:827dab666a13cdde",
+      "source_record_id": "827dab666a13cdde"
+    },
+    {
+      "content_checksum_sha256": "8978e606ac815776837f6ae937f265f172cb30e8bc110492b8ad734b9d410fb3",
+      "doc_id": "SQUAD:8978e606ac815776",
+      "source_record_id": "8978e606ac815776"
+    },
+    {
+      "content_checksum_sha256": "94a99bff525e95b2237edd771e726b5f77527d60896483ac09fd7385dba4ac0d",
+      "doc_id": "SQUAD:94a99bff525e95b2",
+      "source_record_id": "94a99bff525e95b2"
+    },
+    {
+      "content_checksum_sha256": "b0830484bb6a0bb3129fd6e4a30197cf80846bab08f5fa75d56d355bab2b5332",
+      "doc_id": "SQUAD:b0830484bb6a0bb3",
+      "source_record_id": "b0830484bb6a0bb3"
+    },
+    {
+      "content_checksum_sha256": "c880a681d556666f6bd0b98985adea7a6ce30eeb403d35642ae083a92ca07d78",
+      "doc_id": "SQUAD:c880a681d556666f",
+      "source_record_id": "c880a681d556666f"
+    },
+    {
+      "content_checksum_sha256": "d2006dff1995effa148f64f70e4264fb373ef487acda695802a1b58aa582e407",
+      "doc_id": "SQUAD:d2006dff1995effa",
+      "source_record_id": "d2006dff1995effa"
+    },
+    {
+      "content_checksum_sha256": "f245ff7ef596f40c9402996c21ca826b0fdb3735bf12b41184952dc243236715",
+      "doc_id": "SQUAD:f245ff7ef596f40c",
+      "source_record_id": "f245ff7ef596f40c"
+    }
+  ],
+  "evaluation_labels": 12,
+  "exported_documents": 8,
+  "input_records": 48,
+  "license": "cc-by-sa-4.0",
+  "namespace": "SQUAD",
+  "rejected": [],
+  "rejected_records": 0,
+  "requested_limit": 12,
+  "revision": "7b6d24c440a36b6815f21b70d25016731768db1f",
+  "schema_version": 1,
+  "seed": 42,
+  "source_checksum_sha256": "4e29bcb762d254cf9b8aa7f255de952197c9cc0d523a5461372226053629d3c0",
+  "source_ref": "https://datasets-server.huggingface.co/rows?dataset=rajpurkar%2Fsquad&config=plain_text&split=train&offset=0&length=48",
+  "source_url": "https://huggingface.co/datasets/rajpurkar/squad",
+  "split": "train",
+  "transformation": "source passage to Markdown; questions/answers/qrels remain separate labels",
+  "valid_records": 48
+}

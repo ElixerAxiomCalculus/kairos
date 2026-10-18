@@ -22,4 +22,64 @@ describe("Live backend over WebSocket", () => {
     cy.wait(800);
     cy.screenshot("live-end-to-end", { capture: "viewport" });
   });
+
+  it("keeps mutable ASR text provisional and finalizes one turn on Stop", () => {
+    cy.visit("/live?autoplay=0", {
+      onBeforeLoad(win) {
+        class FakeRecognition {
+          continuous = false;
+          interimResults = false;
+          lang = "";
+          onstart: (() => void) | null = null;
+          onresult: ((event: { results: ArrayLike<unknown> }) => void) | null = null;
+          onerror: ((event: { error: string }) => void) | null = null;
+          onend: (() => void) | null = null;
+          constructor() { (win as unknown as { __recognition: FakeRecognition }).__recognition = this; }
+          start() { this.onstart?.(); }
+          stop() { this.onend?.(); }
+          abort() { /* cleanup */ }
+          emit(text: string, isFinal = false) {
+            const result = Object.assign([{ transcript: text }], { isFinal });
+            this.onresult?.({ results: [result] });
+          }
+        }
+        (win as unknown as { webkitSpeechRecognition: typeof FakeRecognition }).webkitSpeechRecognition = FakeRecognition;
+      },
+    });
+    cy.get("[data-testid=mode-toggle]").should("contain.text", "GO LIVE").click();
+    cy.get("[data-testid=connection-status]", { timeout: 15000 }).should("contain.text", "LIVE");
+    cy.get("[data-testid=microphone-button]").click().should("have.attr", "aria-pressed", "true");
+    cy.window().then((win) => {
+      const recognition = (win as unknown as { __recognition: { emit: (text: string, final?: boolean) => void } }).__recognition;
+      recognition.emit("I need a workshop venue in Poona");
+      recognition.emit("I need a workshop venue in Pune for 30 people");
+    });
+    cy.get("[data-testid=provisional-transcript]").should("contain.text", "Pune for 30 people");
+    cy.get("[data-testid=microphone-button]").click();
+    cy.get("[data-testid=answer-subtitle]", { timeout: 30000 }).should("contain.text", "ANSWER V01");
+    cy.get("[data-testid=utterance]").should("have.length", 1).and("contain.text", "Pune");
+  });
+
+  it("reports microphone permission failure without disabling typed input", () => {
+    cy.visit("/live?autoplay=0", {
+      onBeforeLoad(win) {
+        class DeniedRecognition {
+          continuous = false;
+          interimResults = false;
+          lang = "";
+          onstart: (() => void) | null = null;
+          onresult = null;
+          onerror: ((event: { error: string }) => void) | null = null;
+          onend: (() => void) | null = null;
+          start() { this.onerror?.({ error: "not-allowed" }); this.onend?.(); }
+          stop() { this.onend?.(); }
+        }
+        (win as unknown as { webkitSpeechRecognition: typeof DeniedRecognition }).webkitSpeechRecognition = DeniedRecognition;
+      },
+    });
+    cy.get("[data-testid=mode-toggle]").should("contain.text", "GO LIVE").click();
+    cy.get("[data-testid=connection-status]", { timeout: 15000 }).should("contain.text", "LIVE");
+    cy.get("[data-testid=microphone-button]").click();
+    cy.get("input[aria-label='Query text']").should("be.enabled");
+  });
 });

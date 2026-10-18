@@ -1,6 +1,12 @@
+import { wsUrl } from "@/services/apiBase";
 import { parseWireEvent, ServerMessageSchema } from "@/schemas/events";
 import type { CorpusStatus, SessionConfig } from "@/types/domain";
-import type { OutgoingChunk, StreamingTransport, TransportHandlers } from "./StreamingTransport";
+import type {
+  OutgoingChunk,
+  StreamingTransport,
+  TranscriptSnapshotOutgoing,
+  TransportHandlers,
+} from "./StreamingTransport";
 
 const MAX_BACKOFF_MS = 8000;
 
@@ -13,19 +19,24 @@ export class WebSocketTransport implements StreamingTransport {
   private attempt = 0;
   private closedByUser = false;
   private queue: string[] = [];
+  private pendingSnapshots = new Map<string, string>();
+  private seenEvents = new Set<string>();
+  private lastEventId: string | null = null;
 
   constructor(private readonly url: string = WebSocketTransport.defaultUrl()) {}
 
   static defaultUrl(): string {
-    const proto = window.location.protocol === "https:" ? "wss" : "ws";
-    return `${proto}://${window.location.host}/ws`;
+    return wsUrl();
   }
 
   connect(handlers: TransportHandlers): Promise<void> {
     this.handlers = handlers;
     this.closedByUser = false;
     return new Promise((resolve, reject) => {
-      const url = this.sessionId ? `${this.url}?session_id=${encodeURIComponent(this.sessionId)}` : this.url;
+      const params = new URLSearchParams();
+      if (this.sessionId) params.set("session_id", this.sessionId);
+      if (this.lastEventId) params.set("after_event_id", this.lastEventId);
+      const url = params.size ? `${this.url}?${params.toString()}` : this.url;
       const socket = new WebSocket(url);
       this.socket = socket;
       let opened = false;
@@ -33,7 +44,6 @@ export class WebSocketTransport implements StreamingTransport {
         opened = true;
         this.attempt = 0;
         handlers.onStatus("LIVE");
-        for (const msg of this.queue.splice(0)) socket.send(msg);
         resolve();
       };
       socket.onmessage = (msg) => this.handleMessage(msg.data);
@@ -78,16 +88,43 @@ export class WebSocketTransport implements StreamingTransport {
       return;
     }
     if (msg.data.type === "hello") {
+      const previousSession = this.sessionId;
       this.sessionId = msg.data.session_id;
+      if (previousSession && previousSession !== msg.data.session_id) {
+        this.seenEvents.clear();
+        this.lastEventId = null;
+        this.pendingSnapshots.clear();
+        handlers.onSessionReset?.();
+        handlers.onError("The previous live session expired; a new session was started.");
+      }
       handlers.onHello?.({
         sessionId: msg.data.session_id,
         corpus: msg.data.corpus as unknown as CorpusStatus,
         config: msg.data.config as unknown as SessionConfig,
       });
+      if (this.socket?.readyState === WebSocket.OPEN) {
+        for (const queued of this.queue.splice(0)) this.socket.send(queued);
+        for (const pending of this.pendingSnapshots.values()) this.socket.send(pending);
+      }
     } else if (msg.data.type === "event") {
       const parsed = parseWireEvent(msg.data.event);
-      if (parsed.ok) handlers.onEvent(parsed.event);
-      else handlers.onError(`Malformed event dropped: ${parsed.error}`);
+      if (parsed.ok) {
+        if (!this.seenEvents.has(parsed.event.event_id)) {
+          this.seenEvents.add(parsed.event.event_id);
+          this.lastEventId = parsed.event.event_id;
+          handlers.onEvent(parsed.event);
+        }
+      } else handlers.onError(`Malformed event dropped: ${parsed.error}`);
+    } else if (msg.data.type === "transcript_ack") {
+      for (const key of this.pendingSnapshots.keys()) {
+        const separator = key.lastIndexOf(":");
+        const utteranceId = key.slice(0, separator);
+        const revision = key.slice(separator + 1);
+        if (utteranceId === msg.data.utterance_id && Number(revision) <= msg.data.revision) {
+          this.pendingSnapshots.delete(key);
+        }
+      }
+      handlers.onTranscriptAck?.(msg.data);
     } else {
       handlers.onError(msg.data.message);
     }
@@ -109,6 +146,12 @@ export class WebSocketTransport implements StreamingTransport {
     this.send({ type: "chunk", ...chunk });
   }
 
+  sendTranscriptSnapshot(snapshot: TranscriptSnapshotOutgoing): void {
+    const text = JSON.stringify({ type: "transcript_snapshot", ...snapshot });
+    this.pendingSnapshots.set(`${snapshot.utterance_id}:${snapshot.revision}`, text);
+    if (this.socket?.readyState === WebSocket.OPEN) this.socket.send(text);
+  }
+
   endUtterance(utteranceId: string): void {
     this.send({ type: "utterance_end", utterance_id: utteranceId });
   }
@@ -120,5 +163,8 @@ export class WebSocketTransport implements StreamingTransport {
   endSession(): void {
     this.send({ type: "end_session" });
     this.sessionId = null;
+    this.lastEventId = null;
+    this.seenEvents.clear();
+    this.pendingSnapshots.clear();
   }
 }

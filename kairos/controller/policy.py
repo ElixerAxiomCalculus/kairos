@@ -95,7 +95,8 @@ class RetrievalController:
 
     # --------------------------------------------------------------- signals
     def query_for(self, cand: CandidateNeed, frame: Frame, anchor_weight: float) -> RetrievalQuery:
-        anchor = frame.anchor if cand.key != "k0" else ""
+        first_key = frame.candidates[0].key if frame.candidates else cand.key
+        anchor = frame.anchor if cand.key != first_key else ""
         return RetrievalQuery.build(cand.need_text, anchor, cand.constraints, anchor_weight)
 
     def observe_pipeline_latency(self, seconds: float) -> None:
@@ -159,6 +160,10 @@ class RetrievalController:
         mode = cfg["mode"]
         reasons: list[str] = []
 
+        if cand.status in ("INCOMPLETE", "CONSTRAINT_ONLY") and sig["kappa"] < cfg["kappa_min"]:
+            return CandidateDecision(cand.key, "WAIT", "NONE", ["CLARIFICATION_REQUIRED", "INCOMPLETE_CLAUSE"],
+                                     sig, probe)
+
         if state.sub_query_id is not None:
             if cand.text == state.retrieved_text:
                 return CandidateDecision(cand.key, "HOLD", "NONE", ["ALREADY_RETRIEVED"], sig, probe)
@@ -173,7 +178,8 @@ class RetrievalController:
                 sig["slot_revised"] = 1.0
                 return CandidateDecision(cand.key, "REFINE", "REFINE", ["SLOT_REVISED"], sig, probe)
             # Shadow check: would the grown clause retrieve different evidence than what we hold?
-            shadow = [h.chunk_id for h in self.index.search(query).hits]
+            shadow_result = self.index.search(query)
+            shadow = [h.chunk_id for h in shadow_result.relevant_hits]
             shift = rbo(shadow, state.retrieved_ids or state.retrieved_probe, 0.9)
             sig["rho_vs_retrieved"] = round(shift, 4)
             if shift < cfg["tau_refine"] and budget_left > 0 and (cand.closed or is_final or sig["s_hat"] >= sig["theta"]):

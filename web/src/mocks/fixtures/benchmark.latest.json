@@ -1,6 +1,6 @@
 {
  "status": "MEASURED",
- "run_id": "20260928T201927Z",
+ "run_id": "20261018T095654Z",
  "label": "default",
  "dataset": {
   "split": "dev",
@@ -14,44 +14,45 @@
   "reranker": "hybrid-linear",
   "synthesis_backend": "extractive",
   "grounding_nli": "lexical",
-  "refinement": "delta"
+  "refinement": "delta",
+  "corpus_profile": "sample"
  },
  "stability_model": "models/stability.json",
  "repeats": 2,
  "metrics": {
   "early_retrieval_rate": 0.6875,
   "eligible_utterances": 16,
-  "retrieval_lead_s_median": 1.899,
-  "evidence_survival_rate": 0.763,
-  "premature_retrieval_rate": 0.1852,
+  "retrieval_lead_s_median": 1.897,
+  "evidence_survival_rate": 0.7231,
+  "premature_retrieval_rate": 0.3077,
   "false_retrieval_rate": 0.0,
   "unnecessary_retrieval_count": 0,
   "elaborate_suppression_rate": 1.0,
   "turn_classification_accuracy": 1.0,
-  "intent_precision": 0.9459,
-  "intent_recall": 0.9722,
-  "intent_count_accuracy": 0.9615,
-  "gold_section_mrr": 0.8528,
+  "intent_precision": 0.9189,
+  "intent_recall": 0.9444,
+  "intent_count_accuracy": 0.9231,
+  "gold_section_mrr": 0.8426,
   "abstention_accuracy": 1.0,
   "grounded_claim_rate": 1.0,
   "citation_precision": 1.0,
   "citation_recall": 1.0,
-  "claims_judged": 66,
+  "claims_judged": 46,
   "fabricated_doc_ids": 0,
-  "delta_retrieval_ratio": 0.8667,
-  "refinement_correctness": 0.6,
-  "unnecessary_claim_churn": 2,
-  "update_retrievals": 7,
-  "full_restart_retrievals": 9,
-  "update_context_tokens_est": 1784,
-  "full_restart_context_tokens_est": 2184,
-  "retrieval_latency_ms_mean": 0.234,
-  "retrieval_latency_ms_p95": 0.535,
-  "post_utterance_latency_ms_p50": 3.337,
-  "post_utterance_latency_ms_p95": 7.175,
-  "end_to_end_latency_ms_p50": 2703.1,
+  "delta_retrieval_ratio": 0.7,
+  "refinement_correctness": 1.0,
+  "unnecessary_claim_churn": 0,
+  "update_retrievals": 6,
+  "full_restart_retrievals": 10,
+  "update_context_tokens_est": 1052,
+  "full_restart_context_tokens_est": 1706,
+  "retrieval_latency_ms_mean": 1.952,
+  "retrieval_latency_ms_p95": 4.084,
+  "post_utterance_latency_ms_p50": 8.015,
+  "post_utterance_latency_ms_p95": 12.961,
+  "end_to_end_latency_ms_p50": 2706.2,
   "llm_tokens_total": 0,
-  "context_tokens_est_total": 9684,
+  "context_tokens_est_total": 5877,
   "telemetry_coverage": 1.0,
   "reproducibility_delta": 0.0
  },
@@ -109,7 +110,7 @@
    "gate": "G3",
    "metric": "intent_recall",
    "target": ">= 0.7",
-   "measured": 0.9722,
+   "measured": 0.9444,
    "status": "PASS"
   },
   {
@@ -130,7 +131,7 @@
    "gate": "G5",
    "metric": "delta_retrieval_ratio",
    "target": "< 1.0",
-   "measured": 0.8667,
+   "measured": 0.7,
    "status": "PASS"
   },
   {
@@ -157,32 +158,32 @@
  ],
  "validation": {
   "coverage": 1.0,
-  "instances": 1081,
-  "passed": 1081,
+  "instances": 1046,
+  "passed": 1046,
   "per_invariant": {
    "I1": {
     "checked": 35,
     "passed": 35
    },
    "I2": {
-    "checked": 54,
-    "passed": 54
+    "checked": 55,
+    "passed": 55
    },
    "I3": {
-    "checked": 81,
-    "passed": 81
+    "checked": 62,
+    "passed": 62
    },
    "I4": {
-    "checked": 81,
-    "passed": 81
+    "checked": 62,
+    "passed": 62
    },
    "I5": {
     "checked": 5,
     "passed": 5
    },
    "I6": {
-    "checked": 825,
-    "passed": 825
+    "checked": 827,
+    "passed": 827
    }
   }
  },
@@ -196,7 +197,7 @@
      "predicted_turn": "NEW_INFO",
      "retrievals": 3,
      "answer_version": 1,
-     "first_retrieval_t": 3.6008,
+     "first_retrieval_t": 3.6036,
      "utterance_end_t": 7.5,
      "early": true,
      "eligible_for_early": true,
@@ -220,7 +221,7 @@
      "predicted_turn": "NEW_INFO",
      "retrievals": 1,
      "answer_version": 1,
-     "first_retrieval_t": 3.7006,
+     "first_retrieval_t": 3.7028,
      "utterance_end_t": 3.7,
      "early": false,
      "eligible_for_early": false,
@@ -240,9 +241,9 @@
      "id": "u1",
      "type": "NEW_INFO",
      "predicted_turn": "NEW_INFO",
-     "retrievals": 2,
+     "retrievals": 3,
      "answer_version": 1,
-     "first_retrieval_t": 4.9013,
+     "first_retrieval_t": 4.9048,
      "utterance_end_t": 7.2,
      "early": true,
      "eligible_for_early": true,
@@ -266,7 +267,7 @@
      "predicted_turn": "NEW_INFO",
      "retrievals": 2,
      "answer_version": 1,
-     "first_retrieval_t": 2.7005,
+     "first_retrieval_t": 2.7036,
      "utterance_end_t": 4.0,
      "early": true,
      "eligible_for_early": true,
@@ -288,7 +289,7 @@
      "predicted_turn": "NEW_INFO",
      "retrievals": 1,
      "answer_version": 1,
-     "first_retrieval_t": 3.0007,
+     "first_retrieval_t": 3.0029,
      "utterance_end_t": 3.0,
      "early": false,
      "eligible_for_early": true,
@@ -317,7 +318,7 @@
      "predicted_turn": "NEW_INFO",
      "retrievals": 1,
      "answer_version": 1,
-     "first_retrieval_t": 3.6006,
+     "first_retrieval_t": 3.6063,
      "utterance_end_t": 3.6,
      "early": false,
      "eligible_for_early": true,
@@ -350,21 +351,17 @@
      "id": "u1",
      "type": "NEW_INFO",
      "predicted_turn": "NEW_INFO",
-     "retrievals": 5,
+     "retrievals": 4,
      "answer_version": 1,
-     "first_retrieval_t": 2.3006,
+     "first_retrieval_t": 2.3026,
      "utterance_end_t": 8.4,
      "early": true,
      "eligible_for_early": true,
      "sub_queries": [
-      "I01",
-      "I02",
-      "I03"
+      "I01"
      ],
      "matched": {
-      "I01": "A",
-      "I02": "B",
-      "I03": "C"
+      "I01": "B"
      }
     }
    ]
@@ -378,7 +375,7 @@
      "predicted_turn": "NEW_INFO",
      "retrievals": 1,
      "answer_version": 1,
-     "first_retrieval_t": 4.0006,
+     "first_retrieval_t": 4.0036,
      "utterance_end_t": 4.0,
      "early": false,
      "eligible_for_early": true,
@@ -400,7 +397,7 @@
      "predicted_turn": "NEW_INFO",
      "retrievals": 1,
      "answer_version": 1,
-     "first_retrieval_t": 4.6008,
+     "first_retrieval_t": 4.6027,
      "utterance_end_t": 4.6,
      "early": false,
      "eligible_for_early": false,
@@ -422,17 +419,19 @@
      "predicted_turn": "NEW_INFO",
      "retrievals": 3,
      "answer_version": 1,
-     "first_retrieval_t": 3.9006,
+     "first_retrieval_t": 3.9024,
      "utterance_end_t": 7.1,
      "early": true,
      "eligible_for_early": true,
      "sub_queries": [
       "I01",
-      "I02"
+      "I02",
+      "I03"
      ],
      "matched": {
       "I01": "A",
-      "I02": "C"
+      "I02": "B",
+      "I03": "C"
      }
     },
     {
@@ -442,7 +441,7 @@
      "retrievals": 2,
      "answer_version": 2,
      "affected_predicted": [
-      "A",
+      "B",
       "C"
      ],
      "affected_gold": [
@@ -461,7 +460,7 @@
      "predicted_turn": "NEW_INFO",
      "retrievals": 1,
      "answer_version": 1,
-     "first_retrieval_t": 2.7006,
+     "first_retrieval_t": 2.7025,
      "utterance_end_t": 2.7,
      "early": false,
      "eligible_for_early": false,
@@ -488,9 +487,9 @@
      "id": "u1",
      "type": "NEW_INFO",
      "predicted_turn": "NEW_INFO",
-     "retrievals": 1,
+     "retrievals": 2,
      "answer_version": 1,
-     "first_retrieval_t": 2.0006,
+     "first_retrieval_t": 2.0026,
      "utterance_end_t": 3.0,
      "early": true,
      "eligible_for_early": false,
@@ -512,7 +511,7 @@
      "predicted_turn": "NEW_INFO",
      "retrievals": 1,
      "answer_version": 1,
-     "first_retrieval_t": 4.6008,
+     "first_retrieval_t": 4.6024,
      "utterance_end_t": 4.6,
      "early": false,
      "eligible_for_early": true,
@@ -534,7 +533,7 @@
      "predicted_turn": "NEW_INFO",
      "retrievals": 1,
      "answer_version": 1,
-     "first_retrieval_t": 3.0007,
+     "first_retrieval_t": 3.0026,
      "utterance_end_t": 3.7,
      "early": true,
      "eligible_for_early": false,
@@ -556,7 +555,7 @@
      "predicted_turn": "NEW_INFO",
      "retrievals": 1,
      "answer_version": 1,
-     "first_retrieval_t": 3.0006,
+     "first_retrieval_t": 3.0022,
      "utterance_end_t": 3.7,
      "early": true,
      "eligible_for_early": true,
@@ -578,7 +577,7 @@
      "predicted_turn": "NEW_INFO",
      "retrievals": 1,
      "answer_version": 1,
-     "first_retrieval_t": 2.7006,
+     "first_retrieval_t": 2.7021,
      "utterance_end_t": 2.7,
      "early": false,
      "eligible_for_early": false,
@@ -607,7 +606,7 @@
      "predicted_turn": "NEW_INFO",
      "retrievals": 2,
      "answer_version": 1,
-     "first_retrieval_t": 2.3008,
+     "first_retrieval_t": 2.3023,
      "utterance_end_t": 5.2,
      "early": true,
      "eligible_for_early": true,
@@ -629,7 +628,7 @@
      "predicted_turn": "NEW_INFO",
      "retrievals": 2,
      "answer_version": 1,
-     "first_retrieval_t": 3.6008,
+     "first_retrieval_t": 3.6023,
      "utterance_end_t": 5.5,
      "early": true,
      "eligible_for_early": true,
@@ -653,7 +652,7 @@
      "predicted_turn": "NEW_INFO",
      "retrievals": 3,
      "answer_version": 1,
-     "first_retrieval_t": 2.3007,
+     "first_retrieval_t": 2.3025,
      "utterance_end_t": 4.3,
      "early": true,
      "eligible_for_early": false,
@@ -675,7 +674,7 @@
      "predicted_turn": "NEW_INFO",
      "retrievals": 1,
      "answer_version": 1,
-     "first_retrieval_t": 2.7006,
+     "first_retrieval_t": 2.7025,
      "utterance_end_t": 2.7,
      "early": false,
      "eligible_for_early": false,
@@ -702,9 +701,9 @@
      "id": "u1",
      "type": "NEW_INFO",
      "predicted_turn": "NEW_INFO",
-     "retrievals": 2,
+     "retrievals": 3,
      "answer_version": 1,
-     "first_retrieval_t": 5.8013,
+     "first_retrieval_t": 5.8045,
      "utterance_end_t": 7.4,
      "early": true,
      "eligible_for_early": true,
@@ -728,7 +727,7 @@
      "predicted_turn": "NEW_INFO",
      "retrievals": 1,
      "answer_version": 1,
-     "first_retrieval_t": 3.0006,
+     "first_retrieval_t": 3.0021,
      "utterance_end_t": 4.3,
      "early": true,
      "eligible_for_early": false,
@@ -763,7 +762,7 @@
      "predicted_turn": "NEW_INFO",
      "retrievals": 2,
      "answer_version": 1,
-     "first_retrieval_t": 5.801,
+     "first_retrieval_t": 5.8048,
      "utterance_end_t": 5.8,
      "early": false,
      "eligible_for_early": true,
@@ -785,17 +784,19 @@
      "id": "u1",
      "type": "NEW_INFO",
      "predicted_turn": "NEW_INFO",
-     "retrievals": 2,
+     "retrievals": 3,
      "answer_version": 1,
-     "first_retrieval_t": 3.0006,
+     "first_retrieval_t": 3.0023,
      "utterance_end_t": 4.3,
      "early": true,
      "eligible_for_early": false,
      "sub_queries": [
-      "I01"
+      "I01",
+      "I02"
      ],
      "matched": {
-      "I01": "A"
+      "I01": null,
+      "I02": "A"
      }
     },
     {
@@ -814,9 +815,9 @@
      "id": "u1",
      "type": "NEW_INFO",
      "predicted_turn": "NEW_INFO",
-     "retrievals": 4,
+     "retrievals": 3,
      "answer_version": 1,
-     "first_retrieval_t": 2.9007,
+     "first_retrieval_t": 2.9022,
      "utterance_end_t": 7.1,
      "early": true,
      "eligible_for_early": true,
@@ -855,7 +856,7 @@
      "predicted_turn": "NEW_INFO",
      "retrievals": 2,
      "answer_version": 1,
-     "first_retrieval_t": 2.6006,
+     "first_retrieval_t": 2.6031,
      "utterance_end_t": 4.5,
      "early": true,
      "eligible_for_early": true,
@@ -872,11 +873,10 @@
      "id": "u2",
      "type": "CONSTRAINT",
      "predicted_turn": "CONSTRAINT",
-     "retrievals": 2,
+     "retrievals": 1,
      "answer_version": 2,
      "affected_predicted": [
-      "A",
-      "B"
+      "A"
      ],
      "affected_gold": [
       "A"
@@ -885,6 +885,6 @@
    ]
   }
  ],
- "wall_s": 0.31,
+ "wall_s": 0.68,
  "judge": "automatic lexical judge (verbatim quote / token recall + numeric anchors); independent of the firewall's IDF-weighted support score. Human audit pending \u2014 see audit_sheet.csv."
 }

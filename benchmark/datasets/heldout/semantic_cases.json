@@ -1,0 +1,36 @@
+{
+  "name": "kairos-semantic-engineering-heldout-v1",
+  "split": "HELD-OUT TEST",
+  "seed": 42,
+  "note": "Frozen engineering acceptance set derived from the V2 specification. It was authored alongside the upgrade and is not claimed as an independent public benchmark. External SQuAD labels are evaluated separately.",
+  "groups": [
+    {
+      "id": "topic-boundaries",
+      "cases": [
+        {"text": "Find houses in Mumbai under 20 lakh what is the definition of an AI agent what does an agent do suggest travel plans to Goa", "intents": ["houses mumbai", "definition ai agent", "agent do", "travel goa"]},
+        {"text": "medicine for fever travel plans to Goa", "intents": ["medicine fever", "travel goa"]},
+        {"text": "find houses in Mumbai and explain what an AI agent does", "intents": ["houses mumbai", "ai agent"]},
+        {"text": "fever and cough and cold", "intents": ["fever cough cold"]},
+        {"text": "um wait actually tell me the cancellation policy and whether catering is available", "intents": ["cancellation policy", "catering available"]}
+      ]
+    },
+    {
+      "id": "constraint-ownership",
+      "cases": [
+        {"text": "Find 2BHK houses in Mumbai below 20 lakh and 3BHK houses in Delhi above 40 lakh", "intents": ["houses mumbai", "houses delhi"], "constraints": [["city:Mumbai", "bedrooms:2", "budget:2000000:MAX"], ["city:Delhi", "bedrooms:3", "budget:4000000:MIN"]]},
+        {"text": "Pune sorry Mumbai find a workshop venue for 30 people", "intents": ["workshop venue mumbai"]},
+        {"text": "three lakh per month at five percent", "intents": ["lakh month percent"]}
+      ]
+    }
+  ],
+  "retrieval": [
+    {"profile": "sample", "query": "Which Pune venue accommodates a workshop of 30 people?", "relevant_docs": ["D01"], "domain": "corporate_events"},
+    {"profile": "sample", "query": "What is the cancellation policy for an international event?", "relevant_docs": ["D03"], "domain": "corporate_events"},
+    {"profile": "science", "query": "What did rhAng-1 improve in murine sepsis?", "relevant_docs": ["SCIFACT:118568"], "domain": "scientific_literature"},
+    {"profile": "general", "query": "What is the oldest building on the Notre Dame campus?", "relevant_docs": ["SQUAD:3787a46bd23562af"], "domain": "general_knowledge"},
+    {"profile": "sample", "query": "Find current 2BHK listings in Mumbai below 20 lakh", "relevant_docs": [], "domain": "housing"},
+    {"profile": "sample", "query": "What medicine should I take for fever?", "relevant_docs": [], "domain": "biomedical_research"},
+    {"profile": "sample", "query": "Find the nearest hospital from my location", "relevant_docs": [], "domain": "biomedical_research"},
+    {"profile": "sample", "query": "What are today's flight prices to Goa?", "relevant_docs": [], "domain": "travel"}
+  ]
+}

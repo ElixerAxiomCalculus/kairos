@@ -35,7 +35,8 @@ function colorOf(e: WireEvent): string {
     case "TransformVerified":
       return "var(--status-suppress)";
     case "GroundingVerified":
-      return (p.summary as Record<string, unknown>)?.status === "PASS" ? "var(--status-pass)" : "var(--status-fail)";
+      return (p.summary as Record<string, unknown>)?.status === "SUPPORTED"
+        ? "var(--status-pass)" : "var(--status-wait)";
     case "AnswerVersionCreated":
       return "var(--text-primary)";
     default:

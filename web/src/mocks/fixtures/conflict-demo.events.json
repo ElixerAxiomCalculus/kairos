@@ -3,7 +3,7 @@
   "event_id": "evt_0001",
   "parent_event_ids": [],
   "timestamp": 0.0,
-  "wall_time": "2026-09-28T20:22:00.563+00:00",
+  "wall_time": "2026-10-18T09:52:32.986+00:00",
   "session_id": "rec-conflict-demo",
   "event_type": "SessionStarted",
   "utterance_id": null,
@@ -32,8 +32,19 @@
       "standard"
      ]
     },
-    "build_ms": 702.1,
-    "indexed_at": "2026-09-28T20:22:00.561+00:00",
+    "build_ms": 968.3,
+    "corpus_profiles": [
+     "sample"
+    ],
+    "available_domains": [
+     "corporate_events"
+    ],
+    "probe_cache": {
+     "hits": 0,
+     "misses": 0,
+     "entries": 0
+    },
+    "indexed_at": "2026-10-18T09:52:32.984+00:00",
     "documents_list": [
      {
       "doc_id": "D01",
@@ -41,7 +52,14 @@
       "doc_type": "catalogue",
       "effective_date": "2025-06-01",
       "source_file": "D01-venues-pune.md",
-      "chunks": 5
+      "chunks": 5,
+      "source_dataset": null,
+      "source_record_id": null,
+      "source_url": null,
+      "license": null,
+      "dataset_revision": null,
+      "content_checksum": null,
+      "corpus_profile": "sample"
      },
      {
       "doc_id": "D02",
@@ -49,7 +67,14 @@
       "doc_type": "catalogue",
       "effective_date": "2025-06-01",
       "source_file": "D02-venues-mumbai.md",
-      "chunks": 4
+      "chunks": 4,
+      "source_dataset": null,
+      "source_record_id": null,
+      "source_url": null,
+      "license": null,
+      "dataset_revision": null,
+      "content_checksum": null,
+      "corpus_profile": "sample"
      },
      {
       "doc_id": "D03",
@@ -57,7 +82,14 @@
       "doc_type": "policy",
       "effective_date": "2025-04-01",
       "source_file": "D03-venue-booking-terms.md",
-      "chunks": 6
+      "chunks": 6,
+      "source_dataset": null,
+      "source_record_id": null,
+      "source_url": null,
+      "license": null,
+      "dataset_revision": null,
+      "content_checksum": null,
+      "corpus_profile": "sample"
      },
      {
       "doc_id": "D04",
@@ -65,7 +97,14 @@
       "doc_type": "guide",
       "effective_date": "2025-05-15",
       "source_file": "D04-catering.md",
-      "chunks": 6
+      "chunks": 6,
+      "source_dataset": null,
+      "source_record_id": null,
+      "source_url": null,
+      "license": null,
+      "dataset_revision": null,
+      "content_checksum": null,
+      "corpus_profile": "sample"
      },
      {
       "doc_id": "D05",
@@ -73,7 +112,14 @@
       "doc_type": "policy",
       "effective_date": "2025-01-01",
       "source_file": "D05-travel-expense-policy.md",
-      "chunks": 6
+      "chunks": 6,
+      "source_dataset": null,
+      "source_record_id": null,
+      "source_url": null,
+      "license": null,
+      "dataset_revision": null,
+      "content_checksum": null,
+      "corpus_profile": "sample"
      },
      {
       "doc_id": "D06",
@@ -81,7 +127,14 @@
       "doc_type": "policy",
       "effective_date": "2025-03-01",
       "source_file": "D06-event-security.md",
-      "chunks": 4
+      "chunks": 4,
+      "source_dataset": null,
+      "source_record_id": null,
+      "source_url": null,
+      "license": null,
+      "dataset_revision": null,
+      "content_checksum": null,
+      "corpus_profile": "sample"
      },
      {
       "doc_id": "D07",
@@ -89,7 +142,14 @@
       "doc_type": "guide",
       "effective_date": "2025-02-10",
       "source_file": "D07-av-it-support.md",
-      "chunks": 3
+      "chunks": 3,
+      "source_dataset": null,
+      "source_record_id": null,
+      "source_url": null,
+      "license": null,
+      "dataset_revision": null,
+      "content_checksum": null,
+      "corpus_profile": "sample"
      },
      {
       "doc_id": "D08",
@@ -97,7 +157,14 @@
       "doc_type": "faq",
       "effective_date": "2023-01-15",
       "source_file": "D08-venue-faq-2023.md",
-      "chunks": 3
+      "chunks": 3,
+      "source_dataset": null,
+      "source_record_id": null,
+      "source_url": null,
+      "license": null,
+      "dataset_revision": null,
+      "content_checksum": null,
+      "corpus_profile": "sample"
      }
     ]
    },
@@ -107,7 +174,8 @@
     "reranker": "hybrid-linear",
     "synthesis_backend": "extractive",
     "grounding_nli": "lexical",
-    "refinement": "delta"
+    "refinement": "delta",
+    "corpus_profile": "sample"
    },
    "stability_model": "trained:stability.json"
   }
@@ -116,7 +184,7 @@
   "event_id": "evt_0002",
   "parent_event_ids": [],
   "timestamp": 1.7,
-  "wall_time": "2026-09-28T20:22:00.563+00:00",
+  "wall_time": "2026-10-18T09:52:32.986+00:00",
   "session_id": "rec-conflict-demo",
   "event_type": "TranscriptChunkReceived",
   "utterance_id": "u1",
@@ -145,8 +213,8 @@
   "parent_event_ids": [
    "evt_0002"
   ],
-  "timestamp": 1.7001,
-  "wall_time": "2026-09-28T20:22:00.563+00:00",
+  "timestamp": 1.7008,
+  "wall_time": "2026-10-18T09:52:32.987+00:00",
   "session_id": "rec-conflict-demo",
   "event_type": "QueryFrameUpdated",
   "utterance_id": "u1",
@@ -156,7 +224,7 @@
   "sub_query_id": null,
   "document_ids": [],
   "chunk_ids": [],
-  "latency_ms": 0.05,
+  "latency_ms": 0.762,
   "token_cost": {},
   "confidence": null,
   "citations": [],
@@ -171,17 +239,38 @@
      "text": "How late can I change",
      "kind": "NEED",
      "closed": false,
-     "soft": false
+     "soft": false,
+     "start": 0,
+     "end": 21,
+     "request_cue": "how"
     }
    ],
    "candidates": [
     {
-     "key": "k0",
+     "key": "K-b296f74910",
      "text": "How late can I change",
      "need": "How late can I change",
      "constraints": [],
+     "typed_constraints": [],
+     "normalized_text": "late change",
+     "source_span": [
+      0,
+      21
+     ],
+     "source_chunk_range": [
+      "u1.c1",
+      "u1.c1"
+     ],
+     "request_cue": "how",
+     "topic_id": "T-b296f749",
+     "completion_status": "VALID_STANDALONE",
      "closed": false,
-     "anaphoric": false
+     "anaphoric": false,
+     "revision_history": [],
+     "confidence": {
+      "completeness": 0.6833,
+      "topic": 1.0
+     }
     }
    ],
    "slots": []
@@ -192,8 +281,8 @@
   "parent_event_ids": [
    "evt_0003"
   ],
-  "timestamp": 1.7012,
-  "wall_time": "2026-09-28T20:22:00.564+00:00",
+  "timestamp": 1.7023,
+  "wall_time": "2026-10-18T09:52:32.989+00:00",
   "session_id": "rec-conflict-demo",
   "event_type": "TurnClassified",
   "utterance_id": "u1",
@@ -233,8 +322,8 @@
   "parent_event_ids": [
    "evt_0004"
   ],
-  "timestamp": 1.7014,
-  "wall_time": "2026-09-28T20:22:00.564+00:00",
+  "timestamp": 1.7026,
+  "wall_time": "2026-10-18T09:52:32.989+00:00",
   "session_id": "rec-conflict-demo",
   "event_type": "ProbeExecuted",
   "utterance_id": "u1",
@@ -244,21 +333,26 @@
   "sub_query_id": null,
   "document_ids": [],
   "chunk_ids": [],
-  "latency_ms": 0.121,
+  "latency_ms": 0.246,
   "token_cost": {},
   "confidence": null,
   "citations": [],
   "payload": {
    "probes": [
     {
-     "candidate": "k0",
+     "candidate": "K-b296f74910",
      "sections": [
       "D03#4",
       "D08#2"
      ]
     }
    ],
-   "retriever": "bm25-probe"
+   "retriever": "bm25-probe",
+   "cache": {
+    "hits": 0,
+    "misses": 2,
+    "entries": 2
+   }
   }
  },
  {
@@ -266,8 +360,8 @@
   "parent_event_ids": [
    "evt_0005"
   ],
-  "timestamp": 1.7014,
-  "wall_time": "2026-09-28T20:22:00.564+00:00",
+  "timestamp": 1.7026,
+  "wall_time": "2026-10-18T09:52:32.989+00:00",
   "session_id": "rec-conflict-demo",
   "event_type": "RetrievalDecision",
   "utterance_id": "u1",
@@ -303,7 +397,7 @@
    },
    "candidates": [
     {
-     "key": "k0",
+     "key": "K-b296f74910",
      "text": "How late can I change",
      "action": "WAIT",
      "trigger": "NONE",
@@ -340,7 +434,7 @@
    "evt_0002"
   ],
   "timestamp": 2.6,
-  "wall_time": "2026-09-28T20:22:00.564+00:00",
+  "wall_time": "2026-10-18T09:52:32.989+00:00",
   "session_id": "rec-conflict-demo",
   "event_type": "TranscriptChunkReceived",
   "utterance_id": "u1",
@@ -369,8 +463,8 @@
   "parent_event_ids": [
    "evt_0007"
   ],
-  "timestamp": 2.6001,
-  "wall_time": "2026-09-28T20:22:00.564+00:00",
+  "timestamp": 2.6004,
+  "wall_time": "2026-10-18T09:52:32.989+00:00",
   "session_id": "rec-conflict-demo",
   "event_type": "QueryFrameUpdated",
   "utterance_id": "u1",
@@ -380,7 +474,7 @@
   "sub_query_id": null,
   "document_ids": [],
   "chunk_ids": [],
-  "latency_ms": 0.056,
+  "latency_ms": 0.33,
   "token_cost": {},
   "confidence": null,
   "citations": [],
@@ -395,17 +489,43 @@
      "text": "How late can I change the expected headcount for a venue booking",
      "kind": "NEED",
      "closed": true,
-     "soft": false
+     "soft": false,
+     "start": 0,
+     "end": 64,
+     "request_cue": "how"
     }
    ],
    "candidates": [
     {
-     "key": "k0",
+     "key": "K-b296f74910",
      "text": "How late can I change the expected headcount for a venue booking",
      "need": "How late can I change the expected headcount for a venue booking",
      "constraints": [],
+     "typed_constraints": [],
+     "normalized_text": "late change expect headcount venue book",
+     "source_span": [
+      0,
+      64
+     ],
+     "source_chunk_range": [
+      "u1.c2",
+      "u1.c2"
+     ],
+     "request_cue": "how",
+     "topic_id": "T-66288593",
+     "completion_status": "VALID_STANDALONE",
      "closed": true,
-     "anaphoric": false
+     "anaphoric": false,
+     "revision_history": [
+      {
+       "from": "How late can I change",
+       "to": "How late can I change the expected headcount for a venue booking"
+      }
+     ],
+     "confidence": {
+      "completeness": 1.0,
+      "topic": 1.0
+     }
     }
    ],
    "slots": []
@@ -416,8 +536,8 @@
   "parent_event_ids": [
    "evt_0008"
   ],
-  "timestamp": 2.6001,
-  "wall_time": "2026-09-28T20:22:00.564+00:00",
+  "timestamp": 2.6005,
+  "wall_time": "2026-10-18T09:52:32.989+00:00",
   "session_id": "rec-conflict-demo",
   "event_type": "TurnClassified",
   "utterance_id": "u1",
@@ -465,8 +585,8 @@
   "parent_event_ids": [
    "evt_0009"
   ],
-  "timestamp": 2.6003,
-  "wall_time": "2026-09-28T20:22:00.564+00:00",
+  "timestamp": 2.6006,
+  "wall_time": "2026-10-18T09:52:32.990+00:00",
   "session_id": "rec-conflict-demo",
   "event_type": "ProbeExecuted",
   "utterance_id": "u1",
@@ -476,14 +596,14 @@
   "sub_query_id": null,
   "document_ids": [],
   "chunk_ids": [],
-  "latency_ms": 0.102,
+  "latency_ms": 0.133,
   "token_cost": {},
   "confidence": null,
   "citations": [],
   "payload": {
    "probes": [
     {
-     "candidate": "k0",
+     "candidate": "K-b296f74910",
      "sections": [
       "D08#2",
       "D03#4",
@@ -493,7 +613,12 @@
      ]
     }
    ],
-   "retriever": "bm25-probe"
+   "retriever": "bm25-probe",
+   "cache": {
+    "hits": 0,
+    "misses": 3,
+    "entries": 3
+   }
   }
  },
  {
@@ -501,8 +626,8 @@
   "parent_event_ids": [
    "evt_0010"
   ],
-  "timestamp": 2.6003,
-  "wall_time": "2026-09-28T20:22:00.564+00:00",
+  "timestamp": 2.6007,
+  "wall_time": "2026-10-18T09:52:32.990+00:00",
   "session_id": "rec-conflict-demo",
   "event_type": "RetrievalDecision",
   "utterance_id": "u1",
@@ -536,7 +661,7 @@
    },
    "candidates": [
     {
-     "key": "k0",
+     "key": "K-b296f74910",
      "text": "How late can I change the expected headcount for a venue booking",
      "action": "RETRIEVE",
      "trigger": "END_OF_UTTERANCE",
@@ -570,8 +695,8 @@
   "parent_event_ids": [
    "evt_0011"
   ],
-  "timestamp": 2.6008,
-  "wall_time": "2026-09-28T20:22:00.565+00:00",
+  "timestamp": 2.603,
+  "wall_time": "2026-10-18T09:52:32.992+00:00",
   "session_id": "rec-conflict-demo",
   "event_type": "SubQueriesGenerated",
   "utterance_id": "u1",
@@ -599,29 +724,32 @@
      "anchor": "",
      "facet_constraints": {},
      "candidate_keys": [
-      "k0"
+      "K-b296f74910"
      ],
      "depends_on": [],
      "dependency_type": null,
      "footprint": [
       "D08#2",
-      "D03#4",
-      "D03#5",
-      "D03#1",
-      "D03#2"
+      "D03#4"
      ],
      "status": "PENDING",
      "retrieval_count": 0,
-     "merged_from": []
+     "merged_from": [],
+     "typed_constraints": [],
+     "evidence_status": "NO_RELEVANT_EVIDENCE",
+     "selected_domain": "unknown",
+     "footprint_quality": 0.916
     }
    ],
    "assignments": [
     {
-     "candidate": "k0",
+     "candidate": "K-b296f74910",
      "sub_query_id": "I01",
      "created": true,
      "merged_into": null,
-     "footprint_overlap": {}
+     "footprint_overlap": {},
+     "footprint_valid": true,
+     "standalone_status": "VALID_STANDALONE"
     }
    ],
    "active": [
@@ -635,8 +763,8 @@
   "parent_event_ids": [
    "evt_0012"
   ],
-  "timestamp": 2.6008,
-  "wall_time": "2026-09-28T20:22:00.565+00:00",
+  "timestamp": 2.6031,
+  "wall_time": "2026-10-18T09:52:32.992+00:00",
   "session_id": "rec-conflict-demo",
   "event_type": "RetrievalStarted",
   "utterance_id": "u1",
@@ -673,8 +801,8 @@
   "parent_event_ids": [
    "evt_0013"
   ],
-  "timestamp": 2.6026,
-  "wall_time": "2026-09-28T20:22:00.567+00:00",
+  "timestamp": 2.6075,
+  "wall_time": "2026-10-18T09:52:32.997+00:00",
   "session_id": "rec-conflict-demo",
   "event_type": "RetrievalCompleted",
   "utterance_id": "u1",
@@ -693,9 +821,9 @@
    "D03:C01",
    "D03:C02"
   ],
-  "latency_ms": 0.15,
+  "latency_ms": 1.77,
   "token_cost": {},
-  "confidence": 0.796,
+  "confidence": 0.916,
   "citations": [],
   "payload": {
    "hits": [
@@ -707,8 +835,12 @@
      "dense_score": 0.9426,
      "dense_rank": 1,
      "fused_score": 0.03279,
-     "rerank_score": 0.796,
+     "rerank_score": 0.916,
      "facet_match": null,
+     "accepted": true,
+     "relevance_status": "RELEVANT_SUFFICIENT",
+     "query_coverage": 0.6982,
+     "relevance_reasons": [],
      "doc_id": "D08",
      "doc_title": "Venue Booking FAQ (2023 edition)",
      "section_key": "D08#2",
@@ -719,6 +851,13 @@
      "effective_date": "2023-01-15",
      "doc_type": "faq",
      "sha1": "bdb5c2403259df5e7282e0c2ccdfe31cc0032ec1",
+     "source_dataset": null,
+     "source_record_id": null,
+     "source_url": null,
+     "license": null,
+     "dataset_revision": null,
+     "content_checksum": null,
+     "corpus_profile": "sample",
      "text": "Yes. The expected headcount can be changed up to 24 hours before the event without a fee."
     },
     {
@@ -729,8 +868,12 @@
      "dense_score": 0.5489,
      "dense_rank": 2,
      "fused_score": 0.03226,
-     "rerank_score": 0.6385,
+     "rerank_score": 0.7585,
      "facet_match": null,
+     "accepted": true,
+     "relevance_status": "RELEVANT_SUFFICIENT",
+     "query_coverage": 0.6982,
+     "relevance_reasons": [],
      "doc_id": "D03",
      "doc_title": "Venue Booking Terms",
      "section_key": "D03#4",
@@ -741,6 +884,13 @@
      "effective_date": "2025-04-01",
      "doc_type": "policy",
      "sha1": "64af48ee6c75765c31ceb481c457e2ecd567e6ca",
+     "source_dataset": null,
+     "source_record_id": null,
+     "source_url": null,
+     "license": null,
+     "dataset_revision": null,
+     "content_checksum": null,
+     "corpus_profile": "sample",
      "text": "The expected headcount can be changed up to 72 hours before the event without a fee. Room changes are subject to availability and must be requested through the Facilities portal."
     },
     {
@@ -751,8 +901,14 @@
      "dense_score": 0.261,
      "dense_rank": 3,
      "fused_score": 0.03126,
-     "rerank_score": 0.182,
+     "rerank_score": 0.302,
      "facet_match": null,
+     "accepted": false,
+     "relevance_status": "NO_RELEVANT_EVIDENCE",
+     "query_coverage": 0.1293,
+     "relevance_reasons": [
+      "LOW_IDF_COVERAGE"
+     ],
      "doc_id": "D03",
      "doc_title": "Venue Booking Terms",
      "section_key": "D03#5",
@@ -763,6 +919,13 @@
      "effective_date": "2025-04-01",
      "doc_type": "policy",
      "sha1": "46bd4d14640e88a782b93b81ed56a84d22055c09",
+     "source_dataset": null,
+     "source_record_id": null,
+     "source_url": null,
+     "license": null,
+     "dataset_revision": null,
+     "content_checksum": null,
+     "corpus_profile": "sample",
      "text": "The remaining venue fee is invoiced to the booking owner's cost centre within 7 days after the event."
     },
     {
@@ -773,8 +936,14 @@
      "dense_score": 0.2313,
      "dense_rank": 4,
      "fused_score": 0.03055,
-     "rerank_score": 0.1701,
+     "rerank_score": 0.2901,
      "facet_match": null,
+     "accepted": false,
+     "relevance_status": "NO_RELEVANT_EVIDENCE",
+     "query_coverage": 0.1293,
+     "relevance_reasons": [
+      "LOW_IDF_COVERAGE"
+     ],
      "doc_id": "D03",
      "doc_title": "Venue Booking Terms",
      "section_key": "D03#1",
@@ -785,6 +954,13 @@
      "effective_date": "2025-04-01",
      "doc_type": "policy",
      "sha1": "2dbc6b1352dd9a320703db31e406f0ab38d5dc26",
+     "source_dataset": null,
+     "source_record_id": null,
+     "source_url": null,
+     "license": null,
+     "dataset_revision": null,
+     "content_checksum": null,
+     "corpus_profile": "sample",
      "text": "These terms apply to every booking of a Company venue, including the Deccan Conference Centre in Pune and Harbourview Suites in Mumbai."
     },
     {
@@ -795,8 +971,14 @@
      "dense_score": 0.2259,
      "dense_rank": 5,
      "fused_score": 0.03126,
-     "rerank_score": 0.1679,
+     "rerank_score": 0.2879,
      "facet_match": null,
+     "accepted": false,
+     "relevance_status": "NO_RELEVANT_EVIDENCE",
+     "query_coverage": 0.1293,
+     "relevance_reasons": [
+      "LOW_IDF_COVERAGE"
+     ],
      "doc_id": "D03",
      "doc_title": "Venue Booking Terms",
      "section_key": "D03#2",
@@ -807,21 +989,42 @@
      "effective_date": "2025-04-01",
      "doc_type": "policy",
      "sha1": "e62d21c4a8c57be1ece10bc2ded0040e5d2258d6",
+     "source_dataset": null,
+     "source_record_id": null,
+     "source_url": null,
+     "license": null,
+     "dataset_revision": null,
+     "content_checksum": null,
+     "corpus_profile": "sample",
      "text": "Venue requests must be submitted through the Facilities portal at least 10 working days before the event. A booking is confirmed only after a deposit of 25% of the venue fee has been paid. The booking owner receives a confirmation number by email."
     }
    ],
    "duplicates": [],
    "filtered_by_facet": [],
    "stage_ms": {
-    "sparse_ms": 0.048,
-    "dense_ms": 0.021,
-    "fusion_ms": 0.007,
-    "rerank_ms": 0.045,
-    "dedup_ms": 0.023
+    "sparse_ms": 0.067,
+    "dense_ms": 0.101,
+    "fusion_ms": 0.013,
+    "rerank_ms": 0.117,
+    "dedup_ms": 1.458
    },
    "mode": "hybrid",
-   "started_offset_ms": 1.712,
-   "ended_offset_ms": 1.863,
+   "evidence_status": "RELEVANT_SUFFICIENT",
+   "accepted_chunk_ids": [
+    "D08:C02",
+    "D03:C05"
+   ],
+   "candidate_chunk_ids": [
+    "D08:C02",
+    "D03:C05",
+    "D03:C06",
+    "D03:C01",
+    "D03:C02"
+   ],
+   "selected_domain": "corporate_events",
+   "domain_confidence": 0.1667,
+   "started_offset_ms": 2.623,
+   "ended_offset_ms": 4.393,
    "label": "late change expected headcount venue"
   }
  },
@@ -830,8 +1033,8 @@
   "parent_event_ids": [
    "evt_0014"
   ],
-  "timestamp": 2.6031,
-  "wall_time": "2026-09-28T20:22:00.567+00:00",
+  "timestamp": 2.608,
+  "wall_time": "2026-10-18T09:52:32.997+00:00",
   "session_id": "rec-conflict-demo",
   "event_type": "EvidenceFused",
   "utterance_id": "u1",
@@ -858,7 +1061,9 @@
    "sub_queries": [
     "I01"
    ],
-   "evidence_count": 5,
+   "evidence_count": 2,
+   "candidate_evidence_count": 5,
+   "accepted_evidence_count": 2,
    "shared_across_sub_queries": [],
    "contradictions": [
     {
@@ -898,8 +1103,8 @@
   "parent_event_ids": [
    "evt_0015"
   ],
-  "timestamp": 2.605,
-  "wall_time": "2026-09-28T20:22:00.569+00:00",
+  "timestamp": 2.6095,
+  "wall_time": "2026-10-18T09:52:32.999+00:00",
   "session_id": "rec-conflict-demo",
   "event_type": "ClaimsGenerated",
   "utterance_id": "u1",
@@ -909,11 +1114,11 @@
   "sub_query_id": null,
   "document_ids": [],
   "chunk_ids": [],
-  "latency_ms": 1.634,
+  "latency_ms": 1.219,
   "token_cost": {
    "llm_prompt": 0,
    "llm_completion": 0,
-   "context_est": 160
+   "context_est": 57
   },
   "confidence": null,
   "citations": [],
@@ -924,7 +1129,7 @@
      "sub_query_id": "I01",
      "backend": "extractive",
      "gap": null,
-     "latency_ms": 1.634,
+     "latency_ms": 1.219,
      "claims": [
       {
        "claim_id": "C01",
@@ -934,7 +1139,7 @@
         "D08:C02"
        ],
        "quote": "The expected headcount can be changed up to 24 hours before the event without a fee.",
-       "score": 0.706,
+       "score": 0.73,
        "status": "NEW",
        "derived_from": []
       }
@@ -948,8 +1153,8 @@
   "parent_event_ids": [
    "evt_0016"
   ],
-  "timestamp": 2.6055,
-  "wall_time": "2026-09-28T20:22:00.570+00:00",
+  "timestamp": 2.61,
+  "wall_time": "2026-10-18T09:52:32.999+00:00",
   "session_id": "rec-conflict-demo",
   "event_type": "GroundingVerified",
   "utterance_id": "u1",
@@ -959,7 +1164,7 @@
   "sub_query_id": null,
   "document_ids": [],
   "chunk_ids": [],
-  "latency_ms": 0.515,
+  "latency_ms": 0.495,
   "token_cost": {},
   "confidence": 1.0,
   "citations": [
@@ -991,6 +1196,7 @@
       }
      ],
      "missing_anchors": [],
+     "checksum_ok": true,
      "repaired": false,
      "text": "The expected headcount can be changed up to 24 hours before the event without a fee.",
      "evidence": [
@@ -1021,6 +1227,7 @@
       }
      ],
      "missing_anchors": [],
+     "checksum_ok": true,
      "repaired": false,
      "text": "The expected headcount can be changed up to 72 hours before the event without a fee.",
      "evidence": [
@@ -1040,7 +1247,7 @@
     "fabricated_ids_blocked": 0,
     "citations_valid": 2,
     "emitted": 2,
-    "status": "PASS"
+    "status": "CONFLICTING"
    },
    "checks": [
     "CITATION_IN_SESSION_RETRIEVAL",
@@ -1057,8 +1264,8 @@
   "parent_event_ids": [
    "evt_0017"
   ],
-  "timestamp": 2.6056,
-  "wall_time": "2026-09-28T20:22:00.570+00:00",
+  "timestamp": 2.6102,
+  "wall_time": "2026-10-18T09:52:32.999+00:00",
   "session_id": "rec-conflict-demo",
   "event_type": "AnswerVersionCreated",
   "utterance_id": "u1",
@@ -1075,7 +1282,7 @@
   "token_cost": {
    "llm_prompt": 0,
    "llm_completion": 0,
-   "context_est": 160
+   "context_est": 57
   },
   "confidence": null,
   "citations": [
@@ -1111,7 +1318,7 @@
       "D03:C05"
      ],
      "quote": "The expected headcount can be changed up to 72 hours before the event without a fee.",
-     "score": 0.706,
+     "score": 0.73,
      "verdict": "CONFLICTING",
      "support": 1.0,
      "anchors_ok": true,
@@ -1123,7 +1330,8 @@
      ],
      "conditioned_on": [],
      "repaired": false,
-     "version_created": 1
+     "version_created": 1,
+     "evidence_checksums": {}
     },
     {
      "claim_id": "C01",
@@ -1134,7 +1342,7 @@
       "D08:C02"
      ],
      "quote": "The expected headcount can be changed up to 24 hours before the event without a fee.",
-     "score": 0.706,
+     "score": 0.73,
      "verdict": "CONFLICTING",
      "support": 1.0,
      "anchors_ok": true,
@@ -1146,7 +1354,10 @@
      ],
      "conditioned_on": [],
      "repaired": false,
-     "version_created": 1
+     "version_created": 1,
+     "evidence_checksums": {
+      "D08:C02": "bdb5c2403259df5e7282e0c2ccdfe31cc0032ec1"
+     }
     }
    ],
    "uncertainty": [],
@@ -1202,10 +1413,10 @@
    "tokens": {
     "llm_prompt": 0,
     "llm_completion": 0,
-    "context_est": 160
+    "context_est": 57
    },
    "counterfactual": {},
-   "created_t": 2.606,
+   "created_t": 2.61,
    "notes": [],
    "rendering": "The expected headcount can be changed up to 72 hours before the event without a fee. [D03:C05] The expected headcount can be changed up to 24 hours before the event without a fee. [D08:C02]"
   }
@@ -1215,8 +1426,8 @@
   "parent_event_ids": [
    "evt_0018"
   ],
-  "timestamp": 2.6057,
-  "wall_time": "2026-09-28T20:22:00.570+00:00",
+  "timestamp": 2.6103,
+  "wall_time": "2026-10-18T09:52:32.999+00:00",
   "session_id": "rec-conflict-demo",
   "event_type": "TelemetryEmitted",
   "utterance_id": "u1",
@@ -1230,7 +1441,7 @@
   "token_cost": {
    "llm_prompt": 0,
    "llm_completion": 0,
-   "context_est": 160
+   "context_est": 57
   },
   "confidence": null,
   "citations": [],
@@ -1238,11 +1449,11 @@
    "turn_type": "NEW_INFO",
    "retrievals": 1,
    "early_retrievals": 0,
-   "first_retrieval_t": 2.6008,
+   "first_retrieval_t": 2.6031,
    "utterance_end_t": 2.6,
-   "retrieval_lead_s": -0.0008,
-   "retrieval_latency_ms_mean": 0.15,
-   "post_utterance_latency_ms": 5.584,
+   "retrieval_lead_s": -0.0031,
+   "retrieval_latency_ms_mean": 1.77,
+   "post_utterance_latency_ms": 10.092,
    "sub_queries": [
     "I01"
    ],

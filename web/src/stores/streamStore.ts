@@ -77,7 +77,18 @@ export const useStream = create<StreamState>((set, get) => ({
 
   append: (event) =>
     set((s) => {
-      const events = [...s.events, event];
+      if (s.events.some((existing) => existing.event_id === event.event_id)) return {};
+      let prior = s.events;
+      if (event.event_type === "TranscriptReconciled") {
+        const raw = event.payload.invalidated_event_ids;
+        const invalidated = new Set(Array.isArray(raw) ? raw.filter((id): id is string => typeof id === "string") : []);
+        prior = prior.filter((existing) => !invalidated.has(existing.event_id));
+      }
+      const events = [...prior, event];
+      if (event.event_type === "TranscriptReconciled") {
+        const cursor = s.following ? events.length : Math.min(s.cursor, events.length);
+        return { events, cursor, view: foldEvents(events, cursor), clock: event.timestamp };
+      }
       if (!s.following) return { events };
       const next = { ...s, events };
       return { events, ...withCursor(next, events.length), clock: event.timestamp };

@@ -9,11 +9,15 @@ function GroundingStripImpl({ version, grounding }: { version: AnswerVersion; gr
   }
   const g = grounding.find((x) => x.answerVersion === version.id);
   if (!g) return <StatusPill state="WAIT" label="GROUNDING —" />;
-  const pass = g.status === "PASS";
+  const state = g.status === "SUPPORTED" ? "SUPPORTED"
+    : g.status === "CONFLICTING" ? "CONFLICTING"
+      : g.status === "PARTIAL" ? "PARTIAL"
+        : g.status === "INSUFFICIENT_EVIDENCE" ? "WAIT" : "FAIL";
+  const label = g.status.replace(/_/g, " ");
   return (
     <span data-testid="grounding-strip">
-      <StatusPill state={pass ? "PASS" : "FAIL"}
-        label={`GROUNDING ${pass ? "PASS" : "BLOCKED"} · ${g.emitted}/${g.checked} · ${g.fabricatedIdsBlocked} FABRICATED`} />
+      <StatusPill state={state}
+        label={`${label} · ${g.emitted}/${g.checked} VERIFIED · ${g.fabricatedIdsBlocked} FABRICATED`} />
     </span>
   );
 }

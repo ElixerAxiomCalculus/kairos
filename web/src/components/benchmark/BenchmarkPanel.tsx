@@ -1,7 +1,7 @@
 import { createColumnHelper, flexRender, getCoreRowModel, getSortedRowModel, useReactTable, type SortingState } from "@tanstack/react-table";
 import { useMemo, useState } from "react";
 import { StatusPill } from "@/components/common/StatusPill";
-import type { BenchmarkReport } from "@/features/replay/benchmarkData";
+import type { BenchmarkReport, SemanticBenchmarkReport } from "@/features/replay/benchmarkData";
 import { DASH, ms, ratio } from "@/utils/format";
 import styles from "@/routes/routes.module.css";
 
@@ -127,6 +127,36 @@ export function MetricGrid({ report }: { report: BenchmarkReport | null }) {
           </div>
         );
       })}
+    </div>
+  );
+}
+
+const SEMANTIC_METRICS: Array<{
+  label: string;
+  value: (report: SemanticBenchmarkReport) => number | undefined;
+  detail: (report: SemanticBenchmarkReport) => string;
+}> = [
+  { label: "Intent F1", value: (r) => r.metrics?.intent.intent_f1, detail: (r) => `${r.metrics?.intent.intents ?? 0} intents / ${r.metrics?.intent.cases ?? 0} cases` },
+  { label: "Boundary F1", value: (r) => r.metrics?.intent.boundary_f1, detail: () => "deterministic speech boundaries" },
+  { label: "Constraint Ownership", value: (r) => r.metrics?.intent.constraint_ownership_accuracy, detail: () => "intent-scoped slots" },
+  { label: "Retrieval Recall@5", value: (r) => r.metrics?.retrieval.recall_at_5, detail: (r) => `${r.metrics?.retrieval.positive_queries ?? 0} positive profile queries` },
+  { label: "Relevant Evidence Precision", value: (r) => r.metrics?.retrieval.relevant_evidence_precision, detail: () => "accepted top-k evidence" },
+  { label: "OOD Rejection", value: (r) => r.metrics?.retrieval.out_of_domain_rejection_accuracy, detail: (r) => `${r.metrics?.retrieval.negative_queries ?? 0} negative queries` },
+  { label: "SQuAD Recall@5", value: (r) => r.metrics?.retrieval.external_squad_recall_at_5, detail: (r) => `${r.metrics?.retrieval.external_squad_queries ?? 0} held-aside labels` },
+  { label: "Grounding Accuracy", value: (r) => r.metrics?.grounding.accuracy, detail: (r) => `${r.metrics?.grounding.cases ?? 0} adversarial cases` },
+  { label: "False Grounding Acceptance", value: (r) => r.metrics?.grounding.false_grounding_acceptance_rate, detail: () => "lower is better" },
+];
+
+export function SemanticMetricGrid({ report }: { report: SemanticBenchmarkReport }) {
+  return (
+    <div className={styles.metrics} data-testid="semantic-metric-grid">
+      {SEMANTIC_METRICS.map((metric) => (
+        <div key={metric.label} className={styles.metric} title={metric.detail(report)}>
+          <span className="px muted">{metric.label}</span>
+          <span className={styles.big}>{formatMetric(metric.value(report), "ratio")}</span>
+          <div className={styles.metricRow}><span>{metric.detail(report)}</span><span>MEASURED</span></div>
+        </div>
+      ))}
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { z } from "zod";
 /** Wire schema of a backend event (kairos/schemas/events.py). Payload is validated per consumer. */
 export const EventTypeSchema = z.enum([
   "SessionStarted",
+  "TranscriptReconciled",
   "TranscriptChunkReceived",
   "QueryFrameUpdated",
   "TurnClassified",
@@ -53,10 +54,21 @@ export const ServerMessageSchema = z.discriminatedUnion("type", [
   z.object({
     type: z.literal("hello"),
     session_id: z.string(),
+    resumed: z.boolean().default(false),
     corpus: z.record(z.unknown()),
     config: z.record(z.unknown()),
   }),
   z.object({ type: z.literal("event"), event: z.unknown() }),
+  z.object({
+    type: z.literal("transcript_ack"),
+    utterance_id: z.string(),
+    revision: z.number().int(),
+    status: z.enum(["accepted", "duplicate", "stale", "finalized"]),
+    committed_text: z.string(),
+    provisional_text: z.string(),
+    reconciled: z.boolean(),
+    finalized: z.boolean(),
+  }),
   z.object({ type: z.literal("error"), message: z.string() }),
 ]);
 

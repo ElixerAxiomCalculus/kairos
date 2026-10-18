@@ -494,7 +494,7 @@ export function applyEvent(view: EngineView, ev: WireEvent): EngineView {
         fabricatedIdsBlocked: num(s.fabricated_ids_blocked) ?? 0,
         citationsValid: num(s.citations_valid) ?? 0,
         emitted: num(s.emitted) ?? 0,
-        status: (str(s.status) ?? "PASS") as "PASS" | "BLOCKED",
+        status: (str(s.status) ?? "INSUFFICIENT_EVIDENCE") as GroundingResult["status"],
         results: arr(p.results),
         checks: arr<string>(p.checks),
         timestamp: ev.timestamp,

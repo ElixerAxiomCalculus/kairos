@@ -48,9 +48,16 @@ class EngineContext:
 
     def __init__(self, cfg: Config, bus: EventBus | None = None) -> None:
         self.cfg = cfg
-        self.corpus = load_corpus(resolve_path(cfg["corpus"]["path"]))
+        corpus_cfg = cfg["corpus"]
+        profile = corpus_cfg.get("profile", "sample")
+        configured_paths = corpus_cfg.get("paths")
+        if configured_paths is None and profile != "sample":
+            configured_paths = corpus_cfg.get("profiles", {}).get(profile)
+        roots = [resolve_path(p) for p in (configured_paths or [corpus_cfg["path"]])]
+        self.corpus = load_corpus(roots, profile=profile)
+        self.corpus.places.update(str(place).lower() for place in corpus_cfg.get("places", []))
         self.index = HybridIndex(self.corpus, cfg["retrieval"])
-        self.frame_builder = FrameBuilder(self.corpus)
+        self.frame_builder = FrameBuilder(self.corpus, set(corpus_cfg.get("places", [])))
         self.turns = TurnClassifier(self.corpus)
         self.decomposer = Decomposer(cfg["decomposer"], self.index)
         self.extractive = ExtractiveSynthesizer(self.index, cfg["synthesis"])
@@ -79,6 +86,7 @@ class EngineContext:
             "synthesis_backend": getattr(self.synth, "name", "extractive"),
             "grounding_nli": c["grounding"]["nli"],
             "refinement": c["delta"]["refinement"],
+            "corpus_profile": c["corpus"].get("profile", "sample"),
         }
 
 
@@ -111,6 +119,20 @@ class UtteranceState:
     tokens: dict = field(default_factory=lambda: {"llm_prompt": 0, "llm_completion": 0, "context_est": 0})
 
 
+@dataclass
+class _RevisionCheckpoint:
+    event_index: int
+    utterances: dict[str, UtteranceState]
+    order: list[str]
+    sub_queries: dict[str, SubQuery]
+    claims: dict[str, Claim]
+    versions: list[AnswerVersion]
+    retrieved: set[str]
+    committed: list[tuple[str, str]]
+    vocab: set[str]
+    graph: EvidenceGraph
+
+
 def _priority(action: str) -> int:
     return {"REFINE": 4, "RETRIEVE": 3, "SUPPRESS": 2, "WAIT": 1, "HOLD": 0}[action]
 
@@ -119,7 +141,7 @@ class SessionEngine:
     def __init__(self, ctx: EngineContext, session_id: str | None = None) -> None:
         self.ctx = ctx
         self.cfg = ctx.cfg
-        self.id = session_id or f"s-{uuid.uuid4().hex[:8]}"
+        self.id = session_id or f"s-{uuid.uuid4().hex}"
         self.controller = RetrievalController(self.cfg["controller"], ctx.index)
         self.graph = EvidenceGraph()
         self.utterances: dict[str, UtteranceState] = {}
@@ -142,6 +164,8 @@ class SessionEngine:
         self.last_active = time.time()
         self.ended = False
         self._lock = asyncio.Lock()
+        self._revision_checkpoints: dict[str, _RevisionCheckpoint] = {}
+        self._invalidated_event_ids: set[str] = set()
 
     # ------------------------------------------------------------------ plumbing
     def now(self) -> float:
@@ -186,6 +210,10 @@ class SessionEngine:
     def latest_version(self) -> AnswerVersion | None:
         return self.versions[-1] if self.versions else None
 
+    def active_events(self) -> list[Event]:
+        """Events that still describe authoritative state after ASR reconciliation."""
+        return [e for e in self.events if e.event_id not in self._invalidated_event_ids]
+
     # ------------------------------------------------------------------ lifecycle
     def start(self) -> Event:
         return self.emit("SessionStarted", payload={
@@ -210,7 +238,74 @@ class SessionEngine:
         self.retrieved.clear()
         self.committed.clear()
         self.vocab.clear()
+        self._revision_checkpoints.clear()
+        self._invalidated_event_ids.clear()
         return ev
+
+    async def begin_revisable_utterance(self, utterance_id: str) -> None:
+        """Capture domain state before a mutable ASR utterance reaches the engine."""
+        async with self._lock:
+            if utterance_id in self._revision_checkpoints:
+                return
+            if any(uid != utterance_id for uid in self._revision_checkpoints):
+                raise ValueError("another revisable utterance is already active")
+            self._revision_checkpoints[utterance_id] = _RevisionCheckpoint(
+                event_index=len(self.events),
+                utterances=copy.deepcopy(self.utterances),
+                order=list(self.order),
+                sub_queries=copy.deepcopy(self.sub_queries),
+                claims=copy.deepcopy(self.claims),
+                versions=copy.deepcopy(self.versions),
+                retrieved=set(self.retrieved),
+                committed=list(self.committed),
+                vocab=set(self.vocab),
+                graph=copy.deepcopy(self.graph),
+            )
+
+    async def reconcile_utterance(self, utterance_id: str, authoritative_text: str) -> None:
+        """Roll back one open ASR turn and reprocess its corrected authoritative text.
+
+        The append-only event log retains an explicit invalidation record for auditability;
+        consumers remove the listed superseded events from their current projection.
+        """
+        async with self._lock:
+            checkpoint = self._revision_checkpoints.get(utterance_id)
+            if checkpoint is None:
+                raise ValueError("utterance is not open for transcript reconciliation")
+            invalidated = [e.event_id for e in self.events[checkpoint.event_index:]
+                           if e.event_id not in self._invalidated_event_ids]
+            self._invalidated_event_ids.update(invalidated)
+            self.utterances = copy.deepcopy(checkpoint.utterances)
+            self.order = list(checkpoint.order)
+            self.sub_queries = copy.deepcopy(checkpoint.sub_queries)
+            self.claims = copy.deepcopy(checkpoint.claims)
+            self.versions = copy.deepcopy(checkpoint.versions)
+            self.retrieved = set(checkpoint.retrieved)
+            self.committed = list(checkpoint.committed)
+            self.vocab = set(checkpoint.vocab)
+            self.graph = copy.deepcopy(checkpoint.graph)
+            prior = self.events[:checkpoint.event_index]
+            parent = next((e.event_id for e in reversed(prior)
+                           if e.event_id not in self._invalidated_event_ids), None)
+            ev = self.emit("TranscriptReconciled", [parent], utterance_id=utterance_id, payload={
+                "invalidated_event_ids": invalidated,
+                "authoritative_text": authoritative_text,
+                "reason": "ASR_CORRECTION_CROSSED_COMMITTED_PREFIX",
+            })
+            if authoritative_text:
+                u = UtteranceState(utterance_id, last_chunk_event=ev.event_id)
+                self.utterances[utterance_id] = u
+                self.order.append(utterance_id)
+                await self._on_chunk(ChunkIn(
+                    utterance_id=utterance_id,
+                    text=authoritative_text,
+                    final=False,
+                    chunk_id=f"{utterance_id}.reconciled.{self._seq + 1}",
+                ))
+
+    async def finish_revisable_utterance(self, utterance_id: str) -> None:
+        async with self._lock:
+            self._revision_checkpoints.pop(utterance_id, None)
 
     async def end_utterance(self, utterance_id: str) -> None:
         async with self._lock:
@@ -254,7 +349,8 @@ class SessionEngine:
         u.last_chunk_event = ev_chunk.event_id
 
         t_stage = time.perf_counter()
-        frame = self.ctx.frame_builder.build(u.text, u.slots, t1, chunk_id)
+        previous_frame = u.frame
+        frame = self.ctx.frame_builder.build(u.text, u.slots, t1, chunk_id, previous_frame)
         u.frame = frame
         u.slots = frame.slots
         self.query_version += 1
@@ -263,9 +359,9 @@ class SessionEngine:
                              latency_ms=round((time.perf_counter() - t_stage) * 1000, 3), payload={
             "raw_text": frame.raw_text, "analysis_text": frame.analysis_text, "normalized": frame.normalized(),
             "anchor": frame.anchor, "repairs": frame.repairs,
-            "spans": [{"text": s.text, "kind": s.kind, "closed": s.closed, "soft": s.soft} for s in frame.spans],
-            "candidates": [{"key": x.key, "text": x.text, "need": x.need_text, "constraints": x.constraints,
-                            "closed": x.closed, "anaphoric": x.anaphoric} for x in frame.candidates],
+            "spans": [{"text": s.text, "kind": s.kind, "closed": s.closed, "soft": s.soft,
+                       "start": s.start, "end": s.end, "request_cue": s.request_cue} for s in frame.spans],
+            "candidates": [x.to_public() for x in frame.candidates],
             "slots": [s.to_public() for s in frame.slots.values()],
         })
         u.last_frame_event = ev_frame.event_id
@@ -316,7 +412,8 @@ class SessionEngine:
             sev = self.emit("RetrievalSuppressed", [ev.event_id], utterance_id=u.id,
                             query_version=self.query_version,
                             answer_version=base.version if base else None, retrieval_trigger="NONE",
-                            chunk_ids=reused, document_ids=sorted({x.split(":")[0] for x in reused}), payload={
+                            chunk_ids=reused, document_ids=sorted({self.ctx.corpus.chunk(x).doc_id for x in reused
+                                                                  if self.ctx.corpus.chunk(x)}), payload={
                 "reason": reason, "reused_answer_version": base.version if base else None,
                 "evidence_reused": len(reused), "skipped": ["VECTOR_SEARCH", "BM25", "RERANKER", "FUSION"],
                 "transform": turn.transform,
@@ -352,6 +449,7 @@ class SessionEngine:
                              latency_ms=round(probe_ms, 3), payload={
             "probes": [{"candidate": d.key, "sections": d.probe[:5]} for _, _, d in decisions],
             "retriever": "bm25-probe",
+            "cache": self.ctx.index.status()["probe_cache"],
         })
         if not decisions:
             self._emit_decision(u, ev_probe.event_id, "WAIT", "NONE", ["NO_CANDIDATE_NEED"], {}, [], u.turn)
@@ -382,7 +480,9 @@ class SessionEngine:
                 if all(j[0].id != a.sub_query.id for j in jobs):
                     jobs.append((a.sub_query, trigger))
                 assignments.append({"candidate": cand.key, "sub_query_id": a.sub_query.id, "created": a.created,
-                                    "merged_into": a.merged_into, "footprint_overlap": a.footprint_overlap})
+                                    "merged_into": a.merged_into, "footprint_overlap": a.footprint_overlap,
+                                    "footprint_valid": a.footprint_valid,
+                                    "standalone_status": a.standalone_status})
             elif dec.action == "REFINE":
                 sq = self.sub_queries[st.sub_query_id]
                 self.ctx.decomposer.refresh(sq, cand)
@@ -464,21 +564,30 @@ class SessionEngine:
         results = await asyncio.gather(*(asyncio.to_thread(self._timed_search, sq) for sq, _ in jobs))
         completed: list[Event] = []
         all_ids: list[str] = []
+        all_candidate_ids: list[str] = []
         for (sq, trig), (res, start, end) in zip(jobs, results):
-            sq.hits = res.hits
+            sq.candidate_hits = res.hits
+            sq.hits = res.relevant_hits
             sq.status = "RETRIEVED"
+            sq.evidence_status = res.evidence_status
+            sq.selected_domain = res.domain
             sq.retrieval_count += 1
-            ids = [h.chunk_id for h in res.hits]
+            candidate_ids = [h.chunk_id for h in res.hits]
+            ids = [h.chunk_id for h in res.relevant_hits]
             all_ids.extend(ids)
-            self.retrieved.update(ids)
+            all_candidate_ids.extend(candidate_ids)
+            self.retrieved.update(candidate_ids)
             self.committed.append((u.id, sq.query.dense_text))
             u.retrievals += 1
             self.graph.add_node(sq_node(sq.id), "sub_query", label=sq.label, text=sq.text)
             for h in res.hits:
                 ch = self.ctx.corpus.chunk(h.chunk_id)
-                self.graph.add_node(chunk_node(h.chunk_id), "chunk", doc_id=ch.doc_id, section=ch.section_number)
+                self.graph.add_node(chunk_node(h.chunk_id), "chunk", doc_id=ch.doc_id, section=ch.section_number,
+                                    evidence_status=h.relevance_status, accepted=h.accepted,
+                                    source_dataset=ch.source_dataset, corpus_profile=ch.corpus_profile)
                 self.graph.add_edge(sq_node(sq.id), chunk_node(h.chunk_id), "RETRIEVED", rank=h.rank,
-                                    rerank=round(h.rerank_score, 4), trigger=trig)
+                                    rerank=round(h.rerank_score, 4), trigger=trig, accepted=h.accepted,
+                                    evidence_status=h.relevance_status)
             for dup, canon in res.duplicates:
                 self.graph.add_edge(chunk_node(dup), chunk_node(canon), "DUPLICATES")
             end_off = (end - base_perf)
@@ -488,12 +597,16 @@ class SessionEngine:
                 hits_pub.append({**h.to_public(), **ch.to_public(self.cfg["telemetry"]["trace_content"])})
             ev = self.emit("RetrievalCompleted", [started[sq.id].event_id], utterance_id=u.id,
                            query_version=self.query_version, sub_query_id=sq.id, retrieval_trigger=trig,
-                           document_ids=sorted({h.chunk_id.split(":")[0] for h in res.hits}), chunk_ids=ids,
+                           document_ids=sorted({self.ctx.corpus.chunk(cid).doc_id for cid in candidate_ids}),
+                           chunk_ids=candidate_ids,
                            latency_ms=round((end - start) * 1000, 3),
-                           confidence=round(res.hits[0].rerank_score, 4) if res.hits else 0.0,
+                           confidence=round(res.relevant_hits[0].rerank_score, 4) if res.relevant_hits else 0.0,
                            t=base_t + end_off, payload={
                 "hits": hits_pub, "duplicates": res.duplicates, "filtered_by_facet": res.filtered,
                 "stage_ms": {k: round(v, 3) for k, v in res.stage_ms.items()}, "mode": res.mode,
+                "evidence_status": res.evidence_status, "accepted_chunk_ids": ids,
+                "candidate_chunk_ids": candidate_ids, "selected_domain": res.domain,
+                "domain_confidence": round(res.domain_confidence, 4),
                 "started_offset_ms": round((start - base_perf) * 1000, 3),
                 "ended_offset_ms": round(end_off * 1000, 3), "label": sq.label,
             })
@@ -505,9 +618,11 @@ class SessionEngine:
             self.graph.add_edge(chunk_node(a), chunk_node(b), "CONTRADICTS", unit=con["unit"])
         shared = sorted({cid for cid in all_ids if all_ids.count(cid) > 1})
         fused = self.emit("EvidenceFused", [e.event_id for e in completed], utterance_id=u.id,
-                          query_version=self.query_version, chunk_ids=list(dict.fromkeys(all_ids)),
-                          document_ids=sorted({x.split(":")[0] for x in all_ids}), payload={
+                          query_version=self.query_version, chunk_ids=list(dict.fromkeys(all_candidate_ids)),
+                          document_ids=sorted({self.ctx.corpus.chunk(x).doc_id for x in all_ids}), payload={
             "sub_queries": [sq.id for sq, _ in jobs], "evidence_count": len(set(all_ids)),
+            "candidate_evidence_count": len(set(all_candidate_ids)),
+            "accepted_evidence_count": len(set(all_ids)),
             "shared_across_sub_queries": shared, "contradictions": contradictions,
             "duplicates_collapsed": sum(len(r.duplicates) for r, _, _ in results),
         })
@@ -579,7 +694,7 @@ class SessionEngine:
                     self.vocab |= content_set(self.sub_queries[b.sub_query_id].text)
         commit_s = time.perf_counter() - t_commit
         if version is not None and version.kind == "SEMANTIC":
-            mean_ret = [e.latency_ms or 0 for e in self.events
+            mean_ret = [e.latency_ms or 0 for e in self.active_events()
                         if e.event_type == "RetrievalCompleted" and e.utterance_id == u.id]
             self.controller.observe_pipeline_latency(commit_s + (sum(mean_ret) / len(mean_ret) / 1000 if mean_ret else 0))
         self._telemetry_rollup(u, version)
@@ -587,8 +702,10 @@ class SessionEngine:
     def _claims_from_drafts(self, drafts: list[ClaimDraft], version_no: int) -> list[Claim]:
         out = []
         for d in drafts:
+            checksums = {cid: self.ctx.corpus.chunk(cid).sha1 for cid in d.evidence if self.ctx.corpus.chunk(cid)}
             out.append(Claim(self._next_claim_id(), self._next_lineage(), d.text, d.sub_query_id, list(d.evidence),
-                             d.quote, round(d.score, 4), version_created=version_no))
+                             d.quote, round(d.score, 4), version_created=version_no,
+                             evidence_checksums=checksums))
         return out
 
     def _verify(self, claims: list[Claim], parent: str | None, u: UtteranceState) -> tuple[list[Claim], Event]:
@@ -622,7 +739,16 @@ class SessionEngine:
             "citations_valid": sum(len(c.evidence) for c in passed),
             "emitted": len(passed),
         }
-        summary["status"] = "PASS" if summary["unsupported"] == 0 and summary["invalid_citation"] == 0 else "BLOCKED"
+        if summary["invalid_citation"]:
+            summary["status"] = "INVALID_GROUNDING"
+        elif summary["checked"] == 0 or summary["emitted"] == 0:
+            summary["status"] = "INSUFFICIENT_EVIDENCE"
+        elif summary["conflicting"]:
+            summary["status"] = "CONFLICTING"
+        elif summary["partial"] or summary["unsupported"]:
+            summary["status"] = "PARTIAL"
+        else:
+            summary["status"] = "SUPPORTED"
         ev = self.emit("GroundingVerified", [parent], utterance_id=u.id, query_version=self.query_version,
                        latency_ms=round((time.perf_counter() - t) * 1000, 3),
                        citations=sorted({e for c in passed for e in c.evidence}),
@@ -748,7 +874,8 @@ class SessionEngine:
                 self.graph.add_edge(claim_node(c.claim_id), claim_node(src), "DERIVED_FROM")
         self.emit("AnswerVersionCreated", parents, utterance_id=u.id, query_version=self.query_version,
                   answer_version=number, citations=version.retrievals_used,
-                  document_ids=sorted({e.split(":")[0] for e in version.retrievals_used}),
+                  document_ids=sorted({self.ctx.corpus.chunk(e).doc_id for e in version.retrievals_used
+                                       if self.ctx.corpus.chunk(e)}),
                   token_cost=dict(version.tokens), payload=version.to_public())
         return version
 
@@ -1025,9 +1152,10 @@ class SessionEngine:
         return out
 
     def _telemetry_rollup(self, u: UtteranceState, version: AnswerVersion | None) -> None:
-        ret_events = [e for e in self.events if e.utterance_id == u.id and e.event_type == "RetrievalCompleted"]
+        events = self.active_events()
+        ret_events = [e for e in events if e.utterance_id == u.id and e.event_type == "RetrievalCompleted"]
         latencies = [e.latency_ms or 0.0 for e in ret_events]
-        early = [e for e in self.events if e.utterance_id == u.id and e.event_type == "RetrievalStarted"
+        early = [e for e in events if e.utterance_id == u.id and e.event_type == "RetrievalStarted"
                  and e.timestamp < u.last_chunk_t]
         answer_t = version.created_t if version else None
         self.emit("TelemetryEmitted", [self.events[-1].event_id], utterance_id=u.id,

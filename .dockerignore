@@ -3,10 +3,26 @@
 **/__pycache__
 **/*.pyc
 .pytest_cache
-runs/
+# Keep runtime/session data out of the image, but publish the canonical benchmark evidence.
+runs/*
+!runs/bench/
+runs/bench/*
+!runs/bench/benchmark/
+!runs/bench/experiments/
+!runs/bench/semantic/
+runs/bench/benchmark/*
+!runs/bench/benchmark/latest.json
+!runs/bench/benchmark/audit_sheet.csv
+runs/bench/experiments/*
+!runs/bench/experiments/latest.json
+runs/bench/semantic/*
+!runs/bench/semantic/latest.json
 web/node_modules
 web/dist
 web/storybook-static
 web/cypress/screenshots
 web/cypress/videos
+web/cypress/downloads
+web/coverage
+web/test-results
 *.log

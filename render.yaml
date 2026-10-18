@@ -1,0 +1,16 @@
+# Render Blueprint: Kairos engine + REST + WebSocket.
+services:
+  - type: web
+    name: kairos-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m kairos serve --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: KAIROS_CORS_ORIGINS
+        sync: false          # e.g. https://your-site.netlify.app
+      - key: GEMINI_API_KEY
+        sync: false          # optional, only for configs/gemini.yaml

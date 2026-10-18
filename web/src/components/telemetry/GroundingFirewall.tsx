@@ -40,14 +40,18 @@ function GroundingFirewallImpl({ result, transform }: Props) {
       </div>
     );
   }
-  const pass = result.status === "PASS";
+  const statusLabel = result.status.replace(/_/g, " ");
+  const statusColor = result.status === "SUPPORTED" ? STATUS_VAR.PASS
+    : result.status === "CONFLICTING" ? STATUS_VAR.CONFLICTING
+      : result.status === "PARTIAL" || result.status === "INSUFFICIENT_EVIDENCE"
+        ? STATUS_VAR.WAIT : STATUS_VAR.FAIL;
   const blocked = result.results.filter((r) => r.verdict === "UNSUPPORTED" || r.verdict === "INVALID_CITATION");
   return (
     <div className={styles.firewall} data-testid="grounding-firewall" data-status={result.status}>
       <div className={styles.fwHead}>
         <span className="px muted">GROUNDING FIREWALL</span>
-        <span className={styles.fwStatus} style={{ color: pass ? STATUS_VAR.PASS : STATUS_VAR.FAIL }}>
-          {pass ? "PASS" : "BLOCKED"}
+        <span className={styles.fwStatus} style={{ color: statusColor }}>
+          {statusLabel}
         </span>
       </div>
       <div className={styles.fwRows}>

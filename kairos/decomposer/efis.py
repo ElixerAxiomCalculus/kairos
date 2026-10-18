@@ -19,7 +19,7 @@ from dataclasses import dataclass
 from kairos.retrieval.index import HybridIndex, RetrievalQuery
 from kairos.schemas.models import SubQuery
 from kairos.streaming.frame import UNIT_WORDS, CandidateNeed, Frame
-from kairos.textutil import STOPWORDS, content_terms, is_number, lower_tokens, norm, rbo
+from kairos.textutil import STOPWORDS, content_terms, is_number, jaccard, lower_tokens, norm, rbo
 
 LABEL_STOP = {"book", "need", "tell", "whether", "available", "availability", "know", "find", "check", "detail",
               "summarize", "summarise", "explain", "list", "policy", "rule", "option", "info", "information"}
@@ -32,6 +32,8 @@ class Assignment:
     created: bool
     merged_into: str | None
     footprint_overlap: dict[str, float]
+    footprint_valid: bool = False
+    standalone_status: str = "VALID_STANDALONE"
 
 
 def _surface_terms(text: str) -> list[str]:
@@ -65,33 +67,60 @@ class Decomposer:
         return RetrievalQuery.build(" ; ".join(need_texts), anchor, constraints, self.cfg["anchor_weight"],
                                     facet_constraints, display)
 
-    def footprint(self, q: RetrievalQuery) -> list[str]:
+    def footprint_with_quality(self, q: RetrievalQuery) -> tuple[list[str], float]:
         res = self.index.search(q, top_k=5)
         keys: list[str] = []
-        for h in res.hits:
+        relevant = res.relevant_hits
+        for h in relevant:
             chunk = self.index.corpus.chunk(h.chunk_id)
             key = chunk.parent_key or chunk.section_key
             if key not in keys:
                 keys.append(key)
-        return keys
+        quality = relevant[0].rerank_score if relevant else 0.0
+        return keys, quality
+
+    def footprint(self, q: RetrievalQuery) -> list[str]:
+        return self.footprint_with_quality(q)[0]
 
     def own_footprint(self, need_texts: list[str], constraints: list[str]) -> list[str]:
         return self.footprint(RetrievalQuery.build(" ; ".join(need_texts), "", constraints))
 
     def assign(self, cand: CandidateNeed, frame: Frame, existing: list[SubQuery], next_id: str,
                utterance_id: str, first_sq: SubQuery | None) -> Assignment:
-        anchor = frame.anchor if cand.key != "k0" else ""
+        first_key = frame.candidates[0].key if frame.candidates else cand.key
+        anchor = frame.anchor if cand.key != first_key else ""
         q = self.query_for([cand.need_text], cand.constraints, anchor)
-        fp = self.own_footprint([cand.need_text], cand.constraints)
+        own_query = RetrievalQuery.build(cand.need_text, "", cand.constraints)
+        fp, fp_quality = self.footprint_with_quality(own_query)
+        footprint_valid = (not self.cfg.get("footprint_validity_gate", True) and bool(fp)) or (
+            fp_quality >= float(self.cfg.get("footprint_min_relevance", 0.35))
+        )
         overlaps: dict[str, float] = {}
         best: SubQuery | None = None
         best_val = 0.0
         cvec = self.index.encode(" ".join([cand.need_text, *cand.constraints]))
+        cand_terms = set(content_terms(cand.need_text))
         for sq in existing:
             overlap = rbo(fp, sq.footprint, 0.8)
             cos = float(cvec @ self.index.encode(" ".join(sq.need_texts)))
             overlaps[sq.id] = round(overlap, 3)
-            if (overlap >= self.cfg["theta_merge"] or cos >= self.cfg["theta_sem"]) and overlap + cos > best_val:
+            lexical = jaccard(cand_terms, content_terms(" ".join(sq.need_texts)))
+            constraints_compatible = not any(
+                a["kind"] == b["kind"] and a["normalized_value"] != b["normalized_value"]
+                for a in [c.to_public() for c in cand.typed_constraints]
+                for b in sq.typed_constraints
+            )
+            explicit_topic_shift = bool(cand.request_cue and lexical < float(self.cfg.get("lexical_merge_min", 0.28)))
+            existing_valid = (not self.cfg.get("footprint_validity_gate", True) and bool(sq.footprint)) or (
+                sq.footprint_quality >= float(self.cfg.get("footprint_min_relevance", 0.35))
+            )
+            footprint_merge = (footprint_valid and existing_valid
+                               and overlap >= self.cfg["theta_merge"])
+            semantic_merge = cos >= self.cfg["theta_sem"] and lexical >= float(self.cfg.get("lexical_merge_min", 0.28))
+            can_merge = constraints_compatible and (footprint_merge or semantic_merge)
+            if self.cfg.get("topic_shift_guard", True) and explicit_topic_shift:
+                can_merge = False
+            if can_merge and overlap + cos + lexical > best_val:
                 best, best_val = sq, overlap + cos
         if best is not None:
             best.need_texts.append(cand.need_text)
@@ -101,7 +130,8 @@ class Decomposer:
             best.query = self.query_for(best.need_texts, best.constraints, best.anchor, best.facet_constraints,
                                         best.text)
             best.footprint = self.own_footprint(best.need_texts, best.constraints)
-            return Assignment(cand.key, best, False, best.id, overlaps)
+            best.footprint_quality = max(best.footprint_quality, fp_quality)
+            return Assignment(cand.key, best, False, best.id, overlaps, footprint_valid, cand.status)
 
         sq = SubQuery(
             id=next_id,
@@ -112,12 +142,16 @@ class Decomposer:
             anchor=anchor,
             candidate_keys=[cand.key],
             footprint=fp,
+            typed_constraints=[c.to_public() for c in cand.typed_constraints],
+            footprint_quality=fp_quality,
         )
-        if first_sq is not None and cand.key != "k0" and (cand.anaphoric or anchor):
+        if cand.status == "VALID_STANDALONE" and cand.confidence.get("topic", 1.0) < self.cfg.get("chi_min", 0.12):
+            cand.status = "REQUIRES_CLARIFICATION"
+        if first_sq is not None and cand.key != first_key and cand.anaphoric:
             sq.depends_on = [first_sq.id]
             sq.dependency_type = "soft"
         sq.query = self.query_for(sq.need_texts, sq.constraints, sq.anchor, None, sq.text)
-        return Assignment(cand.key, sq, True, None, overlaps)
+        return Assignment(cand.key, sq, True, None, overlaps, footprint_valid, cand.status)
 
     def refresh(self, sq: SubQuery, cand: CandidateNeed) -> None:
         """Candidate text grew after retrieval (REFINE): rebuild the sub-query from its latest text."""
@@ -128,5 +162,8 @@ class Decomposer:
             if c not in sq.constraints:
                 sq.constraints.append(c)
         sq.label = make_label(cand) if idx == 0 else sq.label
+        sq.typed_constraints = [c.to_public() for c in cand.typed_constraints]
         sq.query = self.query_for(sq.need_texts, sq.constraints, sq.anchor, sq.facet_constraints, sq.text)
-        sq.footprint = self.own_footprint(sq.need_texts, sq.constraints)
+        sq.footprint, sq.footprint_quality = self.footprint_with_quality(
+            RetrievalQuery.build(" ; ".join(sq.need_texts), "", sq.constraints)
+        )

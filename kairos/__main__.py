@@ -105,6 +105,35 @@ def cmd_reproduce(args) -> None:
     cmd_ablate(args)
 
 
+def cmd_import_corpus(args) -> None:
+    from kairos.corpus.adapters import get_adapter
+
+    adapter = get_adapter(args.dataset)
+    if args.subset:
+        adapter.spec["config"] = args.subset
+    if args.split:
+        adapter.spec["split"] = args.split
+    result = adapter.run(
+        args.source,
+        resolve_path(args.destination or f"corpus/imported/{args.dataset}"),
+        limit=args.limit,
+        seed=args.seed,
+        revision=args.revision,
+        dry_run=args.dry_run,
+        validate_only=args.validate_only,
+        expected_checksum=args.expected_checksum,
+    )
+    print(json.dumps(result.manifest, indent=2, sort_keys=True))
+
+
+def cmd_semantic_bench(args) -> None:
+    from benchmark.semantic_runner import run_semantic_benchmark
+
+    report = run_semantic_benchmark(_cfg(args))
+    print(json.dumps({"run_id": report["run_id"], "metrics": report["metrics"],
+                      "ablations": report["ablations"]}, indent=2))
+
+
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(prog="kairos", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--config", default=None, help="YAML merged over configs/default.yaml")
@@ -131,6 +160,22 @@ def main(argv: list[str] | None = None) -> None:
     p.add_argument("--out", default="web/src/mocks/fixtures")
     p.set_defaults(fn=cmd_record)
     sub.add_parser("reproduce").set_defaults(fn=cmd_reproduce)
+    p = sub.add_parser("import-corpus", help="prepare a deterministic external Markdown corpus")
+    p.add_argument("--dataset", required=True, choices=["scifact", "squad"])
+    p.add_argument("--source", default=None, help="offline Dataset Viewer JSON; omit to fetch the public API")
+    p.add_argument("--destination", default=None)
+    p.add_argument("--revision", default="main", help="immutable source revision when known")
+    p.add_argument("--subset", default=None, help="dataset configuration/subset")
+    p.add_argument("--split", default=None)
+    p.add_argument("--expected-checksum", default=None, help="SHA-256 of the source response/file")
+    p.add_argument("--limit", type=int, default=20)
+    p.add_argument("--seed", type=int, default=42)
+    p.add_argument("--dry-run", action="store_true")
+    p.add_argument("--validate-only", action="store_true")
+    p.set_defaults(fn=cmd_import_corpus)
+    sub.add_parser("semantic-bench", help="run V2 semantic/relevance/grounding/scale evaluations").set_defaults(
+        fn=cmd_semantic_bench
+    )
     args = parser.parse_args(argv)
     args.fn(args)
 

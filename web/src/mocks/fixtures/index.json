@@ -7,6 +7,13 @@
   "duration_s": 2.6
  },
  {
+  "id": "multi-domain-stress",
+  "title": "Real-speech multi-domain abstention regression",
+  "description": "Housing repair, numeric ambiguity, independent housing, AI, medical, location and travel topics against the sample corporate-events corpus.",
+  "chunks": 14,
+  "duration_s": 5.3
+ },
+ {
   "id": "pune-demo",
   "title": "Workshop venue in Pune \u2014 multi-intent, late constraint, presentation request",
   "description": "Early retrieval, three intents retrieved in parallel, an 'international event' late constraint handled by delta refinement, and 'make that shorter' suppressed.",
