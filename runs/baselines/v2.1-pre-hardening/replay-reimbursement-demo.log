@@ -1,0 +1,45 @@
+   0.000  SessionStarted
+   1.600  TranscriptChunkReceived       'Summarize the'
+   1.601  QueryFrameUpdated
+   1.602  TurnClassified
+   1.603  ProbeExecuted
+   1.603  RetrievalDecision             WAIT ['CLARIFICATION_REQUIRED', 'INCOMPLETE_CLAUSE']
+   2.500  TranscriptChunkReceived       'reimbursement policy for travel.'
+   2.501  QueryFrameUpdated
+   2.501  TurnClassified
+   2.501  ProbeExecuted
+   2.501  RetrievalDecision             RETRIEVE ['END_OF_UTTERANCE']
+   2.507  SubQueriesGenerated
+   2.507  RetrievalStarted         I01
+   2.519  RetrievalCompleted       I01
+   2.520  EvidenceFused
+   2.523  ClaimsGenerated
+   2.523  GroundingVerified
+   2.523  AnswerVersionCreated          V1 SEMANTIC
+    Scope: This policy covers reimbursement of business travel and related expenses for all employees. [D05:C01]
+   2.523  TelemetryEmitted
+   5.600  TranscriptChunkReceived       'Actually, this is for'
+   5.600  QueryFrameUpdated
+   5.600  TurnClassified
+   5.600  RetrievalDecision             WAIT ['CONSTRAINT_INCOMPLETE']
+   6.300  TranscriptChunkReceived       'international travel.'
+   6.300  QueryFrameUpdated
+   6.300  TurnClassified
+   6.301  RetrievalDecision             REFINE ['LATE_CONSTRAINT']
+   6.302  DeltaPlanComputed
+   6.302  ClaimsGenerated
+   6.302  GroundingVerified
+   6.302  AnswerVersionCreated          V2 SEMANTIC
+    Scope: This policy covers reimbursement of business travel and related expenses for all employees. [D05:C01]
+   6.302  TelemetryEmitted
+   9.800  TranscriptChunkReceived       'Give it to me in two bullets.'
+   9.800  QueryFrameUpdated
+   9.801  TurnClassified
+   9.801  RetrievalDecision             SUPPRESS ['PRESENTATION_TRANSFORMATION']
+   9.801  RetrievalSuppressed
+   9.802  TransformVerified
+   9.802  AnswerVersionCreated          V3 PRESENTATION
+    - Scope: This policy covers reimbursement of business travel and related expenses for all employees. [D05:C01]
+   9.802  TelemetryEmitted
+
+telemetry coverage: 1.000 (51/51 invariant instances)

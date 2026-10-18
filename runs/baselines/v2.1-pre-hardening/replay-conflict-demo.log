@@ -1,0 +1,22 @@
+   0.000  SessionStarted
+   1.700  TranscriptChunkReceived       'How late can I change'
+   1.701  QueryFrameUpdated
+   1.702  TurnClassified
+   1.702  ProbeExecuted
+   1.702  RetrievalDecision             WAIT ['BELOW_THRESHOLD', 'RESULTS_STILL_MOVING', 'AMBIGUOUS_PROBE']
+   2.600  TranscriptChunkReceived       'the expected headcount for a venue booking?'
+   2.600  QueryFrameUpdated
+   2.600  TurnClassified
+   2.601  ProbeExecuted
+   2.601  RetrievalDecision             RETRIEVE ['END_OF_UTTERANCE']
+   2.603  SubQueriesGenerated
+   2.603  RetrievalStarted         I01
+   2.607  RetrievalCompleted       I01
+   2.608  EvidenceFused
+   2.609  ClaimsGenerated
+   2.610  GroundingVerified
+   2.610  AnswerVersionCreated          V1 SEMANTIC
+    The expected headcount can be changed up to 72 hours before the event without a fee. [D03:C05] The expected headcount can be changed up to 24 hours before the event without a fee. [D08:C02]
+   2.610  TelemetryEmitted
+
+telemetry coverage: 1.000 (25/25 invariant instances)

@@ -11,8 +11,12 @@ Honesty rules baked in:
 from __future__ import annotations
 
 import asyncio
+import hashlib
 import json
+import platform
 import statistics
+import subprocess
+import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -21,7 +25,7 @@ from kairos.config import Config, resolve_path
 from kairos.engine import ChunkIn, EngineContext, SessionEngine
 from kairos.retrieval.index import RetrievalQuery
 from kairos.telemetry.validator import validate
-from kairos.textutil import anchors, content_terms, lower_tokens
+from kairos.textutil import anchors, content_terms, lower_tokens, rbo
 
 DATASETS = resolve_path("benchmark/datasets")
 SECONDS_PER_WORD = 0.3
@@ -65,6 +69,137 @@ def _pct(values: list[float], q: float) -> float | None:
 
 def _ratio(num: float, den: float) -> float | None:
     return round(num / den, 4) if den else None
+
+
+def report_provenance(cfg: Config, ctx: EngineContext, *, seed: int, repeats: int) -> dict:
+    config_bytes = json.dumps(dict(cfg), sort_keys=True, separators=(",", ":")).encode("utf-8")
+    corpus_bytes = "\n".join(f"{c.chunk_id}\t{c.sha256}" for c in ctx.corpus.chunks).encode("utf-8")
+    try:
+        commit = subprocess.run(
+            ["git", "rev-parse", "HEAD"], cwd=resolve_path("."), check=True,
+            capture_output=True, text=True,
+        ).stdout.strip()
+    except (OSError, subprocess.CalledProcessError):
+        commit = "UNKNOWN"
+    revisions = sorted({c.dataset_revision for c in ctx.corpus.chunks if c.dataset_revision})
+    return {
+        "git_commit": commit,
+        "working_tree_may_be_dirty": True,
+        "config_sha256": hashlib.sha256(config_bytes).hexdigest(),
+        "corpus_sha256": hashlib.sha256(corpus_bytes).hexdigest(),
+        "dataset_revisions": revisions,
+        "corpus_profile": cfg["corpus"]["profile"],
+        "documents": len(ctx.corpus.documents),
+        "chunks": len(ctx.corpus.chunks),
+        "random_seed": seed,
+        "repeats": repeats,
+        "python": sys.version.split()[0],
+        "platform": platform.platform(),
+        "processor": platform.processor() or "not-reported",
+        "timing_source": "time.perf_counter for backend wall time; benchmark-assigned transcript timing",
+    }
+
+
+def _decision_diagnostics(ctx: EngineContext, dataset: dict, traces: dict[str, list]) -> dict:
+    rows: list[dict] = []
+    labels: list[int] = []
+    scores: list[float] = []
+    for session in dataset["sessions"]:
+        events = [e.model_dump() if hasattr(e, "model_dump") else e for e in traces[session["id"]]]
+        for utterance in session["utterances"]:
+            if utterance["type"] != "NEW_INFO":
+                continue
+            uid = utterance["id"]
+            uev = [e for e in events if e["utterance_id"] == uid]
+            frames = [e for e in uev if e["event_type"] == "QueryFrameUpdated"]
+            final_frame = frames[-1]["payload"] if frames else {"candidates": [], "anchor": ""}
+            final_candidates = {c["key"]: c for c in final_frame["candidates"]}
+            chunk_events = [e for e in uev if e["event_type"] == "TranscriptChunkReceived"]
+            first_actual = next((e["timestamp"] for e in uev if e["event_type"] == "RetrievalStarted"), None)
+            eligible_index = max(0, int(utterance.get("eligible_chunk", len(utterance["chunks"]))) - 1)
+            first_eligible = chunk_events[eligible_index]["timestamp"] if chunk_events else None
+            for decision in [e for e in uev if e["event_type"] == "RetrievalDecision"]:
+                chunk_index = sum(e["timestamp"] <= decision["timestamp"] for e in chunk_events)
+                for candidate in decision["payload"].get("candidates", []):
+                    sig = candidate.get("signals", {})
+                    final = final_candidates.get(candidate["key"])
+                    survival = None
+                    stable_label = None
+                    if final and candidate.get("text"):
+                        now_ids = [h.chunk_id for h in ctx.index.search(
+                            RetrievalQuery.build(candidate["text"])
+                        ).relevant_hits]
+                        final_ids = [h.chunk_id for h in ctx.index.search(RetrievalQuery.build(
+                            final["need"], "", final.get("constraints", [])
+                        )).relevant_hits]
+                        survival = round(rbo(now_ids, final_ids, 0.9), 4)
+                        stable_label = int(survival >= 0.7)
+                    row = {
+                        "session_id": session["id"], "utterance_id": uid,
+                        "candidate_id": candidate["key"], "chunk_index": chunk_index,
+                        "query_prefix": candidate.get("text", ""),
+                        "rho": sig.get("rho"), "chi": sig.get("chi"), "kappa": sig.get("kappa"),
+                        "sigma": sig.get("sigma"), "pi": sig.get("pi"), "nu": sig.get("nu"),
+                        "s_hat": sig.get("s_hat"), "theta": sig.get("theta"),
+                        "budget_remaining": decision["payload"].get("budget_left"),
+                        "decision": candidate.get("action"),
+                        "decision_reason": candidate.get("reasons", []),
+                        "final_evidence_survival": survival,
+                        "stable_label": stable_label,
+                        "first_eligible_t": first_eligible, "first_actual_retrieval_t": first_actual,
+                    }
+                    rows.append(row)
+                    if stable_label is not None and sig.get("s_hat") is not None:
+                        labels.append(stable_label)
+                        scores.append(float(sig["s_hat"]))
+    brier = statistics.mean((score - label) ** 2 for score, label in zip(scores, labels)) if scores else None
+    bins = []
+    weighted_gap = 0.0
+    for lower in [i / 10 for i in range(10)]:
+        members = [(score, label) for score, label in zip(scores, labels)
+                   if lower <= score < lower + 0.1 or (lower == 0.9 and score == 1.0)]
+        if not members:
+            continue
+        mean_score = statistics.mean(x[0] for x in members)
+        observed = statistics.mean(x[1] for x in members)
+        weighted_gap += len(members) * abs(mean_score - observed)
+        bins.append({"lower": lower, "upper": round(lower + 0.1, 1), "count": len(members),
+                     "mean_score": round(mean_score, 4), "observed_survival": round(observed, 4)})
+    positive = [score for score, label in zip(scores, labels) if label]
+    negative = [score for score, label in zip(scores, labels) if not label]
+
+    def slice_summary(selected: list[dict]) -> dict:
+        available = [row for row in selected if row["stable_label"] is not None and row["s_hat"] is not None]
+        if not available:
+            return {"examples": 0, "positive_rate": None, "brier_score": None}
+        return {
+            "examples": len(available),
+            "positive_rate": _ratio(sum(row["stable_label"] for row in available), len(available)),
+            "brier_score": round(statistics.mean(
+                (float(row["s_hat"]) - row["stable_label"]) ** 2 for row in available
+            ), 4),
+        }
+
+    length_slices = {
+        "short_1_4_words": slice_summary([row for row in rows if len(row["query_prefix"].split()) <= 4]),
+        "medium_5_8_words": slice_summary([
+            row for row in rows if 5 <= len(row["query_prefix"].split()) <= 8
+        ]),
+        "long_9_plus_words": slice_summary([row for row in rows if len(row["query_prefix"].split()) >= 9]),
+    }
+    return {
+        "rows": rows,
+        "calibration": {
+            "examples": len(scores), "positive_rate": _ratio(sum(labels), len(labels)),
+            "brier_score": round(brier, 4) if brier is not None else None,
+            "expected_calibration_error": round(weighted_gap / len(scores), 4) if scores else None,
+            "mean_score_stable": round(statistics.mean(positive), 4) if positive else None,
+            "mean_score_unstable": round(statistics.mean(negative), 4) if negative else None,
+            "reliability_bins": bins,
+            "interpretation": "Diagnostic on development traces; no recalibration was fit on this split.",
+        },
+        "by_prefix_length": length_slices,
+    }
 
 
 class Judge:
@@ -328,11 +463,50 @@ def run_benchmark(cfg: Config, split: str = "dev", repeats: int = 2, label: str 
         "config": ctx.config_summary(),
         "stability_model": cfg["controller"]["stability_model"],
         "repeats": repeats,
+        "provenance": report_provenance(cfg, ctx, seed=int(dataset.get("seed", 42)), repeats=repeats),
         "metrics": first["metrics"],
         "targets": cfg["bench"]["targets"],
         "gates": gate_table(first["metrics"], cfg["bench"]["targets"]),
         "validation": {k: v for k, v in first["validation"].items() if k != "failures"},
         "per_session": first["per_session"],
+        "decision_analysis": _decision_diagnostics(ctx, dataset, runs[0][1]),
+        "coverage": {
+            "total_questions": sum(len(u.get("intents", [])) for s in dataset["sessions"] for u in s["utterances"]
+                                   if u["type"] == "NEW_INFO"),
+            "answerable_questions": sum(not i.get("unanswerable", False) for s in dataset["sessions"]
+                                        for u in s["utterances"] if u["type"] == "NEW_INFO"
+                                        for i in u.get("intents", [])),
+            "unanswerable_questions": sum(i.get("unanswerable", False) for s in dataset["sessions"]
+                                          for u in s["utterances"] if u["type"] == "NEW_INFO"
+                                          for i in u.get("intents", [])),
+            "answered_questions": round(first["metrics"]["intent_recall"] * sum(
+                not i.get("unanswerable", False) for s in dataset["sessions"]
+                for u in s["utterances"] if u["type"] == "NEW_INFO" for i in u.get("intents", [])
+            )),
+            "abstained_questions": round(first["metrics"]["abstention_accuracy"] * sum(
+                i.get("unanswerable", False) for s in dataset["sessions"]
+                for u in s["utterances"] if u["type"] == "NEW_INFO" for i in u.get("intents", [])
+            )),
+            "unresolved_questions": round((1 - first["metrics"]["intent_recall"]) * sum(
+                not i.get("unanswerable", False) for s in dataset["sessions"]
+                for u in s["utterances"] if u["type"] == "NEW_INFO" for i in u.get("intents", [])
+            )),
+            "generated_claims": first["metrics"]["claims_judged"],
+            "verified_claims": first["metrics"]["claims_judged"],
+            "supported_claims": sum(1 for evs in runs[0][1].values() for e in evs
+                                    if e.event_type == "AnswerVersionCreated" for c in e.payload.get("claims", [])
+                                    if c.get("status") != "KEEP" and c.get("verdict") == "SUPPORTED"),
+            "partial_claims": sum(1 for evs in runs[0][1].values() for e in evs
+                                  if e.event_type == "AnswerVersionCreated" for c in e.payload.get("claims", [])
+                                  if c.get("status") != "KEEP" and c.get("verdict") == "PARTIAL"),
+            "conflicting_claims": sum(1 for evs in runs[0][1].values() for e in evs
+                                      if e.event_type == "AnswerVersionCreated" for c in e.payload.get("claims", [])
+                                      if c.get("status") != "KEEP" and c.get("verdict") == "CONFLICTING"),
+            "invalid_claims": sum(1 for evs in runs[0][1].values() for e in evs
+                                  if e.event_type == "AnswerVersionCreated" for c in e.payload.get("claims", [])
+                                  if c.get("status") != "KEEP" and c.get("verdict") == "INVALID_CITATION"),
+            "human_audited_claims": 0,
+        },
         "wall_s": first["wall_s"],
         "judge": "automatic lexical judge (verbatim quote / token recall + numeric anchors); independent of the "
                  "firewall's IDF-weighted support score. Human audit pending — see audit_sheet.csv.",
@@ -342,7 +516,7 @@ def run_benchmark(cfg: Config, split: str = "dev", repeats: int = 2, label: str 
         out.mkdir(parents=True, exist_ok=True)
         (out / f"{run_id}.json").write_text(json.dumps(report, indent=1), encoding="utf-8")
         (out / "latest.json").write_text(json.dumps(report, indent=1), encoding="utf-8")
-        _audit_sheet(out / "audit_sheet.csv", runs[0][1])
+        _audit_sheet(out / "audit_sheet.csv", runs[0][1], ctx)
         traces_dir = out / "traces" / run_id
         traces_dir.mkdir(parents=True, exist_ok=True)
         for sid, evs in runs[0][1].items():
@@ -363,19 +537,43 @@ def gate_table(metrics: dict, targets: dict) -> list[dict]:
     return out
 
 
-def _audit_sheet(path: Path, traces: dict) -> None:
+def _audit_sheet(path: Path, traces: dict, ctx: EngineContext) -> None:
     import csv
 
     with open(path, "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
-        w.writerow(["session", "answer_version", "claim_id", "claim", "citations", "quote", "firewall_verdict",
-                    "human_supported(Y/N)", "notes"])
+        w.writerow([
+            "session", "utterance_id", "answer_version", "claim_id", "claim", "query", "intent_id",
+            "citations", "source_passages", "source_metadata", "quote", "automatic_verdict",
+            "human_verdict", "error_type", "reviewer_notes",
+        ])
         for sid, evs in traces.items():
+            queries = {
+                event.utterance_id: event.payload.get("text", "")
+                for event in evs if event.event_type == "TranscriptFinalized"
+            }
             for e in evs:
                 if e.event_type != "AnswerVersionCreated":
                     continue
                 for c in e.payload["claims"]:
                     if c["status"] == "KEEP":
                         continue
-                    w.writerow([sid, e.answer_version, c["claim_id"], c["text"], " ".join(c["evidence"]),
-                                c["quote"], c["verdict"], "", ""])
+                    chunks = [ctx.corpus.chunk(cid) for cid in c["evidence"]]
+                    passages = {chunk.chunk_id: chunk.text for chunk in chunks if chunk is not None}
+                    metadata = {
+                        chunk.chunk_id: {
+                            "document_id": chunk.doc_id,
+                            "title": chunk.doc_title,
+                            "section": chunk.section_path,
+                            "content_hash": f"sha256:{chunk.sha256}",
+                            "source_dataset": chunk.source_dataset,
+                            "dataset_revision": chunk.dataset_revision,
+                        }
+                        for chunk in chunks if chunk is not None
+                    }
+                    w.writerow([
+                        sid, e.utterance_id, e.answer_version, c["claim_id"], c["text"],
+                        queries.get(e.utterance_id, ""), c.get("intent_id", ""), " ".join(c["evidence"]),
+                        json.dumps(passages, ensure_ascii=False), json.dumps(metadata, ensure_ascii=False),
+                        c["quote"], c["verdict"], "", "", "",
+                    ])

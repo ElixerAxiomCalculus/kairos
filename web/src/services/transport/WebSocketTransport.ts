@@ -16,6 +16,7 @@ export class WebSocketTransport implements StreamingTransport {
   private socket: WebSocket | null = null;
   private handlers: TransportHandlers | null = null;
   private sessionId: string | null = null;
+  private resumeToken: string | null = null;
   private attempt = 0;
   private closedByUser = false;
   private queue: string[] = [];
@@ -35,6 +36,7 @@ export class WebSocketTransport implements StreamingTransport {
     return new Promise((resolve, reject) => {
       const params = new URLSearchParams();
       if (this.sessionId) params.set("session_id", this.sessionId);
+      if (this.resumeToken) params.set("resume_token", this.resumeToken);
       if (this.lastEventId) params.set("after_event_id", this.lastEventId);
       const url = params.size ? `${this.url}?${params.toString()}` : this.url;
       const socket = new WebSocket(url);
@@ -90,6 +92,7 @@ export class WebSocketTransport implements StreamingTransport {
     if (msg.data.type === "hello") {
       const previousSession = this.sessionId;
       this.sessionId = msg.data.session_id;
+      this.resumeToken = msg.data.resume_token;
       if (previousSession && previousSession !== msg.data.session_id) {
         this.seenEvents.clear();
         this.lastEventId = null;
@@ -163,6 +166,7 @@ export class WebSocketTransport implements StreamingTransport {
   endSession(): void {
     this.send({ type: "end_session" });
     this.sessionId = null;
+    this.resumeToken = null;
     this.lastEventId = null;
     this.seenEvents.clear();
     this.pendingSnapshots.clear();

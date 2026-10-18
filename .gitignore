@@ -29,11 +29,13 @@ runs/logs/
 runs/serve.log
 runs/pytest-tmp/
 runs/tmp/
+runs/bench/hardening/20*.json
 runs/llm_cache/
 runs/bench/benchmark/traces/
 runs/bench/benchmark/20*.json
 runs/bench/semantic/20*.json
 *.log
+!runs/baselines/**/*.log
 *.pid
 # Canonical measured summaries (runs/bench/*/latest.json, audit_sheet.csv) are kept as evidence.
 # Timestamped reruns are local churn; the report's run_id remains inside latest.json.

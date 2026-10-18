@@ -1,0 +1,84 @@
+   0.000  SessionStarted
+   1.500  TranscriptChunkReceived       'I need to'
+   1.501  QueryFrameUpdated
+   1.504  TurnClassified
+   1.504  ProbeExecuted
+   1.504  RetrievalDecision             WAIT ['NO_CANDIDATE_NEED']
+   2.000  TranscriptChunkReceived       'book a'
+   2.001  QueryFrameUpdated
+   2.001  ProbeExecuted
+   2.002  RetrievalDecision             WAIT ['CLARIFICATION_REQUIRED', 'INCOMPLETE_CLAUSE']
+   2.800  TranscriptChunkReceived       'workshop venue in Pune'
+   2.800  QueryFrameUpdated
+   2.801  ProbeExecuted
+   2.801  RetrievalDecision             RETRIEVE ['STABLE_ABOVE_THRESHOLD']
+   2.806  SubQueriesGenerated
+   2.806  RetrievalStarted         I01
+   2.813  RetrievalCompleted       I01
+   2.815  EvidenceFused
+   3.400  TranscriptChunkReceived       'for 30 people,'
+   3.401  QueryFrameUpdated
+   3.403  ProbeExecuted
+   3.403  RetrievalDecision             REFINE ['RESULTS_WOULD_CHANGE']
+   3.405  SubQueriesGenerated
+   3.405  RetrievalStarted         I01
+   3.407  RetrievalCompleted       I01
+   3.408  EvidenceFused
+   4.200  TranscriptChunkReceived       'tell me the cancellation policy'
+   4.201  QueryFrameUpdated
+   4.201  ProbeExecuted
+   4.201  RetrievalDecision             RETRIEVE ['STABLE_ABOVE_THRESHOLD']
+   4.204  SubQueriesGenerated
+   4.204  RetrievalStarted         I02
+   4.206  RetrievalCompleted       I02
+   4.207  EvidenceFused
+   5.200  TranscriptChunkReceived       'and whether catering is available.'
+   5.201  QueryFrameUpdated
+   5.202  TurnClassified
+   5.202  ProbeExecuted
+   5.202  RetrievalDecision             RETRIEVE ['END_OF_UTTERANCE']
+   5.204  SubQueriesGenerated
+   5.204  RetrievalStarted         I03
+   5.207  RetrievalCompleted       I03
+   5.207  EvidenceFused
+   5.219  ClaimsGenerated
+   5.220  GroundingVerified
+   5.221  AnswerVersionCreated          V1 SEMANTIC
+    Banyan Hall: It is suited to workshops of 20 to 40 people. [D01:C02] Skyline Terrace is an open-air rooftop space that holds up to 80 people standing or 50 people seated. [D01:C04]
+    Cancellations made less than 7 days before the event incur the full venue fee. [D03:C03] Cancellations made 14 or more days before a standard event are free of charge. [D03:C03]
+    In-house catering is available at Banyan Hall and Skyline Terrace through Saffron Kitchen, the Deccan Conference Centre's catering partner. [D04:C01] Continental and pan-Asian menus are available for international delegations, and halal-certified meals can be arranged on request. [D04:C05]
+   5.221  TelemetryEmitted
+   8.500  TranscriptChunkReceived       'Actually, this is for an'
+   8.500  QueryFrameUpdated
+   8.500  TurnClassified
+   8.500  RetrievalDecision             WAIT ['CONSTRAINT_INCOMPLETE']
+   9.100  TranscriptChunkReceived       'international event.'
+   9.100  QueryFrameUpdated
+   9.100  TurnClassified
+   9.105  RetrievalDecision             REFINE ['LATE_CONSTRAINT']
+   9.105  RetrievalStarted         I02
+   9.105  RetrievalStarted         I03
+   9.108  RetrievalCompleted       I02
+   9.111  RetrievalCompleted       I03
+   9.114  EvidenceFused
+   9.115  DeltaPlanComputed
+   9.123  ClaimsGenerated
+   9.125  GroundingVerified
+   9.126  AnswerVersionCreated          V2 SEMANTIC
+    Banyan Hall: It is suited to workshops of 20 to 40 people. [D01:C02] Skyline Terrace is an open-air rooftop space that holds up to 80 people standing or 50 people seated. [D01:C04]
+    Cancellations made less than 30 days before an international event incur 75% of the venue fee. [D03:C04] For international events, cancellations must be made at least 30 days before the event to receive a refund of the venue fee. [D03:C04]
+    In-house catering is available at Banyan Hall and Skyline Terrace through Saffron Kitchen, the Deccan Conference Centre's catering partner. [D04:C01] Continental and pan-Asian menus are available for international delegations, and halal-certified meals can be arranged on request. [D04:C05] For international events, menus must be confirmed 10 working days before the event. [D04:C05]
+   9.126  TelemetryEmitted
+  12.600  TranscriptChunkReceived       'Make that shorter.'
+  12.601  QueryFrameUpdated
+  12.601  TurnClassified
+  12.601  RetrievalDecision             SUPPRESS ['PRESENTATION_TRANSFORMATION']
+  12.601  RetrievalSuppressed
+  12.602  TransformVerified
+  12.602  AnswerVersionCreated          V3 PRESENTATION
+    Banyan Hall: It is suited to workshops of 20 to 40 people. [D01:C02]
+    Cancellations made less than 30 days before an international event incur 75% of the venue fee. [D03:C04]
+    For international events, menus must be confirmed 10 working days before the event. [D04:C05]
+  12.603  TelemetryEmitted
+
+telemetry coverage: 1.000 (115/115 invariant instances)

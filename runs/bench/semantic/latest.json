@@ -1,6 +1,22 @@
 {
   "status": "MEASURED",
-  "run_id": "20261018T095654Z",
+  "run_id": "20261018T154338Z",
+  "provenance": {
+    "git_commit": "fc98d57d807b17ffce2b1f9f12ed384dbf0c5315",
+    "working_tree_may_be_dirty": true,
+    "config_sha256": "dd4b6aebaee8c869c02466c6238fb467a306e29e9c35c05ae9f7b4ec01487777",
+    "corpus_sha256": "dc7e934de99eb723ee23a6eaa96f4db56df1ddd968cab041e6614e39018d3a15",
+    "dataset_revisions": [],
+    "corpus_profile": "sample",
+    "documents": 8,
+    "chunks": 37,
+    "random_seed": 42,
+    "repeats": 1,
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "timing_source": "time.perf_counter for backend wall time; benchmark-assigned transcript timing"
+  },
   "dataset": {
     "name": "kairos-semantic-engineering-heldout-v1",
     "split": "HELD-OUT TEST",
@@ -134,7 +150,7 @@
       "recall_at_5": 1.0,
       "mrr": 1.0,
       "ndcg_at_5": 1.0,
-      "relevant_evidence_precision": 0.5789,
+      "relevant_evidence_precision": 0.875,
       "out_of_domain_rejection_accuracy": 1.0,
       "irrelevant_evidence_acceptance_rate": 0.0,
       "domain_routing_accuracy": 0.875,
@@ -155,10 +171,6 @@
             "D01"
           ],
           "accepted_docs": [
-            "D01",
-            "D01",
-            "D01",
-            "D01",
             "D01"
           ],
           "status": "RELEVANT_SUFFICIENT",
@@ -172,10 +184,7 @@
           ],
           "accepted_docs": [
             "D03",
-            "D03",
-            "D05",
-            "D06",
-            "D04"
+            "D03"
           ],
           "status": "RELEVANT_SUFFICIENT",
           "domain": "corporate_events"
@@ -189,8 +198,7 @@
           "accepted_docs": [
             "SCIFACT:118568",
             "SCIFACT:118568",
-            "SCIFACT:118568",
-            "SCIFACT:164985"
+            "SCIFACT:118568"
           ],
           "status": "RELEVANT_SUFFICIENT",
           "domain": "unknown"
@@ -203,10 +211,7 @@
           ],
           "accepted_docs": [
             "SQUAD:3787a46bd23562af",
-            "SQUAD:8978e606ac815776",
-            "SQUAD:c880a681d556666f",
-            "SQUAD:827dab666a13cdde",
-            "SQUAD:94a99bff525e95b2"
+            "SQUAD:8978e606ac815776"
           ],
           "status": "RELEVANT_SUFFICIENT",
           "domain": "unknown"
@@ -245,17 +250,647 @@
         }
       ]
     },
-    "grounding": {
-      "cases": 5,
-      "accuracy": 1.0,
-      "unsupported_claim_rejection": 1.0,
-      "quote_verification_accuracy": 1,
-      "numeric_contradiction_detection": 1,
-      "invalid_citation_rate": 0.4,
-      "false_grounding_acceptance_rate": 0.0,
+    "external_scifact_qrels": {
+      "status": "MEASURED",
+      "profile": "science",
+      "queries": 1,
+      "recall_at_1": 1.0,
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 1.0,
+      "ndcg_at_10": 1.0,
+      "graded_qrels": true,
+      "recall_at_5_ci95": [
+        0.2065,
+        1.0
+      ],
       "details": [
         {
-          "case": "supported",
+          "query_id": "957",
+          "query": "Podocytes are motile and migrate in the presence of injury.",
+          "relevant": {
+            "SCIFACT:123859": 1
+          },
+          "retrieved": [
+            "SCIFACT:123859"
+          ],
+          "first_relevant_rank": 1
+        }
+      ]
+    },
+    "external_squad_expanded": {
+      "status": "MEASURED",
+      "profile": "general_expanded",
+      "queries": 48,
+      "recall_at_1": 0.7292,
+      "recall_at_5": 0.8125,
+      "recall_at_10": 0.8125,
+      "mrr_at_10": 0.7639,
+      "ndcg_at_10": 0.8799,
+      "graded_qrels": false,
+      "recall_at_5_ci95": [
+        0.6806,
+        0.8981
+      ],
+      "details": [
+        {
+          "query_id": "5733ae924776f41900661016",
+          "query": "What percentage of students at Notre Dame participated in the Early Action program?",
+          "relevant": {
+            "SQUAD:f245ff7ef596f40c": 1
+          },
+          "retrieved": [
+            "SQUAD:f245ff7ef596f40c",
+            "SQUAD:4f8845bad3ff59b2",
+            "SQUAD:30d24a5d12b84fa6"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733ae924776f41900661015",
+          "query": "Where does Notre Dame rank in terms of academic profile among research universities in the US?",
+          "relevant": {
+            "SQUAD:f245ff7ef596f40c": 1
+          },
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "query_id": "57338653d058e614000b5c83",
+          "query": "On what date was the rebuilding of The Main Building begun at Notre Dame after the fire that claimed the previous?",
+          "relevant": {
+            "SQUAD:156f96fffa531abd": 1
+          },
+          "retrieved": [
+            "SQUAD:156f96fffa531abd"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733bf84d058e614000b61c1",
+          "query": "In what year did the student paper Common Sense begin publication at Notre Dame?",
+          "relevant": {
+            "SQUAD:8978e606ac815776": 1
+          },
+          "retrieved": [
+            "SQUAD:8978e606ac815776",
+            "SQUAD:f245ff7ef596f40c"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733b3d64776f419006610a4",
+          "query": "What was the Review of Politics inspired by?",
+          "relevant": {
+            "SQUAD:fcec8b729ee45e04": 1
+          },
+          "retrieved": [
+            "SQUAD:fcec8b729ee45e04",
+            "SQUAD:8978e606ac815776",
+            "SQUAD:c880a681d556666f"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733b0fb4776f41900661043",
+          "query": "What was the lifespan of John Augustine Zahm?",
+          "relevant": {
+            "SQUAD:f663c6cad2ca269e": 1
+          },
+          "retrieved": [
+            "SQUAD:f663c6cad2ca269e",
+            "SQUAD:f663c6cad2ca269e",
+            "SQUAD:0bed2f73894c7354"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733be284776f4190066117f",
+          "query": "What is in front of the Notre Dame Main Building?",
+          "relevant": {
+            "SQUAD:94a99bff525e95b2": 1
+          },
+          "retrieved": [
+            "SQUAD:94a99bff525e95b2",
+            "SQUAD:827dab666a13cdde",
+            "SQUAD:156f96fffa531abd",
+            "SQUAD:3787a46bd23562af",
+            "SQUAD:f1c5f43afc46a764"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733b5344776f419006610df",
+          "query": "What does the Kroc Institute at Notre Dame focus on?",
+          "relevant": {
+            "SQUAD:d452dee77c48fa5d": 1
+          },
+          "retrieved": [
+            "SQUAD:c880a681d556666f",
+            "SQUAD:d452dee77c48fa5d"
+          ],
+          "first_relevant_rank": 2
+        },
+        {
+          "query_id": "5733a6424776f41900660f51",
+          "query": "How many BS level degrees are offered in the College of Engineering at Notre Dame?",
+          "relevant": {
+            "SQUAD:bdcf4d8d533411aa": 1
+          },
+          "retrieved": [
+            "SQUAD:bdcf4d8d533411aa",
+            "SQUAD:d2006dff1995effa",
+            "SQUAD:d2006dff1995effa"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733b699d058e614000b6118",
+          "query": "What percentage of undergrads live on the Notre Dame campus?",
+          "relevant": {
+            "SQUAD:202b31473094e05c": 1
+          },
+          "retrieved": [
+            "SQUAD:202b31473094e05c"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733b5df4776f41900661105",
+          "query": "How many undergrads were attending Notre Dame in 2014?",
+          "relevant": {
+            "SQUAD:30d24a5d12b84fa6": 1
+          },
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "query_id": "5733bed24776f41900661188",
+          "query": "Where is the headquarters of the Congregation of the Holy Cross?",
+          "relevant": {
+            "SQUAD:3787a46bd23562af": 1
+          },
+          "retrieved": [
+            "SQUAD:3787a46bd23562af",
+            "SQUAD:f1c5f43afc46a764",
+            "SQUAD:30d24a5d12b84fa6"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733b1da4776f41900661069",
+          "query": "Which professor sent the first wireless message in the USA?",
+          "relevant": {
+            "SQUAD:0bed2f73894c7354": 1
+          },
+          "retrieved": [
+            "SQUAD:0bed2f73894c7354"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733b1da4776f4190066106a",
+          "query": "In what year did Jerome Green send his first wireless message?",
+          "relevant": {
+            "SQUAD:0bed2f73894c7354": 1
+          },
+          "retrieved": [
+            "SQUAD:0bed2f73894c7354"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733b5344776f419006610e1",
+          "query": "What threat does the Global Adaptation Index study?",
+          "relevant": {
+            "SQUAD:d452dee77c48fa5d": 1
+          },
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "query_id": "5733afd3d058e614000b6047",
+          "query": "Forbes.com placed Notre Dame at what position compared to other US research universities?",
+          "relevant": {
+            "SQUAD:4f8845bad3ff59b2": 1
+          },
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "query_id": "5733afd3d058e614000b6049",
+          "query": "What percentage of Notre Dame students decide to study abroad?",
+          "relevant": {
+            "SQUAD:4f8845bad3ff59b2": 1
+          },
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "query_id": "57338653d058e614000b5c85",
+          "query": "What did the Science Hall at Notre Dame come to be known as?",
+          "relevant": {
+            "SQUAD:156f96fffa531abd": 1
+          },
+          "retrieved": [
+            "SQUAD:156f96fffa531abd",
+            "SQUAD:30d24a5d12b84fa6",
+            "SQUAD:202b31473094e05c",
+            "SQUAD:bdcf4d8d533411aa"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733b5df4776f41900661108",
+          "query": "For what cause is money raised at the Bengal Bouts tournament at Notre Dame?",
+          "relevant": {
+            "SQUAD:30d24a5d12b84fa6": 1
+          },
+          "retrieved": [
+            "SQUAD:30d24a5d12b84fa6"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733ad384776f41900660fef",
+          "query": "Which artist created the mural on the Theodore M. Hesburgh Library?",
+          "relevant": {
+            "SQUAD:827dab666a13cdde": 1
+          },
+          "retrieved": [
+            "SQUAD:827dab666a13cdde",
+            "SQUAD:f1c5f43afc46a764"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733ac31d058e614000b5ff6",
+          "query": "What is the title of Notre Dame's Theodore Hesburgh?",
+          "relevant": {
+            "SQUAD:c880a681d556666f": 1
+          },
+          "retrieved": [
+            "SQUAD:c880a681d556666f",
+            "SQUAD:827dab666a13cdde"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733a70c4776f41900660f62",
+          "query": "How many colleges for undergraduates are at Notre Dame?",
+          "relevant": {
+            "SQUAD:b0830484bb6a0bb3": 1
+          },
+          "retrieved": [
+            "SQUAD:4f8845bad3ff59b2",
+            "SQUAD:4f8845bad3ff59b2",
+            "SQUAD:b0830484bb6a0bb3",
+            "SQUAD:3787a46bd23562af",
+            "SQUAD:30d24a5d12b84fa6",
+            "SQUAD:202b31473094e05c",
+            "SQUAD:c880a681d556666f",
+            "SQUAD:dd8fdc7aa80c156b",
+            "SQUAD:dd8fdc7aa80c156b",
+            "SQUAD:f245ff7ef596f40c"
+          ],
+          "first_relevant_rank": 3
+        },
+        {
+          "query_id": "5733ac31d058e614000b5ff5",
+          "query": "To whom was John B. Kroc married?",
+          "relevant": {
+            "SQUAD:c880a681d556666f": 1
+          },
+          "retrieved": [
+            "SQUAD:d452dee77c48fa5d"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "query_id": "57338724d058e614000b5c9e",
+          "query": "Over how many years did the change to national standards undertaken at Notre Dame in the early 20th century take place?",
+          "relevant": {
+            "SQUAD:dd8fdc7aa80c156b": 1
+          },
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "query_id": "5733b699d058e614000b611a",
+          "query": "How many dorms for males are on the Notre Dame campus?",
+          "relevant": {
+            "SQUAD:202b31473094e05c": 1
+          },
+          "retrieved": [
+            "SQUAD:202b31473094e05c"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733b0fb4776f41900661041",
+          "query": "What person was the Director of the Science Museum at Notre Dame in the late 19th century?",
+          "relevant": {
+            "SQUAD:f663c6cad2ca269e": 1
+          },
+          "retrieved": [
+            "SQUAD:f663c6cad2ca269e"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733b7f74776f4190066112d",
+          "query": "What is Congregation of Holy Cross in Latin?",
+          "relevant": {
+            "SQUAD:f1c5f43afc46a764": 1
+          },
+          "retrieved": [
+            "SQUAD:f1c5f43afc46a764",
+            "SQUAD:3787a46bd23562af",
+            "SQUAD:30d24a5d12b84fa6"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733a7bd4776f41900660f6e",
+          "query": "Which program at Notre Dame offers a Master of Education degree?",
+          "relevant": {
+            "SQUAD:d2006dff1995effa": 1
+          },
+          "retrieved": [
+            "SQUAD:d2006dff1995effa",
+            "SQUAD:d2006dff1995effa",
+            "SQUAD:c880a681d556666f",
+            "SQUAD:bdcf4d8d533411aa",
+            "SQUAD:d2006dff1995effa",
+            "SQUAD:09aab6681f13d1fd",
+            "SQUAD:09aab6681f13d1fd",
+            "SQUAD:202b31473094e05c"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733b7f74776f41900661131",
+          "query": "What amount of the student body of Notre Dame identifies as Catholic?",
+          "relevant": {
+            "SQUAD:f1c5f43afc46a764": 1
+          },
+          "retrieved": [
+            "SQUAD:30d24a5d12b84fa6",
+            "SQUAD:f1c5f43afc46a764"
+          ],
+          "first_relevant_rank": 2
+        },
+        {
+          "query_id": "5733ac31d058e614000b5ff7",
+          "query": "What company did Ray Kroc own?",
+          "relevant": {
+            "SQUAD:c880a681d556666f": 1
+          },
+          "retrieved": [
+            "SQUAD:c880a681d556666f"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733bf84d058e614000b61bd",
+          "query": "How many student news papers are found at Notre Dame?",
+          "relevant": {
+            "SQUAD:8978e606ac815776": 1
+          },
+          "retrieved": [
+            "SQUAD:8978e606ac815776",
+            "SQUAD:c880a681d556666f",
+            "SQUAD:8978e606ac815776",
+            "SQUAD:fcec8b729ee45e04"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733afd3d058e614000b6046",
+          "query": "In 2014 what entity named Notre Dame 10th best of all American universities?",
+          "relevant": {
+            "SQUAD:4f8845bad3ff59b2": 1
+          },
+          "retrieved": [
+            "SQUAD:4f8845bad3ff59b2"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733b2fe4776f4190066108f",
+          "query": "Work on a germ-free-life ended up in the creation of which Notre Dame institute?",
+          "relevant": {
+            "SQUAD:09aab6681f13d1fd": 1
+          },
+          "retrieved": [
+            "SQUAD:09aab6681f13d1fd",
+            "SQUAD:09aab6681f13d1fd"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733b2fe4776f41900661090",
+          "query": "When did study of a germ-free-life begin at Notre Dame?",
+          "relevant": {
+            "SQUAD:09aab6681f13d1fd": 1
+          },
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "query_id": "5733b5df4776f41900661106",
+          "query": "What percentage of students at Notre Dame are the children of former Notre Dame students?",
+          "relevant": {
+            "SQUAD:30d24a5d12b84fa6": 1
+          },
+          "retrieved": [
+            "SQUAD:30d24a5d12b84fa6",
+            "SQUAD:4f8845bad3ff59b2"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733afd3d058e614000b6045",
+          "query": "Where did U.S. News & World Report rank Notre Dame in its 2015-2016 university rankings?",
+          "relevant": {
+            "SQUAD:4f8845bad3ff59b2": 1
+          },
+          "retrieved": [
+            "SQUAD:4f8845bad3ff59b2",
+            "SQUAD:b0830484bb6a0bb3",
+            "SQUAD:30d24a5d12b84fa6",
+            "SQUAD:4f8845bad3ff59b2"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "573387acd058e614000b5cb1",
+          "query": "The Notre Dame football team got a new head coach in 1918, who was it?",
+          "relevant": {
+            "SQUAD:a31797988cd1fb7f": 1
+          },
+          "retrieved": [
+            "SQUAD:a31797988cd1fb7f"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733b0fb4776f41900661045",
+          "query": "What book did John Zahm write in 1896?",
+          "relevant": {
+            "SQUAD:f663c6cad2ca269e": 1
+          },
+          "retrieved": [
+            "SQUAD:f663c6cad2ca269e",
+            "SQUAD:0bed2f73894c7354",
+            "SQUAD:f663c6cad2ca269e"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733b7f74776f4190066112f",
+          "query": "How often is Catholic mass held at Notre Dame in a week?",
+          "relevant": {
+            "SQUAD:f1c5f43afc46a764": 1
+          },
+          "retrieved": [
+            "SQUAD:f1c5f43afc46a764"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733bed24776f4190066118a",
+          "query": "What is the oldest structure at Notre Dame?",
+          "relevant": {
+            "SQUAD:3787a46bd23562af": 1
+          },
+          "retrieved": [
+            "SQUAD:156f96fffa531abd",
+            "SQUAD:8978e606ac815776",
+            "SQUAD:3787a46bd23562af"
+          ],
+          "first_relevant_rank": 3
+        },
+        {
+          "query_id": "5733ad384776f41900660fee",
+          "query": "In what year was the Theodore M. Hesburgh Library at Notre Dame finished?",
+          "relevant": {
+            "SQUAD:827dab666a13cdde": 1
+          },
+          "retrieved": [
+            "SQUAD:827dab666a13cdde",
+            "SQUAD:c880a681d556666f",
+            "SQUAD:f1c5f43afc46a764"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733a70c4776f41900660f65",
+          "query": "Which organization declared the First Year of Studies program at Notre Dame \"outstanding?\"",
+          "relevant": {
+            "SQUAD:b0830484bb6a0bb3": 1
+          },
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "query_id": "5733ae924776f41900661014",
+          "query": "How many incoming students did Notre Dame admit in fall 2015?",
+          "relevant": {
+            "SQUAD:f245ff7ef596f40c": 1
+          },
+          "retrieved": [
+            "SQUAD:f245ff7ef596f40c"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733ae924776f41900661013",
+          "query": "What percentage of students were admitted to Notre Dame in fall 2015?",
+          "relevant": {
+            "SQUAD:f245ff7ef596f40c": 1
+          },
+          "retrieved": [
+            "SQUAD:f245ff7ef596f40c",
+            "SQUAD:f245ff7ef596f40c",
+            "SQUAD:4f8845bad3ff59b2",
+            "SQUAD:156f96fffa531abd"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733a6424776f41900660f50",
+          "query": "How many departments are within the Stinson-Remick Hall of Engineering?",
+          "relevant": {
+            "SQUAD:bdcf4d8d533411aa": 1
+          },
+          "retrieved": [
+            "SQUAD:bdcf4d8d533411aa",
+            "SQUAD:d2006dff1995effa"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733b3d64776f419006610a5",
+          "query": "Over how many years did Gurian edit the Review of Politics at Notre Dame?",
+          "relevant": {
+            "SQUAD:fcec8b729ee45e04": 1
+          },
+          "retrieved": [
+            "SQUAD:fcec8b729ee45e04"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733b2fe4776f41900661092",
+          "query": "In what year did Lobund at Notre Dame become an Institute?",
+          "relevant": {
+            "SQUAD:09aab6681f13d1fd": 1
+          },
+          "retrieved": [
+            "SQUAD:09aab6681f13d1fd",
+            "SQUAD:09aab6681f13d1fd",
+            "SQUAD:d452dee77c48fa5d"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "query_id": "5733b2fe4776f41900661091",
+          "query": "Around what time did Lobund of Notre Dame become independent?",
+          "relevant": {
+            "SQUAD:09aab6681f13d1fd": 1
+          },
+          "retrieved": [
+            "SQUAD:09aab6681f13d1fd",
+            "SQUAD:d452dee77c48fa5d"
+          ],
+          "first_relevant_rank": 1
+        }
+      ]
+    },
+    "grounding": {
+      "cases": 13,
+      "accuracy": 0.8462,
+      "unsupported_claim_rejection": 0.8,
+      "quote_verification_accuracy": 1,
+      "numeric_contradiction_detection": 1,
+      "invalid_citation_rate": 0.3077,
+      "false_grounding_acceptance_rate": 0.2,
+      "details": [
+        {
+          "case": "supported_sha256",
+          "expected": "SUPPORTED",
+          "verdict": "SUPPORTED",
+          "correct": true
+        },
+        {
+          "case": "supported_legacy_sha1",
+          "expected": "SUPPORTED",
+          "verdict": "SUPPORTED",
+          "correct": true
+        },
+        {
+          "case": "supported_unprefixed_sha256",
           "expected": "SUPPORTED",
           "verdict": "SUPPORTED",
           "correct": true
@@ -279,10 +914,46 @@
           "correct": true
         },
         {
+          "case": "foreign_unretrieved_id",
+          "expected": "INVALID_CITATION",
+          "verdict": "INVALID_CITATION",
+          "correct": true
+        },
+        {
           "case": "bad_checksum",
           "expected": "INVALID_CITATION",
           "verdict": "INVALID_CITATION",
           "correct": true
+        },
+        {
+          "case": "missing_checksum",
+          "expected": "INVALID_CITATION",
+          "verdict": "INVALID_CITATION",
+          "correct": true
+        },
+        {
+          "case": "empty_evidence",
+          "expected": "UNSUPPORTED",
+          "verdict": "UNSUPPORTED",
+          "correct": true
+        },
+        {
+          "case": "quote_from_wrong_chunk",
+          "expected": "UNSUPPORTED",
+          "verdict": "UNSUPPORTED",
+          "correct": true
+        },
+        {
+          "case": "negated_supported_sentence",
+          "expected": "UNSUPPORTED",
+          "verdict": "SUPPORTED",
+          "correct": false
+        },
+        {
+          "case": "unsupported_modality",
+          "expected": "UNSUPPORTED",
+          "verdict": "SUPPORTED",
+          "correct": false
         }
       ]
     },
@@ -295,51 +966,51 @@
       "retrieval_count": 11,
       "duplicate_retrieval_rate": 0.0909,
       "supported_claims": 0,
-      "wall_ms": 92.963
+      "wall_ms": 77.155
     },
     "scale": [
       {
         "profile": "sample",
         "documents": 8,
         "chunks": 37,
-        "build_ms": 63.313,
-        "python_peak_bytes": 1346047,
-        "retrieval_p50_ms": 1.399,
-        "retrieval_p95_ms": 1.96,
-        "throughput_qps_single_thread": 669.56,
+        "build_ms": 245.247,
+        "python_peak_bytes": 1353575,
+        "retrieval_p50_ms": 7.132,
+        "retrieval_p95_ms": 9.93,
+        "throughput_qps_single_thread": 139.76,
         "dedup_representation": "sparse-tfidf-csr"
       },
       {
         "profile": "science",
         "documents": 12,
         "chunks": 29,
-        "build_ms": 121.301,
-        "python_peak_bytes": 2510487,
-        "retrieval_p50_ms": 1.688,
-        "retrieval_p95_ms": 2.241,
-        "throughput_qps_single_thread": 560.4,
+        "build_ms": 524.348,
+        "python_peak_bytes": 2513953,
+        "retrieval_p50_ms": 8.24,
+        "retrieval_p95_ms": 9.277,
+        "throughput_qps_single_thread": 123.32,
         "dedup_representation": "sparse-tfidf-csr"
       },
       {
         "profile": "general",
         "documents": 8,
         "chunks": 16,
-        "build_ms": 55.974,
-        "python_peak_bytes": 795204,
-        "retrieval_p50_ms": 1.103,
-        "retrieval_p95_ms": 1.657,
-        "throughput_qps_single_thread": 809.1,
+        "build_ms": 269.024,
+        "python_peak_bytes": 797377,
+        "retrieval_p50_ms": 7.094,
+        "retrieval_p95_ms": 9.875,
+        "throughput_qps_single_thread": 128.98,
         "dedup_representation": "sparse-tfidf-csr"
       },
       {
         "profile": "multi_domain_demo",
         "documents": 28,
         "chunks": 82,
-        "build_ms": 225.263,
-        "python_peak_bytes": 10127211,
-        "retrieval_p50_ms": 1.142,
-        "retrieval_p95_ms": 2.725,
-        "throughput_qps_single_thread": 677.75,
+        "build_ms": 1089.47,
+        "python_peak_bytes": 10137011,
+        "retrieval_p50_ms": 8.131,
+        "retrieval_p95_ms": 12.554,
+        "throughput_qps_single_thread": 108.97,
         "dedup_representation": "sparse-tfidf-csr"
       }
     ]
@@ -601,13 +1272,13 @@
         ]
       },
       "revised": {
-        "accuracy": 0.6667,
+        "accuracy": 1.0,
         "cases": 3,
         "details": [
           {
             "text": "What are the cancellation rules? Explain the cancellation policy.",
             "expected_merge": true,
-            "merged": false,
+            "merged": true,
             "footprint_valid": true
           },
           {
@@ -625,12 +1296,3860 @@
         ]
       }
     },
+    "efis_100_pairs": {
+      "v2": {
+        "dataset": "kairos-efis-pairs-v2.1",
+        "split": "ENGINEERING TEST",
+        "annotation_policy": "Merge only when both requests seek the same answer under compatible constraints. Shared topic alone is insufficient. Ambiguous pairs are excluded.",
+        "independence_warning": "Project-authored during V2.1 hardening; reviewed as regression data but not independently annotated or an external benchmark.",
+        "cases": 100,
+        "merge_precision": 0.6667,
+        "merge_recall": 0.619,
+        "merge_f1": 0.642,
+        "accuracy": 0.71,
+        "false_merge_rate": 0.2241,
+        "false_split_rate": 0.381,
+        "intent_count_accuracy": 0.71,
+        "constraint_compatibility_accuracy": 0.7,
+        "confusion": {
+          "true_merge": 26,
+          "false_merge": 13,
+          "true_split": 45,
+          "false_split": 16
+        },
+        "details": [
+          {
+            "id": "E001",
+            "category": "exact_duplicate",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 1.0,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E002",
+            "category": "exact_duplicate",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 1.0,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E003",
+            "category": "exact_duplicate",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 1.0,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E004",
+            "category": "exact_duplicate",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.75,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E005",
+            "category": "exact_duplicate",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.75,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E006",
+            "category": "exact_duplicate",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.75,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E007",
+            "category": "exact_duplicate",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 1.0,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E008",
+            "category": "exact_duplicate",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 1.0,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E009",
+            "category": "exact_duplicate",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 1.0,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E010",
+            "category": "exact_duplicate",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.75,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E011",
+            "category": "lexical_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 0.4507,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.5,
+              "merge_score": 0.6537,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E012",
+            "category": "lexical_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 0.2577,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.5,
+              "merge_score": 0.5753,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E013",
+            "category": "lexical_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 0.7493,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.7921,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E014",
+            "category": "lexical_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.8205,
+              "evidence_footprint_similarity": 0.5423,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.6282,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E015",
+            "category": "lexical_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 0.4452,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.7052,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E016",
+            "category": "lexical_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.675,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E017",
+            "category": "lexical_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 1.0,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E018",
+            "category": "lexical_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 0.7698,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.7541,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E019",
+            "category": "lexical_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.925,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E020",
+            "category": "lexical_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 0.2507,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.6392,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E021",
+            "category": "semantic_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0303,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0076,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E022",
+            "category": "semantic_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.66,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E023",
+            "category": "semantic_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.6742,
+              "evidence_footprint_similarity": 0.6196,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.4535,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E024",
+            "category": "semantic_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.3333,
+              "evidence_footprint_similarity": 0.5804,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.2493,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E025",
+            "category": "semantic_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.25,
+              "evidence_footprint_similarity": 0.0819,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.25,
+              "merge_score": 0.1316,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E026",
+            "category": "semantic_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.6667,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.6667,
+              "merge_score": 0.5833,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E027",
+            "category": "semantic_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.6667,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.4583,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E028",
+            "category": "semantic_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.6421,
+              "evidence_footprint_similarity": 0.4604,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.4056,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E029",
+            "category": "semantic_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.7107,
+              "evidence_footprint_similarity": 0.5121,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.4286,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E030",
+            "category": "semantic_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.7429,
+              "evidence_footprint_similarity": 0.5954,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.5146,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E031",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": true,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 0.7493,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.3333,
+              "merge_score": 0.6628,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E032",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.6722,
+              "evidence_footprint_similarity": 0.7493,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.4929,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E033",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.7083,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E034",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.5,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.41,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E035",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": true,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.75,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E036",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": true,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.714,
+              "evidence_footprint_similarity": 0.5973,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.3333,
+              "merge_score": 0.4945,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E037",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.8205,
+              "evidence_footprint_similarity": 0.5423,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.4449,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E038",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.5488,
+              "evidence_footprint_similarity": 0.7493,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.4745,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E039",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": true,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.3333,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.3333,
+              "merge_score": 0.4167,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E040",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": true,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.5547,
+              "evidence_footprint_similarity": 0.5121,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.4667,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E041",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.9239,
+              "evidence_footprint_similarity": 0.8106,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.6419,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E042",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": true,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.4,
+              "evidence_footprint_similarity": 0.5698,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.4,
+              "merge_score": 0.3425,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E043",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.2302,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0575,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E044",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.25,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E045",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": true,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 1.0,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E046",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": true,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.8567,
+              "evidence_footprint_similarity": 0.5698,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.3333,
+              "merge_score": 0.5233,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E047",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.9047,
+              "evidence_footprint_similarity": 0.4507,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.4888,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E048",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 0.3396,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.4748,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E049",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": true,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.5,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.5,
+              "merge_score": 0.5,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E050",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.55,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E051",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.1707,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0278,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E052",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E053",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.5717,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.1429,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E054",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E055",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E056",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E057",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E058",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E059",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E060",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E061",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.25,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E062",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": -0.0016,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E063",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0009,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0002,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E064",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E065",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E066",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E067",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E068",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.128,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.032,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E069",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.6517,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.1629,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E070",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E071",
+            "category": "constraint_conflict",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "CONSTRAINT_CONFLICT",
+            "signals": {
+              "semantic_equivalence": 0.4329,
+              "evidence_footprint_similarity": 0.2302,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": false,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.3333,
+              "merge_score": 0.3324,
+              "decision": "SPLIT",
+              "reason": "CONSTRAINT_CONFLICT"
+            }
+          },
+          {
+            "id": "E072",
+            "category": "constraint_conflict",
+            "expected_merge": false,
+            "predicted_merge": true,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.8455,
+              "evidence_footprint_similarity": 0.7423,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.5,
+              "merge_score": 0.647,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E073",
+            "category": "constraint_conflict",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 0.7698,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": false,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.5,
+              "merge_score": 0.6925,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E074",
+            "category": "constraint_conflict",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.3744,
+              "evidence_footprint_similarity": 0.4879,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": false,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.3333,
+              "merge_score": 0.3822,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E075",
+            "category": "constraint_compatible",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 0.7698,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.7147,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E076",
+            "category": "constraint_compatible",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 0.5423,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.6699,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E077",
+            "category": "constraint_compatible",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 0.92,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.5,
+              "merge_score": 0.7928,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E078",
+            "category": "constraint_conflict",
+            "expected_merge": false,
+            "predicted_merge": true,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.3333,
+              "evidence_footprint_similarity": 0.8293,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.5538,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E079",
+            "category": "constraint_compatible",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.7119,
+              "evidence_footprint_similarity": 0.7306,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.704,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E080",
+            "category": "constraint_conflict",
+            "expected_merge": false,
+            "predicted_merge": true,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.3333,
+              "evidence_footprint_similarity": 0.5698,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.3833,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E081",
+            "category": "asr_error",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.7207,
+              "evidence_footprint_similarity": 0.5698,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.5,
+              "merge_score": 0.4351,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E082",
+            "category": "asr_error",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.9257,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.8214,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E083",
+            "category": "asr_error",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.6545,
+              "evidence_footprint_similarity": 0.3396,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.436,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E084",
+            "category": "asr_error",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E085",
+            "category": "repair",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "CONSTRAINT_CONFLICT",
+            "signals": {
+              "semantic_equivalence": 0.4329,
+              "evidence_footprint_similarity": 0.2302,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": false,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.3333,
+              "merge_score": 0.3324,
+              "decision": "SPLIT",
+              "reason": "CONSTRAINT_CONFLICT"
+            }
+          },
+          {
+            "id": "E086",
+            "category": "repair",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 0.4507,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.5,
+              "merge_score": 0.6537,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E087",
+            "category": "repair",
+            "expected_merge": false,
+            "predicted_merge": true,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.761,
+              "evidence_footprint_similarity": 0.6925,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.5,
+              "merge_score": 0.6134,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E088",
+            "category": "incomplete",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 0.4507,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.5912,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E089",
+            "category": "incomplete",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": -0.0174,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E090",
+            "category": "incomplete",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.5446,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.2162,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E091",
+            "category": "irrelevant_footprint",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E092",
+            "category": "irrelevant_footprint",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E093",
+            "category": "irrelevant_footprint",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.25,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E094",
+            "category": "mixed_domain",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.25,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E095",
+            "category": "mixed_domain",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E096",
+            "category": "mixed_domain",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E097",
+            "category": "long_pair",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.3592,
+              "evidence_footprint_similarity": 0.4452,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.5,
+              "merge_score": 0.2761,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E098",
+            "category": "long_pair",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.5817,
+              "evidence_footprint_similarity": 0.3787,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.3051,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E099",
+            "category": "long_pair",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.7656,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.6307,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E100",
+            "category": "long_pair",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          }
+        ]
+      },
+      "v2_1": {
+        "dataset": "kairos-efis-pairs-v2.1",
+        "split": "ENGINEERING TEST",
+        "annotation_policy": "Merge only when both requests seek the same answer under compatible constraints. Shared topic alone is insufficient. Ambiguous pairs are excluded.",
+        "independence_warning": "Project-authored during V2.1 hardening; reviewed as regression data but not independently annotated or an external benchmark.",
+        "cases": 100,
+        "merge_precision": 0.7667,
+        "merge_recall": 0.5476,
+        "merge_f1": 0.6389,
+        "accuracy": 0.74,
+        "false_merge_rate": 0.1207,
+        "false_split_rate": 0.4524,
+        "intent_count_accuracy": 0.74,
+        "constraint_compatibility_accuracy": 0.7,
+        "confusion": {
+          "true_merge": 23,
+          "false_merge": 7,
+          "true_split": 51,
+          "false_split": 19
+        },
+        "details": [
+          {
+            "id": "E001",
+            "category": "exact_duplicate",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 1.0,
+              "decision": "MERGE",
+              "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E002",
+            "category": "exact_duplicate",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 1.0,
+              "decision": "MERGE",
+              "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E003",
+            "category": "exact_duplicate",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 1.0,
+              "decision": "MERGE",
+              "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E004",
+            "category": "exact_duplicate",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.75,
+              "decision": "MERGE",
+              "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E005",
+            "category": "exact_duplicate",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.75,
+              "decision": "MERGE",
+              "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E006",
+            "category": "exact_duplicate",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.75,
+              "decision": "MERGE",
+              "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E007",
+            "category": "exact_duplicate",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 1.0,
+              "decision": "MERGE",
+              "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E008",
+            "category": "exact_duplicate",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 1.0,
+              "decision": "MERGE",
+              "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E009",
+            "category": "exact_duplicate",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 1.0,
+              "decision": "MERGE",
+              "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E010",
+            "category": "exact_duplicate",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.75,
+              "decision": "MERGE",
+              "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E011",
+            "category": "lexical_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.5,
+              "merge_score": 0.791,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E012",
+            "category": "lexical_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.5,
+              "merge_score": 0.7608,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E013",
+            "category": "lexical_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 0.7493,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.7921,
+              "decision": "MERGE",
+              "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E014",
+            "category": "lexical_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.8205,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.4926,
+              "decision": "MERGE",
+              "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E015",
+            "category": "lexical_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.8439,
+              "decision": "MERGE",
+              "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E016",
+            "category": "lexical_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.675,
+              "decision": "MERGE",
+              "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E017",
+            "category": "lexical_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 1.0,
+              "decision": "MERGE",
+              "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E018",
+            "category": "lexical_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.5616,
+              "decision": "MERGE",
+              "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E019",
+            "category": "lexical_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.925,
+              "decision": "MERGE",
+              "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E020",
+            "category": "lexical_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.5765,
+              "decision": "MERGE",
+              "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E021",
+            "category": "semantic_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0303,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0076,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E022",
+            "category": "semantic_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 0.872,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.628,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E023",
+            "category": "semantic_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.6742,
+              "evidence_footprint_similarity": 0.4933,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.4219,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E024",
+            "category": "semantic_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.3333,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.3542,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E025",
+            "category": "semantic_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.25,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.25,
+              "merge_score": 0.1111,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E026",
+            "category": "semantic_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.6667,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.6667,
+              "merge_score": 0.5833,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E027",
+            "category": "semantic_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.6667,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.4583,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E028",
+            "category": "semantic_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.6421,
+              "evidence_footprint_similarity": 0.5867,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.4372,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E029",
+            "category": "semantic_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.7107,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.3005,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E030",
+            "category": "semantic_paraphrase",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.7429,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.3657,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E031",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.3333,
+              "merge_score": 0.7254,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E032",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.6722,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.3056,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E033",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.7083,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E034",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.5,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.41,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E035",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": true,
+            "correct": false,
+            "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.75,
+              "decision": "MERGE",
+              "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E036",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": true,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.714,
+              "evidence_footprint_similarity": 0.5973,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.3333,
+              "merge_score": 0.4945,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E037",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.8205,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.3093,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E038",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.5488,
+              "evidence_footprint_similarity": 0.7493,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.4745,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E039",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.3333,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.3333,
+              "merge_score": 0.4167,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E040",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": true,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.5547,
+              "evidence_footprint_similarity": 0.4507,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.4513,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E041",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.9239,
+              "evidence_footprint_similarity": 0.4933,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.5626,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E042",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.4,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.4,
+              "merge_score": 0.45,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E043",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E044",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.25,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E045",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": true,
+            "correct": false,
+            "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 1.0,
+              "decision": "MERGE",
+              "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E046",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.8567,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.3333,
+              "merge_score": 0.3808,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E047",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.9047,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.6262,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E048",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.3899,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E049",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.5,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.5,
+              "merge_score": 0.5,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E050",
+            "category": "same_topic_different_objective",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "DENSE_LEXICAL_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.55,
+              "decision": "SPLIT",
+              "reason": "DENSE_LEXICAL_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E051",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": -0.0148,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E052",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.25,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E053",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E054",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.25,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E055",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E056",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E057",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E058",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E059",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.25,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E060",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E061",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.25,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E062",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": -0.0016,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E063",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0009,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.2502,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E064",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E065",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E066",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.25,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E067",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.25,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E068",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E069",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E070",
+            "category": "different_topic",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.25,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E071",
+            "category": "constraint_conflict",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "CONSTRAINT_CONFLICT",
+            "signals": {
+              "semantic_equivalence": 0.4329,
+              "evidence_footprint_similarity": 0.2302,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": false,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.3333,
+              "merge_score": 0.3324,
+              "decision": "SPLIT",
+              "reason": "CONSTRAINT_CONFLICT"
+            }
+          },
+          {
+            "id": "E072",
+            "category": "constraint_conflict",
+            "expected_merge": false,
+            "predicted_merge": true,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.8455,
+              "evidence_footprint_similarity": 0.6604,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.5,
+              "merge_score": 0.6265,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E073",
+            "category": "constraint_conflict",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "DENSE_LEXICAL_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": false,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.5,
+              "merge_score": 0.75,
+              "decision": "SPLIT",
+              "reason": "DENSE_LEXICAL_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E074",
+            "category": "constraint_conflict",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "CONSTRAINT_CONFLICT",
+            "signals": {
+              "semantic_equivalence": 0.3744,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": false,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.3333,
+              "merge_score": 0.5103,
+              "decision": "SPLIT",
+              "reason": "CONSTRAINT_CONFLICT"
+            }
+          },
+          {
+            "id": "E075",
+            "category": "constraint_compatible",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.7722,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E076",
+            "category": "constraint_compatible",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 0.5423,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.6699,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E077",
+            "category": "constraint_compatible",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.5,
+              "merge_score": 0.8128,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E078",
+            "category": "constraint_conflict",
+            "expected_merge": false,
+            "predicted_merge": true,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.3333,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.5965,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E079",
+            "category": "constraint_compatible",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.7119,
+              "evidence_footprint_similarity": 0.7067,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.698,
+              "decision": "MERGE",
+              "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E080",
+            "category": "constraint_conflict",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.3333,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.2409,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E081",
+            "category": "asr_error",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.7207,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.5,
+              "merge_score": 0.2927,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E082",
+            "category": "asr_error",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.9257,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.8214,
+              "decision": "MERGE",
+              "reason": "SEMANTIC_OBJECTIVE_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E083",
+            "category": "asr_error",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.6545,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 1.0,
+              "merge_score": 0.3511,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E084",
+            "category": "asr_error",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.25,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E085",
+            "category": "repair",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "CONSTRAINT_CONFLICT",
+            "signals": {
+              "semantic_equivalence": 0.4329,
+              "evidence_footprint_similarity": 0.2302,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": false,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.3333,
+              "merge_score": 0.3324,
+              "decision": "SPLIT",
+              "reason": "CONSTRAINT_CONFLICT"
+            }
+          },
+          {
+            "id": "E086",
+            "category": "repair",
+            "expected_merge": true,
+            "predicted_merge": true,
+            "correct": true,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.5,
+              "merge_score": 0.791,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E087",
+            "category": "repair",
+            "expected_merge": false,
+            "predicted_merge": true,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.761,
+              "evidence_footprint_similarity": 0.672,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.5,
+              "merge_score": 0.6082,
+              "decision": "MERGE",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E088",
+            "category": "incomplete",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 1.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.7285,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E089",
+            "category": "incomplete",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": -0.0174,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E090",
+            "category": "incomplete",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.5446,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.2162,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E091",
+            "category": "irrelevant_footprint",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.25,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E092",
+            "category": "irrelevant_footprint",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.25,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E093",
+            "category": "irrelevant_footprint",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.25,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E094",
+            "category": "mixed_domain",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.25,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E095",
+            "category": "mixed_domain",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E096",
+            "category": "mixed_domain",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "INSUFFICIENT_EQUIVALENCE",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.0,
+              "decision": "SPLIT",
+              "reason": "INSUFFICIENT_EQUIVALENCE"
+            }
+          },
+          {
+            "id": "E097",
+            "category": "long_pair",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.3592,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.5,
+              "merge_score": 0.4148,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E098",
+            "category": "long_pair",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.5817,
+              "evidence_footprint_similarity": 0.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.2104,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          },
+          {
+            "id": "E099",
+            "category": "long_pair",
+            "expected_merge": true,
+            "predicted_merge": false,
+            "correct": false,
+            "reason": "VALIDATED_EVIDENCE_FOOTPRINT",
+            "signals": {
+              "semantic_equivalence": 0.7656,
+              "evidence_footprint_similarity": 0.7867,
+              "evidence_footprint_validity": true,
+              "constraint_compatibility": true,
+              "topic_transition": false,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.5774,
+              "decision": "SPLIT",
+              "reason": "VALIDATED_EVIDENCE_FOOTPRINT"
+            }
+          },
+          {
+            "id": "E100",
+            "category": "long_pair",
+            "expected_merge": false,
+            "predicted_merge": false,
+            "correct": true,
+            "reason": "TOPIC_TRANSITION",
+            "signals": {
+              "semantic_equivalence": 0.0,
+              "evidence_footprint_similarity": 1.0,
+              "evidence_footprint_validity": false,
+              "constraint_compatibility": true,
+              "topic_transition": true,
+              "request_objective_compatibility": 0.0,
+              "merge_score": 0.25,
+              "decision": "SPLIT",
+              "reason": "TOPIC_TRANSITION"
+            }
+          }
+        ]
+      }
+    },
     "domain_routing": {
       "single_mixed_corpus": {
         "recall_at_5": 1.0,
         "mrr": 1.0,
         "ndcg_at_5": 1.0,
-        "relevant_evidence_precision": 0.5789,
+        "relevant_evidence_precision": 0.6154,
         "out_of_domain_rejection_accuracy": null,
         "irrelevant_evidence_acceptance_rate": null,
         "domain_routing_accuracy": 0.75,
@@ -649,9 +5168,6 @@
             ],
             "accepted_docs": [
               "D01",
-              "D01",
-              "D01",
-              "D01",
               "D01"
             ],
             "status": "RELEVANT_SUFFICIENT",
@@ -665,10 +5181,7 @@
             ],
             "accepted_docs": [
               "D03",
-              "D03",
-              "D05",
-              "D06",
-              "D04"
+              "D03"
             ],
             "status": "RELEVANT_SUFFICIENT",
             "domain": "corporate_events"
@@ -710,7 +5223,7 @@
         "recall_at_5": 1.0,
         "mrr": 1.0,
         "ndcg_at_5": 1.0,
-        "relevant_evidence_precision": 0.5789,
+        "relevant_evidence_precision": 0.6154,
         "out_of_domain_rejection_accuracy": null,
         "irrelevant_evidence_acceptance_rate": null,
         "domain_routing_accuracy": 0.75,
@@ -729,9 +5242,6 @@
             ],
             "accepted_docs": [
               "D01",
-              "D01",
-              "D01",
-              "D01",
               "D01"
             ],
             "status": "RELEVANT_SUFFICIENT",
@@ -745,10 +5255,7 @@
             ],
             "accepted_docs": [
               "D03",
-              "D03",
-              "D05",
-              "D06",
-              "D04"
+              "D03"
             ],
             "status": "RELEVANT_SUFFICIENT",
             "domain": "corporate_events"
@@ -797,7 +5304,7 @@
         "retrieval_count": 11,
         "duplicate_retrieval_rate": 0.0909,
         "supported_claims": 0,
-        "wall_ms": 99.878
+        "wall_ms": 66.425
       },
       "optimized": {
         "transcript_chunks": 14,
@@ -808,21 +5315,72 @@
         "retrieval_count": 11,
         "duplicate_retrieval_rate": 0.0909,
         "supported_claims": 0,
-        "wall_ms": 92.963
+        "wall_ms": 77.155
+      }
+    },
+    "psrc_policy": {
+      "v2_psrc": {
+        "early_retrieval_rate": 0.6875,
+        "premature_retrieval_rate": 0.2963,
+        "evidence_survival_rate": 0.7333,
+        "intent_recall": 0.9444,
+        "retrievals_per_information_need": 1.9615,
+        "note": "Same controller behavior as V2; retained as the explicit comparison arm."
+      },
+      "v2_1_psrc": {
+        "early_retrieval_rate": 0.6875,
+        "premature_retrieval_rate": 0.2963,
+        "evidence_survival_rate": 0.7333,
+        "intent_recall": 0.9444,
+        "retrievals_per_information_need": 1.9615,
+        "note": "No threshold retuning adopted; diagnostics added without dev-label leakage."
+      },
+      "fixed_tokens_4": {
+        "early_retrieval_rate": 0.9375,
+        "premature_retrieval_rate": 0.2941,
+        "evidence_survival_rate": 0.7235,
+        "intent_recall": 0.9444,
+        "retrievals_per_information_need": 2.3462
+      },
+      "fixed_tokens_8": {
+        "early_retrieval_rate": 0.625,
+        "premature_retrieval_rate": 0.2,
+        "evidence_survival_rate": 0.7867,
+        "intent_recall": 0.9444,
+        "retrievals_per_information_need": 1.7692
+      },
+      "end_of_utterance": {
+        "early_retrieval_rate": 0.0,
+        "premature_retrieval_rate": null,
+        "evidence_survival_rate": null,
+        "intent_recall": 0.9444,
+        "retrievals_per_information_need": 1.4615
       }
     },
     "grounding": {
       "original": {
-        "cases": 5,
-        "accuracy": 0.6,
-        "unsupported_claim_rejection": 0.5,
+        "cases": 13,
+        "accuracy": 0.5385,
+        "unsupported_claim_rejection": 0.4,
         "quote_verification_accuracy": 0,
         "numeric_contradiction_detection": 1,
-        "invalid_citation_rate": 0.2,
-        "false_grounding_acceptance_rate": 0.5,
+        "invalid_citation_rate": 0.1538,
+        "false_grounding_acceptance_rate": 0.6,
         "details": [
           {
-            "case": "supported",
+            "case": "supported_sha256",
+            "expected": "SUPPORTED",
+            "verdict": "SUPPORTED",
+            "correct": true
+          },
+          {
+            "case": "supported_legacy_sha1",
+            "expected": "SUPPORTED",
+            "verdict": "SUPPORTED",
+            "correct": true
+          },
+          {
+            "case": "supported_unprefixed_sha256",
             "expected": "SUPPORTED",
             "verdict": "SUPPORTED",
             "correct": true
@@ -846,24 +5404,72 @@
             "correct": true
           },
           {
+            "case": "foreign_unretrieved_id",
+            "expected": "INVALID_CITATION",
+            "verdict": "INVALID_CITATION",
+            "correct": true
+          },
+          {
             "case": "bad_checksum",
             "expected": "INVALID_CITATION",
+            "verdict": "SUPPORTED",
+            "correct": false
+          },
+          {
+            "case": "missing_checksum",
+            "expected": "INVALID_CITATION",
+            "verdict": "SUPPORTED",
+            "correct": false
+          },
+          {
+            "case": "empty_evidence",
+            "expected": "UNSUPPORTED",
+            "verdict": "UNSUPPORTED",
+            "correct": true
+          },
+          {
+            "case": "quote_from_wrong_chunk",
+            "expected": "UNSUPPORTED",
+            "verdict": "SUPPORTED",
+            "correct": false
+          },
+          {
+            "case": "negated_supported_sentence",
+            "expected": "UNSUPPORTED",
+            "verdict": "SUPPORTED",
+            "correct": false
+          },
+          {
+            "case": "unsupported_modality",
+            "expected": "UNSUPPORTED",
             "verdict": "SUPPORTED",
             "correct": false
           }
         ]
       },
       "strengthened": {
-        "cases": 5,
-        "accuracy": 1.0,
-        "unsupported_claim_rejection": 1.0,
+        "cases": 13,
+        "accuracy": 0.8462,
+        "unsupported_claim_rejection": 0.8,
         "quote_verification_accuracy": 1,
         "numeric_contradiction_detection": 1,
-        "invalid_citation_rate": 0.4,
-        "false_grounding_acceptance_rate": 0.0,
+        "invalid_citation_rate": 0.3077,
+        "false_grounding_acceptance_rate": 0.2,
         "details": [
           {
-            "case": "supported",
+            "case": "supported_sha256",
+            "expected": "SUPPORTED",
+            "verdict": "SUPPORTED",
+            "correct": true
+          },
+          {
+            "case": "supported_legacy_sha1",
+            "expected": "SUPPORTED",
+            "verdict": "SUPPORTED",
+            "correct": true
+          },
+          {
+            "case": "supported_unprefixed_sha256",
             "expected": "SUPPORTED",
             "verdict": "SUPPORTED",
             "correct": true
@@ -887,10 +5493,46 @@
             "correct": true
           },
           {
+            "case": "foreign_unretrieved_id",
+            "expected": "INVALID_CITATION",
+            "verdict": "INVALID_CITATION",
+            "correct": true
+          },
+          {
             "case": "bad_checksum",
             "expected": "INVALID_CITATION",
             "verdict": "INVALID_CITATION",
             "correct": true
+          },
+          {
+            "case": "missing_checksum",
+            "expected": "INVALID_CITATION",
+            "verdict": "INVALID_CITATION",
+            "correct": true
+          },
+          {
+            "case": "empty_evidence",
+            "expected": "UNSUPPORTED",
+            "verdict": "UNSUPPORTED",
+            "correct": true
+          },
+          {
+            "case": "quote_from_wrong_chunk",
+            "expected": "UNSUPPORTED",
+            "verdict": "UNSUPPORTED",
+            "correct": true
+          },
+          {
+            "case": "negated_supported_sentence",
+            "expected": "UNSUPPORTED",
+            "verdict": "SUPPORTED",
+            "correct": false
+          },
+          {
+            "case": "unsupported_modality",
+            "expected": "UNSUPPORTED",
+            "verdict": "SUPPORTED",
+            "correct": false
           }
         ]
       }

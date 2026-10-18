@@ -1,5 +1,6 @@
 import asyncio
 import json
+import json
 from pathlib import Path
 
 import pytest
@@ -7,6 +8,7 @@ import pytest
 from benchmark.runner import load_dataset, replay_session
 from kairos.config import load_config, resolve_path
 from kairos.corpus.adapters import get_adapter
+from kairos.corpus.adapters.scifact_eval import build_labels
 from kairos.corpus.ingest import load_corpus
 from kairos.decomposer.efis import Decomposer
 from kairos.engine import EngineContext, SessionEngine
@@ -66,6 +68,29 @@ def test_irrelevant_footprints_do_not_merge_unrelated_intents(ctx):
     assert not second.footprint_valid
 
 
+def test_cancellation_paraphrase_merges_with_reasoned_signals(ctx):
+    frame = ctx.frame_builder.build(
+        "What are the cancellation rules? Explain the cancellation policy.", {}, 1.0, "c1"
+    )
+    assert len(frame.candidates) == 2
+    dec = Decomposer(ctx.cfg["decomposer"], ctx.index)
+    first = dec.assign(frame.candidates[0], frame, [], "I01", "u1", None).sub_query
+    second = dec.assign(frame.candidates[1], frame, [first], "I02", "u1", first)
+    assert not second.created and second.merged_into == "I01"
+    signals = second.decision_signals["I01"]
+    assert signals["request_objective_compatibility"] > 0
+    assert signals["constraint_compatibility"] is True
+    assert signals["decision"] == "MERGE"
+
+
+def test_v2_1_efis_pair_set_has_required_scale_and_categories():
+    data = json.loads(resolve_path("benchmark/datasets/heldout/efis_pairs_v2_1.json").read_text(encoding="utf-8"))
+    assert len(data["cases"]) >= 100
+    assert {case["merge"] for case in data["cases"]} == {True, False}
+    categories = {case["category"] for case in data["cases"]}
+    assert {"semantic_paraphrase", "same_topic_different_objective", "constraint_conflict"} <= categories
+
+
 def test_relevance_gate_rejects_sample_corpus_mismatch(ctx):
     for text in [
         "Find 2BHK houses in Mumbai below 20 lakh",
@@ -91,14 +116,20 @@ def test_grounding_requires_real_quote_number_and_checksum(ctx):
     chunk = ctx.corpus.chunk(hit.chunk_id)
     retrieved = {hit.chunk_id}
     false_quote = Claim("C1", "L1", "Banyan Hall seats 40 participants.", "I1", [hit.chunk_id],
-                        "This quotation is not in the source.", 1.0)
+                        "This quotation is not in the source.", 1.0,
+                        evidence_checksums={hit.chunk_id: f"sha256:{chunk.sha256}"})
     assert ctx.firewall.verify(false_quote, retrieved, []).verdict == "UNSUPPORTED"
     wrong_number = Claim("C2", "L2", "Banyan Hall seats 400 participants.", "I1", [hit.chunk_id],
-                         chunk.text.split(". ")[0] + ".", 1.0)
+                         chunk.text.split(". ")[0] + ".", 1.0,
+                         evidence_checksums={hit.chunk_id: f"sha256:{chunk.sha256}"})
     assert ctx.firewall.verify(wrong_number, retrieved, []).verdict != "SUPPORTED"
     wrong_checksum = Claim("C3", "L3", chunk.text, "I1", [hit.chunk_id], chunk.text, 1.0,
                            evidence_checksums={hit.chunk_id: "0" * 40})
     assert ctx.firewall.verify(wrong_checksum, retrieved, []).verdict == "INVALID_CITATION"
+    missing_checksum = Claim("C4", "L4", chunk.text, "I1", [hit.chunk_id], chunk.text, 1.0)
+    missing = ctx.firewall.verify(missing_checksum, retrieved, [])
+    assert missing.verdict == "INVALID_CITATION"
+    assert missing.missing_checksums == [hit.chunk_id]
 
 
 def test_dataset_adapters_are_offline_deterministic_and_keep_labels_separate(tmp_path):
@@ -119,6 +150,17 @@ def test_dataset_adapters_are_offline_deterministic_and_keep_labels_separate(tmp
     with pytest.raises(ValueError, match="checksum mismatch"):
         get_adapter("scifact").run(fixtures / "scifact_rows.json", tmp_path / "bad-checksum",
                                     limit=1, seed=42, revision="fixture", expected_checksum="0" * 64)
+
+
+def test_scifact_qrels_join_is_namespaced_and_does_not_enter_corpus():
+    labels = build_labels(
+        [{"query-id": 7, "corpus-id": 118568, "score": 1},
+         {"query-id": 8, "corpus-id": 999999, "score": 1}],
+        [{"_id": "7", "text": "A scientific claim"}, {"_id": "8", "text": "Excluded"}],
+        {"118568"},
+    )
+    assert labels == [{"query_id": "7", "query": "A scientific claim", "document_id": "SCIFACT:118568",
+                       "relevance": 1, "split": "test"}]
 
 
 def test_committed_external_profiles_index_and_query():

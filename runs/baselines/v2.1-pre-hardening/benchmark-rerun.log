@@ -1,0 +1,62 @@
+{
+ "run_id": "20261018T150905Z",
+ "gates": [
+  {
+   "gate": "G2",
+   "metric": "early_retrieval_rate",
+   "target": ">= 0.8",
+   "measured": 0.6875,
+   "status": "FAIL"
+  },
+  {
+   "gate": "G3",
+   "metric": "intent_recall",
+   "target": ">= 0.7",
+   "measured": 0.9444,
+   "status": "PASS"
+  },
+  {
+   "gate": "G4",
+   "metric": "grounded_claim_rate",
+   "target": ">= 0.85",
+   "measured": 1.0,
+   "status": "PASS"
+  },
+  {
+   "gate": "G4",
+   "metric": "fabricated_doc_ids",
+   "target": "== 0",
+   "measured": 0,
+   "status": "PASS"
+  },
+  {
+   "gate": "G5",
+   "metric": "delta_retrieval_ratio",
+   "target": "< 1.0",
+   "measured": 0.7,
+   "status": "PASS"
+  },
+  {
+   "gate": "G5",
+   "metric": "false_retrieval_rate",
+   "target": "== 0.0",
+   "measured": 0.0,
+   "status": "PASS"
+  },
+  {
+   "gate": "G6",
+   "metric": "telemetry_coverage",
+   "target": "== 1.0",
+   "measured": 1.0,
+   "status": "PASS"
+  },
+  {
+   "gate": "G1",
+   "metric": "reproducibility_delta",
+   "target": "== 0.0",
+   "measured": 0.0,
+   "status": "PASS"
+  }
+ ]
+}
+written: <workspace>\runs\bench\benchmark\latest.json

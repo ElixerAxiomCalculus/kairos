@@ -45,6 +45,7 @@ export function TranscriptInput() {
   const stoppingRef = useRef(false);
   const finalizedRef = useRef(false);
   const restartTimerRef = useRef<number | null>(null);
+  const finalizeTimerRef = useRef<number | null>(null);
   const Ctor = speechCtor();
 
   const onSubmit = handleSubmit(async ({ query }) => {
@@ -55,6 +56,14 @@ export function TranscriptInput() {
 
   const finishTurn = useCallback(() => {
     if (finalizedRef.current) return;
+    if (restartTimerRef.current !== null) {
+      window.clearTimeout(restartTimerRef.current);
+      restartTimerRef.current = null;
+    }
+    if (finalizeTimerRef.current !== null) {
+      window.clearTimeout(finalizeTimerRef.current);
+      finalizeTimerRef.current = null;
+    }
     finalizedRef.current = true;
     desiredListeningRef.current = false;
     stoppingRef.current = false;
@@ -74,8 +83,11 @@ export function TranscriptInput() {
     recognition.continuous = true;
     recognition.interimResults = true;
     recognition.lang = "en-IN";
-    recognition.onstart = () => setPhase("LISTENING");
+    recognition.onstart = () => {
+      if (recognition === recRef.current) setPhase("LISTENING");
+    };
     recognition.onresult = (event) => {
+      if (recognition !== recRef.current || finalizedRef.current) return;
       const finalParts: string[] = [];
       const interimParts: string[] = [];
       for (let index = 0; index < event.results.length; index += 1) {
@@ -91,6 +103,7 @@ export function TranscriptInput() {
       if (uid) sendVoiceSnapshot(uid, fullText, interimParts.length === 0 && finalParts.length > 0);
     };
     recognition.onerror = (event) => {
+      if (recognition !== recRef.current || finalizedRef.current) return;
       if (stoppingRef.current && event.error === "aborted") return;
       if (event.error === "no-speech") return;
       desiredListeningRef.current = false;
@@ -103,6 +116,7 @@ export function TranscriptInput() {
       window.setTimeout(finishTurn, 300);
     };
     recognition.onend = () => {
+      if (recognition !== recRef.current || finalizedRef.current) return;
       if (stoppingRef.current || !desiredListeningRef.current) return finishTurn();
       baseTextRef.current = currentTextRef.current;
       restartTimerRef.current = window.setTimeout(startRecognizer, 120);
@@ -140,7 +154,7 @@ export function TranscriptInput() {
     setPhase("STOPPING");
     try {
       recRef.current?.stop();
-      window.setTimeout(finishTurn, 800);
+      finalizeTimerRef.current = window.setTimeout(finishTurn, 800);
     } catch {
       finishTurn();
     }
@@ -155,6 +169,7 @@ export function TranscriptInput() {
 
   useEffect(() => () => {
     if (restartTimerRef.current !== null) window.clearTimeout(restartTimerRef.current);
+    if (finalizeTimerRef.current !== null) window.clearTimeout(finalizeTimerRef.current);
     desiredListeningRef.current = false;
     if (uidRef.current && !finalizedRef.current) finishTurn();
     recRef.current?.abort?.();

@@ -1,0 +1,18 @@
+{
+  "corpus_revision": "b3b5335604bf5ee3c4447671af975ea25143d4f5",
+  "dataset": "BeIR/scifact",
+  "indexed_subset_documents": 12,
+  "label_file_sha256": "f6a6e4f8ebf17c372df8883472bc6bd7f76cf6f58525cd4f18007dd1d383b23b",
+  "leakage_guard": "queries and qrels are evaluation labels and are not indexed",
+  "license": "cc-by-sa-4.0",
+  "matched_qrels": 1,
+  "qrels_dataset": "BeIR/scifact-qrels",
+  "qrels_pages": 4,
+  "qrels_response_pages_sha256": "5c8934df80c4adbf1f53eb3d7bfb595106c6306f30042f8cecb223ddb98243a7",
+  "qrels_revision": "2938d17dc3b09882fdb8c12bbbe2e2dc0e75a029",
+  "query_pages": 12,
+  "query_response_pages_sha256": "c077a1bba64a155ec2e6e9d4f04a7e7f0bd5d0eebba4c1b5c4549b5e8b802c07",
+  "schema_version": 1,
+  "source": "Hugging Face Dataset Viewer API (paginated, read-only)",
+  "split": "test"
+}

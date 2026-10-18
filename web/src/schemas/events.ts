@@ -54,6 +54,7 @@ export const ServerMessageSchema = z.discriminatedUnion("type", [
   z.object({
     type: z.literal("hello"),
     session_id: z.string(),
+    resume_token: z.string(),
     resumed: z.boolean().default(false),
     corpus: z.record(z.unknown()),
     config: z.record(z.unknown()),

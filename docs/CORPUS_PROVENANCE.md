@@ -9,9 +9,11 @@ KAIROS keeps retrievable passages separate from evaluation labels and records a 
 | `sample` | `corpus/sample` | 8 | 37 | Project-authored fictional policies and event operations |
 | `science` | `corpus/imported/scifact` | 12 | 29 | Bounded scientific-abstract retrieval demonstration |
 | `general` | `corpus/imported/squad` | 8 | 16 | Bounded general reading-comprehension retrieval demonstration |
+| `general_expanded` | `corpus/imported/squad_v2_1` | 21 | 41 | Expanded external-label retrieval evaluation |
 | `multi_domain_demo` | all three paths above | 28 | 82 | Routing, rejection, and multi-domain stress testing |
+| `multi_domain_v2_1` | sample + SciFact + expanded SQuAD | 41 | 107 | V2.1 multi-domain evaluation profile |
 
-Counts are those measured by `python -m kairos semantic-bench` in run `20261018T095654Z`. The default remains the 37-chunk `sample` profile so the ordinary laptop demonstration stays lightweight.
+Counts are those measured for V2.1 on 2026-10-18. The default remains the 37-chunk `sample` profile so the ordinary laptop demonstration stays lightweight.
 
 ## SciFact subset
 
@@ -26,7 +28,16 @@ Counts are those measured by `python -m kairos semantic-bench` in run `20261018T
 - Output: 12 Markdown documents, 29 index chunks
 - ID mapping: source corpus ID `118568` becomes document `SCIFACT:118568`; chunks use IDs such as `SCIFACT:118568:C01`
 
-This import contains corpus passages only. It does not claim a SciFact task evaluation because claim/qrels splits were not imported for this bounded demonstration.
+Official evaluation labels are imported separately from
+[BeIR/scifact-qrels](https://huggingface.co/datasets/BeIR/scifact-qrels):
+
+- Qrels revision: `2938d17dc3b09882fdb8c12bbbe2e2dc0e75a029`, configuration `default`, split `test`.
+- Paginated qrels-response aggregate SHA-256: `5c8934df80c4adbf1f53eb3d7bfb595106c6306f30042f8cecb223ddb98243a7`.
+- Paginated query-response aggregate SHA-256: `c077a1bba64a155ec2e6e9d4f04a7e7f0bd5d0eebba4c1b5c4549b5e8b802c07`.
+- Joined label-file SHA-256: `f6a6e4f8ebf17c372df8883472bc6bd7f76cf6f58525cd4f18007dd1d383b23b`.
+- Exactly one official test qrel intersects the committed 12-document corpus subset. Queries and qrels are never indexed.
+
+The measured 1/1 retrieval result is therefore a pipeline/provenance check, not a representative SciFact benchmark score.
 
 ## SQuAD subset
 
@@ -42,6 +53,14 @@ This import contains corpus passages only. It does not claim a SciFact task eval
 
 Questions, answer text, and answer offsets are stored only in `evaluation-labels.jsonl`. They are not placed in retrievable Markdown and therefore cannot leak answer labels into the index.
 
+### Expanded V2.1 SQuAD evaluation profile
+
+- Same upstream revision, configuration, split, license, transformation, and ID scheme as the original profile.
+- Import: 48 question rows selected with seed 42 from a 100-row bounded response, deduplicated to 21 context documents.
+- Source-response SHA-256: `c5ad3e6f4e4ab3fb83bd79999e8937c9bb3557e277e1e6aa41243ec96734424f`.
+- Output: 21 Markdown documents, 41 index chunks, and 48 non-indexed records in `evaluation-labels.jsonl`.
+- This profile augments rather than overwrites the original small demonstration corpus.
+
 ## Academic citations
 
 - David Wadden, Shanchuan Lin, Kyle Lo, Lucy Lu Wang, Madeleine van Zuylen, Arman Cohan, and Hannaneh Hajishirzi. 2020. “Fact or Fiction: Verifying Scientific Claims.” *Proceedings of EMNLP 2020*, pages 7534–7550. DOI: [10.18653/v1/2020.emnlp-main.609](https://doi.org/10.18653/v1/2020.emnlp-main.609).
@@ -55,6 +74,7 @@ Online imports use the Hugging Face Dataset Viewer API through the Python standa
 ```bash
 python -m kairos import-corpus --dataset scifact --destination corpus/imported/scifact --revision b3b5335604bf5ee3c4447671af975ea25143d4f5 --limit 12 --seed 42 --expected-checksum ebd68a151093e62b046312d869cd84d90b63e7d27cb8c11cc672f780767b7fb6
 python -m kairos import-corpus --dataset squad --destination corpus/imported/squad --revision 7b6d24c440a36b6815f21b70d25016731768db1f --limit 12 --seed 42 --expected-checksum 4e29bcb762d254cf9b8aa7f255de952197c9cc0d523a5461372226053629d3c0
+python -m kairos import-scifact-eval --destination corpus/imported/scifact --corpus-revision b3b5335604bf5ee3c4447671af975ea25143d4f5 --qrels-revision 2938d17dc3b09882fdb8c12bbbe2e2dc0e75a029
 ```
 
 Useful safety modes:

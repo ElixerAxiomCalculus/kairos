@@ -116,11 +116,13 @@ describe("Benchmark and supporting views", () => {
     // A deployment without local run artifacts must fall back to the published bundled snapshots.
     cy.intercept("GET", "/api/benchmark/latest", { statusCode: 200, body: { status: "NOT_MEASURED" } });
     cy.intercept("GET", "/api/semantic-benchmark/latest", { statusCode: 200, body: { status: "NOT_MEASURED" } });
+    cy.intercept("GET", "/api/hardening-benchmark/latest", { statusCode: 200, body: { status: "NOT_MEASURED" } });
     cy.visit("/benchmark");
     cy.get("[data-testid=gate-table]").should("contain.text", "TARGET").and("contain.text", "MEASURED");
     cy.get("[data-testid=benchmark-provenance]").should("contain.text", "run");
-    cy.get("[data-testid=semantic-benchmark]").should("contain.text", "V2 SEMANTIC RELIABILITY");
-    cy.get("[data-testid=semantic-metric-grid]").should("contain.text", "SQuAD Recall@5").and("contain.text", "57.9%");
+    cy.get("[data-testid=semantic-benchmark]").should("contain.text", "V2.1 SEMANTIC RELIABILITY");
+    cy.get("[data-testid=semantic-metric-grid]").should("contain.text", "Expanded SQuAD Recall@5").and("contain.text", "87.5%");
+    cy.get("[data-testid=hardening-benchmark]").should("contain.text", "5,000").and("contain.text", "1047.9");
     cy.get("[data-testid=corpus-attribution]").should("contain.text", "CC BY-SA 4.0").and("contain.text", "Wadden et al.").and("contain.text", "Rajpurkar et al.");
     cy.screenshot("10-benchmark", { capture: "viewport" });
     cy.visit("/experiments");

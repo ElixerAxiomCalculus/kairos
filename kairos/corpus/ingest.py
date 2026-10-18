@@ -60,6 +60,7 @@ class Chunk:
     parent_key: str | None
     text: str
     sha1: str
+    sha256: str
     facets: dict[str, str]
     effective_date: str | None
     doc_type: str | None
@@ -89,6 +90,8 @@ class Chunk:
             "effective_date": self.effective_date,
             "doc_type": self.doc_type,
             "sha1": self.sha1,
+            "content_hash": f"sha256:{self.sha256}",
+            "content_hash_scheme": "sha256-v1",
             "source_dataset": self.source_dataset,
             "source_record_id": self.source_record_id,
             "source_url": self.source_url,
@@ -302,6 +305,7 @@ def load_corpus(path: Path | Sequence[Path], profile: str | None = None) -> Corp
                         parent_key=section.parent.key if section.parent and section.parent.level > 1 else None,
                         text=part,
                         sha1=hashlib.sha1(part.encode("utf-8")).hexdigest(),
+                        sha256=hashlib.sha256(part.encode("utf-8")).hexdigest(),
                         facets=facets,
                         effective_date=str(meta.get("effective_date")) if meta.get("effective_date") else None,
                         doc_type=meta.get("doc_type"),

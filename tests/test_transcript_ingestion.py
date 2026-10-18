@@ -188,6 +188,7 @@ def test_websocket_snapshot_protocol_and_resume(cfg, tmp_path):
         hello = ws.receive_json()
         assert hello["type"] == "hello" and hello["resumed"] is False
         session_id = hello["session_id"]
+        resume_token = hello["resume_token"]
         ws.send_json(snap("mic-1", 1, "I need a workshop venue").model_dump())
         ack = ws.receive_json()
         while ack["type"] != "transcript_ack":
@@ -202,7 +203,9 @@ def test_websocket_snapshot_protocol_and_resume(cfg, tmp_path):
             if message["type"] == "transcript_ack" and message["revision"] == 2:
                 break
 
-    with client.websocket_connect(f"/ws?session_id={session_id}&after_event_id={last_event_id}") as ws:
+    with client.websocket_connect(
+        f"/ws?session_id={session_id}&resume_token={resume_token}&after_event_id={last_event_id}"
+    ) as ws:
         hello = ws.receive_json()
         assert hello["session_id"] == session_id and hello["resumed"] is True
         ws.send_json(snap("mic-1", 3, "I need a workshop venue in Pune for 30 people",
@@ -219,8 +222,13 @@ def test_websocket_snapshot_protocol_and_resume(cfg, tmp_path):
                 "RetrievalStarted", "RetrievalCompleted", "EvidenceFused", "GroundingVerified",
                 "AnswerVersionCreated", "TelemetryEmitted"} <= set(event_types)
 
-    trace = client.get(f"/api/sessions/{session_id}/trace").json()
+    trace = client.get(f"/api/sessions/{session_id}/trace",
+                       headers={"X-Kairos-Session-Token": resume_token}).json()
     assert trace["validation"]["coverage"] == 1.0
+
+    with pytest.raises(Exception):
+        with client.websocket_connect(f"/ws?session_id={session_id}&resume_token=wrong-token") as ws:
+            ws.receive_json()
 
 
 def test_trace_content_false_redacts_jsonl_and_sqlite(cfg, tmp_path):

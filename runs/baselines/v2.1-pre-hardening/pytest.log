@@ -1,0 +1,8 @@
+.........................................                                [100%]
+============================== warnings summary ===============================
+tests/test_api.py::test_rest_and_websocket_session
+  <user-home>\AppData\Roaming\Python\Python313\site-packages\pytz\tzinfo.py:27: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).
+    _epoch = datetime.utcfromtimestamp(0)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+41 passed, 1 warning in 11.16s

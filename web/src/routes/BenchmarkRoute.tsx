@@ -3,8 +3,10 @@ import { GateTable, MetricGrid, SemanticMetricGrid } from "@/components/benchmar
 import { EmptyState } from "@/components/common/EmptyState";
 import {
   loadBenchmark,
+  loadHardeningBenchmark,
   loadSemanticBenchmark,
   type BenchmarkReport,
+  type HardeningBenchmarkReport,
   type SemanticBenchmarkReport,
   type Source,
 } from "@/features/replay/benchmarkData";
@@ -15,7 +17,7 @@ type ReportState<T> = { report: T | null; source: Source; error?: string };
 const corpora = [
   {
     name: "SciFact via BEIR",
-    use: "12 documents / 29 chunks",
+    use: "12 documents / 29 chunks; 1 intersecting official test qrel (labels not indexed)",
     license: "CC BY-SA 4.0",
     dataset: "https://huggingface.co/datasets/BeIR/scifact",
     citation: "Wadden et al. (EMNLP 2020); Thakur et al. (NeurIPS 2021)",
@@ -23,7 +25,7 @@ const corpora = [
   },
   {
     name: "SQuAD 1.1",
-    use: "8 contexts / 16 chunks; 12 Q&A labels excluded from retrieval",
+    use: "21-context expanded profile / 41 chunks; 48 Q&A labels excluded from retrieval",
     license: "CC BY-SA 4.0",
     dataset: "https://huggingface.co/datasets/rajpurkar/squad",
     citation: "Rajpurkar et al. (EMNLP 2016)",
@@ -35,14 +37,17 @@ const corpora = [
 export default function BenchmarkRoute() {
   const [state, setState] = useState<ReportState<BenchmarkReport> | null>(null);
   const [semanticState, setSemanticState] = useState<ReportState<SemanticBenchmarkReport> | null>(null);
+  const [hardeningState, setHardeningState] = useState<ReportState<HardeningBenchmarkReport> | null>(null);
   useEffect(() => {
-    void Promise.all([loadBenchmark(), loadSemanticBenchmark()]).then(([development, semantic]) => {
+    void Promise.all([loadBenchmark(), loadSemanticBenchmark(), loadHardeningBenchmark()]).then(([development, semantic, hardening]) => {
       setState(development);
       setSemanticState(semantic);
+      setHardeningState(hardening);
     });
   }, []);
   const r = state?.report ?? null;
   const semantic = semanticState?.report ?? null;
+  const hardening = hardeningState?.report ?? null;
   const measured = r?.status === "MEASURED";
   return (
     <main className={styles.page} data-testid="benchmark-page">
@@ -62,11 +67,12 @@ export default function BenchmarkRoute() {
       </div>
       {state?.error ? <div className="px" style={{ color: "var(--status-fail)" }}>{state.error}</div> : null}
       {semanticState?.error ? <div className="px" style={{ color: "var(--status-fail)" }}>{semanticState.error}</div> : null}
+      {hardeningState?.error ? <div className="px" style={{ color: "var(--status-fail)" }}>{hardeningState.error}</div> : null}
       {state && !r ? <EmptyState label="No benchmark report">Run <code>python -m kairos bench</code> to measure.</EmptyState> : null}
       {r ? (
         <>
           <section className="panel" style={{ padding: 0 }}>
-            <header className="panel-head"><span className="px secondary">CURRENT V2 DEVELOPMENT GATES · TARGET VS MEASURED</span></header>
+            <header className="panel-head"><span className="px secondary">CURRENT V2.1 DEVELOPMENT GATES · TARGET VS MEASURED</span></header>
             <div style={{ overflowX: "auto" }}><GateTable report={r} /></div>
           </section>
           <MetricGrid report={r} />
@@ -80,13 +86,14 @@ export default function BenchmarkRoute() {
         <>
           <section className="panel" style={{ padding: 0 }} data-testid="semantic-benchmark">
             <header className="panel-head">
-              <span className="px secondary">V2 SEMANTIC RELIABILITY · RUN {semantic.run_id}</span>
+              <span className="px secondary">V2.1 SEMANTIC RELIABILITY · RUN {semantic.run_id}</span>
             </header>
             <div style={{ padding: "var(--sp-4)" }}>
               <SemanticMetricGrid report={semantic} />
               <p className={styles.note}>
                 {semantic.dataset?.note} Intent recall 95% CI: {semantic.metrics?.intent.intent_recall_ci95.join("–")}.
-                Relevant-evidence precision and SQuAD retrieval are shown even though they are below 1.0.
+                Relevant-evidence precision and expanded SQuAD retrieval are shown even though they are below 1.0;
+                the official SciFact value has only one intersecting query and must not be generalized.
               </p>
             </div>
           </section>
@@ -109,12 +116,36 @@ export default function BenchmarkRoute() {
             </div>
             <p className={styles.note} style={{ padding: "0 var(--sp-4) var(--sp-4)", margin: 0 }}>
               The project-authored sample corpus contains 8 fictional-policy documents / 37 chunks. External subsets retain
-              revision and SHA-256 provenance; SQuAD questions and answers are evaluation labels, never indexed evidence.
+              immutable revisions and SHA-256 provenance; SQuAD questions/answers and SciFact qrels are evaluation labels,
+              never indexed evidence.
             </p>
           </section>
         </>
       ) : semanticState ? (
         <EmptyState label="No semantic benchmark report">Run <code>python -m kairos semantic-bench</code> to measure.</EmptyState>
+      ) : null}
+      {hardening ? (
+        <section className="panel" style={{ padding: 0 }} data-testid="hardening-benchmark">
+          <header className="panel-head"><span className="px secondary">V2.1 SCALE AND CONCURRENCY · RUN {hardening.run_id}</span></header>
+          <div style={{ overflowX: "auto" }}>
+            <table className={styles.table}>
+              <thead><tr><th>DOCUMENTS</th><th>CHUNKS</th><th>BUILD</th><th>PEAK PYTHON MEMORY</th><th>SEARCH p50 / p95 / p99</th><th>QPS</th></tr></thead>
+              <tbody>{hardening.scale?.map((row) => (
+                <tr key={row.documents}>
+                  <td>{row.documents.toLocaleString()}</td><td>{row.chunks.toLocaleString()}</td>
+                  <td>{(row.index_build_ms / 1000).toFixed(2)} s</td>
+                  <td>{(row.python_traced_peak_bytes / 1024 / 1024).toFixed(1)} MiB</td>
+                  <td>{row.search_p50_ms?.toFixed(1) ?? "—"} / {row.search_p95_ms?.toFixed(1) ?? "—"} / {row.search_p99_ms?.toFixed(1) ?? "—"} ms</td>
+                  <td>{row.single_session_qps.toFixed(2)}</td>
+                </tr>
+              ))}</tbody>
+            </table>
+          </div>
+          <p className={styles.note} style={{ padding: "0 var(--sp-4) var(--sp-4)" }}>
+            Pinned official {hardening.dataset?.name} rows. Concurrency isolation: {hardening.concurrency?.every((row) => row.session_isolation) ? "PASS" : "FAIL"}.
+            {" "}{hardening.soak?.qualification}. Disk index size is not measured because persistence is not implemented.
+          </p>
+        </section>
       ) : null}
     </main>
   );

@@ -143,6 +143,10 @@ const SEMANTIC_METRICS: Array<{
   { label: "Relevant Evidence Precision", value: (r) => r.metrics?.retrieval.relevant_evidence_precision, detail: () => "accepted top-k evidence" },
   { label: "OOD Rejection", value: (r) => r.metrics?.retrieval.out_of_domain_rejection_accuracy, detail: (r) => `${r.metrics?.retrieval.negative_queries ?? 0} negative queries` },
   { label: "SQuAD Recall@5", value: (r) => r.metrics?.retrieval.external_squad_recall_at_5, detail: (r) => `${r.metrics?.retrieval.external_squad_queries ?? 0} held-aside labels` },
+  { label: "Expanded SQuAD Recall@5", value: (r) => r.metrics?.external_squad_expanded?.recall_at_5 ?? undefined, detail: (r) => `${r.metrics?.external_squad_expanded?.queries ?? 0} external labels` },
+  { label: "Official SciFact Recall@5", value: (r) => r.metrics?.external_scifact_qrels?.recall_at_5 ?? undefined, detail: (r) => `${r.metrics?.external_scifact_qrels?.queries ?? 0} matched official qrel (tiny subset)` },
+  { label: "EFIS 100-pair Accuracy", value: (r) => r.ablations?.efis_100_pairs?.v2_1.accuracy, detail: (r) => `${r.ablations?.efis_100_pairs?.v2_1.cases ?? 0} project-authored pairs` },
+  { label: "EFIS False Merge Rate", value: (r) => r.ablations?.efis_100_pairs?.v2_1.false_merge_rate, detail: () => "lower is better; V2 comparison in report" },
   { label: "Grounding Accuracy", value: (r) => r.metrics?.grounding.accuracy, detail: (r) => `${r.metrics?.grounding.cases ?? 0} adversarial cases` },
   { label: "False Grounding Acceptance", value: (r) => r.metrics?.grounding.false_grounding_acceptance_rate, detail: () => "lower is better" },
 ];

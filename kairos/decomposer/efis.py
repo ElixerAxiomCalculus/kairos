@@ -24,6 +24,20 @@ from kairos.textutil import STOPWORDS, content_terms, is_number, jaccard, lower_
 LABEL_STOP = {"book", "need", "tell", "whether", "available", "availability", "know", "find", "check", "detail",
               "summarize", "summarise", "explain", "list", "policy", "rule", "option", "info", "information"}
 
+# Small, auditable equivalence classes for request-objective vocabulary.  These are linguistic
+# normalisations, not domain facts: they let "cancellation rules" and "cancellation policy" agree
+# without making the much broader topic word "event" sufficient for a merge.
+OBJECTIVE_ALIASES = {
+    "rule": "policy", "regulation": "policy", "guideline": "policy", "term": "policy",
+    "define": "definition", "meaning": "definition", "describe": "explanation",
+    "explain": "explanation", "cost": "price", "fee": "price", "charge": "price",
+    "deadline": "timing", "period": "timing", "notice": "timing", "when": "timing",
+    "available": "availability", "availability": "availability", "offer": "availability",
+    "capacity": "capacity", "accommodate": "capacity", "seat": "capacity",
+}
+OBJECTIVE_MARKERS = {"policy", "definition", "explanation", "price", "timing", "availability", "capacity",
+                     "penalty", "refund", "eligibility", "location", "process", "comparison"}
+
 
 @dataclass
 class Assignment:
@@ -34,6 +48,27 @@ class Assignment:
     footprint_overlap: dict[str, float]
     footprint_valid: bool = False
     standalone_status: str = "VALID_STANDALONE"
+    merge_reason: str = "NEW_INTENT"
+    decision_signals: dict[str, dict[str, float | bool | str]] | None = None
+
+
+def _semantic_signature(text: str) -> tuple[set[str], set[str]]:
+    """Return (subject, objective) terms used only as a conservative merge signal."""
+    canonical = {OBJECTIVE_ALIASES.get(term, term) for term in content_terms(text)}
+    objectives = canonical & OBJECTIVE_MARKERS
+    subjects = canonical - objectives - {"event", "request", "detail", "information", "option"}
+    return subjects, objectives
+
+
+def _objective_compatibility(left: str, right: str) -> tuple[float, float]:
+    left_subject, left_objective = _semantic_signature(left)
+    right_subject, right_objective = _semantic_signature(right)
+    subject_similarity = jaccard(left_subject, right_subject)
+    if left_objective or right_objective:
+        objective_similarity = jaccard(left_objective, right_objective)
+    else:
+        objective_similarity = subject_similarity
+    return subject_similarity, objective_similarity
 
 
 def _surface_terms(text: str) -> list[str]:
@@ -96,8 +131,10 @@ class Decomposer:
             fp_quality >= float(self.cfg.get("footprint_min_relevance", 0.35))
         )
         overlaps: dict[str, float] = {}
+        decision_signals: dict[str, dict[str, float | bool | str]] = {}
         best: SubQuery | None = None
-        best_val = 0.0
+        best_val = -1.0
+        best_reason = "NEW_INTENT"
         cvec = self.index.encode(" ".join([cand.need_text, *cand.constraints]))
         cand_terms = set(content_terms(cand.need_text))
         for sq in existing:
@@ -105,23 +142,61 @@ class Decomposer:
             cos = float(cvec @ self.index.encode(" ".join(sq.need_texts)))
             overlaps[sq.id] = round(overlap, 3)
             lexical = jaccard(cand_terms, content_terms(" ".join(sq.need_texts)))
+            subject_similarity, objective_compatibility = _objective_compatibility(
+                cand.need_text, " ".join(sq.need_texts)
+            )
             constraints_compatible = not any(
                 a["kind"] == b["kind"] and a["normalized_value"] != b["normalized_value"]
                 for a in [c.to_public() for c in cand.typed_constraints]
                 for b in sq.typed_constraints
             )
-            explicit_topic_shift = bool(cand.request_cue and lexical < float(self.cfg.get("lexical_merge_min", 0.28)))
+            explicit_topic_shift = bool(
+                cand.request_cue
+                and subject_similarity < float(self.cfg.get("semantic_subject_min", 0.5))
+                and lexical < float(self.cfg.get("lexical_merge_min", 0.28))
+            )
             existing_valid = (not self.cfg.get("footprint_validity_gate", True) and bool(sq.footprint)) or (
                 sq.footprint_quality >= float(self.cfg.get("footprint_min_relevance", 0.35))
             )
             footprint_merge = (footprint_valid and existing_valid
                                and overlap >= self.cfg["theta_merge"])
             semantic_merge = cos >= self.cfg["theta_sem"] and lexical >= float(self.cfg.get("lexical_merge_min", 0.28))
-            can_merge = constraints_compatible and (footprint_merge or semantic_merge)
+            objective_merge = (
+                self.cfg.get("semantic_objective_merge", True)
+                and
+                subject_similarity >= float(self.cfg.get("semantic_subject_min", 0.5))
+                and objective_compatibility >= float(self.cfg.get("objective_compatibility_min", 0.75))
+            )
+            can_merge = constraints_compatible and objective_compatibility > 0 and (
+                footprint_merge or semantic_merge or objective_merge
+            )
             if self.cfg.get("topic_shift_guard", True) and explicit_topic_shift:
                 can_merge = False
-            if can_merge and overlap + cos + lexical > best_val:
-                best, best_val = sq, overlap + cos
+            score = (
+                0.25 * overlap + 0.25 * cos + 0.15 * lexical
+                + 0.20 * subject_similarity + 0.15 * objective_compatibility
+            )
+            reason = (
+                "SEMANTIC_OBJECTIVE_EQUIVALENCE" if objective_merge
+                else "VALIDATED_EVIDENCE_FOOTPRINT" if footprint_merge
+                else "DENSE_LEXICAL_EQUIVALENCE" if semantic_merge
+                else "TOPIC_TRANSITION" if explicit_topic_shift
+                else "CONSTRAINT_CONFLICT" if not constraints_compatible
+                else "INSUFFICIENT_EQUIVALENCE"
+            )
+            decision_signals[sq.id] = {
+                "semantic_equivalence": round(max(cos, subject_similarity), 4),
+                "evidence_footprint_similarity": round(overlap, 4),
+                "evidence_footprint_validity": bool(footprint_valid and existing_valid),
+                "constraint_compatibility": constraints_compatible,
+                "topic_transition": explicit_topic_shift,
+                "request_objective_compatibility": round(objective_compatibility, 4),
+                "merge_score": round(score, 4),
+                "decision": "MERGE" if can_merge else "SPLIT",
+                "reason": reason,
+            }
+            if can_merge and score > best_val:
+                best, best_val, best_reason = sq, score, reason
         if best is not None:
             best.need_texts.append(cand.need_text)
             best.constraints.extend(c for c in cand.constraints if c not in best.constraints)
@@ -131,7 +206,8 @@ class Decomposer:
                                         best.text)
             best.footprint = self.own_footprint(best.need_texts, best.constraints)
             best.footprint_quality = max(best.footprint_quality, fp_quality)
-            return Assignment(cand.key, best, False, best.id, overlaps, footprint_valid, cand.status)
+            return Assignment(cand.key, best, False, best.id, overlaps, footprint_valid, cand.status,
+                              best_reason, decision_signals)
 
         sq = SubQuery(
             id=next_id,
@@ -151,7 +227,8 @@ class Decomposer:
             sq.depends_on = [first_sq.id]
             sq.dependency_type = "soft"
         sq.query = self.query_for(sq.need_texts, sq.constraints, sq.anchor, None, sq.text)
-        return Assignment(cand.key, sq, True, None, overlaps, footprint_valid, cand.status)
+        return Assignment(cand.key, sq, True, None, overlaps, footprint_valid, cand.status,
+                          "NEW_INTENT", decision_signals)
 
     def refresh(self, sq: SubQuery, cand: CandidateNeed) -> None:
         """Candidate text grew after retrieval (REFINE): rebuild the sub-query from its latest text."""

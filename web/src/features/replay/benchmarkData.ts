@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { loadBenchmarkSnapshot, loadSemanticBenchmarkSnapshot } from "@/mocks";
+import { loadBenchmarkSnapshot, loadHardeningBenchmarkSnapshot, loadSemanticBenchmarkSnapshot } from "@/mocks";
 import { apiUrl } from "@/services/apiBase";
 
 /** Benchmark reports are produced by `python -m kairos bench`; the UI only displays them. */
@@ -67,6 +67,12 @@ const SemanticBenchmarkReportSchema = z.object({
       external_squad_recall_at_5: z.number(),
       external_squad_mrr: z.number(),
     }).passthrough(),
+    external_scifact_qrels: z.object({
+      status: z.string(), queries: z.number(), recall_at_5: z.number().nullable(), mrr_at_10: z.number().nullable(),
+    }).passthrough().optional(),
+    external_squad_expanded: z.object({
+      status: z.string(), queries: z.number(), recall_at_5: z.number().nullable(), mrr_at_10: z.number().nullable(),
+    }).passthrough().optional(),
     grounding: z.object({
       cases: z.number(),
       accuracy: z.number(),
@@ -94,11 +100,32 @@ const SemanticBenchmarkReportSchema = z.object({
       throughput_qps_single_thread: z.number(),
     }).passthrough()).optional(),
   }).optional(),
-  ablations: z.record(z.unknown()).optional(),
+  ablations: z.object({
+    efis_100_pairs: z.object({
+      v2: z.object({ merge_precision: z.number(), merge_recall: z.number(), merge_f1: z.number(), accuracy: z.number(), false_merge_rate: z.number(), cases: z.number() }).passthrough(),
+      v2_1: z.object({ merge_precision: z.number(), merge_recall: z.number(), merge_f1: z.number(), accuracy: z.number(), false_merge_rate: z.number(), cases: z.number() }).passthrough(),
+    }).optional(),
+  }).passthrough().optional(),
   integrity: z.record(z.string()).optional(),
 });
 
 export type SemanticBenchmarkReport = z.infer<typeof SemanticBenchmarkReportSchema>;
+
+const HardeningBenchmarkReportSchema = z.object({
+  status: z.enum(["MEASURED", "NOT_MEASURED"]),
+  run_id: z.string().optional(),
+  dataset: z.object({ name: z.string(), revision: z.string(), license: z.string() }).passthrough().optional(),
+  scale: z.array(z.object({
+    documents: z.number(), chunks: z.number(), index_build_ms: z.number(), python_traced_peak_bytes: z.number(),
+    search_p50_ms: z.number().nullable(), search_p95_ms: z.number().nullable(), search_p99_ms: z.number().nullable(),
+    single_session_qps: z.number(), index_persistence_status: z.string(),
+  }).passthrough()).optional(),
+  concurrency: z.array(z.object({
+    sessions: z.number(), wall_ms: z.number(), sessions_per_second: z.number(), session_isolation: z.boolean(),
+  }).passthrough()).optional(),
+  soak: z.object({ rounds: z.number(), sessions_per_round: z.number(), duration_s: z.number(), qualification: z.string() }).passthrough().optional(),
+});
+export type HardeningBenchmarkReport = z.infer<typeof HardeningBenchmarkReportSchema>;
 
 async function fetchJson(url: string): Promise<unknown | null> {
   try {
@@ -129,6 +156,17 @@ export async function loadSemanticBenchmark(): Promise<{ report: SemanticBenchma
     if (!parsed.success) return { report: null, source: "NONE", error: "Backend returned a malformed semantic benchmark report." };
   }
   const snap = SemanticBenchmarkReportSchema.safeParse(await loadSemanticBenchmarkSnapshot());
+  return snap.success ? { report: snap.data, source: "BUNDLED_SNAPSHOT" } : { report: null, source: "NONE" };
+}
+
+export async function loadHardeningBenchmark(): Promise<{ report: HardeningBenchmarkReport | null; source: Source; error?: string }> {
+  const live = await fetchJson("/api/hardening-benchmark/latest");
+  if (live) {
+    const parsed = HardeningBenchmarkReportSchema.safeParse(live);
+    if (parsed.success && parsed.data.status === "MEASURED") return { report: parsed.data, source: "BACKEND" };
+    if (!parsed.success) return { report: null, source: "NONE", error: "Backend returned a malformed hardening report." };
+  }
+  const snap = HardeningBenchmarkReportSchema.safeParse(await loadHardeningBenchmarkSnapshot());
   return snap.success ? { report: snap.data, source: "BUNDLED_SNAPSHOT" } : { report: null, source: "NONE" };
 }
 

@@ -33,6 +33,14 @@ DOMAIN_TERMS = {
     "general_knowledge": {"definition", "history", "agent", "university", "encyclopedia"},
 }
 
+# Terms that identify a broad request context but not its information objective.  Admission uses the
+# remaining high-weight terms to prevent an "international event" document from satisfying a
+# cancellation question merely because organization/domain vocabulary overlaps.
+OBJECTIVE_STOP = {
+    "policy", "rule", "option", "information", "detail", "event", "international", "standard",
+    "general", "current", "today", "document", "company", "organization", "available",
+}
+
 
 @dataclass
 class RetrievalQuery:
@@ -72,6 +80,8 @@ class Hit:
     accepted: bool = True
     relevance_status: str = "RELEVANT_SUFFICIENT"
     query_coverage: float = 0.0
+    objective_coverage: float = 0.0
+    relevance_grade: int = 0
     relevance_reasons: list[str] = field(default_factory=list)
 
     def to_public(self) -> dict:
@@ -88,6 +98,8 @@ class Hit:
             "accepted": self.accepted,
             "relevance_status": self.relevance_status,
             "query_coverage": round(self.query_coverage, 4),
+            "objective_coverage": round(self.objective_coverage, 4),
+            "relevance_grade": self.relevance_grade,
             "relevance_reasons": self.relevance_reasons,
         }
 
@@ -102,6 +114,7 @@ class SearchResult:
     evidence_status: str = "NO_RELEVANT_EVIDENCE"
     domain: str = "unknown"
     domain_confidence: float = 0.0
+    domain_fallback_used: bool = False
 
     @property
     def relevant_hits(self) -> list[Hit]:
@@ -201,6 +214,15 @@ class HybridIndex:
             return 0.0
         hit = sum(self.bm25.idf_of(t) * w for t, w in terms.items() if t in self.term_sets[idx])
         return hit / total
+
+    def objective_terms(self, query: RetrievalQuery) -> dict[str, float]:
+        terms = {
+            term: weight for term, weight in query.terms.items()
+            if weight >= 0.95 and term not in OBJECTIVE_STOP and term not in self.corpus.places
+        }
+        if not terms:
+            terms = {term: weight for term, weight in query.terms.items() if weight >= 0.95}
+        return terms
 
     def section_of(self, chunk_id: str) -> str:
         return self.chunks[self.pos[chunk_id]].section_key
@@ -317,6 +339,10 @@ class HybridIndex:
             r"\b(?:not|non[- ]?reimbursable|excluded|ineligible|without)\b", query.text, re.I
         ))
         gate = bool(cfg.get("relevance_gate", True))
+        objective_terms = self.objective_terms(query)
+        enforce_domain = cfg.get("domain_routing", True) and domain_confidence >= float(
+            cfg.get("domain_routing_min_confidence", 0.25)
+        )
         for rel, i, match, coverage in scored:
             dup_of = None
             for h in hits:
@@ -330,10 +356,11 @@ class HybridIndex:
                 continue
             focus_present = sum(1 for term, weight in query.terms.items()
                                 if weight >= 0.95 and term in self.term_sets[i])
+            objective_coverage = self.coverage(objective_terms, i)
             reasons: list[str] = []
             if not domain_available and domain != "unknown":
                 reasons.append("DOMAIN_NOT_AVAILABLE")
-            elif cfg.get("domain_routing", True) and domain != "unknown" and self.chunk_domains[i] not in {domain, "unknown"}:
+            elif enforce_domain and domain != "unknown" and self.chunk_domains[i] not in {domain, "unknown"}:
                 reasons.append("DOMAIN_MISMATCH")
             if coverage < float(cfg.get("relevance_min_coverage", 0.16)):
                 reasons.append("LOW_IDF_COVERAGE")
@@ -343,6 +370,8 @@ class HybridIndex:
                 reasons.append("NO_SPARSE_OR_DENSE_SUPPORT")
             if focus_present < int(cfg.get("relevance_min_focus_terms", 1)):
                 reasons.append("NO_FOCUS_TERM")
+            if objective_terms and objective_coverage < float(cfg.get("relevance_min_objective_coverage", 0.14)):
+                reasons.append("LOW_OBJECTIVE_COVERAGE")
             if query_places and not (query_places & self.chunk_places[i]):
                 reasons.append("QUERY_ENTITY_NOT_IN_EVIDENCE")
             if query_negative and not re.search(
@@ -351,7 +380,11 @@ class HybridIndex:
             ):
                 reasons.append("NEGATION_SCOPE_MISMATCH")
             accepted = not gate or not reasons
-            relevance_status = "RELEVANT_SUFFICIENT" if accepted and coverage >= 0.35 else (
+            grade = 3 if accepted and coverage >= 0.35 and objective_coverage >= 0.35 else (
+                2 if accepted and objective_coverage >= float(cfg.get("relevance_min_objective_coverage", 0.14))
+                else 1 if coverage >= float(cfg.get("relevance_min_coverage", 0.16)) else 0
+            )
+            relevance_status = "RELEVANT_SUFFICIENT" if grade == 3 else (
                 "RELEVANT_PARTIAL" if accepted else "OUT_OF_DOMAIN" if "DOMAIN_NOT_AVAILABLE" in reasons
                 else "NO_RELEVANT_EVIDENCE"
             )
@@ -368,6 +401,8 @@ class HybridIndex:
                 accepted=accepted,
                 relevance_status=relevance_status,
                 query_coverage=coverage,
+                objective_coverage=objective_coverage,
+                relevance_grade=grade,
                 relevance_reasons=reasons,
             ))
             if len(hits) >= top_k:
@@ -380,7 +415,9 @@ class HybridIndex:
             evidence_status = "OUT_OF_DOMAIN"
         else:
             evidence_status = "NO_RELEVANT_EVIDENCE"
-        return SearchResult(hits, duplicates, filtered, stage, mode, evidence_status, domain, domain_confidence)
+        fallback_used = bool(cfg.get("domain_routing", True) and domain != "unknown" and not enforce_domain)
+        return SearchResult(hits, duplicates, filtered, stage, mode, evidence_status, domain, domain_confidence,
+                            fallback_used)
 
     def status(self) -> dict:
         return {

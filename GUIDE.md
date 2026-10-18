@@ -16,7 +16,8 @@ python -m kairos replay pune-demo       # print a demo's event trace
 python -m kairos replay multi-domain-stress  # mixed-domain and insufficient-evidence regression
 python -m pytest -q                     # backend tests
 python -m kairos bench                  # dev benchmark → runs/bench/benchmark/latest.json
-python -m kairos semantic-bench         # V2 held-out/retrieval/grounding/scale report
+python -m kairos semantic-bench         # V2.1 semantics, external labels, grounding, ablations
+python -m kairos hardening-bench --max-documents 5000  # official-corpus scale/concurrency/short soak
 ```
 
 ### Corpus profiles and reproducible imports
@@ -36,6 +37,7 @@ Validate or reproduce imports with pinned revisions and checksums from
 ```bash
 python -m kairos import-corpus --dataset scifact --destination corpus/imported/scifact --validate-only
 python -m kairos import-corpus --dataset squad --destination corpus/imported/squad --dry-run
+python -m kairos import-scifact-eval --destination corpus/imported/scifact
 ```
 
 Imports use the Hugging Face Dataset Viewer API. Automated adapter tests instead use tiny local fixtures and
@@ -68,6 +70,20 @@ controller should show early RETRIEVE, then REFINE, then SUPPRESS, producing V1/
 
 The application never stores raw audio. Browser speech recognition may send audio to the browser vendor.
 Transcript payloads are persisted in trace telemetry unless `telemetry.trace_content` is set to `false`.
+
+### Operator microphone smoke test
+
+Run this on the exact presentation machine because automated tests cannot validate real audio hardware:
+
+1. Serve the production build over HTTPS/WSS (localhost HTTP is acceptable for local browser testing) and set `KAIROS_CORS_ORIGINS` to the exact UI origin.
+2. In current Chrome and Edge, allow the intended microphone, click **GO LIVE**, start once, speak a partial sentence, pause, continue, then stop once.
+3. Confirm provisional text changes without duplicate committed chunks; after Stop, exactly one `end_of_turn` snapshot is acknowledged and no late recognizer callback changes the turn.
+4. Start a second turn immediately and verify it has a new utterance ID and no text from the first turn.
+5. Deny microphone permission, disconnect the device, background/restore the tab, and interrupt network access; each state must surface an error or reconnect without finalizing stale text.
+6. Resume the same session and confirm the capability token is supplied, missed events replay once, and a wrong token is rejected.
+7. Inspect telemetry for transcript content before recording a public demo; set `telemetry.trace_content: false` when text retention is not acceptable.
+
+Hardware/vendor-ASR and hosted reverse-proxy validation are currently **PENDING**.
 
 ## 3. Containers
 

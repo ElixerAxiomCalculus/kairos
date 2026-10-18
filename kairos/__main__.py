@@ -134,6 +134,24 @@ def cmd_semantic_bench(args) -> None:
                       "ablations": report["ablations"]}, indent=2))
 
 
+def cmd_import_scifact_eval(args) -> None:
+    from kairos.corpus.adapters.scifact_eval import import_scifact_evaluation
+
+    result = import_scifact_evaluation(
+        resolve_path(args.destination), corpus_revision=args.corpus_revision,
+        qrels_revision=args.qrels_revision,
+    )
+    print(json.dumps(result, indent=2, sort_keys=True))
+
+
+def cmd_hardening_bench(args) -> None:
+    from benchmark.hardening_runner import run_hardening_benchmark
+
+    report = run_hardening_benchmark(_cfg(args), max_documents=args.max_documents)
+    print(json.dumps({"run_id": report["run_id"], "scale": report["scale"],
+                      "concurrency": report["concurrency"], "soak": report["soak"]}, indent=2))
+
+
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(prog="kairos", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--config", default=None, help="YAML merged over configs/default.yaml")
@@ -176,6 +194,14 @@ def main(argv: list[str] | None = None) -> None:
     sub.add_parser("semantic-bench", help="run V2 semantic/relevance/grounding/scale evaluations").set_defaults(
         fn=cmd_semantic_bench
     )
+    p = sub.add_parser("import-scifact-eval", help="import official SciFact test queries/qrels as labels")
+    p.add_argument("--destination", default="corpus/imported/scifact")
+    p.add_argument("--corpus-revision", default="b3b5335604bf5ee3c4447671af975ea25143d4f5")
+    p.add_argument("--qrels-revision", default="2938d17dc3b09882fdb8c12bbbe2e2dc0e75a029")
+    p.set_defaults(fn=cmd_import_scifact_eval)
+    p = sub.add_parser("hardening-bench", help="run official-corpus scale, concurrency, and short soak studies")
+    p.add_argument("--max-documents", type=int, default=5000, choices=[100, 500, 1000, 5000])
+    p.set_defaults(fn=cmd_hardening_bench)
     args = parser.parse_args(argv)
     args.fn(args)
 

@@ -13,12 +13,14 @@ def test_rest_and_websocket_session(cfg, tmp_path):
     assert corpus["status"] == "READY" and corpus["chunks"] > 0
     assert client.get("/api/benchmark/latest").json()["status"] == "NOT_MEASURED"
     assert client.get("/api/semantic-benchmark/latest").json()["status"] == "NOT_MEASURED"
+    assert client.get("/api/hardening-benchmark/latest").json()["status"] == "NOT_MEASURED"
     assert any(s["id"] == "pune-demo" for s in client.get("/api/scripts").json())
 
     with client.websocket_connect("/ws") as ws:
         hello = ws.receive_json()
         assert hello["type"] == "hello"
         sid = hello["session_id"]
+        token = hello["resume_token"]
         ws.send_json({"type": "chunk", "utterance_id": "u1", "text": "Is alcohol served at company venues?",
                       "t0": 0.0, "t1": 1.0, "final": True})
         seen = []
@@ -29,7 +31,9 @@ def test_rest_and_websocket_session(cfg, tmp_path):
                 if msg["event"]["event_type"] == "TelemetryEmitted":
                     break
         assert "AnswerVersionCreated" in seen and "GroundingVerified" in seen
-        trace = client.get(f"/api/sessions/{sid}/trace").json()
+        assert client.get(f"/api/sessions/{sid}/trace").status_code == 403
+        trace = client.get(f"/api/sessions/{sid}/trace",
+                           headers={"X-Kairos-Session-Token": token}).json()
         assert trace["validation"]["coverage"] == 1.0
         ws.send_json({"type": "end_session"})
     assert client.delete(f"/api/sessions/{sid}").json()["ended"] is False  # already purged

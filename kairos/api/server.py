@@ -1,7 +1,7 @@
 """FastAPI app: REST for status/benchmarks, WebSocket for live sessions, static UI.
 
 WebSocket protocol (/ws):
-  server → {"type": "hello", "session_id", "corpus", "config"}
+  server → {"type": "hello", "session_id", "resume_token", "corpus", "config"}
   server → {"type": "event", "event": {...}}          one per engine event
   server → {"type": "error", "message"}
   client → {"type": "chunk", "utterance_id", "text", "t0"?, "t1"?, "final"?}
@@ -17,7 +17,7 @@ import json
 import os
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, Header, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -44,8 +44,11 @@ def create_app(cfg: Config) -> FastAPI:
 
     app = FastAPI(title="Kairos — Streaming Live RAG", version=__version__)
     # Split hosting (UI on another origin): KAIROS_CORS_ORIGINS=https://your-site.netlify.app
-    origins = [o.strip() for o in os.environ.get("KAIROS_CORS_ORIGINS", "*").split(",") if o.strip()]
-    app.add_middleware(CORSMiddleware, allow_origins=origins, allow_methods=["*"], allow_headers=["*"])
+    origins = [o.strip() for o in os.environ.get(
+        "KAIROS_CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173"
+    ).split(",") if o.strip()]
+    app.add_middleware(CORSMiddleware, allow_origins=origins, allow_methods=["GET", "DELETE"],
+                       allow_headers=["Content-Type", "X-Kairos-Session-Token"])
     app.state.ctx, app.state.store = ctx, store
 
     @app.get("/api/health")
@@ -72,7 +75,9 @@ def create_app(cfg: Config) -> FastAPI:
             raise HTTPException(404, f"unknown script {script_id}") from exc
 
     @app.get("/api/sessions/{session_id}/trace")
-    def trace(session_id: str) -> dict:
+    def trace(session_id: str, x_kairos_session_token: str | None = Header(default=None)) -> dict:
+        if not store.authorized(session_id, x_kairos_session_token):
+            raise HTTPException(403, "invalid session capability")
         engine = store.get(session_id)
         if engine is None:
             raise HTTPException(404, "session not found or expired")
@@ -81,7 +86,9 @@ def create_app(cfg: Config) -> FastAPI:
         return {"events": events, "validation": validate(active)}
 
     @app.delete("/api/sessions/{session_id}")
-    async def end_session(session_id: str) -> dict:
+    async def end_session(session_id: str, x_kairos_session_token: str | None = Header(default=None)) -> dict:
+        if store.get(session_id) is not None and not store.authorized(session_id, x_kairos_session_token):
+            raise HTTPException(403, "invalid session capability")
         return {"ended": await store.end(session_id)}
 
     def _latest(kind: str) -> JSONResponse:
@@ -98,6 +105,10 @@ def create_app(cfg: Config) -> FastAPI:
     def semantic_benchmark_latest() -> JSONResponse:
         return _latest("semantic")
 
+    @app.get("/api/hardening-benchmark/latest")
+    def hardening_benchmark_latest() -> JSONResponse:
+        return _latest("hardening")
+
     @app.get("/api/experiments/latest")
     def experiments_latest() -> JSONResponse:
         return _latest("experiments")
@@ -105,13 +116,19 @@ def create_app(cfg: Config) -> FastAPI:
     @app.websocket("/ws")
     async def ws(websocket: WebSocket) -> None:
         origin = websocket.headers.get("origin")
-        if origin and "*" not in origins and origin not in origins:
+        host = websocket.headers.get("host", "")
+        same_origin = bool(origin and origin.split("://", 1)[-1] == host)
+        if origin and not same_origin and "*" not in origins and origin not in origins:
             await websocket.close(code=1008, reason="origin not allowed")
+            return
+        requested = websocket.query_params.get("session_id")
+        resume_token = websocket.query_params.get("resume_token")
+        if requested and store.get(requested) is not None and not store.authorized(requested, resume_token):
+            await websocket.close(code=1008, reason="invalid session capability")
             return
         await websocket.accept()
         live_cfg = cfg.get("live", {})
         queue: asyncio.Queue = asyncio.Queue(maxsize=int(live_cfg.get("outbound_queue_size", 256)))
-        requested = websocket.query_params.get("session_id")
         engine = store.get(requested) if requested else None
         resumed = engine is not None
         loop = asyncio.get_running_loop()
@@ -134,7 +151,8 @@ def create_app(cfg: Config) -> FastAPI:
             async with send_lock:
                 await websocket.send_json(payload)
 
-        await send_json({"type": "hello", "session_id": engine.id, "resumed": resumed,
+        await send_json({"type": "hello", "session_id": engine.id, "resume_token": store.token_for(engine.id),
+                         "resumed": resumed,
                          "corpus": ctx.corpus_status(), "config": ctx.config_summary()})
 
         if resumed:

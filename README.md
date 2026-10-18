@@ -67,7 +67,8 @@ The microphone protocol sends cumulative, revisioned snapshots:
 The server responds with `transcript_ack` (`accepted`, `duplicate`, `stale`, or `finalized`) and continues
 to emit ordinary `{ "type": "event", "event": ... }` engine messages. Stop sends one final snapshot with
 `end_of_turn: true`; it does not also send `utterance_end`. Reconnect uses
-`/ws?session_id=<id>&after_event_id=<id>` and replays missed authoritative events. Legacy `chunk`,
+`/ws?session_id=<id>&resume_token=<capability>&after_event_id=<id>` and replays missed authoritative events.
+The token is issued in the initial `hello`; trace and delete requests require the same capability. Legacy `chunk`,
 `utterance_end`, `replay`, and `end_session` messages remain supported.
 
 Transcript text is included in JSONL/SQLite telemetry by default. Set `telemetry.trace_content: false` in
@@ -78,7 +79,9 @@ configuration to redact text-bearing payload fields while retaining event IDs an
 | `python -m kairos serve` | API, WebSocket and UI on :8000 |
 | `python -m kairos replay pune-demo` | Runs a demo script through the engine and prints the event trace and lineage coverage |
 | `python -m kairos bench` | Dev benchmark (two repeats plus a reproducibility check) → `runs/bench/benchmark/latest.json` |
-| `python -m kairos semantic-bench` | V2 intent, relevance, grounding, streaming, scale, and ablation report → `runs/bench/semantic/latest.json` |
+| `python -m kairos semantic-bench` | V2.1 intent, relevance, grounding, streaming, external-label, and ablation report → `runs/bench/semantic/latest.json` |
+| `python -m kairos hardening-bench --max-documents 5000` | Pinned official-corpus scale, concurrency, isolation, and short-soak report → `runs/bench/hardening/latest.json` |
+| `python -m kairos import-scifact-eval` | Imports official SciFact test qrels/queries as non-indexed evaluation labels |
 | `python -m kairos ablate` | Ablations A, B, C and E → `runs/bench/experiments/latest.json` |
 | `python -m kairos train-stability` | Fits the stability model on the training streams (self-supervised) |
 | `python -m kairos tune-controller` | Label-free tuning of controller cost weights on the training streams |
@@ -87,27 +90,27 @@ configuration to redact text-bearing payload fields while retaining event IDs an
 | `python -m kairos import-corpus --dataset squad --destination corpus/imported/squad --dry-run` | Validates a bounded external-corpus import without writing it |
 | `python -m kairos reproduce` | train → bench → ablate, in one command (`docker compose --profile bench run --rm bench`) |
 
-## V2 semantic reliability upgrade
+## V2.1 semantic reliability and engineering hardening
 
-V2 adds stable reconciled QueryFrame candidates, typed intent-owned constraints, explicit topic transitions,
-evidence-footprint validity, domain-aware retrieval, relevance admission, truthful insufficient-evidence
-states, evidence checksums, exact quote validation, sparse deduplication, probe caching, and corrected selective
-delta updates. It also includes reproducible bounded SciFact and SQuAD importers; SQuAD answers remain outside
-the retrievable index.
+V2.1 adds auditable EFIS objective/constraint/topic signals, objective-aware evidence admission, strict
+versioned SHA-256 citations, PSRC decision/calibration diagnostics, authenticated session resume/trace access,
+and race-safe microphone finalization. It also expands the evaluation to 100 explicit EFIS pairs, 48 SQuAD
+labels, the official SciFact qrels intersecting the bounded corpus, 13 grounding adversaries, and a 5,000-
+document official-corpus scale run.
 
-Semantic run `20261018T095654Z` measured 1.00 intent F1 on 8 engineering cases / 15 intents, 1.00 Recall@5
-on four positive profile queries, 1.00 OOD rejection on four negative queries, and 0.00 false grounding
-acceptance on five adversarial checks. These samples are intentionally small: relevant-evidence precision was
-0.5789, SQuAD Recall@5 was 0.8333 over 12 labels, and revised EFIS scored 2/3 on its small ablation. Read the
-full [V2 engineering report](docs/KAIROS_V2_REPORT.md) and [corpus provenance](docs/CORPUS_PROVENANCE.md)
-before interpreting the numbers.
+Semantic run `20261018T154338Z` measured relevant-evidence precision 0.8750, expanded SQuAD Recall@5
+0.8125 over 48 labels, and grounding accuracy 0.8462 over 13 adversaries. EFIS accuracy improved from 0.7100
+to 0.7400 and its false-merge rate fell from 0.2241 to 0.1207, but merge recall fell from 0.6190 to 0.5476
+and F1 from 0.6420 to 0.6389. The single matched official SciFact query scores 1.0 and is explicitly too small
+to generalize. Read the [V2.1 hardening report](docs/KAIROS_V2_1_REPORT.md), historical
+[V2 report](docs/KAIROS_V2_REPORT.md), and [corpus provenance](docs/CORPUS_PROVENANCE.md).
 
 ### Current published metrics
 
-Final V2 development run `20261018T095654Z` uses the same 26-session project-authored development set as
+Final V2.1 development run `20261018T154934Z` uses the same 26-session project-authored development set as
 the preserved baseline. Targets and measurements remain separate on the `/benchmark` page.
 
-| Gate | Metric | Target | V2 measured | Status |
+| Gate | Metric | Target | V2.1 measured | Status |
 |---|---|---:|---:|---|
 | G1 | Reproducibility delta | = 0 | 0.0000 | PASS |
 | G2 | Early retrieval rate | >= 0.80 | **0.6875** | **FAIL** |
@@ -118,18 +121,23 @@ the preserved baseline. Targets and measurements remain separate on the `/benchm
 | G5 | Presentation-turn false retrieval | = 0 | 0.0000 | PASS |
 | G6 | Telemetry lineage coverage | = 1.00 | 1.0000 | PASS |
 
-Additional V2 development measurements: intent precision 0.9189, intent-count accuracy 0.9231,
-refinement correctness 1.0000, evidence survival 0.7231, premature retrieval 0.3077, mean retrieval latency
-1.952 ms, and post-utterance latency p50/p95 of 8.015/12.961 ms. These are development measurements on
+Additional V2.1 development measurements: intent precision 0.8947, intent-count accuracy 0.8846,
+refinement correctness 1.0000, evidence survival 0.7333, premature retrieval 0.2963, mean retrieval latency
+1.830 ms, and post-utterance latency p50/p95 of 6.229/13.790 ms. These are development measurements on
 the 37-chunk sample corpus, not official third-party benchmark scores.
+
+The pinned SciFact scale study reached 5,000 documents / 11,732 chunks: 114.20 s index build, 1.66 GiB
+traced Python peak, 69.7 ms search p50, 1,047.9 ms p95, and 3.77 single-session QPS. Eight concurrent demo
+sessions retained isolation. These laptop measurements use only 20 timed searches per scale point; the index
+is memory-only and the short soak is not a production endurance claim.
 
 ### RAG corpus datasets, licenses, and citations
 
 | Corpus | Indexed subset | License | Required attribution |
 |---|---:|---|---|
 | Project sample corpus | 8 documents / 37 chunks | Project-authored fictional demo content | KAIROS project |
-| [SciFact via BEIR](https://huggingface.co/datasets/BeIR/scifact) | 12 documents / 29 chunks | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | [Wadden et al., 2020](https://aclanthology.org/2020.emnlp-main.609/) and [Thakur et al., 2021](https://openreview.net/forum?id=wCu6T5xFjeJ) |
-| [SQuAD 1.1](https://huggingface.co/datasets/rajpurkar/squad) | 8 contexts / 16 chunks; 12 Q&A labels kept outside retrieval | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | [Rajpurkar et al., 2016](https://aclanthology.org/D16-1264/) |
+| [SciFact via BEIR](https://huggingface.co/datasets/BeIR/scifact) + [official qrels](https://huggingface.co/datasets/BeIR/scifact-qrels) | 12 documents / 29 chunks; 1 intersecting test query kept outside retrieval | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | [Wadden et al., 2020](https://aclanthology.org/2020.emnlp-main.609/) and [Thakur et al., 2021](https://openreview.net/forum?id=wCu6T5xFjeJ) |
+| [SQuAD 1.1](https://huggingface.co/datasets/rajpurkar/squad) | original 8-context profile plus expanded 21-context profile; 48 Q&A labels kept outside retrieval | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | [Rajpurkar et al., 2016](https://aclanthology.org/D16-1264/) |
 
 The exact revisions, response and document SHA-256 values, source-ID mappings, import commands, and
 share-alike/usage cautions are recorded in [Corpus provenance](docs/CORPUS_PROVENANCE.md).
@@ -142,7 +150,7 @@ share-alike/usage cautions are recorded in [Corpus provenance](docs/CORPUS_PROVE
 | One vector for three questions | **EFIS.** Two clauses are separate intents iff their evidence footprints diverge (RBO₀.₈ of parent sections < 0.4). Constraint clauses attach to the need they modify | `kairos/decomposer/efis.py` |
 | Refinement restarts everything | **Claim-dependency delta.** A late constraint re-retrieves only sub-queries whose *cited* evidence depends on it. Each claim is then KEEP, REVISE, RETRACT or ADD; kept claims carry over verbatim | `kairos/delta/engine.py` |
 | "Make it shorter" triggers retrieval | Turn classifier plus **SUPPRESS**. The answer is re-rendered from its claim set, and a transformation firewall proves no new facts, numbers or citations were added | `kairos/controller/turns.py`, `kairos/synthesis/transform.py` |
-| Decorative citations | **Grounding firewall.** A citation must be retrieved in this session with a matching SHA. The quote must be verbatim, numeric and name anchors must be present, and support ≥ τ. Numeric conflicts are surfaced, never silently resolved | `kairos/grounding/firewall.py` |
+| Decorative citations | **Grounding firewall.** A citation must be retrieved in this session with a matching versioned SHA-256 content hash. The quote must be verbatim, numeric and name anchors must be present, and support ≥ τ. Numeric conflicts are surfaced, never silently resolved | `kairos/grounding/firewall.py` |
 | Opaque behaviour | Every stage emits a parented event, and a lineage validator checks six invariants on every run | `kairos/telemetry/` |
 
 Facets such as `standard | domestic | international` are **derived from the corpus**: sibling headings that
@@ -190,10 +198,14 @@ their provenance. Targets are never displayed as measurements.
 
 - **G2 is not met on dev** (0.69 < 0.80). Short two-chunk questions often only become determinable in their last chunk.
 - **Tuning disclosure:** the controller was tuned label-free on the training streams, not on dev. The decomposer, delta rules and sufficiency check were iterated while inspecting dev failures.
+- **EFIS tradeoff:** on 100 project-authored pairs, V2.1 reduces false merges but increases false splits; merge F1 is 0.6389. The set is not independently annotated.
+- **External-label limits:** expanded SQuAD Recall@5 is 0.8125 (48 labels). Only one official SciFact test query intersects the bounded 12-document corpus, so its 1.0 result is not a general benchmark score.
 - **Historical delta result.** The pre-V2 implementation over-triggered when one document mixed general and constraint-specific sections (for example S26), scoring 0.60 on the original run. V2's scope guard reaches 1.00 exact refinement correctness on the same development cases, but that set was used during iteration and is not an independent test.
 - **Automatic grounding judge.** It is lexical (verbatim quote, token recall and numeric anchors) and independent of the firewall's IDF-weighted score. `runs/bench/benchmark/audit_sheet.csv` is prepared for a human audit, which has **not** been done yet.
 - **Extractive by default.** Every claim is a quoted sentence. That makes grounding strong by construction but prose less fluent; generative synthesis (Gemini) is optional and held to the same firewall.
-- **Sample corpus.** It is small (8 documents, 37 chunks), and retriever differences need a larger corpus to show.
+- **Scale ceiling.** The default corpus remains 8 documents / 37 chunks. The official 5,000-document stress run reaches 1.66 GiB traced peak and 1.05 s retrieval p95; the index is memory-only.
+- **Grounding semantics.** Strict content hashes, retrieved-ID checks and quotes do not solve entailment: the lexical firewall still accepted negation and modality adversaries.
+- **Security audit.** Production npm dependencies audit clean. Seven dev-tool advisories remain because remediation requires breaking Cypress/Storybook upgrades; see the V2.1 report.
 - **Browser speech recognition.** Availability, accuracy, and network behavior depend on the browser and
   speech provider. Automated tests simulate the browser API; a real microphone smoke test is still required
   on the machine used for the presentation.

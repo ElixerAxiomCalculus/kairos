@@ -1,0 +1,109 @@
+   0.000  SessionStarted
+   0.300  TranscriptChunkReceived       'find me'
+   0.300  QueryFrameUpdated
+   0.302  TurnClassified
+   0.302  ProbeExecuted
+   0.302  RetrievalDecision             WAIT ['NO_CANDIDATE_NEED']
+   0.700  TranscriptChunkReceived       'houses in Pune'
+   0.700  QueryFrameUpdated
+   0.701  ProbeExecuted
+   0.701  RetrievalDecision             WAIT ['RESULTS_STILL_MOVING', 'AMBIGUOUS_PROBE']
+   1.000  TranscriptChunkReceived       'sorry Mumbai'
+   1.000  QueryFrameUpdated
+   1.000  ProbeExecuted
+   1.000  RetrievalDecision             WAIT ['RESULTS_STILL_MOVING', 'AMBIGUOUS_PROBE']
+   1.300  TranscriptChunkReceived       'under 2BHK'
+   1.300  QueryFrameUpdated
+   1.301  ProbeExecuted
+   1.301  RetrievalDecision             RETRIEVE ['STABLE_ABOVE_THRESHOLD', 'RESULTS_PLATEAU']
+   1.303  SubQueriesGenerated
+   1.303  RetrievalStarted         I01
+   1.307  RetrievalCompleted       I01
+   1.307  EvidenceFused
+   1.700  TranscriptChunkReceived       'starting from 20 lakh'
+   1.700  QueryFrameUpdated
+   1.702  ProbeExecuted
+   1.702  RetrievalDecision             REFINE ['RESULTS_WOULD_CHANGE']
+   1.703  SubQueriesGenerated
+   1.703  RetrievalStarted         I01
+   1.705  RetrievalCompleted       I01
+   1.705  EvidenceFused
+   2.100  TranscriptChunkReceived       '3 lakhs per month'
+   2.100  QueryFrameUpdated
+   2.102  ProbeExecuted
+   2.102  RetrievalDecision             REFINE ['RESULTS_WOULD_CHANGE']
+   2.104  SubQueriesGenerated
+   2.104  RetrievalStarted         I01
+   2.105  RetrievalCompleted       I01
+   2.105  EvidenceFused
+   2.400  TranscriptChunkReceived       '5 percent interest rate'
+   2.400  QueryFrameUpdated
+   2.402  ProbeExecuted
+   2.402  RetrievalDecision             REFINE ['RESULTS_WOULD_CHANGE']
+   2.404  SubQueriesGenerated
+   2.404  RetrievalStarted         I01
+   2.405  RetrievalCompleted       I01
+   2.405  EvidenceFused
+   2.900  TranscriptChunkReceived       'find 3BHK houses in Delhi over 40 lakh'
+   2.901  QueryFrameUpdated
+   2.901  ProbeExecuted
+   2.901  RetrievalDecision             RETRIEVE ['STABLE_ABOVE_THRESHOLD', 'RESULTS_PLATEAU']
+   2.903  SubQueriesGenerated
+   2.903  RetrievalStarted         I02
+   2.905  RetrievalCompleted       I02
+   2.905  EvidenceFused
+   3.300  TranscriptChunkReceived       'what is the definition of an AI agent'
+   3.301  QueryFrameUpdated
+   3.302  ProbeExecuted
+   3.302  RetrievalDecision             RETRIEVE ['STABLE_ABOVE_THRESHOLD', 'RESULTS_PLATEAU']
+   3.303  SubQueriesGenerated
+   3.303  RetrievalStarted         I03
+   3.305  RetrievalCompleted       I03
+   3.305  EvidenceFused
+   3.700  TranscriptChunkReceived       'what does this agent do'
+   3.701  QueryFrameUpdated
+   3.702  ProbeExecuted
+   3.702  RetrievalDecision             WAIT ['CLARIFICATION_REQUIRED', 'INCOMPLETE_CLAUSE']
+   4.100  TranscriptChunkReceived       'tell me about fever and cough and cold'
+   4.101  QueryFrameUpdated
+   4.102  ProbeExecuted
+   4.102  RetrievalDecision             WAIT ['AMBIGUOUS_PROBE', 'BUDGET_EXHAUSTED']
+   4.500  TranscriptChunkReceived       'tell me the nearest hospital from my location'
+   4.501  QueryFrameUpdated
+   4.502  ProbeExecuted
+   4.502  RetrievalDecision             WAIT ['AMBIGUOUS_PROBE', 'BUDGET_EXHAUSTED']
+   4.900  TranscriptChunkReceived       'suggest travel plans to Goa'
+   4.902  QueryFrameUpdated
+   4.903  ProbeExecuted
+   4.903  RetrievalDecision             WAIT ['BUDGET_EXHAUSTED']
+   5.300  TranscriptChunkReceived       'tell me more about the medicine'
+   5.302  QueryFrameUpdated
+   5.302  TurnClassified
+   5.303  ProbeExecuted
+   5.303  RetrievalDecision             RETRIEVE ['END_OF_UTTERANCE']
+   5.315  SubQueriesGenerated
+   5.315  RetrievalStarted         I04
+   5.315  RetrievalStarted         I05
+   5.315  RetrievalStarted         I06
+   5.315  RetrievalStarted         I07
+   5.315  RetrievalStarted         I08
+   5.320  RetrievalCompleted       I04
+   5.319  RetrievalCompleted       I05
+   5.324  RetrievalCompleted       I06
+   5.328  RetrievalCompleted       I07
+   5.329  RetrievalCompleted       I08
+   5.329  EvidenceFused
+   5.330  ClaimsGenerated
+   5.330  GroundingVerified
+   5.330  AnswerVersionCreated          V1 SEMANTIC
+    Insufficient evidence in the provided corpus to verify: houses mumbai bhk starting interest rate.
+    Insufficient evidence in the provided corpus to verify: bhk houses delhi.
+    Insufficient evidence in the provided corpus to verify: definition ai agent.
+    Insufficient evidence in the provided corpus to verify: agent.
+    Insufficient evidence in the provided corpus to verify: fever cough cold.
+    Insufficient evidence in the provided corpus to verify: nearest hospital location.
+    Insufficient evidence in the provided corpus to verify: suggest travel plans goa.
+    Insufficient evidence in the provided corpus to verify: medicine.
+   5.330  TelemetryEmitted
+
+telemetry coverage: 1.000 (111/111 invariant instances)

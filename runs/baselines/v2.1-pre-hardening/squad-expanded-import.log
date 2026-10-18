@@ -1,0 +1,129 @@
+{
+  "adapter": "squad",
+  "config": "plain_text",
+  "dataset": "rajpurkar/squad",
+  "documents": [
+    {
+      "content_checksum_sha256": "09aab6681f13d1fd99ea2c5fa9a190f7f5d7809ebedc418c164221b397f56ad0",
+      "doc_id": "SQUAD:09aab6681f13d1fd",
+      "source_record_id": "09aab6681f13d1fd"
+    },
+    {
+      "content_checksum_sha256": "0bed2f73894c73542224e58563a122e1f2cf78eafb03c59929d778dc3cce33e9",
+      "doc_id": "SQUAD:0bed2f73894c7354",
+      "source_record_id": "0bed2f73894c7354"
+    },
+    {
+      "content_checksum_sha256": "156f96fffa531abd2080e085e17760d0ff75ffb5f13fccdc6885e2d9b230770e",
+      "doc_id": "SQUAD:156f96fffa531abd",
+      "source_record_id": "156f96fffa531abd"
+    },
+    {
+      "content_checksum_sha256": "202b31473094e05c347f41a14295e8a18b55663ae6a2eeb7dbf3ecb9b1036227",
+      "doc_id": "SQUAD:202b31473094e05c",
+      "source_record_id": "202b31473094e05c"
+    },
+    {
+      "content_checksum_sha256": "30d24a5d12b84fa6a80755bccab5d37c60410439a33243d533bab92f0e11cfc3",
+      "doc_id": "SQUAD:30d24a5d12b84fa6",
+      "source_record_id": "30d24a5d12b84fa6"
+    },
+    {
+      "content_checksum_sha256": "3787a46bd23562af4506bf8b742459ff83347ad4a029818d5d8541f4f9b6e109",
+      "doc_id": "SQUAD:3787a46bd23562af",
+      "source_record_id": "3787a46bd23562af"
+    },
+    {
+      "content_checksum_sha256": "4f8845bad3ff59b223e01608620321585a4687a28f8e3b023d510f768039375d",
+      "doc_id": "SQUAD:4f8845bad3ff59b2",
+      "source_record_id": "4f8845bad3ff59b2"
+    },
+    {
+      "content_checksum_sha256": "827dab666a13cddec0287e44ee479902a1d5f4a676cd6a2643a49fc801d34e50",
+      "doc_id": "SQUAD:827dab666a13cdde",
+      "source_record_id": "827dab666a13cdde"
+    },
+    {
+      "content_checksum_sha256": "8978e606ac815776837f6ae937f265f172cb30e8bc110492b8ad734b9d410fb3",
+      "doc_id": "SQUAD:8978e606ac815776",
+      "source_record_id": "8978e606ac815776"
+    },
+    {
+      "content_checksum_sha256": "94a99bff525e95b2237edd771e726b5f77527d60896483ac09fd7385dba4ac0d",
+      "doc_id": "SQUAD:94a99bff525e95b2",
+      "source_record_id": "94a99bff525e95b2"
+    },
+    {
+      "content_checksum_sha256": "a31797988cd1fb7fdbbbe6f00480f585b3b1de66398967112eeebcb681731c11",
+      "doc_id": "SQUAD:a31797988cd1fb7f",
+      "source_record_id": "a31797988cd1fb7f"
+    },
+    {
+      "content_checksum_sha256": "b0830484bb6a0bb3129fd6e4a30197cf80846bab08f5fa75d56d355bab2b5332",
+      "doc_id": "SQUAD:b0830484bb6a0bb3",
+      "source_record_id": "b0830484bb6a0bb3"
+    },
+    {
+      "content_checksum_sha256": "bdcf4d8d533411aa4d34218646c70110baaffc8f42f9d73740f3feb04d39fa0e",
+      "doc_id": "SQUAD:bdcf4d8d533411aa",
+      "source_record_id": "bdcf4d8d533411aa"
+    },
+    {
+      "content_checksum_sha256": "c880a681d556666f6bd0b98985adea7a6ce30eeb403d35642ae083a92ca07d78",
+      "doc_id": "SQUAD:c880a681d556666f",
+      "source_record_id": "c880a681d556666f"
+    },
+    {
+      "content_checksum_sha256": "d2006dff1995effa148f64f70e4264fb373ef487acda695802a1b58aa582e407",
+      "doc_id": "SQUAD:d2006dff1995effa",
+      "source_record_id": "d2006dff1995effa"
+    },
+    {
+      "content_checksum_sha256": "d452dee77c48fa5d64a5481d816a23ac648a08fce3b98c6e6f2d30230f381a59",
+      "doc_id": "SQUAD:d452dee77c48fa5d",
+      "source_record_id": "d452dee77c48fa5d"
+    },
+    {
+      "content_checksum_sha256": "dd8fdc7aa80c156bc8b29d1e917bb190eac3749f9a24ff6289126750438c3ee8",
+      "doc_id": "SQUAD:dd8fdc7aa80c156b",
+      "source_record_id": "dd8fdc7aa80c156b"
+    },
+    {
+      "content_checksum_sha256": "f1c5f43afc46a764b9209da5a0ae2e334ed4992514d5a876085f2056e1862c45",
+      "doc_id": "SQUAD:f1c5f43afc46a764",
+      "source_record_id": "f1c5f43afc46a764"
+    },
+    {
+      "content_checksum_sha256": "f245ff7ef596f40c9402996c21ca826b0fdb3735bf12b41184952dc243236715",
+      "doc_id": "SQUAD:f245ff7ef596f40c",
+      "source_record_id": "f245ff7ef596f40c"
+    },
+    {
+      "content_checksum_sha256": "f663c6cad2ca269e8194d2072f8fefdbd0078be9b92748c77c4ac79dcb1f4e04",
+      "doc_id": "SQUAD:f663c6cad2ca269e",
+      "source_record_id": "f663c6cad2ca269e"
+    },
+    {
+      "content_checksum_sha256": "fcec8b729ee45e04302144a7ab38a4d04b08570357fd37fc01e5995e96c23737",
+      "doc_id": "SQUAD:fcec8b729ee45e04",
+      "source_record_id": "fcec8b729ee45e04"
+    }
+  ],
+  "evaluation_labels": 48,
+  "exported_documents": 21,
+  "input_records": 100,
+  "license": "cc-by-sa-4.0",
+  "namespace": "SQUAD",
+  "rejected": [],
+  "rejected_records": 0,
+  "requested_limit": 48,
+  "revision": "7b6d24c440a36b6815f21b70d25016731768db1f",
+  "schema_version": 1,
+  "seed": 42,
+  "source_checksum_sha256": "c5ad3e6f4e4ab3fb83bd79999e8937c9bb3557e277e1e6aa41243ec96734424f",
+  "source_ref": "https://datasets-server.huggingface.co/rows?dataset=rajpurkar%2Fsquad&config=plain_text&split=train&offset=0&length=100",
+  "source_url": "https://huggingface.co/datasets/rajpurkar/squad",
+  "split": "train",
+  "transformation": "source passage to Markdown; questions/answers/qrels remain separate labels",
+  "valid_records": 100
+}

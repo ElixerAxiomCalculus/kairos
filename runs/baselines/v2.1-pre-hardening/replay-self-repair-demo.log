@@ -1,0 +1,34 @@
+   0.000  SessionStarted
+   1.800  TranscriptChunkReceived       'Which rooms can seat'
+   1.801  QueryFrameUpdated
+   1.802  TurnClassified
+   1.802  ProbeExecuted
+   1.802  RetrievalDecision             RETRIEVE ['STABLE_ABOVE_THRESHOLD']
+   1.804  SubQueriesGenerated
+   1.804  RetrievalStarted         I01
+   1.808  RetrievalCompleted       I01
+   1.809  EvidenceFused
+   2.600  TranscriptChunkReceived       '100 people in Pune,'
+   2.600  QueryFrameUpdated
+   2.603  ProbeExecuted
+   2.603  RetrievalDecision             REFINE ['RESULTS_WOULD_CHANGE']
+   2.604  SubQueriesGenerated
+   2.604  RetrievalStarted         I01
+   2.605  RetrievalCompleted       I01
+   2.605  EvidenceFused
+   3.200  TranscriptChunkReceived       'sorry, Mumbai?'
+   3.200  QueryFrameUpdated
+   3.201  TurnClassified
+   3.201  ProbeExecuted
+   3.201  RetrievalDecision             REFINE ['SLOT_REVISED']
+   3.203  SubQueriesGenerated
+   3.203  RetrievalStarted         I01
+   3.204  RetrievalCompleted       I01
+   3.204  EvidenceFused
+   3.206  ClaimsGenerated
+   3.206  GroundingVerified
+   3.206  AnswerVersionCreated          V1 SEMANTIC
+    Marine Hall seats up to 120 participants in a theatre layout and up to 70 participants in a classroom layout. [D02:C02]
+   3.206  TelemetryEmitted
+
+telemetry coverage: 1.000 (37/37 invariant instances)

@@ -1,0 +1,7 @@
+﻿basicsr 1.4.2 requires future, which is not installed.
+basicsr 1.4.2 requires tb-nightly, which is not installed.
+realesrgan 0.3.0 requires gfpgan, which is not installed.
+google-ai-generativelanguage 0.6.15 has requirement protobuf!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<6.0.0dev,>=3.20.2, but you have protobuf 6.33.6.
+growwapi 1.5.0 has requirement protobuf<6.0.0,>=5.29.0, but you have protobuf 6.33.6.
+gtts 2.5.4 has requirement click<8.2,>=7.1, but you have click 8.5.0.
+streamlit 1.49.1 has requirement pillow<12,>=7.1.0, but you have pillow 13.0.0.

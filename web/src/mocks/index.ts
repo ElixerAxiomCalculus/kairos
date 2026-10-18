@@ -39,3 +39,8 @@ export async function loadSemanticBenchmarkSnapshot(): Promise<unknown> {
   const mod = await import("./fixtures/semantic.latest.json");
   return mod.default;
 }
+
+export async function loadHardeningBenchmarkSnapshot(): Promise<unknown> {
+  const mod = await import("./fixtures/hardening.latest.json");
+  return mod.default;
+}

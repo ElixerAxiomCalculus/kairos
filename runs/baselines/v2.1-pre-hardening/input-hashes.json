@@ -1,0 +1,142 @@
+﻿[
+    {
+        "Path":  "configs/default.yaml",
+        "Hash":  "91E73FBC09B56570F94AD4FCCD69A7CE0FF23712893DC919C513A3BD395406D5"
+    },
+    {
+        "Path":  "configs/general.yaml",
+        "Hash":  "348ABD4B0FDFA9037BE5895BF7F75DBB5862DD25F5539FC414EA265FD007C0AD"
+    },
+    {
+        "Path":  "configs/multi-domain.yaml",
+        "Hash":  "4F719B215BA9F64DB0B30DAEF0E95E5FBE4FB6BBD7C84912C7C46F7F144D68A9"
+    },
+    {
+        "Path":  "configs/science.yaml",
+        "Hash":  "F8BBC3BEA4EBE2A0228A4B9BCC643671E673470C5D1E4A5262BB108470DAFBB1"
+    },
+    {
+        "Path":  "corpus/imported/scifact/manifest.json",
+        "Hash":  "F143DAACB91E00068C2542FA2F03D4CFA40BC8BE2AAB92CEF7AB5C91C14120B9"
+    },
+    {
+        "Path":  "corpus/imported/scifact/SCIFACT-118568.md",
+        "Hash":  "BF6F58D44B31ED6856134C558D0568FAA5D643234418773A5494D45E64F11410"
+    },
+    {
+        "Path":  "corpus/imported/scifact/SCIFACT-123859.md",
+        "Hash":  "0F7411CC33A9AB110E9716E9196053259A41DFB432B4485295E1B42D06BBDBEA"
+    },
+    {
+        "Path":  "corpus/imported/scifact/SCIFACT-140874.md",
+        "Hash":  "5767D2B0ED9AF7D1F3C4F8B0E1B0FA5B29EF412782CC7968F633B869BA6AB00E"
+    },
+    {
+        "Path":  "corpus/imported/scifact/SCIFACT-164189.md",
+        "Hash":  "C785B4B7BF04CA5594DC237307C01EF912DDB8997307D93541E500A0CA9CAC39"
+    },
+    {
+        "Path":  "corpus/imported/scifact/SCIFACT-164985.md",
+        "Hash":  "A93D970A76A13DB3D70C31C6B521D3B0E3BB849F58AC99845B168E20BD4B2539"
+    },
+    {
+        "Path":  "corpus/imported/scifact/SCIFACT-18670.md",
+        "Hash":  "66A74C07BCF3035052190F836520F909E55F6D10C575BC336E030A580B8C2BAA"
+    },
+    {
+        "Path":  "corpus/imported/scifact/SCIFACT-19238.md",
+        "Hash":  "2E7C1B5D0757BC6FDDC86D0C18C564CDC5B0830C13B68E3728D07B016578ED78"
+    },
+    {
+        "Path":  "corpus/imported/scifact/SCIFACT-202259.md",
+        "Hash":  "61BCC1DDAE415FC8E2D0CD48A0B1A84D25FEAB9E841A9D335A33D2D7E9697137"
+    },
+    {
+        "Path":  "corpus/imported/scifact/SCIFACT-226488.md",
+        "Hash":  "95BD40DD43471B22C55A5F65A83C3A842F2B2CEB5B6E7D629A78AAC6B37A6EEF"
+    },
+    {
+        "Path":  "corpus/imported/scifact/SCIFACT-70490.md",
+        "Hash":  "4738594562FCCDCFBCBF5344EE3A64AFA9677B250E63C61A2E2D23E5E37008CD"
+    },
+    {
+        "Path":  "corpus/imported/scifact/SCIFACT-72159.md",
+        "Hash":  "1BCAE53E11BDB75FA92D77859770057C7D381BDBDAF7984AD53B6018A7B16009"
+    },
+    {
+        "Path":  "corpus/imported/scifact/SCIFACT-87758.md",
+        "Hash":  "78BCDC5EB41ADD43B4934FCCE7C1DF4E7FFE6E4F69FBF093940FBF8D3EFBB97B"
+    },
+    {
+        "Path":  "corpus/imported/squad/evaluation-labels.jsonl",
+        "Hash":  "D613B5519908C914DF2F3931E08F1FCB54A4FD705E667927BF3219E983D03053"
+    },
+    {
+        "Path":  "corpus/imported/squad/manifest.json",
+        "Hash":  "47B42B0DC3BE99B4006E00AF47E52FD12F5EFCFCBCB7D4C9A0724337596166DB"
+    },
+    {
+        "Path":  "corpus/imported/squad/SQUAD-3787a46bd23562af.md",
+        "Hash":  "89BB12FB9EAB75569672F3B4C8E12516658D7747AA4C56929A183C60E0E8261A"
+    },
+    {
+        "Path":  "corpus/imported/squad/SQUAD-827dab666a13cdde.md",
+        "Hash":  "CC4D9055BBC793C0AC733B92AC93950349C2D5CE5418FAA3624B49C99E8D7B79"
+    },
+    {
+        "Path":  "corpus/imported/squad/SQUAD-8978e606ac815776.md",
+        "Hash":  "F4DC761E75ECC43A2F609F3A932417A4FC43A941E2C43CA8E953F88DBF76CDA0"
+    },
+    {
+        "Path":  "corpus/imported/squad/SQUAD-94a99bff525e95b2.md",
+        "Hash":  "97A252C93A8AC7603D6E3804988EB4A6D487A6544D2D19A1EEE678B4714FF037"
+    },
+    {
+        "Path":  "corpus/imported/squad/SQUAD-b0830484bb6a0bb3.md",
+        "Hash":  "0D6ADD5E45166DB420890124000EE94A68D1CBCAEF350A02619CC0798112A5AF"
+    },
+    {
+        "Path":  "corpus/imported/squad/SQUAD-c880a681d556666f.md",
+        "Hash":  "02651CB54991BD510A739328CFE35EA1E0566568174E94E91AC6DADB62973F91"
+    },
+    {
+        "Path":  "corpus/imported/squad/SQUAD-d2006dff1995effa.md",
+        "Hash":  "807AD5920B49372E6326E8FD0CD830BDFFE66FB9DA6FFF851BABBAD5D5C0ED5A"
+    },
+    {
+        "Path":  "corpus/imported/squad/SQUAD-f245ff7ef596f40c.md",
+        "Hash":  "D9BB15D3CE297B5E284E2A20B0B044A7EBF073F2E14257A4506B8038CF97432A"
+    },
+    {
+        "Path":  "corpus/sample/D01-venues-pune.md",
+        "Hash":  "318EC3B40606CA0F2B4BF5051ED6B51E1234622CFC7558E90DF35C13AB34366C"
+    },
+    {
+        "Path":  "corpus/sample/D02-venues-mumbai.md",
+        "Hash":  "7F7AEFC88727EEFFC79FBEB065C36FD434A5E444765620A12401BBBA5BEBEA44"
+    },
+    {
+        "Path":  "corpus/sample/D03-venue-booking-terms.md",
+        "Hash":  "93C3E7B16859CF1D44466B413F61C1355D6791D146EE130A684A2D1749252D0B"
+    },
+    {
+        "Path":  "corpus/sample/D04-catering.md",
+        "Hash":  "97CEC204F23FCA72AF77A051859E362DD648C6FABCC87B3887EF26233DB8BEE6"
+    },
+    {
+        "Path":  "corpus/sample/D05-travel-expense-policy.md",
+        "Hash":  "104E20B47EDDDE9EDBC113158CCB96EA32A693EB297A195849687D531570C38E"
+    },
+    {
+        "Path":  "corpus/sample/D06-event-security.md",
+        "Hash":  "4639E7DD532622268C2404FCA82875C37E93CC42F2E8BD783461B00E64F45F0D"
+    },
+    {
+        "Path":  "corpus/sample/D07-av-it-support.md",
+        "Hash":  "980C9FC5690A3826C2DD8853C20C9E6EB3C9E7FE179BFE73623CC97AE2F90713"
+    },
+    {
+        "Path":  "corpus/sample/D08-venue-faq-2023.md",
+        "Hash":  "D828E43D80109824EBFDB8696343B97B8B64C2303AA1263C75C2040623BA15A9"
+    }
+]

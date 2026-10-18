@@ -482,7 +482,9 @@ class SessionEngine:
                 assignments.append({"candidate": cand.key, "sub_query_id": a.sub_query.id, "created": a.created,
                                     "merged_into": a.merged_into, "footprint_overlap": a.footprint_overlap,
                                     "footprint_valid": a.footprint_valid,
-                                    "standalone_status": a.standalone_status})
+                                    "standalone_status": a.standalone_status,
+                                    "merge_reason": a.merge_reason,
+                                    "decision_signals": a.decision_signals or {}})
             elif dec.action == "REFINE":
                 sq = self.sub_queries[st.sub_query_id]
                 self.ctx.decomposer.refresh(sq, cand)
@@ -702,7 +704,8 @@ class SessionEngine:
     def _claims_from_drafts(self, drafts: list[ClaimDraft], version_no: int) -> list[Claim]:
         out = []
         for d in drafts:
-            checksums = {cid: self.ctx.corpus.chunk(cid).sha1 for cid in d.evidence if self.ctx.corpus.chunk(cid)}
+            checksums = {cid: f"sha256:{self.ctx.corpus.chunk(cid).sha256}"
+                         for cid in d.evidence if self.ctx.corpus.chunk(cid)}
             out.append(Claim(self._next_claim_id(), self._next_lineage(), d.text, d.sub_query_id, list(d.evidence),
                              d.quote, round(d.score, 4), version_created=version_no,
                              evidence_checksums=checksums))
@@ -801,7 +804,10 @@ class SessionEngine:
                 if con["sentence"] in present:
                     continue
                 other = Claim(self._next_claim_id(), self._next_lineage(), con["sentence"], c.sub_query_id,
-                              [con["chunk_id"]], con["sentence"], c.score, version_created=c.version_created)
+                              [con["chunk_id"]], con["sentence"], c.score, version_created=c.version_created,
+                              evidence_checksums={
+                                  con["chunk_id"]: f"sha256:{self.ctx.corpus.chunk(con['chunk_id']).sha256}"
+                              })
                 v = self.ctx.firewall.verify(other, self.retrieved, peers)
                 other.verdict = "CONFLICTING" if v.verdict in ("SUPPORTED", "CONFLICTING") else v.verdict
                 other.support, other.anchors_ok, other.quote_ok = round(v.support, 4), v.anchors_ok, v.quote_ok

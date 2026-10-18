@@ -1,0 +1,929 @@
+{
+  "status": "MEASURED",
+  "run_id": "20261018T095654Z",
+  "dataset": {
+    "name": "kairos-semantic-engineering-heldout-v1",
+    "split": "HELD-OUT TEST",
+    "seed": 42,
+    "note": "Frozen engineering acceptance set derived from the V2 specification. It was authored alongside the upgrade and is not claimed as an independent public benchmark. External SQuAD labels are evaluated separately.",
+    "groups": [
+      "topic-boundaries",
+      "constraint-ownership"
+    ]
+  },
+  "corpora": {
+    "sample": "project-authored synthetic policy corpus",
+    "science": "BeIR/scifact bounded corpus subset",
+    "general": "rajpurkar/squad bounded train-context subset; answers excluded from index"
+  },
+  "metrics": {
+    "intent": {
+      "intent_precision": 1.0,
+      "intent_recall": 1.0,
+      "intent_f1": 1.0,
+      "boundary_f1": 1.0,
+      "count_accuracy": 1.0,
+      "false_merge_rate": 0.0,
+      "false_split_rate": 0.0,
+      "topic_transition_accuracy": 1.0,
+      "constraint_ownership_accuracy": 1.0,
+      "cases": 8,
+      "intents": 15,
+      "intent_recall_ci95": [
+        0.7961,
+        1.0
+      ],
+      "details": [
+        {
+          "text": "Find houses in Mumbai under 20 lakh what is the definition of an AI agent what does an agent do suggest travel plans to Goa",
+          "gold": [
+            "houses mumbai",
+            "definition ai agent",
+            "agent do",
+            "travel goa"
+          ],
+          "predicted": [
+            "Find houses in Mumbai under 20 lakh",
+            "what is the definition of an AI agent",
+            "what does an agent do",
+            "suggest travel plans to Goa"
+          ],
+          "matched": 4
+        },
+        {
+          "text": "medicine for fever travel plans to Goa",
+          "gold": [
+            "medicine fever",
+            "travel goa"
+          ],
+          "predicted": [
+            "medicine for fever",
+            "travel plans to Goa"
+          ],
+          "matched": 2
+        },
+        {
+          "text": "find houses in Mumbai and explain what an AI agent does",
+          "gold": [
+            "houses mumbai",
+            "ai agent"
+          ],
+          "predicted": [
+            "find houses in Mumbai",
+            "explain what an AI agent does"
+          ],
+          "matched": 2
+        },
+        {
+          "text": "fever and cough and cold",
+          "gold": [
+            "fever cough cold"
+          ],
+          "predicted": [
+            "fever and cough and cold"
+          ],
+          "matched": 1
+        },
+        {
+          "text": "um wait actually tell me the cancellation policy and whether catering is available",
+          "gold": [
+            "cancellation policy",
+            "catering available"
+          ],
+          "predicted": [
+            "tell me the cancellation policy",
+            "whether catering is available"
+          ],
+          "matched": 2
+        },
+        {
+          "text": "Find 2BHK houses in Mumbai below 20 lakh and 3BHK houses in Delhi above 40 lakh",
+          "gold": [
+            "houses mumbai",
+            "houses delhi"
+          ],
+          "predicted": [
+            "Find 2BHK houses in Mumbai below 20 lakh",
+            "3BHK houses in Delhi above 40 lakh"
+          ],
+          "matched": 2
+        },
+        {
+          "text": "Pune sorry Mumbai find a workshop venue for 30 people",
+          "gold": [
+            "workshop venue mumbai"
+          ],
+          "predicted": [
+            "find a workshop venue for 30 people Mumbai"
+          ],
+          "matched": 1
+        },
+        {
+          "text": "three lakh per month at five percent",
+          "gold": [
+            "lakh month percent"
+          ],
+          "predicted": [
+            "three lakh per month at five percent"
+          ],
+          "matched": 1
+        }
+      ]
+    },
+    "retrieval": {
+      "recall_at_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_at_5": 1.0,
+      "relevant_evidence_precision": 0.5789,
+      "out_of_domain_rejection_accuracy": 1.0,
+      "irrelevant_evidence_acceptance_rate": 0.0,
+      "domain_routing_accuracy": 0.875,
+      "positive_queries": 4,
+      "negative_queries": 4,
+      "external_squad_queries": 12,
+      "external_squad_recall_at_5": 0.8333,
+      "external_squad_mrr": 0.75,
+      "ood_rejection_ci95": [
+        0.5101,
+        1.0
+      ],
+      "details": [
+        {
+          "query": "Which Pune venue accommodates a workshop of 30 people?",
+          "profile": "sample",
+          "expected": [
+            "D01"
+          ],
+          "accepted_docs": [
+            "D01",
+            "D01",
+            "D01",
+            "D01",
+            "D01"
+          ],
+          "status": "RELEVANT_SUFFICIENT",
+          "domain": "corporate_events"
+        },
+        {
+          "query": "What is the cancellation policy for an international event?",
+          "profile": "sample",
+          "expected": [
+            "D03"
+          ],
+          "accepted_docs": [
+            "D03",
+            "D03",
+            "D05",
+            "D06",
+            "D04"
+          ],
+          "status": "RELEVANT_SUFFICIENT",
+          "domain": "corporate_events"
+        },
+        {
+          "query": "What did rhAng-1 improve in murine sepsis?",
+          "profile": "science",
+          "expected": [
+            "SCIFACT:118568"
+          ],
+          "accepted_docs": [
+            "SCIFACT:118568",
+            "SCIFACT:118568",
+            "SCIFACT:118568",
+            "SCIFACT:164985"
+          ],
+          "status": "RELEVANT_SUFFICIENT",
+          "domain": "unknown"
+        },
+        {
+          "query": "What is the oldest building on the Notre Dame campus?",
+          "profile": "general",
+          "expected": [
+            "SQUAD:3787a46bd23562af"
+          ],
+          "accepted_docs": [
+            "SQUAD:3787a46bd23562af",
+            "SQUAD:8978e606ac815776",
+            "SQUAD:c880a681d556666f",
+            "SQUAD:827dab666a13cdde",
+            "SQUAD:94a99bff525e95b2"
+          ],
+          "status": "RELEVANT_SUFFICIENT",
+          "domain": "unknown"
+        },
+        {
+          "query": "Find current 2BHK listings in Mumbai below 20 lakh",
+          "profile": "sample",
+          "expected": [],
+          "accepted_docs": [],
+          "status": "OUT_OF_DOMAIN",
+          "domain": "housing"
+        },
+        {
+          "query": "What medicine should I take for fever?",
+          "profile": "sample",
+          "expected": [],
+          "accepted_docs": [],
+          "status": "OUT_OF_DOMAIN",
+          "domain": "biomedical_research"
+        },
+        {
+          "query": "Find the nearest hospital from my location",
+          "profile": "sample",
+          "expected": [],
+          "accepted_docs": [],
+          "status": "OUT_OF_DOMAIN",
+          "domain": "biomedical_research"
+        },
+        {
+          "query": "What are today's flight prices to Goa?",
+          "profile": "sample",
+          "expected": [],
+          "accepted_docs": [],
+          "status": "OUT_OF_DOMAIN",
+          "domain": "travel"
+        }
+      ]
+    },
+    "grounding": {
+      "cases": 5,
+      "accuracy": 1.0,
+      "unsupported_claim_rejection": 1.0,
+      "quote_verification_accuracy": 1,
+      "numeric_contradiction_detection": 1,
+      "invalid_citation_rate": 0.4,
+      "false_grounding_acceptance_rate": 0.0,
+      "details": [
+        {
+          "case": "supported",
+          "expected": "SUPPORTED",
+          "verdict": "SUPPORTED",
+          "correct": true
+        },
+        {
+          "case": "false_quote",
+          "expected": "UNSUPPORTED",
+          "verdict": "UNSUPPORTED",
+          "correct": true
+        },
+        {
+          "case": "wrong_number",
+          "expected": "PARTIAL",
+          "verdict": "PARTIAL",
+          "correct": true
+        },
+        {
+          "case": "invalid_id",
+          "expected": "INVALID_CITATION",
+          "verdict": "INVALID_CITATION",
+          "correct": true
+        },
+        {
+          "case": "bad_checksum",
+          "expected": "INVALID_CITATION",
+          "verdict": "INVALID_CITATION",
+          "correct": true
+        }
+      ]
+    },
+    "streaming": {
+      "transcript_chunks": 14,
+      "active_intents": 8,
+      "probe_events": 14,
+      "actual_bm25_probe_computations": 20,
+      "probe_cache_hits": 29,
+      "retrieval_count": 11,
+      "duplicate_retrieval_rate": 0.0909,
+      "supported_claims": 0,
+      "wall_ms": 92.963
+    },
+    "scale": [
+      {
+        "profile": "sample",
+        "documents": 8,
+        "chunks": 37,
+        "build_ms": 63.313,
+        "python_peak_bytes": 1346047,
+        "retrieval_p50_ms": 1.399,
+        "retrieval_p95_ms": 1.96,
+        "throughput_qps_single_thread": 669.56,
+        "dedup_representation": "sparse-tfidf-csr"
+      },
+      {
+        "profile": "science",
+        "documents": 12,
+        "chunks": 29,
+        "build_ms": 121.301,
+        "python_peak_bytes": 2510487,
+        "retrieval_p50_ms": 1.688,
+        "retrieval_p95_ms": 2.241,
+        "throughput_qps_single_thread": 560.4,
+        "dedup_representation": "sparse-tfidf-csr"
+      },
+      {
+        "profile": "general",
+        "documents": 8,
+        "chunks": 16,
+        "build_ms": 55.974,
+        "python_peak_bytes": 795204,
+        "retrieval_p50_ms": 1.103,
+        "retrieval_p95_ms": 1.657,
+        "throughput_qps_single_thread": 809.1,
+        "dedup_representation": "sparse-tfidf-csr"
+      },
+      {
+        "profile": "multi_domain_demo",
+        "documents": 28,
+        "chunks": 82,
+        "build_ms": 225.263,
+        "python_peak_bytes": 10127211,
+        "retrieval_p50_ms": 1.142,
+        "retrieval_p95_ms": 2.725,
+        "throughput_qps_single_thread": 677.75,
+        "dedup_representation": "sparse-tfidf-csr"
+      }
+    ]
+  },
+  "ablations": {
+    "queryframe": {
+      "original": {
+        "intent_precision": 0.8462,
+        "intent_recall": 0.7333,
+        "intent_f1": 0.7857,
+        "boundary_f1": 0.7857,
+        "count_accuracy": 0.625,
+        "false_merge_rate": 0.2667,
+        "false_split_rate": 0.1333,
+        "topic_transition_accuracy": 0.625,
+        "constraint_ownership_accuracy": null,
+        "cases": 8,
+        "intents": 15,
+        "intent_recall_ci95": [
+          0.4805,
+          0.891
+        ],
+        "details": [
+          {
+            "text": "Find houses in Mumbai under 20 lakh what is the definition of an AI agent what does an agent do suggest travel plans to Goa",
+            "gold": [
+              "houses mumbai",
+              "definition ai agent",
+              "agent do",
+              "travel goa"
+            ],
+            "predicted": [
+              "Find houses in Mumbai under 20 lakh what is the definition of an AI agent what does an agent do suggest travel plans to Goa"
+            ],
+            "matched": 1
+          },
+          {
+            "text": "medicine for fever travel plans to Goa",
+            "gold": [
+              "medicine fever",
+              "travel goa"
+            ],
+            "predicted": [
+              "medicine for fever travel plans to Goa"
+            ],
+            "matched": 1
+          },
+          {
+            "text": "find houses in Mumbai and explain what an AI agent does",
+            "gold": [
+              "houses mumbai",
+              "ai agent"
+            ],
+            "predicted": [
+              "find houses in Mumbai",
+              "explain what an AI agent does"
+            ],
+            "matched": 2
+          },
+          {
+            "text": "fever and cough and cold",
+            "gold": [
+              "fever cough cold"
+            ],
+            "predicted": [
+              "fever",
+              "cough",
+              "cold"
+            ],
+            "matched": 1
+          },
+          {
+            "text": "um wait actually tell me the cancellation policy and whether catering is available",
+            "gold": [
+              "cancellation policy",
+              "catering available"
+            ],
+            "predicted": [
+              "tell me the cancellation policy",
+              "whether catering is available"
+            ],
+            "matched": 2
+          },
+          {
+            "text": "Find 2BHK houses in Mumbai below 20 lakh and 3BHK houses in Delhi above 40 lakh",
+            "gold": [
+              "houses mumbai",
+              "houses delhi"
+            ],
+            "predicted": [
+              "Find 2BHK houses in Mumbai below 20 lakh",
+              "3BHK houses in Delhi above 40 lakh"
+            ],
+            "matched": 2
+          },
+          {
+            "text": "Pune sorry Mumbai find a workshop venue for 30 people",
+            "gold": [
+              "workshop venue mumbai"
+            ],
+            "predicted": [
+              "Mumbai find a workshop venue for 30 people"
+            ],
+            "matched": 1
+          },
+          {
+            "text": "three lakh per month at five percent",
+            "gold": [
+              "lakh month percent"
+            ],
+            "predicted": [
+              "three lakh per month at five percent"
+            ],
+            "matched": 1
+          }
+        ]
+      },
+      "improved": {
+        "intent_precision": 1.0,
+        "intent_recall": 1.0,
+        "intent_f1": 1.0,
+        "boundary_f1": 1.0,
+        "count_accuracy": 1.0,
+        "false_merge_rate": 0.0,
+        "false_split_rate": 0.0,
+        "topic_transition_accuracy": 1.0,
+        "constraint_ownership_accuracy": 1.0,
+        "cases": 8,
+        "intents": 15,
+        "intent_recall_ci95": [
+          0.7961,
+          1.0
+        ],
+        "details": [
+          {
+            "text": "Find houses in Mumbai under 20 lakh what is the definition of an AI agent what does an agent do suggest travel plans to Goa",
+            "gold": [
+              "houses mumbai",
+              "definition ai agent",
+              "agent do",
+              "travel goa"
+            ],
+            "predicted": [
+              "Find houses in Mumbai under 20 lakh",
+              "what is the definition of an AI agent",
+              "what does an agent do",
+              "suggest travel plans to Goa"
+            ],
+            "matched": 4
+          },
+          {
+            "text": "medicine for fever travel plans to Goa",
+            "gold": [
+              "medicine fever",
+              "travel goa"
+            ],
+            "predicted": [
+              "medicine for fever",
+              "travel plans to Goa"
+            ],
+            "matched": 2
+          },
+          {
+            "text": "find houses in Mumbai and explain what an AI agent does",
+            "gold": [
+              "houses mumbai",
+              "ai agent"
+            ],
+            "predicted": [
+              "find houses in Mumbai",
+              "explain what an AI agent does"
+            ],
+            "matched": 2
+          },
+          {
+            "text": "fever and cough and cold",
+            "gold": [
+              "fever cough cold"
+            ],
+            "predicted": [
+              "fever and cough and cold"
+            ],
+            "matched": 1
+          },
+          {
+            "text": "um wait actually tell me the cancellation policy and whether catering is available",
+            "gold": [
+              "cancellation policy",
+              "catering available"
+            ],
+            "predicted": [
+              "tell me the cancellation policy",
+              "whether catering is available"
+            ],
+            "matched": 2
+          },
+          {
+            "text": "Find 2BHK houses in Mumbai below 20 lakh and 3BHK houses in Delhi above 40 lakh",
+            "gold": [
+              "houses mumbai",
+              "houses delhi"
+            ],
+            "predicted": [
+              "Find 2BHK houses in Mumbai below 20 lakh",
+              "3BHK houses in Delhi above 40 lakh"
+            ],
+            "matched": 2
+          },
+          {
+            "text": "Pune sorry Mumbai find a workshop venue for 30 people",
+            "gold": [
+              "workshop venue mumbai"
+            ],
+            "predicted": [
+              "find a workshop venue for 30 people Mumbai"
+            ],
+            "matched": 1
+          },
+          {
+            "text": "three lakh per month at five percent",
+            "gold": [
+              "lakh month percent"
+            ],
+            "predicted": [
+              "three lakh per month at five percent"
+            ],
+            "matched": 1
+          }
+        ]
+      }
+    },
+    "relevance_gate": {
+      "original_negative_acceptance": 1.0,
+      "improved_negative_acceptance": 0.0
+    },
+    "efis": {
+      "original": {
+        "accuracy": 1.0,
+        "cases": 3,
+        "details": [
+          {
+            "text": "What are the cancellation rules? Explain the cancellation policy.",
+            "expected_merge": true,
+            "merged": true,
+            "footprint_valid": true
+          },
+          {
+            "text": "What are the cancellation rules? What catering options are available?",
+            "expected_merge": false,
+            "merged": false,
+            "footprint_valid": true
+          },
+          {
+            "text": "Define an AI agent. Find houses in Mumbai.",
+            "expected_merge": false,
+            "merged": false,
+            "footprint_valid": true
+          }
+        ]
+      },
+      "revised": {
+        "accuracy": 0.6667,
+        "cases": 3,
+        "details": [
+          {
+            "text": "What are the cancellation rules? Explain the cancellation policy.",
+            "expected_merge": true,
+            "merged": false,
+            "footprint_valid": true
+          },
+          {
+            "text": "What are the cancellation rules? What catering options are available?",
+            "expected_merge": false,
+            "merged": false,
+            "footprint_valid": true
+          },
+          {
+            "text": "Define an AI agent. Find houses in Mumbai.",
+            "expected_merge": false,
+            "merged": false,
+            "footprint_valid": false
+          }
+        ]
+      }
+    },
+    "domain_routing": {
+      "single_mixed_corpus": {
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_5": 1.0,
+        "relevant_evidence_precision": 0.5789,
+        "out_of_domain_rejection_accuracy": null,
+        "irrelevant_evidence_acceptance_rate": null,
+        "domain_routing_accuracy": 0.75,
+        "positive_queries": 4,
+        "negative_queries": 0,
+        "external_squad_queries": 12,
+        "external_squad_recall_at_5": 0.8333,
+        "external_squad_mrr": 0.75,
+        "ood_rejection_ci95": null,
+        "details": [
+          {
+            "query": "Which Pune venue accommodates a workshop of 30 people?",
+            "profile": "multi_domain_demo",
+            "expected": [
+              "D01"
+            ],
+            "accepted_docs": [
+              "D01",
+              "D01",
+              "D01",
+              "D01",
+              "D01"
+            ],
+            "status": "RELEVANT_SUFFICIENT",
+            "domain": "corporate_events"
+          },
+          {
+            "query": "What is the cancellation policy for an international event?",
+            "profile": "multi_domain_demo",
+            "expected": [
+              "D03"
+            ],
+            "accepted_docs": [
+              "D03",
+              "D03",
+              "D05",
+              "D06",
+              "D04"
+            ],
+            "status": "RELEVANT_SUFFICIENT",
+            "domain": "corporate_events"
+          },
+          {
+            "query": "What did rhAng-1 improve in murine sepsis?",
+            "profile": "multi_domain_demo",
+            "expected": [
+              "SCIFACT:118568"
+            ],
+            "accepted_docs": [
+              "SCIFACT:118568",
+              "SCIFACT:118568",
+              "SCIFACT:118568",
+              "SCIFACT:164985"
+            ],
+            "status": "RELEVANT_SUFFICIENT",
+            "domain": "unknown"
+          },
+          {
+            "query": "What is the oldest building on the Notre Dame campus?",
+            "profile": "multi_domain_demo",
+            "expected": [
+              "SQUAD:3787a46bd23562af"
+            ],
+            "accepted_docs": [
+              "SQUAD:3787a46bd23562af",
+              "SQUAD:8978e606ac815776",
+              "SQUAD:c880a681d556666f",
+              "SQUAD:827dab666a13cdde",
+              "SQUAD:94a99bff525e95b2"
+            ],
+            "status": "RELEVANT_SUFFICIENT",
+            "domain": "unknown"
+          }
+        ]
+      },
+      "domain_aware": {
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_5": 1.0,
+        "relevant_evidence_precision": 0.5789,
+        "out_of_domain_rejection_accuracy": null,
+        "irrelevant_evidence_acceptance_rate": null,
+        "domain_routing_accuracy": 0.75,
+        "positive_queries": 4,
+        "negative_queries": 0,
+        "external_squad_queries": 12,
+        "external_squad_recall_at_5": 0.8333,
+        "external_squad_mrr": 0.75,
+        "ood_rejection_ci95": null,
+        "details": [
+          {
+            "query": "Which Pune venue accommodates a workshop of 30 people?",
+            "profile": "multi_domain_demo",
+            "expected": [
+              "D01"
+            ],
+            "accepted_docs": [
+              "D01",
+              "D01",
+              "D01",
+              "D01",
+              "D01"
+            ],
+            "status": "RELEVANT_SUFFICIENT",
+            "domain": "corporate_events"
+          },
+          {
+            "query": "What is the cancellation policy for an international event?",
+            "profile": "multi_domain_demo",
+            "expected": [
+              "D03"
+            ],
+            "accepted_docs": [
+              "D03",
+              "D03",
+              "D05",
+              "D06",
+              "D04"
+            ],
+            "status": "RELEVANT_SUFFICIENT",
+            "domain": "corporate_events"
+          },
+          {
+            "query": "What did rhAng-1 improve in murine sepsis?",
+            "profile": "multi_domain_demo",
+            "expected": [
+              "SCIFACT:118568"
+            ],
+            "accepted_docs": [
+              "SCIFACT:118568",
+              "SCIFACT:118568",
+              "SCIFACT:118568",
+              "SCIFACT:164985"
+            ],
+            "status": "RELEVANT_SUFFICIENT",
+            "domain": "unknown"
+          },
+          {
+            "query": "What is the oldest building on the Notre Dame campus?",
+            "profile": "multi_domain_demo",
+            "expected": [
+              "SQUAD:3787a46bd23562af"
+            ],
+            "accepted_docs": [
+              "SQUAD:3787a46bd23562af",
+              "SQUAD:8978e606ac815776",
+              "SQUAD:c880a681d556666f",
+              "SQUAD:827dab666a13cdde",
+              "SQUAD:94a99bff525e95b2"
+            ],
+            "status": "RELEVANT_SUFFICIENT",
+            "domain": "unknown"
+          }
+        ]
+      }
+    },
+    "psrc_probe_cache": {
+      "original": {
+        "transcript_chunks": 14,
+        "active_intents": 8,
+        "probe_events": 14,
+        "actual_bm25_probe_computations": 49,
+        "probe_cache_hits": 0,
+        "retrieval_count": 11,
+        "duplicate_retrieval_rate": 0.0909,
+        "supported_claims": 0,
+        "wall_ms": 99.878
+      },
+      "optimized": {
+        "transcript_chunks": 14,
+        "active_intents": 8,
+        "probe_events": 14,
+        "actual_bm25_probe_computations": 20,
+        "probe_cache_hits": 29,
+        "retrieval_count": 11,
+        "duplicate_retrieval_rate": 0.0909,
+        "supported_claims": 0,
+        "wall_ms": 92.963
+      }
+    },
+    "grounding": {
+      "original": {
+        "cases": 5,
+        "accuracy": 0.6,
+        "unsupported_claim_rejection": 0.5,
+        "quote_verification_accuracy": 0,
+        "numeric_contradiction_detection": 1,
+        "invalid_citation_rate": 0.2,
+        "false_grounding_acceptance_rate": 0.5,
+        "details": [
+          {
+            "case": "supported",
+            "expected": "SUPPORTED",
+            "verdict": "SUPPORTED",
+            "correct": true
+          },
+          {
+            "case": "false_quote",
+            "expected": "UNSUPPORTED",
+            "verdict": "SUPPORTED",
+            "correct": false
+          },
+          {
+            "case": "wrong_number",
+            "expected": "PARTIAL",
+            "verdict": "PARTIAL",
+            "correct": true
+          },
+          {
+            "case": "invalid_id",
+            "expected": "INVALID_CITATION",
+            "verdict": "INVALID_CITATION",
+            "correct": true
+          },
+          {
+            "case": "bad_checksum",
+            "expected": "INVALID_CITATION",
+            "verdict": "SUPPORTED",
+            "correct": false
+          }
+        ]
+      },
+      "strengthened": {
+        "cases": 5,
+        "accuracy": 1.0,
+        "unsupported_claim_rejection": 1.0,
+        "quote_verification_accuracy": 1,
+        "numeric_contradiction_detection": 1,
+        "invalid_citation_rate": 0.4,
+        "false_grounding_acceptance_rate": 0.0,
+        "details": [
+          {
+            "case": "supported",
+            "expected": "SUPPORTED",
+            "verdict": "SUPPORTED",
+            "correct": true
+          },
+          {
+            "case": "false_quote",
+            "expected": "UNSUPPORTED",
+            "verdict": "UNSUPPORTED",
+            "correct": true
+          },
+          {
+            "case": "wrong_number",
+            "expected": "PARTIAL",
+            "verdict": "PARTIAL",
+            "correct": true
+          },
+          {
+            "case": "invalid_id",
+            "expected": "INVALID_CITATION",
+            "verdict": "INVALID_CITATION",
+            "correct": true
+          },
+          {
+            "case": "bad_checksum",
+            "expected": "INVALID_CITATION",
+            "verdict": "INVALID_CITATION",
+            "correct": true
+          }
+        ]
+      }
+    },
+    "extractive_focus": {
+      "original": {
+        "claims": 2,
+        "direct_focus_claim_rate": 1.0,
+        "conflicting_sources": 2
+      },
+      "improved": {
+        "claims": 2,
+        "direct_focus_claim_rate": 1.0,
+        "conflicting_sources": 2
+      }
+    },
+    "cddm_scope": {
+      "dataset": "development",
+      "original": {
+        "refinement_correctness": 0.8,
+        "delta_retrieval_ratio": 0.7667
+      },
+      "improved": {
+        "refinement_correctness": 1.0,
+        "delta_retrieval_ratio": 0.7
+      }
+    }
+  },
+  "integrity": {
+    "train_tuning": "benchmark/datasets/train (controller only)",
+    "development": "benchmark/datasets/dev (existing iterative benchmark)",
+    "held_out": "benchmark\\datasets\\heldout\\semantic_cases.json",
+    "external_evaluation": "SQuAD official train questions retained as labels for the bounded imported subset",
+    "warning": "The engineering held-out set was authored for this upgrade and is not an independent public benchmark."
+  }
+}

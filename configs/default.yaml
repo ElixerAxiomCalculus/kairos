@@ -1,5 +1,5 @@
 # Kairos default configuration.
-# Every value here is a tunable. Tune on benchmark/datasets/dev only — never on official test data.
+# Every value here is configurable. Tune only on benchmark/datasets/train; use dev and official labels for evaluation.
 
 corpus:
   profile: sample
@@ -8,7 +8,9 @@ corpus:
     sample: [corpus/sample]
     science: [corpus/imported/scifact]
     general: [corpus/imported/squad]
+    general_expanded: [corpus/imported/squad_v2_1]
     multi_domain_demo: [corpus/sample, corpus/imported/scifact, corpus/imported/squad]
+    multi_domain_v2_1: [corpus/sample, corpus/imported/scifact, corpus/imported/squad_v2_1]
   places: [Pune, Mumbai, Delhi, New Delhi, Goa, Bengaluru, Bangalore, Chennai, Hyderabad, Kolkata, Jaipur, Ahmedabad, Gurugram, Noida]
 
 retrieval:
@@ -35,6 +37,8 @@ retrieval:
   relevance_min_rerank: 0.28
   relevance_min_dense: 0.08
   relevance_min_focus_terms: 1
+  relevance_min_objective_coverage: 0.30
+  domain_routing_min_confidence: 0.25
   probe_cache_size: 4096
   probe_cache_enabled: true
 
@@ -69,6 +73,9 @@ decomposer:
   footprint_validity_gate: true
   footprint_min_relevance: 0.35
   lexical_merge_min: 0.28
+  semantic_subject_min: 0.50
+  objective_compatibility_min: 0.75
+  semantic_objective_merge: true
   topic_shift_guard: true
 
 synthesis:

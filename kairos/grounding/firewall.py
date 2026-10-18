@@ -35,6 +35,8 @@ class Verification:
     conflicts: list[dict] = field(default_factory=list)
     missing_anchors: list[str] = field(default_factory=list)
     checksum_ok: bool = True
+    checksum_scheme: str | None = None
+    missing_checksums: list[str] = field(default_factory=list)
 
     def to_public(self) -> dict:
         return {
@@ -42,6 +44,8 @@ class Verification:
             "anchors_ok": self.anchors_ok, "quote_ok": self.quote_ok, "invalid_ids": self.invalid_ids,
             "conflicts": self.conflicts, "missing_anchors": self.missing_anchors,
             "checksum_ok": self.checksum_ok,
+            "checksum_scheme": self.checksum_scheme,
+            "missing_checksums": self.missing_checksums,
         }
 
 
@@ -101,13 +105,32 @@ class GroundingFirewall:
             verdict = "INVALID_CITATION" if invalid else "UNSUPPORTED"
             return Verification(claim.claim_id, verdict, 0.0, False, False, invalid)
         chunks = [corpus.chunk(cid) for cid in valid]
-        checksum_ok = (not self.cfg.get("verify_checksums", True)) or all(
-            not claim.evidence_checksums.get(chunk.chunk_id)
-            or claim.evidence_checksums[chunk.chunk_id] == chunk.sha1 for chunk in chunks
+        verify_checksums = self.cfg.get("verify_checksums", True)
+        missing_checksums = [chunk.chunk_id for chunk in chunks if not claim.evidence_checksums.get(chunk.chunk_id)]
+        checksum_schemes: set[str] = set()
+
+        def checksum_matches(chunk: Chunk) -> bool:
+            value = claim.evidence_checksums.get(chunk.chunk_id, "")
+            if value.startswith("sha256:"):
+                checksum_schemes.add("sha256-v1")
+                return value[7:] == chunk.sha256
+            if len(value) == 64:
+                checksum_schemes.add("sha256-legacy-unprefixed")
+                return value == chunk.sha256
+            if len(value) == 40:
+                # Explicit compatibility for already-persisted V2 traces.
+                checksum_schemes.add("sha1-legacy")
+                return value == chunk.sha1
+            return False
+
+        checksum_ok = (not verify_checksums) or (
+            not missing_checksums and all(checksum_matches(chunk) for chunk in chunks)
         )
         if not checksum_ok:
             return Verification(claim.claim_id, "INVALID_CITATION", 0.0, False, False, invalid,
-                                missing_anchors=[], checksum_ok=False)
+                                missing_anchors=[], checksum_ok=False,
+                                checksum_scheme=next(iter(checksum_schemes), None),
+                                missing_checksums=missing_checksums)
         cited_text = " ".join(f"{c.section_title} {c.text}" for c in chunks)
         quote_ok = bool(claim.quote) and any(_norm_ws(claim.quote) in _norm_ws(c.text) for c in chunks)
         claim_anchors = anchors(claim.text)
@@ -125,7 +148,7 @@ class GroundingFirewall:
         else:
             verdict = "UNSUPPORTED"
         return Verification(claim.claim_id, verdict, support, anchors_ok, quote_ok, invalid, conflicts, missing,
-                            checksum_ok)
+                            checksum_ok, next(iter(checksum_schemes), None), missing_checksums)
 
     def _conflicts(self, claim: Claim, cited: list[Chunk], peer_chunk_ids: list[str]) -> list[dict]:
         claim_nums = _num_units(claim.quote or claim.text)
