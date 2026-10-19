@@ -132,6 +132,22 @@ class EvidenceCache:
             self._entries.move_to_end(fingerprint)
             return copy.deepcopy(entry.result)
 
+    def is_reusable(self, fingerprint: str, source_hash: str) -> bool:
+        """Read cache eligibility without changing counters, order, or entry state.
+
+        Feature extraction may observe execution metadata, but must not consume a
+        cache hit or alter subsequent retrieval behaviour.
+        """
+        now = time.monotonic()
+        with self._lock:
+            entry = self._entries.get(fingerprint)
+            return bool(
+                entry is not None
+                and entry.state == CacheState.REUSABLE
+                and entry.expires_monotonic > now
+                and entry.source_hash == source_hash
+            )
+
     def invalidate(self, fingerprint: str) -> None:
         with self._lock:
             entry = self._entries.get(fingerprint)

@@ -1,0 +1,434 @@
+{
+  "kairos-train-003": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 2,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 1,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-train-004": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 1,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-train-005": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 2,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 1,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-train-006": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-train-007": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-train-008": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": null,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 0,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-train-009": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-train-010": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 1,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-train-011": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 1,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-train-012": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 2
+  },
+  "kairos-train-013": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-train-014": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-train-015": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-train-016": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-train-017": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-train-018": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 2,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 2
+  },
+  "kairos-train-019": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 1,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-train-020": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-train-021": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-train-022": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 2,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 2
+  },
+  "kairos-train-023": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-train-024": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-train-025": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-train-026": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "squad-57338653d058e614000b5c83": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": 1,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-57338653d058e614000b5c85": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-57338724d058e614000b5c9e": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-573387acd058e614000b5cb1": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733a6424776f41900660f50": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733a6424776f41900660f51": {
+    "earliest_gold_relevant_prefix": 3,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733a70c4776f41900660f62": {
+    "earliest_gold_relevant_prefix": 2,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733a70c4776f41900660f65": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733ad384776f41900660fee": {
+    "earliest_gold_relevant_prefix": 2,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 4,
+    "terminal_rows_excluded": 2
+  },
+  "squad-5733ad384776f41900660fef": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 2
+  },
+  "squad-5733ae924776f41900661013": {
+    "earliest_gold_relevant_prefix": 2,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733ae924776f41900661014": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733ae924776f41900661015": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733ae924776f41900661016": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733afd3d058e614000b6045": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 5,
+    "terminal_rows_excluded": 2
+  },
+  "squad-5733afd3d058e614000b6046": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733afd3d058e614000b6047": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": 1,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 8,
+    "terminal_rows_excluded": 3
+  },
+  "squad-5733afd3d058e614000b6049": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733b0fb4776f41900661041": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733b0fb4776f41900661043": {
+    "earliest_gold_relevant_prefix": 3,
+    "earliest_constraint_ready_prefix": 2,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733b0fb4776f41900661045": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733b1da4776f41900661069": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733b1da4776f4190066106a": {
+    "earliest_gold_relevant_prefix": 2,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733b2fe4776f4190066108f": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": 1,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733b2fe4776f41900661090": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733b2fe4776f41900661091": {
+    "earliest_gold_relevant_prefix": 2,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733b2fe4776f41900661092": {
+    "earliest_gold_relevant_prefix": 2,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733be284776f4190066117f": {
+    "earliest_gold_relevant_prefix": 2,
+    "earliest_constraint_ready_prefix": 2,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733bed24776f41900661188": {
+    "earliest_gold_relevant_prefix": 2,
+    "earliest_constraint_ready_prefix": 2,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733bed24776f4190066118a": {
+    "earliest_gold_relevant_prefix": 2,
+    "earliest_constraint_ready_prefix": 2,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  }
+}

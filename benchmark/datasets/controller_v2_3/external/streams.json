@@ -1,0 +1,506 @@
+{
+  "schema_version": 2,
+  "split": "external",
+  "streams": [
+    {
+      "stream_id": "squad-5733b699d058e614000b6118",
+      "session_id": "squad-5733b699d058e614000b6118",
+      "utterance_id": "u1",
+      "source_dataset": "rajpurkar/squad",
+      "source_question_id": "5733b699d058e614000b6118",
+      "question_family": "squad-doc:SQUAD:202b31473094e05c",
+      "corpus_profile": "general_expanded",
+      "full_text": "What percentage of undergrads live on the Notre Dame campus?",
+      "prefixes": [
+        "What percentage of",
+        "What percentage of undergrads live on",
+        "What percentage of undergrads live on the Notre",
+        "What percentage of undergrads live on the Notre Dame campus?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.0,
+        2.7,
+        3.4
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "SQuAD answer/document label",
+      "split": "external",
+      "source_revision": "7b6d24c440a36b6815f21b70d25016731768db1f",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:202b31473094e05c"
+      ],
+      "category": "EXTERNAL_FACTUAL_QA",
+      "answerable": true,
+      "content_hash": "12b82fe8c677145e592d0054f6d4430d5bea1f3de5e004880c9d8fe40cddf109",
+      "gold_intents": [
+        {
+          "intent_id": "squad-5733b699d058e614000b6118:aggregate",
+          "gold_sections": [],
+          "gold_documents": [
+            "SQUAD:202b31473094e05c"
+          ],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "aggregate_external_label"
+    },
+    {
+      "stream_id": "squad-5733b5df4776f41900661105",
+      "session_id": "squad-5733b5df4776f41900661105",
+      "utterance_id": "u1",
+      "source_dataset": "rajpurkar/squad",
+      "source_question_id": "5733b5df4776f41900661105",
+      "question_family": "squad-doc:SQUAD:30d24a5d12b84fa6",
+      "corpus_profile": "general_expanded",
+      "full_text": "How many undergrads were attending Notre Dame in 2014?",
+      "prefixes": [
+        "How many undergrads",
+        "How many undergrads were attending",
+        "How many undergrads were attending Notre Dame",
+        "How many undergrads were attending Notre Dame in 2014?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.0,
+        1.7,
+        2.4,
+        3.1
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "SQuAD answer/document label",
+      "split": "external",
+      "source_revision": "7b6d24c440a36b6815f21b70d25016731768db1f",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:30d24a5d12b84fa6"
+      ],
+      "category": "EXTERNAL_FACTUAL_QA",
+      "answerable": true,
+      "content_hash": "cee02c6ecb55c6262e4f768c46d2fb442df6d8f77c59cde3df3357729cc25f61",
+      "gold_intents": [
+        {
+          "intent_id": "squad-5733b5df4776f41900661105:aggregate",
+          "gold_sections": [],
+          "gold_documents": [
+            "SQUAD:30d24a5d12b84fa6"
+          ],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "aggregate_external_label"
+    },
+    {
+      "stream_id": "squad-5733b5df4776f41900661108",
+      "session_id": "squad-5733b5df4776f41900661108",
+      "utterance_id": "u1",
+      "source_dataset": "rajpurkar/squad",
+      "source_question_id": "5733b5df4776f41900661108",
+      "question_family": "squad-doc:SQUAD:30d24a5d12b84fa6",
+      "corpus_profile": "general_expanded",
+      "full_text": "For what cause is money raised at the Bengal Bouts tournament at Notre Dame?",
+      "prefixes": [
+        "For what cause is",
+        "For what cause is money raised at the",
+        "For what cause is money raised at the Bengal Bouts tournament",
+        "For what cause is money raised at the Bengal Bouts tournament at Notre Dame?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.3,
+        2.6,
+        3.6,
+        4.6
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "SQuAD answer/document label",
+      "split": "external",
+      "source_revision": "7b6d24c440a36b6815f21b70d25016731768db1f",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:30d24a5d12b84fa6"
+      ],
+      "category": "EXTERNAL_FACTUAL_QA",
+      "answerable": true,
+      "content_hash": "54147239a087136a9fe744398fdce99a23c57276acdef983bc53556099b140ee",
+      "gold_intents": [
+        {
+          "intent_id": "squad-5733b5df4776f41900661108:aggregate",
+          "gold_sections": [],
+          "gold_documents": [
+            "SQUAD:30d24a5d12b84fa6"
+          ],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "aggregate_external_label"
+    },
+    {
+      "stream_id": "squad-5733ac31d058e614000b5ff6",
+      "session_id": "squad-5733ac31d058e614000b5ff6",
+      "utterance_id": "u1",
+      "source_dataset": "rajpurkar/squad",
+      "source_question_id": "5733ac31d058e614000b5ff6",
+      "question_family": "squad-doc:SQUAD:c880a681d556666f",
+      "corpus_profile": "general_expanded",
+      "full_text": "What is the title of Notre Dame's Theodore Hesburgh?",
+      "prefixes": [
+        "What is the",
+        "What is the title of",
+        "What is the title of Notre Dame's",
+        "What is the title of Notre Dame's Theodore Hesburgh?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.0,
+        1.7,
+        2.4,
+        3.1
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "SQuAD answer/document label",
+      "split": "external",
+      "source_revision": "7b6d24c440a36b6815f21b70d25016731768db1f",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:c880a681d556666f"
+      ],
+      "category": "EXTERNAL_FACTUAL_QA",
+      "answerable": true,
+      "content_hash": "a0b60d43fa9cbfb5fc1f6ec293d46936000fef572c3c60fd7fc92c4ec4c32080",
+      "gold_intents": [
+        {
+          "intent_id": "squad-5733ac31d058e614000b5ff6:aggregate",
+          "gold_sections": [],
+          "gold_documents": [
+            "SQUAD:c880a681d556666f"
+          ],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "aggregate_external_label"
+    },
+    {
+      "stream_id": "squad-5733ac31d058e614000b5ff5",
+      "session_id": "squad-5733ac31d058e614000b5ff5",
+      "utterance_id": "u1",
+      "source_dataset": "rajpurkar/squad",
+      "source_question_id": "5733ac31d058e614000b5ff5",
+      "question_family": "squad-doc:SQUAD:c880a681d556666f",
+      "corpus_profile": "general_expanded",
+      "full_text": "To whom was John B. Kroc married?",
+      "prefixes": [
+        "To whom",
+        "To whom was John",
+        "To whom was John B.",
+        "To whom was John B. Kroc married?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        0.7,
+        1.4,
+        1.8,
+        2.5
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "SQuAD answer/document label",
+      "split": "external",
+      "source_revision": "7b6d24c440a36b6815f21b70d25016731768db1f",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:c880a681d556666f"
+      ],
+      "category": "EXTERNAL_FACTUAL_QA",
+      "answerable": true,
+      "content_hash": "56025aab29121ca1de3073554da2be096da4063dba92df6db91ba601a424f2e4",
+      "gold_intents": [
+        {
+          "intent_id": "squad-5733ac31d058e614000b5ff5:aggregate",
+          "gold_sections": [],
+          "gold_documents": [
+            "SQUAD:c880a681d556666f"
+          ],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "aggregate_external_label"
+    },
+    {
+      "stream_id": "squad-5733b699d058e614000b611a",
+      "session_id": "squad-5733b699d058e614000b611a",
+      "utterance_id": "u1",
+      "source_dataset": "rajpurkar/squad",
+      "source_question_id": "5733b699d058e614000b611a",
+      "question_family": "squad-doc:SQUAD:202b31473094e05c",
+      "corpus_profile": "general_expanded",
+      "full_text": "How many dorms for males are on the Notre Dame campus?",
+      "prefixes": [
+        "How many dorms",
+        "How many dorms for males are",
+        "How many dorms for males are on the Notre",
+        "How many dorms for males are on the Notre Dame campus?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.0,
+        3.0,
+        3.7
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "SQuAD answer/document label",
+      "split": "external",
+      "source_revision": "7b6d24c440a36b6815f21b70d25016731768db1f",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:202b31473094e05c"
+      ],
+      "category": "EXTERNAL_FACTUAL_QA",
+      "answerable": true,
+      "content_hash": "062e2af3aed13e8c0e020efe408c72dcd31c78dc6fbc3c73596555518d27c30f",
+      "gold_intents": [
+        {
+          "intent_id": "squad-5733b699d058e614000b611a:aggregate",
+          "gold_sections": [],
+          "gold_documents": [
+            "SQUAD:202b31473094e05c"
+          ],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "aggregate_external_label"
+    },
+    {
+      "stream_id": "squad-5733a7bd4776f41900660f6e",
+      "session_id": "squad-5733a7bd4776f41900660f6e",
+      "utterance_id": "u1",
+      "source_dataset": "rajpurkar/squad",
+      "source_question_id": "5733a7bd4776f41900660f6e",
+      "question_family": "squad-doc:SQUAD:d2006dff1995effa",
+      "corpus_profile": "general_expanded",
+      "full_text": "Which program at Notre Dame offers a Master of Education degree?",
+      "prefixes": [
+        "Which program at",
+        "Which program at Notre Dame offers",
+        "Which program at Notre Dame offers a Master of",
+        "Which program at Notre Dame offers a Master of Education degree?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.0,
+        3.0,
+        3.7
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "SQuAD answer/document label",
+      "split": "external",
+      "source_revision": "7b6d24c440a36b6815f21b70d25016731768db1f",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:d2006dff1995effa"
+      ],
+      "category": "EXTERNAL_FACTUAL_QA",
+      "answerable": true,
+      "content_hash": "f07f00618988018a6305842f29aab2a60d1a36219a5a089e23b0b4466a5bced9",
+      "gold_intents": [
+        {
+          "intent_id": "squad-5733a7bd4776f41900660f6e:aggregate",
+          "gold_sections": [],
+          "gold_documents": [
+            "SQUAD:d2006dff1995effa"
+          ],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "aggregate_external_label"
+    },
+    {
+      "stream_id": "squad-5733ac31d058e614000b5ff7",
+      "session_id": "squad-5733ac31d058e614000b5ff7",
+      "utterance_id": "u1",
+      "source_dataset": "rajpurkar/squad",
+      "source_question_id": "5733ac31d058e614000b5ff7",
+      "question_family": "squad-doc:SQUAD:c880a681d556666f",
+      "corpus_profile": "general_expanded",
+      "full_text": "What company did Ray Kroc own?",
+      "prefixes": [
+        "What company",
+        "What company did",
+        "What company did Ray Kroc",
+        "What company did Ray Kroc own?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        0.7,
+        1.1,
+        1.8,
+        2.2
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "SQuAD answer/document label",
+      "split": "external",
+      "source_revision": "7b6d24c440a36b6815f21b70d25016731768db1f",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:c880a681d556666f"
+      ],
+      "category": "EXTERNAL_FACTUAL_QA",
+      "answerable": true,
+      "content_hash": "cacceeddba3b306a9e360117780f1113d154eb59adffe9179fb65c4c551c086a",
+      "gold_intents": [
+        {
+          "intent_id": "squad-5733ac31d058e614000b5ff7:aggregate",
+          "gold_sections": [],
+          "gold_documents": [
+            "SQUAD:c880a681d556666f"
+          ],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "aggregate_external_label"
+    },
+    {
+      "stream_id": "squad-5733b5df4776f41900661106",
+      "session_id": "squad-5733b5df4776f41900661106",
+      "utterance_id": "u1",
+      "source_dataset": "rajpurkar/squad",
+      "source_question_id": "5733b5df4776f41900661106",
+      "question_family": "squad-doc:SQUAD:30d24a5d12b84fa6",
+      "corpus_profile": "general_expanded",
+      "full_text": "What percentage of students at Notre Dame are the children of former Notre Dame students?",
+      "prefixes": [
+        "What percentage of students",
+        "What percentage of students at Notre Dame are",
+        "What percentage of students at Notre Dame are the children of former",
+        "What percentage of students at Notre Dame are the children of former Notre Dame students?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.3,
+        2.6,
+        3.9,
+        4.9
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "SQuAD answer/document label",
+      "split": "external",
+      "source_revision": "7b6d24c440a36b6815f21b70d25016731768db1f",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:30d24a5d12b84fa6"
+      ],
+      "category": "EXTERNAL_FACTUAL_QA",
+      "answerable": true,
+      "content_hash": "9867d5bdcb1761e5188edbeb7b1cd95fd393e81dbcce8af5bce8fcff1b0ae725",
+      "gold_intents": [
+        {
+          "intent_id": "squad-5733b5df4776f41900661106:aggregate",
+          "gold_sections": [],
+          "gold_documents": [
+            "SQUAD:30d24a5d12b84fa6"
+          ],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "aggregate_external_label"
+    },
+    {
+      "stream_id": "scifact-957",
+      "session_id": "scifact-957",
+      "utterance_id": "u1",
+      "source_dataset": "BeIR/scifact",
+      "source_question_id": "957",
+      "question_family": "scifact:957",
+      "corpus_profile": "science",
+      "full_text": "Podocytes are motile and migrate in the presence of injury.",
+      "prefixes": [
+        "Podocytes are motile",
+        "Podocytes are motile and migrate in",
+        "Podocytes are motile and migrate in the presence",
+        "Podocytes are motile and migrate in the presence of injury."
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.0,
+        2.7,
+        3.4
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "SciFact/BEIR qrel",
+      "split": "external",
+      "source_revision": "b3b5335604bf5ee3c4447671af975ea25143d4f5",
+      "gold_sections": [],
+      "gold_documents": [
+        "SCIFACT:123859"
+      ],
+      "category": "EXTERNAL_SCIENTIFIC_CLAIM",
+      "answerable": true,
+      "content_hash": "525de8f1d25ff95ebfa1912df3532648ff1d6d20245831b03fd5f8fee51b5451",
+      "gold_intents": [
+        {
+          "intent_id": "scifact-957:aggregate",
+          "gold_sections": [],
+          "gold_documents": [
+            "SCIFACT:123859"
+          ],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "aggregate_external_label"
+    }
+  ]
+}

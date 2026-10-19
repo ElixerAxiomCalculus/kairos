@@ -1,0 +1,389 @@
+{
+  "schema_version": 2,
+  "split": "historical_frozen",
+  "streams": [
+    {
+      "stream_id": "kairos-heldout_streaming-H01-u1",
+      "session_id": "kairos-heldout_streaming-H01-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-controller-heldout-v1",
+      "source_question_id": "H01:u1",
+      "question_family": "kairos:H01:u1",
+      "corpus_profile": "sample",
+      "full_text": "For an ordinary meeting, which audio and display gear is included in every room?",
+      "prefixes": [
+        "For an ordinary meeting,",
+        "For an ordinary meeting, which audio and display gear",
+        "For an ordinary meeting, which audio and display gear is included in every room?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3
+      ],
+      "prefix_timestamps": [
+        1.3,
+        2.9,
+        4.5
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "historical_frozen",
+      "source_revision": "9006bd5b1ffe689851d113a17e999f9fdcce59fd2a660a7d311699950d29189a",
+      "gold_sections": [
+        "D07#1"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "d077dd5ff949d5e446996214e1bd9dbf1a7bf74ce12ef323d43a01afd7a335f7",
+      "gold_intents": [
+        {
+          "intent_id": "H01:u1:A",
+          "gold_sections": [
+            "D07#1"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-heldout_streaming-H02-u1",
+      "session_id": "kairos-heldout_streaming-H02-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-controller-heldout-v1",
+      "source_question_id": "H02:u1",
+      "question_family": "kairos:H02:u1",
+      "corpus_profile": "sample",
+      "full_text": "We are streaming an event, how early should the hybrid kit be reserved?",
+      "prefixes": [
+        "We are streaming an event,",
+        "We are streaming an event, how early should the hybrid kit",
+        "We are streaming an event, how early should the hybrid kit be reserved?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3
+      ],
+      "prefix_timestamps": [
+        1.6,
+        3.5,
+        4.2
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "historical_frozen",
+      "source_revision": "9006bd5b1ffe689851d113a17e999f9fdcce59fd2a660a7d311699950d29189a",
+      "gold_sections": [
+        "D07#3"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "1ad72e26bbb80f661004db36c4d4dc78024115ac6abc3285d9921fbc823697e5",
+      "gold_intents": [
+        {
+          "intent_id": "H02:u1:A",
+          "gold_sections": [
+            "D07#3"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-heldout_streaming-H03-u1",
+      "session_id": "kairos-heldout_streaming-H03-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-controller-heldout-v1",
+      "source_question_id": "H03:u1",
+      "question_family": "kairos:H03:u1",
+      "corpus_profile": "sample",
+      "full_text": "May a visitor go into a restricted server area with an employee escort?",
+      "prefixes": [
+        "May a visitor",
+        "May a visitor go into a restricted server area",
+        "May a visitor go into a restricted server area with an employee escort?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.9,
+        4.2
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "historical_frozen",
+      "source_revision": "9006bd5b1ffe689851d113a17e999f9fdcce59fd2a660a7d311699950d29189a",
+      "gold_sections": [
+        "D06#3"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "dd8cf66ccdedde99f73de34e80e5ae451405d6533333bf31b36c21ad81e18069",
+      "gold_intents": [
+        {
+          "intent_id": "H03:u1:A",
+          "gold_sections": [
+            "D06#3"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-heldout_streaming-H04-u1",
+      "session_id": "kairos-heldout_streaming-H04-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-controller-heldout-v1",
+      "source_question_id": "H04:u1",
+      "question_family": "kairos:H04:u1",
+      "corpus_profile": "sample",
+      "full_text": "After finance approves an expense reimbursement, when should payment arrive?",
+      "prefixes": [
+        "After finance approves",
+        "After finance approves an expense reimbursement,",
+        "After finance approves an expense reimbursement, when should payment arrive?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.0,
+        3.3
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "historical_frozen",
+      "source_revision": "9006bd5b1ffe689851d113a17e999f9fdcce59fd2a660a7d311699950d29189a",
+      "gold_sections": [
+        "D05#5"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "708a072149402d07534ad750330a6c8e0e916fc5e178553e63cf9b09eee41a83",
+      "gold_intents": [
+        {
+          "intent_id": "H04:u1:A",
+          "gold_sections": [
+            "D05#5"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-heldout_streaming-H05-u1",
+      "session_id": "kairos-heldout_streaming-H05-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-controller-heldout-v1",
+      "source_question_id": "H05:u1",
+      "question_family": "kairos:H05:u1",
+      "corpus_profile": "sample",
+      "full_text": "For a regular event, what cancellation charge applies ten days beforehand?",
+      "prefixes": [
+        "For a regular event,",
+        "For a regular event, what cancellation charge applies",
+        "For a regular event, what cancellation charge applies ten days beforehand?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3
+      ],
+      "prefix_timestamps": [
+        1.3,
+        2.6,
+        3.6
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "historical_frozen",
+      "source_revision": "9006bd5b1ffe689851d113a17e999f9fdcce59fd2a660a7d311699950d29189a",
+      "gold_sections": [
+        "D03#3.1"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "3438df9906e9137c4dc2313458960abcaf7eb24b48c5839cb4abadabc48ab802",
+      "gold_intents": [
+        {
+          "intent_id": "H05:u1:A",
+          "gold_sections": [
+            "D03#3.1"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-heldout_streaming-H06-u1",
+      "session_id": "kairos-heldout_streaming-H06-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-controller-heldout-v1",
+      "source_question_id": "H06:u1",
+      "question_family": "kairos:H06:u1",
+      "corpus_profile": "sample",
+      "full_text": "I need space in Mumbai for sixty attendees, which room fits?",
+      "prefixes": [
+        "I need space in Mumbai",
+        "I need space in Mumbai for sixty attendees,",
+        "I need space in Mumbai for sixty attendees, which room fits?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3
+      ],
+      "prefix_timestamps": [
+        1.6,
+        2.6,
+        3.6
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "historical_frozen",
+      "source_revision": "9006bd5b1ffe689851d113a17e999f9fdcce59fd2a660a7d311699950d29189a",
+      "gold_sections": [
+        "D02#2"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "1bce5e23ec9c3536ece274260a875aca787871a3b5894cfd416bcc87acbc484e",
+      "gold_intents": [
+        {
+          "intent_id": "H06:u1:A",
+          "gold_sections": [
+            "D02#2"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-heldout_streaming-H07-u1",
+      "session_id": "kairos-heldout_streaming-H07-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-controller-heldout-v1",
+      "source_question_id": "H07:u1",
+      "question_family": "kairos:H07:u1",
+      "corpus_profile": "sample",
+      "full_text": "Do company venues offer supervised childcare during workshops?",
+      "prefixes": [
+        "Do company venues",
+        "Do company venues offer supervised childcare",
+        "Do company venues offer supervised childcare during workshops?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.0,
+        2.7
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "historical_frozen",
+      "source_revision": "9006bd5b1ffe689851d113a17e999f9fdcce59fd2a660a7d311699950d29189a",
+      "gold_sections": [],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": false,
+      "content_hash": "e161ad2955bdcb7cb3fe705d9e22bae0aa43ad492cc8fca83aef93aa24725a4c",
+      "gold_intents": [
+        {
+          "intent_id": "H07:u1:A",
+          "gold_sections": [],
+          "gold_documents": [],
+          "unanswerable": true
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-heldout_streaming-H08-u1",
+      "session_id": "kairos-heldout_streaming-H08-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-controller-heldout-v1",
+      "source_question_id": "H08:u1",
+      "question_family": "kairos:H08:u1",
+      "corpus_profile": "sample",
+      "full_text": "For a Pune workshop of twenty, which room works, and what dietary menus can catering provide?",
+      "prefixes": [
+        "For a Pune workshop of twenty,",
+        "For a Pune workshop of twenty, which room works,",
+        "For a Pune workshop of twenty, which room works, and what dietary menus can catering provide?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3
+      ],
+      "prefix_timestamps": [
+        1.9,
+        2.9,
+        5.1
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "historical_frozen",
+      "source_revision": "9006bd5b1ffe689851d113a17e999f9fdcce59fd2a660a7d311699950d29189a",
+      "gold_sections": [
+        "D01#2",
+        "D01#3",
+        "D04#2"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "239f6f5a8856d42b648d5f1ad3d00e27a2bb02df4c6bf2dc1a03c3ead2eb4679",
+      "gold_intents": [
+        {
+          "intent_id": "H08:u1:A",
+          "gold_sections": [
+            "D01#2",
+            "D01#3"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        },
+        {
+          "intent_id": "H08:u1:B",
+          "gold_sections": [
+            "D04#2"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": 2,
+  "name": "kairos-controller-v2.3-iccos",
+  "dataset_hash": "e88895c1e50658c4c319089733a72e876ac34221e3424651486d1674e181d9e7",
+  "split_hashes": {
+    "train": "9cd1538f20af2c2f94f412cd089fdc798add410b45ed069fe3f123d55505b5f4",
+    "calibration": "24d59d0543dd7e64285711907ad8d1edf46aeefa5b64127343f2bb2275bba75b",
+    "development": "5726002ad9044fe8f10e63a989938f195988c1b27b22253ab39aefee7f1daecc",
+    "historical_frozen": "c02bd0bf44c7eb0abfc2a0cb955ae1abde0fb5112c04d16efd82c69d5e47bb0b",
+    "external": "e15a2f497c06d2550cf49ba68d7b6e6df812ea4e0872d5392dd10de9bc0be210",
+    "final": "937b2fe2fe73d005bfb8f958fd5280245ec62a2a0282f141878ed11990d9094c"
+  },
+  "feature_schema": "kairos-iccos-online-v1",
+  "parent_dataset": "kairos-controller-v2.2",
+  "parent_dataset_hash": "1e53f94a2aa8abd5a2b97dfe262f1df036fc2e8395e3b6928ad7906cf4523cc2",
+  "freeze": {
+    "id": "KAIROS-ICCOS-FINAL-2026-10-19",
+    "recorded_at": "2026-10-19T00:00:00+00:00",
+    "selection_access": "final split excluded until model, calibration, and risk threshold are frozen",
+    "independent_authorship": false
+  },
+  "counts": {
+    "train": 54,
+    "calibration": 9,
+    "development": 36,
+    "historical_frozen": 8,
+    "external": 10,
+    "final": 12
+  },
+  "status": "PASS",
+  "validation": {
+    "streams": 129,
+    "families": 102,
+    "errors": []
+  },
+  "limitations": [
+    "The new final questions were authored by the project, not by independent annotators.",
+    "They are genuinely excluded from V2.3 training, calibration, development selection, and threshold selection, but reuse the sample corpus.",
+    "Written questions use deterministic synthetic segmentation and are not microphone recordings.",
+    "The historical V2.2 held-out set is retained as historical_frozen and is not described as untouched."
+  ]
+}

@@ -1,0 +1,844 @@
+{
+  "status": "AUDITED",
+  "scope": "historical V2.2 non-final feature rows with empty final accepted evidence",
+  "expected_counts": {
+    "train": 29,
+    "calibration": 3,
+    "development": 22
+  },
+  "actual_counts": {
+    "train": 29,
+    "calibration": 3,
+    "development": 22
+  },
+  "cause_counts": {
+    "MISSING_GOLD_ANNOTATION": 13,
+    "OUT_OF_DOMAIN": 20,
+    "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION": 21
+  },
+  "rows": [
+    {
+      "split": "train",
+      "stream_id": "kairos-train-006",
+      "candidate_id": "K-52fe4e8889",
+      "prefix_index": 1,
+      "final_text": "Is Lotus Room big enough for twelve people?",
+      "gold_sections": [],
+      "gold_documents": [],
+      "routed_domain": "unknown",
+      "domain_confidence": 0.0,
+      "domain_compatible": true,
+      "cause": "MISSING_GOLD_ANNOTATION"
+    },
+    {
+      "split": "train",
+      "stream_id": "kairos-train-006",
+      "candidate_id": "K-9d38c6cab4",
+      "prefix_index": 2,
+      "final_text": "Is Lotus Room big enough for twelve people?",
+      "gold_sections": [],
+      "gold_documents": [],
+      "routed_domain": "unknown",
+      "domain_confidence": 0.0,
+      "domain_compatible": true,
+      "cause": "MISSING_GOLD_ANNOTATION"
+    },
+    {
+      "split": "train",
+      "stream_id": "kairos-train-009",
+      "candidate_id": "K-34244d89c1",
+      "prefix_index": 1,
+      "final_text": "What is the hotel limit per night for domestic trips?",
+      "gold_sections": [],
+      "gold_documents": [],
+      "routed_domain": "travel",
+      "domain_confidence": 0.2,
+      "domain_compatible": false,
+      "cause": "MISSING_GOLD_ANNOTATION"
+    },
+    {
+      "split": "train",
+      "stream_id": "kairos-train-009",
+      "candidate_id": "K-34244d89c1",
+      "prefix_index": 2,
+      "final_text": "What is the hotel limit per night for domestic trips?",
+      "gold_sections": [],
+      "gold_documents": [],
+      "routed_domain": "travel",
+      "domain_confidence": 0.2,
+      "domain_compatible": false,
+      "cause": "MISSING_GOLD_ANNOTATION"
+    },
+    {
+      "split": "train",
+      "stream_id": "kairos-train-014",
+      "candidate_id": "K-ba001f8bde",
+      "prefix_index": 1,
+      "final_text": "Can outside caterers come to the Pune venue?",
+      "gold_sections": [],
+      "gold_documents": [],
+      "routed_domain": "corporate_events",
+      "domain_confidence": 0.2,
+      "domain_compatible": true,
+      "cause": "MISSING_GOLD_ANNOTATION"
+    },
+    {
+      "split": "train",
+      "stream_id": "kairos-train-014",
+      "candidate_id": "K-bd30ddbb23",
+      "prefix_index": 2,
+      "final_text": "Can outside caterers come to the Pune venue?",
+      "gold_sections": [],
+      "gold_documents": [],
+      "routed_domain": "corporate_events",
+      "domain_confidence": 0.2,
+      "domain_compatible": true,
+      "cause": "MISSING_GOLD_ANNOTATION"
+    },
+    {
+      "split": "train",
+      "stream_id": "kairos-train-015",
+      "candidate_id": "K-17a5e70266",
+      "prefix_index": 1,
+      "final_text": "What happens to the deposit if I cancel an international event?",
+      "gold_sections": [],
+      "gold_documents": [],
+      "routed_domain": "corporate_events",
+      "domain_confidence": 0.2,
+      "domain_compatible": true,
+      "cause": "MISSING_GOLD_ANNOTATION"
+    },
+    {
+      "split": "train",
+      "stream_id": "kairos-train-015",
+      "candidate_id": "K-08d41da12f",
+      "prefix_index": 2,
+      "final_text": "What happens to the deposit if I cancel an international event?",
+      "gold_sections": [],
+      "gold_documents": [],
+      "routed_domain": "corporate_events",
+      "domain_confidence": 0.2,
+      "domain_compatible": true,
+      "cause": "MISSING_GOLD_ANNOTATION"
+    },
+    {
+      "split": "train",
+      "stream_id": "kairos-train-017",
+      "candidate_id": "K-b029259756",
+      "prefix_index": 1,
+      "final_text": "How many days do I have to submit a domestic travel claim?",
+      "gold_sections": [],
+      "gold_documents": [],
+      "routed_domain": "travel",
+      "domain_confidence": 0.2,
+      "domain_compatible": false,
+      "cause": "MISSING_GOLD_ANNOTATION"
+    },
+    {
+      "split": "train",
+      "stream_id": "kairos-train-017",
+      "candidate_id": "K-3fa4054f21",
+      "prefix_index": 2,
+      "final_text": "How many days do I have to submit a domestic travel claim?",
+      "gold_sections": [],
+      "gold_documents": [],
+      "routed_domain": "travel",
+      "domain_confidence": 0.2,
+      "domain_compatible": false,
+      "cause": "MISSING_GOLD_ANNOTATION"
+    },
+    {
+      "split": "train",
+      "stream_id": "kairos-train-019",
+      "candidate_id": "K-9b6f549720",
+      "prefix_index": 1,
+      "final_text": "When is travel insurance mandatory?",
+      "gold_sections": [],
+      "gold_documents": [],
+      "routed_domain": "travel",
+      "domain_confidence": 0.333333,
+      "domain_compatible": false,
+      "cause": "MISSING_GOLD_ANNOTATION"
+    },
+    {
+      "split": "train",
+      "stream_id": "squad-5733ae924776f41900661015",
+      "candidate_id": "K-8045253b88",
+      "prefix_index": 1,
+      "final_text": "Where does Notre Dame rank in terms of academic profile among research universities in the US?",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:f245ff7ef596f40c"
+      ],
+      "routed_domain": "scientific_literature",
+      "domain_confidence": 0.111111,
+      "domain_compatible": false,
+      "cause": "OUT_OF_DOMAIN"
+    },
+    {
+      "split": "train",
+      "stream_id": "squad-5733ae924776f41900661015",
+      "candidate_id": "K-e8463192ef",
+      "prefix_index": 2,
+      "final_text": "Where does Notre Dame rank in terms of academic profile among research universities in the US?",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:f245ff7ef596f40c"
+      ],
+      "routed_domain": "scientific_literature",
+      "domain_confidence": 0.111111,
+      "domain_compatible": false,
+      "cause": "OUT_OF_DOMAIN"
+    },
+    {
+      "split": "train",
+      "stream_id": "squad-5733ae924776f41900661015",
+      "candidate_id": "K-e8463192ef",
+      "prefix_index": 3,
+      "final_text": "Where does Notre Dame rank in terms of academic profile among research universities in the US?",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:f245ff7ef596f40c"
+      ],
+      "routed_domain": "scientific_literature",
+      "domain_confidence": 0.111111,
+      "domain_compatible": false,
+      "cause": "OUT_OF_DOMAIN"
+    },
+    {
+      "split": "train",
+      "stream_id": "squad-5733afd3d058e614000b6047",
+      "candidate_id": "K-b0ff9a5c91",
+      "prefix_index": 1,
+      "final_text": "Forbes.com placed Notre Dame at what position compared to other US research universities?",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:4f8845bad3ff59b2"
+      ],
+      "routed_domain": "scientific_literature",
+      "domain_confidence": 0.111111,
+      "domain_compatible": false,
+      "cause": "OUT_OF_DOMAIN"
+    },
+    {
+      "split": "train",
+      "stream_id": "squad-5733afd3d058e614000b6047",
+      "candidate_id": "K-b0ff9a5c91",
+      "prefix_index": 2,
+      "final_text": "Forbes.com placed Notre Dame at what position compared to other US research universities?",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:4f8845bad3ff59b2"
+      ],
+      "routed_domain": "scientific_literature",
+      "domain_confidence": 0.111111,
+      "domain_compatible": false,
+      "cause": "OUT_OF_DOMAIN"
+    },
+    {
+      "split": "train",
+      "stream_id": "squad-5733afd3d058e614000b6047",
+      "candidate_id": "K-56b4adf0f3",
+      "prefix_index": 3,
+      "final_text": "Forbes.com placed Notre Dame at what position compared to other US research universities?",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:4f8845bad3ff59b2"
+      ],
+      "routed_domain": "scientific_literature",
+      "domain_confidence": 0.111111,
+      "domain_compatible": false,
+      "cause": "OUT_OF_DOMAIN"
+    },
+    {
+      "split": "train",
+      "stream_id": "squad-5733afd3d058e614000b6049",
+      "candidate_id": "K-b029259756",
+      "prefix_index": 1,
+      "final_text": "What percentage of Notre Dame students decide to study abroad?",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:4f8845bad3ff59b2"
+      ],
+      "routed_domain": "scientific_literature",
+      "domain_confidence": 0.142857,
+      "domain_compatible": false,
+      "cause": "OUT_OF_DOMAIN"
+    },
+    {
+      "split": "train",
+      "stream_id": "squad-5733afd3d058e614000b6049",
+      "candidate_id": "K-204036a1ef",
+      "prefix_index": 2,
+      "final_text": "What percentage of Notre Dame students decide to study abroad?",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:4f8845bad3ff59b2"
+      ],
+      "routed_domain": "scientific_literature",
+      "domain_confidence": 0.142857,
+      "domain_compatible": false,
+      "cause": "OUT_OF_DOMAIN"
+    },
+    {
+      "split": "train",
+      "stream_id": "squad-5733afd3d058e614000b6049",
+      "candidate_id": "K-9687f97e48",
+      "prefix_index": 3,
+      "final_text": "What percentage of Notre Dame students decide to study abroad?",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:4f8845bad3ff59b2"
+      ],
+      "routed_domain": "scientific_literature",
+      "domain_confidence": 0.142857,
+      "domain_compatible": false,
+      "cause": "OUT_OF_DOMAIN"
+    },
+    {
+      "split": "train",
+      "stream_id": "squad-57338724d058e614000b5c9e",
+      "candidate_id": "K-b2f0332990",
+      "prefix_index": 1,
+      "final_text": "Over how many years did the change to national standards undertaken at Notre Dame in the early 20th century take place?",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:dd8fdc7aa80c156b"
+      ],
+      "routed_domain": "unknown",
+      "domain_confidence": 0.0,
+      "domain_compatible": true,
+      "cause": "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION"
+    },
+    {
+      "split": "train",
+      "stream_id": "squad-57338724d058e614000b5c9e",
+      "candidate_id": "K-b4a8654de8",
+      "prefix_index": 2,
+      "final_text": "Over how many years did the change to national standards undertaken at Notre Dame in the early 20th century take place?",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:dd8fdc7aa80c156b"
+      ],
+      "routed_domain": "unknown",
+      "domain_confidence": 0.0,
+      "domain_compatible": true,
+      "cause": "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION"
+    },
+    {
+      "split": "train",
+      "stream_id": "squad-57338724d058e614000b5c9e",
+      "candidate_id": "K-b4a8654de8",
+      "prefix_index": 3,
+      "final_text": "Over how many years did the change to national standards undertaken at Notre Dame in the early 20th century take place?",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:dd8fdc7aa80c156b"
+      ],
+      "routed_domain": "unknown",
+      "domain_confidence": 0.0,
+      "domain_compatible": true,
+      "cause": "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION"
+    },
+    {
+      "split": "train",
+      "stream_id": "squad-5733b2fe4776f41900661090",
+      "candidate_id": "K-885534c19d",
+      "prefix_index": 1,
+      "final_text": "When did study of a germ-free-life begin at Notre Dame?",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:09aab6681f13d1fd"
+      ],
+      "routed_domain": "scientific_literature",
+      "domain_confidence": 0.142857,
+      "domain_compatible": false,
+      "cause": "OUT_OF_DOMAIN"
+    },
+    {
+      "split": "train",
+      "stream_id": "squad-5733b2fe4776f41900661090",
+      "candidate_id": "K-977b9bfa5f",
+      "prefix_index": 2,
+      "final_text": "When did study of a germ-free-life begin at Notre Dame?",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:09aab6681f13d1fd"
+      ],
+      "routed_domain": "scientific_literature",
+      "domain_confidence": 0.142857,
+      "domain_compatible": false,
+      "cause": "OUT_OF_DOMAIN"
+    },
+    {
+      "split": "train",
+      "stream_id": "squad-5733b2fe4776f41900661090",
+      "candidate_id": "K-977b9bfa5f",
+      "prefix_index": 3,
+      "final_text": "When did study of a germ-free-life begin at Notre Dame?",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:09aab6681f13d1fd"
+      ],
+      "routed_domain": "scientific_literature",
+      "domain_confidence": 0.142857,
+      "domain_compatible": false,
+      "cause": "OUT_OF_DOMAIN"
+    },
+    {
+      "split": "train",
+      "stream_id": "squad-5733a70c4776f41900660f65",
+      "candidate_id": "K-cd97ad5b21",
+      "prefix_index": 1,
+      "final_text": "Which organization declared the First Year of Studies program at Notre Dame \"outstanding?\"",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:b0830484bb6a0bb3"
+      ],
+      "routed_domain": "scientific_literature",
+      "domain_confidence": 0.111111,
+      "domain_compatible": false,
+      "cause": "OUT_OF_DOMAIN"
+    },
+    {
+      "split": "train",
+      "stream_id": "squad-5733a70c4776f41900660f65",
+      "candidate_id": "K-62d2547c45",
+      "prefix_index": 2,
+      "final_text": "Which organization declared the First Year of Studies program at Notre Dame \"outstanding?\"",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:b0830484bb6a0bb3"
+      ],
+      "routed_domain": "scientific_literature",
+      "domain_confidence": 0.111111,
+      "domain_compatible": false,
+      "cause": "OUT_OF_DOMAIN"
+    },
+    {
+      "split": "train",
+      "stream_id": "squad-5733a70c4776f41900660f65",
+      "candidate_id": "K-62d2547c45",
+      "prefix_index": 3,
+      "final_text": "Which organization declared the First Year of Studies program at Notre Dame \"outstanding?\"",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:b0830484bb6a0bb3"
+      ],
+      "routed_domain": "scientific_literature",
+      "domain_confidence": 0.111111,
+      "domain_compatible": false,
+      "cause": "OUT_OF_DOMAIN"
+    },
+    {
+      "split": "calibration",
+      "stream_id": "squad-5733b5344776f419006610e1",
+      "candidate_id": "K-4e71a7b918",
+      "prefix_index": 1,
+      "final_text": "What threat does the Global Adaptation Index study?",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:d452dee77c48fa5d"
+      ],
+      "routed_domain": "scientific_literature",
+      "domain_confidence": 0.2,
+      "domain_compatible": false,
+      "cause": "OUT_OF_DOMAIN"
+    },
+    {
+      "split": "calibration",
+      "stream_id": "squad-5733b5344776f419006610e1",
+      "candidate_id": "K-4e71a7b918",
+      "prefix_index": 2,
+      "final_text": "What threat does the Global Adaptation Index study?",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:d452dee77c48fa5d"
+      ],
+      "routed_domain": "scientific_literature",
+      "domain_confidence": 0.2,
+      "domain_compatible": false,
+      "cause": "OUT_OF_DOMAIN"
+    },
+    {
+      "split": "calibration",
+      "stream_id": "squad-5733b5344776f419006610e1",
+      "candidate_id": "K-1222edc65f",
+      "prefix_index": 3,
+      "final_text": "What threat does the Global Adaptation Index study?",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:d452dee77c48fa5d"
+      ],
+      "routed_domain": "scientific_literature",
+      "domain_confidence": 0.2,
+      "domain_compatible": false,
+      "cause": "OUT_OF_DOMAIN"
+    },
+    {
+      "split": "development",
+      "stream_id": "kairos-dev-S01-u1",
+      "candidate_id": "K-27a5a05c01",
+      "prefix_index": 2,
+      "final_text": "Can you tell me which room in Pune fits a team of 20, and what AV support I can request?",
+      "gold_sections": [
+        "D01#2",
+        "D01#3",
+        "D07#1",
+        "D07#2"
+      ],
+      "gold_documents": [],
+      "routed_domain": "unknown",
+      "domain_confidence": 0.0,
+      "domain_compatible": true,
+      "cause": "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION"
+    },
+    {
+      "split": "development",
+      "stream_id": "kairos-dev-S01-u1",
+      "candidate_id": "K-d89cd325a0",
+      "prefix_index": 3,
+      "final_text": "Can you tell me which room in Pune fits a team of 20, and what AV support I can request?",
+      "gold_sections": [
+        "D01#2",
+        "D01#3",
+        "D07#1",
+        "D07#2"
+      ],
+      "gold_documents": [],
+      "routed_domain": "unknown",
+      "domain_confidence": 0.0,
+      "domain_compatible": true,
+      "cause": "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION"
+    },
+    {
+      "split": "development",
+      "stream_id": "kairos-dev-S01-u1",
+      "candidate_id": "K-d89cd325a0",
+      "prefix_index": 4,
+      "final_text": "Can you tell me which room in Pune fits a team of 20, and what AV support I can request?",
+      "gold_sections": [
+        "D01#2",
+        "D01#3",
+        "D07#1",
+        "D07#2"
+      ],
+      "gold_documents": [],
+      "routed_domain": "unknown",
+      "domain_confidence": 0.0,
+      "domain_compatible": true,
+      "cause": "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION"
+    },
+    {
+      "split": "development",
+      "stream_id": "kairos-dev-S02-u1",
+      "candidate_id": "K-76a7f53658",
+      "prefix_index": 2,
+      "final_text": "What is the per diem for domestic travel?",
+      "gold_sections": [
+        "D05#3.1"
+      ],
+      "gold_documents": [],
+      "routed_domain": "travel",
+      "domain_confidence": 0.333333,
+      "domain_compatible": false,
+      "cause": "OUT_OF_DOMAIN"
+    },
+    {
+      "split": "development",
+      "stream_id": "kairos-dev-S03-u1",
+      "candidate_id": "K-a26f55821d",
+      "prefix_index": 1,
+      "final_text": "I'm planning an international trip next month, what approvals do I need and are receipts required for small expenses?",
+      "gold_sections": [
+        "D05#2",
+        "D05#3.2"
+      ],
+      "gold_documents": [],
+      "routed_domain": "unknown",
+      "domain_confidence": 0.0,
+      "domain_compatible": true,
+      "cause": "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION"
+    },
+    {
+      "split": "development",
+      "stream_id": "kairos-dev-S03-u1",
+      "candidate_id": "K-4641435209",
+      "prefix_index": 2,
+      "final_text": "I'm planning an international trip next month, what approvals do I need and are receipts required for small expenses?",
+      "gold_sections": [
+        "D05#2",
+        "D05#3.2"
+      ],
+      "gold_documents": [],
+      "routed_domain": "unknown",
+      "domain_confidence": 0.0,
+      "domain_compatible": true,
+      "cause": "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION"
+    },
+    {
+      "split": "development",
+      "stream_id": "kairos-dev-S03-u1",
+      "candidate_id": "K-4641435209",
+      "prefix_index": 3,
+      "final_text": "I'm planning an international trip next month, what approvals do I need and are receipts required for small expenses?",
+      "gold_sections": [
+        "D05#2",
+        "D05#3.2"
+      ],
+      "gold_documents": [],
+      "routed_domain": "unknown",
+      "domain_confidence": 0.0,
+      "domain_compatible": true,
+      "cause": "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION"
+    },
+    {
+      "split": "development",
+      "stream_id": "kairos-dev-S03-u1",
+      "candidate_id": "K-00ef8fd9af",
+      "prefix_index": 4,
+      "final_text": "I'm planning an international trip next month, what approvals do I need and are receipts required for small expenses?",
+      "gold_sections": [
+        "D05#2",
+        "D05#3.2"
+      ],
+      "gold_documents": [],
+      "routed_domain": "unknown",
+      "domain_confidence": 0.0,
+      "domain_compatible": true,
+      "cause": "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION"
+    },
+    {
+      "split": "development",
+      "stream_id": "kairos-dev-S07-u1",
+      "candidate_id": "K-0394e8790a",
+      "prefix_index": 1,
+      "final_text": "For a hybrid offsite in Mumbai, which hall seats 60 people, do I need the streaming kit reserved early, and is parking available?",
+      "gold_sections": [
+        "D02#2",
+        "D02#4",
+        "D07#3"
+      ],
+      "gold_documents": [],
+      "routed_domain": "unknown",
+      "domain_confidence": 0.0,
+      "domain_compatible": true,
+      "cause": "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION"
+    },
+    {
+      "split": "development",
+      "stream_id": "kairos-dev-S07-u1",
+      "candidate_id": "K-0394e8790a",
+      "prefix_index": 2,
+      "final_text": "For a hybrid offsite in Mumbai, which hall seats 60 people, do I need the streaming kit reserved early, and is parking available?",
+      "gold_sections": [
+        "D02#2",
+        "D02#4",
+        "D07#3"
+      ],
+      "gold_documents": [],
+      "routed_domain": "unknown",
+      "domain_confidence": 0.0,
+      "domain_compatible": true,
+      "cause": "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION"
+    },
+    {
+      "split": "development",
+      "stream_id": "kairos-dev-S07-u1",
+      "candidate_id": "K-b175296fc1",
+      "prefix_index": 3,
+      "final_text": "For a hybrid offsite in Mumbai, which hall seats 60 people, do I need the streaming kit reserved early, and is parking available?",
+      "gold_sections": [
+        "D02#2",
+        "D02#4",
+        "D07#3"
+      ],
+      "gold_documents": [],
+      "routed_domain": "unknown",
+      "domain_confidence": 0.0,
+      "domain_compatible": true,
+      "cause": "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION"
+    },
+    {
+      "split": "development",
+      "stream_id": "kairos-dev-S07-u1",
+      "candidate_id": "K-b175296fc1",
+      "prefix_index": 4,
+      "final_text": "For a hybrid offsite in Mumbai, which hall seats 60 people, do I need the streaming kit reserved early, and is parking available?",
+      "gold_sections": [
+        "D02#2",
+        "D02#4",
+        "D07#3"
+      ],
+      "gold_documents": [],
+      "routed_domain": "unknown",
+      "domain_confidence": 0.0,
+      "domain_compatible": true,
+      "cause": "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION"
+    },
+    {
+      "split": "development",
+      "stream_id": "kairos-dev-S08-u1",
+      "candidate_id": "K-50c3185a82",
+      "prefix_index": 2,
+      "final_text": "Is there a swimming pool at the Pune venue?",
+      "gold_sections": [],
+      "gold_documents": [],
+      "routed_domain": "corporate_events",
+      "domain_confidence": 0.25,
+      "domain_compatible": true,
+      "cause": "MISSING_GOLD_ANNOTATION"
+    },
+    {
+      "split": "development",
+      "stream_id": "kairos-dev-S13-u1",
+      "candidate_id": "K-53571adf08",
+      "prefix_index": 1,
+      "final_text": "What happens if I cancel a standard event five days before?",
+      "gold_sections": [
+        "D03#3.1"
+      ],
+      "gold_documents": [],
+      "routed_domain": "corporate_events",
+      "domain_confidence": 0.166667,
+      "domain_compatible": true,
+      "cause": "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION"
+    },
+    {
+      "split": "development",
+      "stream_id": "kairos-dev-S13-u1",
+      "candidate_id": "K-e9ce201323",
+      "prefix_index": 2,
+      "final_text": "What happens if I cancel a standard event five days before?",
+      "gold_sections": [
+        "D03#3.1"
+      ],
+      "gold_documents": [],
+      "routed_domain": "corporate_events",
+      "domain_confidence": 0.166667,
+      "domain_compatible": true,
+      "cause": "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION"
+    },
+    {
+      "split": "development",
+      "stream_id": "kairos-dev-S20-u2",
+      "candidate_id": "K-3ed950b3c3",
+      "prefix_index": 1,
+      "final_text": "Translate that into Hindi.",
+      "gold_sections": [],
+      "gold_documents": [],
+      "routed_domain": "unknown",
+      "domain_confidence": 0.0,
+      "domain_compatible": true,
+      "cause": "MISSING_GOLD_ANNOTATION"
+    },
+    {
+      "split": "development",
+      "stream_id": "kairos-dev-S22-u1",
+      "candidate_id": "K-27a5a05c01",
+      "prefix_index": 1,
+      "final_text": "What rooms are available in Pune for a board meeting?",
+      "gold_sections": [
+        "D01#1",
+        "D01#3"
+      ],
+      "gold_documents": [],
+      "routed_domain": "unknown",
+      "domain_confidence": 0.0,
+      "domain_compatible": true,
+      "cause": "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION"
+    },
+    {
+      "split": "development",
+      "stream_id": "kairos-dev-S22-u1",
+      "candidate_id": "K-229a103d8e",
+      "prefix_index": 2,
+      "final_text": "What rooms are available in Pune for a board meeting?",
+      "gold_sections": [
+        "D01#1",
+        "D01#3"
+      ],
+      "gold_documents": [],
+      "routed_domain": "unknown",
+      "domain_confidence": 0.0,
+      "domain_compatible": true,
+      "cause": "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION"
+    },
+    {
+      "split": "development",
+      "stream_id": "kairos-dev-S24-u1",
+      "candidate_id": "K-6767cc7dc0",
+      "prefix_index": 2,
+      "final_text": "Tell me the flight class rules for long international flights.",
+      "gold_sections": [
+        "D05#3.2"
+      ],
+      "gold_documents": [],
+      "routed_domain": "travel",
+      "domain_confidence": 0.2,
+      "domain_compatible": false,
+      "cause": "OUT_OF_DOMAIN"
+    },
+    {
+      "split": "development",
+      "stream_id": "kairos-dev-S25-u1",
+      "candidate_id": "K-27a5a05c01",
+      "prefix_index": 1,
+      "final_text": "I need a room in Pune for 20 people, what AV equipment is standard and how do guests register?",
+      "gold_sections": [
+        "D01#2",
+        "D01#3",
+        "D06#1",
+        "D06#2.1",
+        "D06#2.2",
+        "D07#1"
+      ],
+      "gold_documents": [],
+      "routed_domain": "unknown",
+      "domain_confidence": 0.0,
+      "domain_compatible": true,
+      "cause": "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION"
+    },
+    {
+      "split": "development",
+      "stream_id": "kairos-dev-S25-u1",
+      "candidate_id": "K-27a5a05c01",
+      "prefix_index": 2,
+      "final_text": "I need a room in Pune for 20 people, what AV equipment is standard and how do guests register?",
+      "gold_sections": [
+        "D01#2",
+        "D01#3",
+        "D06#1",
+        "D06#2.1",
+        "D06#2.2",
+        "D07#1"
+      ],
+      "gold_documents": [],
+      "routed_domain": "unknown",
+      "domain_confidence": 0.0,
+      "domain_compatible": true,
+      "cause": "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION"
+    },
+    {
+      "split": "development",
+      "stream_id": "kairos-dev-S25-u1",
+      "candidate_id": "K-27a5a05c01",
+      "prefix_index": 3,
+      "final_text": "I need a room in Pune for 20 people, what AV equipment is standard and how do guests register?",
+      "gold_sections": [
+        "D01#2",
+        "D01#3",
+        "D06#1",
+        "D06#2.1",
+        "D06#2.2",
+        "D07#1"
+      ],
+      "gold_documents": [],
+      "routed_domain": "unknown",
+      "domain_confidence": 0.0,
+      "domain_compatible": true,
+      "cause": "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION"
+    }
+  ],
+  "historical_metrics_rewritten": false
+}

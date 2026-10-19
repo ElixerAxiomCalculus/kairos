@@ -1,0 +1,614 @@
+{
+  "schema_version": 2,
+  "split": "final",
+  "streams": [
+    {
+      "stream_id": "iccos-final-F01",
+      "session_id": "iccos-final-F01",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-iccos-project-authored-final-v1",
+      "source_question_id": "F01",
+      "question_family": "iccos-final:F01",
+      "corpus_profile": "sample",
+      "full_text": "What deadline applies if we cancel a standard venue booking?",
+      "prefixes": [
+        "What deadline applies",
+        "What deadline applies if we cancel",
+        "What deadline applies if we cancel a standard",
+        "What deadline applies if we cancel a standard venue booking?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.0,
+        2.7,
+        3.4
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "project-authored V2.3 gold section annotation",
+      "split": "final",
+      "source_revision": "KAIROS-ICCOS-FINAL-2026-10-19",
+      "gold_sections": [
+        "D03#3.1"
+      ],
+      "gold_documents": [],
+      "gold_intents": [
+        {
+          "intent_id": "F01:A",
+          "gold_sections": [
+            "D03#3.1"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "category": "FROZEN_FINAL_WRITTEN_QUESTION",
+      "answerable": true,
+      "content_hash": "4d75019bb27bca63ae30e6e56b2b57b509b794e13740806921d9de5bbfc425d1",
+      "freeze_id": "KAIROS-ICCOS-FINAL-2026-10-19"
+    },
+    {
+      "stream_id": "iccos-final-F02",
+      "session_id": "iccos-final-F02",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-iccos-project-authored-final-v1",
+      "source_question_id": "F02",
+      "question_family": "iccos-final:F02",
+      "corpus_profile": "sample",
+      "full_text": "For an overseas company event, when must the guest list reach security?",
+      "prefixes": [
+        "For an overseas",
+        "For an overseas company event, when must",
+        "For an overseas company event, when must the guest",
+        "For an overseas company event, when must the guest list reach security?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.3,
+        3.0,
+        4.0
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "project-authored V2.3 gold section annotation",
+      "split": "final",
+      "source_revision": "KAIROS-ICCOS-FINAL-2026-10-19",
+      "gold_sections": [
+        "D06#2.2"
+      ],
+      "gold_documents": [],
+      "gold_intents": [
+        {
+          "intent_id": "F02:A",
+          "gold_sections": [
+            "D06#2.2"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "category": "FROZEN_FINAL_WRITTEN_QUESTION",
+      "answerable": true,
+      "content_hash": "7e2aaa788f3cd4720ae13c57134775e22361fef3d71785a60bfc31544f1fe750",
+      "freeze_id": "KAIROS-ICCOS-FINAL-2026-10-19"
+    },
+    {
+      "stream_id": "iccos-final-F03",
+      "session_id": "iccos-final-F03",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-iccos-project-authored-final-v1",
+      "source_question_id": "F03",
+      "question_family": "iccos-final:F03",
+      "corpus_profile": "sample",
+      "full_text": "Which Pune room can hold twenty people, and what standard AV equipment is included?",
+      "prefixes": [
+        "Which Pune room can",
+        "Which Pune room can hold twenty people, and",
+        "Which Pune room can hold twenty people, and what standard AV",
+        "Which Pune room can hold twenty people, and what standard AV equipment is included?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.3,
+        2.6,
+        3.6,
+        4.6
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "project-authored V2.3 gold section annotation",
+      "split": "final",
+      "source_revision": "KAIROS-ICCOS-FINAL-2026-10-19",
+      "gold_sections": [
+        "D01#2",
+        "D01#3",
+        "D07#1"
+      ],
+      "gold_documents": [],
+      "gold_intents": [
+        {
+          "intent_id": "F03:A",
+          "gold_sections": [
+            "D01#2",
+            "D01#3",
+            "D07#1"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "category": "FROZEN_FINAL_WRITTEN_QUESTION",
+      "answerable": true,
+      "content_hash": "43fa3b5b716a079c06ef658ec53ed20e395b76725d6427492e5ee6e5a005fd5a",
+      "freeze_id": "KAIROS-ICCOS-FINAL-2026-10-19"
+    },
+    {
+      "stream_id": "iccos-final-F04",
+      "session_id": "iccos-final-F04",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-iccos-project-authored-final-v1",
+      "source_question_id": "F04",
+      "question_family": "iccos-final:F04",
+      "corpus_profile": "sample",
+      "full_text": "Can catering accommodate dietary needs, and what is the minimum order size?",
+      "prefixes": [
+        "Can catering accommodate",
+        "Can catering accommodate dietary needs, and what",
+        "Can catering accommodate dietary needs, and what is the",
+        "Can catering accommodate dietary needs, and what is the minimum order size?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.3,
+        3.0,
+        4.0
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "project-authored V2.3 gold section annotation",
+      "split": "final",
+      "source_revision": "KAIROS-ICCOS-FINAL-2026-10-19",
+      "gold_sections": [
+        "D04#2",
+        "D04#3"
+      ],
+      "gold_documents": [],
+      "gold_intents": [
+        {
+          "intent_id": "F04:A",
+          "gold_sections": [
+            "D04#2",
+            "D04#3"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "category": "FROZEN_FINAL_WRITTEN_QUESTION",
+      "answerable": true,
+      "content_hash": "5af9d027a3e4c33c82cc8d338e48e7c803021b09c01bfc2a0abb8c95d566468e",
+      "freeze_id": "KAIROS-ICCOS-FINAL-2026-10-19"
+    },
+    {
+      "stream_id": "iccos-final-F05",
+      "session_id": "iccos-final-F05",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-iccos-project-authored-final-v1",
+      "source_question_id": "F05",
+      "question_family": "iccos-final:F05",
+      "corpus_profile": "sample",
+      "full_text": "How long does expense reimbursement take after a complete claim is filed?",
+      "prefixes": [
+        "How long does",
+        "How long does expense reimbursement take after",
+        "How long does expense reimbursement take after a complete",
+        "How long does expense reimbursement take after a complete claim is filed?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.3,
+        3.0,
+        4.0
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "project-authored V2.3 gold section annotation",
+      "split": "final",
+      "source_revision": "KAIROS-ICCOS-FINAL-2026-10-19",
+      "gold_sections": [
+        "D05#5"
+      ],
+      "gold_documents": [],
+      "gold_intents": [
+        {
+          "intent_id": "F05:A",
+          "gold_sections": [
+            "D05#5"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "category": "FROZEN_FINAL_WRITTEN_QUESTION",
+      "answerable": true,
+      "content_hash": "263aed09b4af7b17feb200c1ccba95c23949766d76e64875ffd07750e8368878",
+      "freeze_id": "KAIROS-ICCOS-FINAL-2026-10-19"
+    },
+    {
+      "stream_id": "iccos-final-F06",
+      "session_id": "iccos-final-F06",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-iccos-project-authored-final-v1",
+      "source_question_id": "F06",
+      "question_family": "iccos-final:F06",
+      "corpus_profile": "sample",
+      "full_text": "Can I revise attendee numbers after reserving a venue?",
+      "prefixes": [
+        "Can I revise",
+        "Can I revise attendee numbers",
+        "Can I revise attendee numbers after reserving",
+        "Can I revise attendee numbers after reserving a venue?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.0,
+        1.7,
+        2.4,
+        3.1
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "project-authored V2.3 gold section annotation",
+      "split": "final",
+      "source_revision": "KAIROS-ICCOS-FINAL-2026-10-19",
+      "gold_sections": [
+        "D03#4",
+        "D08#2"
+      ],
+      "gold_documents": [],
+      "gold_intents": [
+        {
+          "intent_id": "F06:A",
+          "gold_sections": [
+            "D03#4",
+            "D08#2"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "category": "FROZEN_FINAL_WRITTEN_QUESTION",
+      "answerable": true,
+      "content_hash": "4af2c84483234e708fc1ec018b9b6a4e0d49eb6d86d721581bff871a0a7d858e",
+      "freeze_id": "KAIROS-ICCOS-FINAL-2026-10-19"
+    },
+    {
+      "stream_id": "iccos-final-F07",
+      "session_id": "iccos-final-F07",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-iccos-project-authored-final-v1",
+      "source_question_id": "F07",
+      "question_family": "iccos-final:F07",
+      "corpus_profile": "sample",
+      "full_text": "Is alcohol available for an internal corporate function?",
+      "prefixes": [
+        "Is alcohol",
+        "Is alcohol available for",
+        "Is alcohol available for an internal",
+        "Is alcohol available for an internal corporate function?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        0.7,
+        1.4,
+        2.1,
+        2.8
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "project-authored V2.3 gold section annotation",
+      "split": "final",
+      "source_revision": "KAIROS-ICCOS-FINAL-2026-10-19",
+      "gold_sections": [
+        "D04#5"
+      ],
+      "gold_documents": [],
+      "gold_intents": [
+        {
+          "intent_id": "F07:A",
+          "gold_sections": [
+            "D04#5"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "category": "FROZEN_FINAL_WRITTEN_QUESTION",
+      "answerable": true,
+      "content_hash": "2c0d2179f975f30185f90ea03d75cfe8bda3da9759a9054d7764bc5eefd445ad",
+      "freeze_id": "KAIROS-ICCOS-FINAL-2026-10-19"
+    },
+    {
+      "stream_id": "iccos-final-F08",
+      "session_id": "iccos-final-F08",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-iccos-project-authored-final-v1",
+      "source_question_id": "F08",
+      "question_family": "iccos-final:F08",
+      "corpus_profile": "sample",
+      "full_text": "What parking and accessibility information is provided for the Pune venues?",
+      "prefixes": [
+        "What parking and",
+        "What parking and accessibility information is",
+        "What parking and accessibility information is provided for the",
+        "What parking and accessibility information is provided for the Pune venues?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.0,
+        3.0,
+        3.7
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "project-authored V2.3 gold section annotation",
+      "split": "final",
+      "source_revision": "KAIROS-ICCOS-FINAL-2026-10-19",
+      "gold_sections": [
+        "D01#5"
+      ],
+      "gold_documents": [],
+      "gold_intents": [
+        {
+          "intent_id": "F08:A",
+          "gold_sections": [
+            "D01#5"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "category": "FROZEN_FINAL_WRITTEN_QUESTION",
+      "answerable": true,
+      "content_hash": "873e0e50db6a79a7644213870897eb7a201cc306349f07d330b57bd25e35d06a",
+      "freeze_id": "KAIROS-ICCOS-FINAL-2026-10-19"
+    },
+    {
+      "stream_id": "iccos-final-F09",
+      "session_id": "iccos-final-F09",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-iccos-project-authored-final-v1",
+      "source_question_id": "F09",
+      "question_family": "iccos-final:F09",
+      "corpus_profile": "sample",
+      "full_text": "For a hybrid meeting, what extra technical support can be requested?",
+      "prefixes": [
+        "For a hybrid",
+        "For a hybrid meeting, what extra",
+        "For a hybrid meeting, what extra technical support can",
+        "For a hybrid meeting, what extra technical support can be requested?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.0,
+        3.0,
+        3.7
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "project-authored V2.3 gold section annotation",
+      "split": "final",
+      "source_revision": "KAIROS-ICCOS-FINAL-2026-10-19",
+      "gold_sections": [
+        "D07#2",
+        "D07#3"
+      ],
+      "gold_documents": [],
+      "gold_intents": [
+        {
+          "intent_id": "F09:A",
+          "gold_sections": [
+            "D07#2",
+            "D07#3"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "category": "FROZEN_FINAL_WRITTEN_QUESTION",
+      "answerable": true,
+      "content_hash": "395bb44fc260a5a60501c14a14fa5b36bc6a9e27b39f4577d38b80496fc9f326",
+      "freeze_id": "KAIROS-ICCOS-FINAL-2026-10-19"
+    },
+    {
+      "stream_id": "iccos-final-F10",
+      "session_id": "iccos-final-F10",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-iccos-project-authored-final-v1",
+      "source_question_id": "F10",
+      "question_family": "iccos-final:F10",
+      "corpus_profile": "sample",
+      "full_text": "What paperwork is needed for small travel expenses and when are receipts mandatory?",
+      "prefixes": [
+        "What paperwork is needed",
+        "What paperwork is needed for small travel",
+        "What paperwork is needed for small travel expenses and when",
+        "What paperwork is needed for small travel expenses and when are receipts mandatory?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.3,
+        2.3,
+        3.3,
+        4.3
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "project-authored V2.3 gold section annotation",
+      "split": "final",
+      "source_revision": "KAIROS-ICCOS-FINAL-2026-10-19",
+      "gold_sections": [
+        "D05#2"
+      ],
+      "gold_documents": [],
+      "gold_intents": [
+        {
+          "intent_id": "F10:A",
+          "gold_sections": [
+            "D05#2"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "category": "FROZEN_FINAL_WRITTEN_QUESTION",
+      "answerable": true,
+      "content_hash": "d4b367c6ed9310e49a80113d9b27d3652b8db7b27cb7d9120e1cfe47838e0ba8",
+      "freeze_id": "KAIROS-ICCOS-FINAL-2026-10-19"
+    },
+    {
+      "stream_id": "iccos-final-F11",
+      "session_id": "iccos-final-F11",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-iccos-project-authored-final-v1",
+      "source_question_id": "F11",
+      "question_family": "iccos-final:F11",
+      "corpus_profile": "sample",
+      "full_text": "Find a beachfront venue on Mars for a thousand guests.",
+      "prefixes": [
+        "Find a beachfront",
+        "Find a beachfront venue on Mars",
+        "Find a beachfront venue on Mars for a",
+        "Find a beachfront venue on Mars for a thousand guests."
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.0,
+        2.7,
+        3.4
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "project-authored V2.3 gold section annotation",
+      "split": "final",
+      "source_revision": "KAIROS-ICCOS-FINAL-2026-10-19",
+      "gold_sections": [],
+      "gold_documents": [],
+      "gold_intents": [
+        {
+          "intent_id": "F11:A",
+          "gold_sections": [],
+          "gold_documents": [],
+          "unanswerable": true
+        }
+      ],
+      "category": "FROZEN_FINAL_WRITTEN_QUESTION",
+      "answerable": false,
+      "content_hash": "b7da7467be666ff6ed5867f605e4b6d42eb7578c7e66a1f55ae3fa74c9420418",
+      "freeze_id": "KAIROS-ICCOS-FINAL-2026-10-19"
+    },
+    {
+      "stream_id": "iccos-final-F12",
+      "session_id": "iccos-final-F12",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-iccos-project-authored-final-v1",
+      "source_question_id": "F12",
+      "question_family": "iccos-final:F12",
+      "corpus_profile": "sample",
+      "full_text": "How do I register visitors and keep them out of restricted areas?",
+      "prefixes": [
+        "How do I",
+        "How do I register visitors and keep",
+        "How do I register visitors and keep them out",
+        "How do I register visitors and keep them out of restricted areas?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.3,
+        3.0,
+        4.0
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "project-authored V2.3 gold section annotation",
+      "split": "final",
+      "source_revision": "KAIROS-ICCOS-FINAL-2026-10-19",
+      "gold_sections": [
+        "D06#1",
+        "D06#3"
+      ],
+      "gold_documents": [],
+      "gold_intents": [
+        {
+          "intent_id": "F12:A",
+          "gold_sections": [
+            "D06#1",
+            "D06#3"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "category": "FROZEN_FINAL_WRITTEN_QUESTION",
+      "answerable": true,
+      "content_hash": "5236821f12140c645446fc71f6ea54aa02521e28d2f2270fded62340cb60cd51",
+      "freeze_id": "KAIROS-ICCOS-FINAL-2026-10-19"
+    }
+  ]
+}

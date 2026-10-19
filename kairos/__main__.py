@@ -11,6 +11,9 @@
   python -m kairos controller-calibrate    report separately fitted calibration results
   python -m kairos controller-experiments  run V2.2 PSRC variants and frozen selection
   python -m kairos controller-oracle       produce/read prefix opportunity analysis
+  python -m kairos controller-v2-3-data build  build the IC-COS lineage dataset
+  python -m kairos controller-v2-3-train       train/calibrate IC-COS models
+  python -m kairos controller-v2-3-experiments run frozen A0-A8 evaluation
   python -m kairos record-demo         record demo traces as frontend fixtures
   python -m kairos reproduce           train → bench (2 repeats) → ablate, in one command
 """
@@ -245,6 +248,44 @@ def cmd_controller_report(args) -> None:
                       "engineering_report": str(resolve_path("docs/PSRC_V2_2_ENGINEERING_REPORT.md"))}, indent=2))
 
 
+def cmd_controller_v23_data(args) -> None:
+    from benchmark.controller.dataset_v2_3 import build_dataset, validate_dataset
+
+    result = build_dataset() if args.action == "build" else validate_dataset()
+    print(json.dumps(result, indent=2))
+
+
+def cmd_controller_v23_train(args) -> None:
+    from benchmark.controller.modeling_v2_3 import train_models
+
+    result = train_models(_cfg(args))
+    print(json.dumps({"model_path": result["model_path"], "validation": result["artifact"]["validation"],
+                      "risk": result["risk_selection"]["selected"]}, indent=2))
+
+
+def cmd_controller_v23_experiments(args) -> None:
+    from benchmark.controller.experiments_v2_3 import run_v2_3
+
+    result = run_v2_3(_cfg(args))
+    compact = {
+        name: {
+            "raw_early": arm["metrics"].get("raw_early", {}).get("rate") if isinstance(arm.get("metrics"), dict) else None,
+            "strict_safe": arm["metrics"].get("strict_safe_early", {}).get("rate") if isinstance(arm.get("metrics"), dict) else None,
+        }
+        for name, arm in result["variants"].items() if name.startswith("A")
+    }
+    print(json.dumps({"run_id": result["run_id"], "variants": compact,
+                      "selection": result["selection"]}, indent=2))
+
+
+def cmd_controller_v23_report(args) -> None:
+    path = resolve_path("runs/bench/controller_v2_3/latest.json")
+    report = json.loads(path.read_text(encoding="utf-8"))
+    print(json.dumps({"run_id": report["run_id"], "selection": report["selection"],
+                      "research_report": str(resolve_path("docs/PSRC_V2_3_ICCOS_RESEARCH.md")),
+                      "engineering_report": str(resolve_path("docs/PSRC_V2_3_ICCOS_ENGINEERING_REPORT.md"))}, indent=2))
+
+
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(prog="kairos", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--config", default=None, help="YAML merged over configs/default.yaml")
@@ -321,6 +362,18 @@ def main(argv: list[str] | None = None) -> None:
     )
     sub.add_parser("controller-report", help="locate the controller research reports").set_defaults(
         fn=cmd_controller_report
+    )
+    p = sub.add_parser("controller-v2-3-data", help="build or validate the lineage-aware IC-COS dataset")
+    p.add_argument("action", choices=["build", "validate"])
+    p.set_defaults(fn=cmd_controller_v23_data)
+    sub.add_parser("controller-v2-3-train", help="train and calibrate IC-COS models").set_defaults(
+        fn=cmd_controller_v23_train
+    )
+    sub.add_parser("controller-v2-3-experiments", help="run frozen A0-A8 IC-COS experiments").set_defaults(
+        fn=cmd_controller_v23_experiments
+    )
+    sub.add_parser("controller-v2-3-report", help="show V2.3 selection and report locations").set_defaults(
+        fn=cmd_controller_v23_report
     )
     args = parser.parse_args(argv)
     args.fn(args)

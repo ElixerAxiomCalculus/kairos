@@ -1,0 +1,2772 @@
+{
+  "status": "MEASURED",
+  "run_id": "20261019T051008Z",
+  "created_at": "2026-10-19T05:10:12.528668+00:00",
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "random_seed": 42
+  },
+  "modeling": {
+    "status": "MEASURED",
+    "model_path": "models/controller_v2_3/iccos_v1.json",
+    "artifact": {
+      "model_schema_version": "kairos-iccos-model-v1",
+      "feature_schema_version": "kairos-iccos-online-v1",
+      "feature_schema_hash": "657677d6f547a68ff1076f520ae8d83453d6232ef238604c5a8e21472f4293a2",
+      "required_features": [
+        "probe_section_rbo",
+        "ranking_history_available",
+        "probe_clarity",
+        "syntactic_completeness",
+        "slot_stability",
+        "slot_history_available",
+        "continuation_safety",
+        "query_informativeness",
+        "probe_evidence_relevance",
+        "rank_separation",
+        "objective_clarity",
+        "constraint_readiness",
+        "constraint_revision_risk",
+        "domain_availability",
+        "candidate_age",
+        "intent_readiness",
+        "intent_independence",
+        "previous_query_compatibility",
+        "query_history_available",
+        "remaining_s",
+        "prefix_length"
+      ],
+      "dataset_hash": "e88895c1e50658c4c319089733a72e876ac34221e3424651486d1674e181d9e7",
+      "training_split_hash": "9cd1538f20af2c2f94f412cd089fdc798add410b45ed069fe3f123d55505b5f4",
+      "calibration_split_hash": "24d59d0543dd7e64285711907ad8d1edf46aeefa5b64127343f2bb2275bba75b",
+      "development_split_hash": "5726002ad9044fe8f10e63a989938f195988c1b27b22253ab39aefee7f1daecc",
+      "models": {
+        "beneficial_stop_classifier": {
+          "weights": {
+            "probe_section_rbo": -0.1410227943,
+            "ranking_history_available": -0.3313964682,
+            "probe_clarity": 0.6386535992,
+            "syntactic_completeness": 0.0881892451,
+            "slot_stability": -0.0117609889,
+            "slot_history_available": 0.1325838909,
+            "continuation_safety": 0.0541297301,
+            "query_informativeness": 1.1269569667,
+            "probe_evidence_relevance": 0.8961717595,
+            "rank_separation": 0.3562627551,
+            "objective_clarity": 0.190198944,
+            "constraint_readiness": 0.2075738428,
+            "constraint_revision_risk": -0.2137212333,
+            "domain_availability": 0.7774679424,
+            "candidate_age": 0.3265871035,
+            "intent_readiness": 0.2188585359,
+            "intent_independence": -0.1366650903,
+            "previous_query_compatibility": 0.1820495466,
+            "query_history_available": -0.6787238652,
+            "remaining_s": -0.2711269443,
+            "prefix_length": 0.2420646079
+          },
+          "bias": -1.653842645,
+          "family": "regularized_logistic",
+          "C": 0.5
+        },
+        "delta_q_regressor": {
+          "weights": {
+            "probe_section_rbo": 0.0955146744,
+            "ranking_history_available": 0.034807556,
+            "probe_clarity": 0.0506386341,
+            "syntactic_completeness": -0.0109593361,
+            "slot_stability": -0.0376287963,
+            "slot_history_available": 0.0308825032,
+            "continuation_safety": 0.0226333992,
+            "query_informativeness": 0.1306299078,
+            "probe_evidence_relevance": 0.1793634827,
+            "rank_separation": 0.007615204,
+            "objective_clarity": 0.0891658949,
+            "constraint_readiness": -0.0194339289,
+            "constraint_revision_risk": -0.1749622176,
+            "domain_availability": 0.3564151349,
+            "candidate_age": 0.598052383,
+            "intent_readiness": 0.0161866878,
+            "intent_independence": -0.1681458792,
+            "previous_query_compatibility": 0.0719885569,
+            "query_history_available": -0.2672781575,
+            "remaining_s": -0.0846099492,
+            "prefix_length": 0.13938882
+          },
+          "bias": -0.0749812876,
+          "family": "ridge",
+          "alpha": 1.0
+        }
+      },
+      "calibration": {
+        "method": "platt",
+        "slope": 0.47906458552454567,
+        "intercept": 0.8604528749662445
+      },
+      "decision_threshold": 0.85,
+      "objective": "predict Q(RETRIEVE_NOW)-Q(WAIT_NEXT) under frozen deterministic continuation",
+      "risk": {
+        "max_empirical_risk": 0.2,
+        "development": {
+          "threshold": 0.85,
+          "selected": 0,
+          "useful": 0,
+          "unsafe": 0,
+          "empirical_risk": 0.0,
+          "useful_recall": 0.0,
+          "eligible": true
+        }
+      },
+      "validation": {
+        "classifier": {
+          "examples": 56,
+          "brier_score": 0.1534,
+          "ece": 0.1419,
+          "log_loss": 0.4787,
+          "bins": [
+            {
+              "lower": 0.5,
+              "upper": 0.6,
+              "count": 6,
+              "mean_score": 0.5636,
+              "observed": 0.5
+            },
+            {
+              "lower": 0.6,
+              "upper": 0.7,
+              "count": 14,
+              "mean_score": 0.6581,
+              "observed": 0.5
+            },
+            {
+              "lower": 0.7,
+              "upper": 0.8,
+              "count": 29,
+              "mean_score": 0.7524,
+              "observed": 0.8966
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 7,
+              "mean_score": 0.8328,
+              "observed": 1
+            }
+          ]
+        },
+        "regression_mae": 0.239157,
+        "delta_sign_accuracy": 0.803571,
+        "rows": {
+          "train": 136,
+          "calibration": 24,
+          "development": 56
+        },
+        "groups": {
+          "train": 36,
+          "calibration": 4,
+          "development": 27
+        },
+        "future_feature_audit": "PASS",
+        "forbidden_future_features": []
+      }
+    },
+    "risk_selection": {
+      "max_empirical_risk": 0.2,
+      "selected": {
+        "threshold": 0.85,
+        "selected": 0,
+        "useful": 0,
+        "unsafe": 0,
+        "empirical_risk": 0.0,
+        "useful_recall": 0.0,
+        "eligible": true
+      },
+      "sweep": [
+        {
+          "threshold": 0.35,
+          "selected": 46,
+          "useful": 9,
+          "unsafe": 37,
+          "empirical_risk": 0.804348,
+          "useful_recall": 1.0,
+          "eligible": false
+        },
+        {
+          "threshold": 0.4,
+          "selected": 46,
+          "useful": 9,
+          "unsafe": 37,
+          "empirical_risk": 0.804348,
+          "useful_recall": 1.0,
+          "eligible": false
+        },
+        {
+          "threshold": 0.45,
+          "selected": 46,
+          "useful": 9,
+          "unsafe": 37,
+          "empirical_risk": 0.804348,
+          "useful_recall": 1.0,
+          "eligible": false
+        },
+        {
+          "threshold": 0.5,
+          "selected": 46,
+          "useful": 9,
+          "unsafe": 37,
+          "empirical_risk": 0.804348,
+          "useful_recall": 1.0,
+          "eligible": false
+        },
+        {
+          "threshold": 0.55,
+          "selected": 46,
+          "useful": 9,
+          "unsafe": 37,
+          "empirical_risk": 0.804348,
+          "useful_recall": 1.0,
+          "eligible": false
+        },
+        {
+          "threshold": 0.6,
+          "selected": 46,
+          "useful": 9,
+          "unsafe": 37,
+          "empirical_risk": 0.804348,
+          "useful_recall": 1.0,
+          "eligible": false
+        },
+        {
+          "threshold": 0.65,
+          "selected": 43,
+          "useful": 9,
+          "unsafe": 34,
+          "empirical_risk": 0.790698,
+          "useful_recall": 1.0,
+          "eligible": false
+        },
+        {
+          "threshold": 0.7,
+          "selected": 34,
+          "useful": 9,
+          "unsafe": 25,
+          "empirical_risk": 0.735294,
+          "useful_recall": 1.0,
+          "eligible": false
+        },
+        {
+          "threshold": 0.75,
+          "selected": 22,
+          "useful": 9,
+          "unsafe": 13,
+          "empirical_risk": 0.590909,
+          "useful_recall": 1.0,
+          "eligible": false
+        },
+        {
+          "threshold": 0.8,
+          "selected": 7,
+          "useful": 4,
+          "unsafe": 3,
+          "empirical_risk": 0.428571,
+          "useful_recall": 0.444444,
+          "eligible": false
+        },
+        {
+          "threshold": 0.85,
+          "selected": 0,
+          "useful": 0,
+          "unsafe": 0,
+          "empirical_risk": 0.0,
+          "useful_recall": 0.0,
+          "eligible": true
+        },
+        {
+          "threshold": 0.9,
+          "selected": 0,
+          "useful": 0,
+          "unsafe": 0,
+          "empirical_risk": 0.0,
+          "useful_recall": 0.0,
+          "eligible": true
+        },
+        {
+          "threshold": 0.95,
+          "selected": 0,
+          "useful": 0,
+          "unsafe": 0,
+          "empirical_risk": 0.0,
+          "useful_recall": 0.0,
+          "eligible": true
+        }
+      ]
+    },
+    "alignment_status_counts": {
+      "train": {
+        "MISSING_GOLD_ANNOTATION": 42,
+        "SUPPORTED_GOLD_EVIDENCE": 74,
+        "NO_RELEVANT_EVIDENCE": 15,
+        "OUT_OF_DOMAIN": 5
+      },
+      "calibration": {
+        "SUPPORTED_GOLD_EVIDENCE": 21,
+        "NO_RELEVANT_EVIDENCE": 3
+      },
+      "development": {
+        "NO_RELEVANT_EVIDENCE": 19,
+        "SUPPORTED_GOLD_EVIDENCE": 32,
+        "MISSING_GOLD_ANNOTATION": 2,
+        "RELEVANT_BUT_CHANGED_EVIDENCE": 2,
+        "OUT_OF_DOMAIN": 1
+      }
+    }
+  },
+  "variants": {
+    "A1_psrc_shared_features": {
+      "description": "historical PSRC weights over corrected shared online features",
+      "metrics": {
+        "intent_denominator": 32,
+        "raw_early": {
+          "numerator": 12,
+          "denominator": 32,
+          "rate": 0.375,
+          "wilson_95": [
+            0.2293,
+            0.5475
+          ]
+        },
+        "gold_useful_early": {
+          "numerator": 9,
+          "denominator": 32,
+          "rate": 0.2812,
+          "wilson_95": [
+            0.1556,
+            0.4537
+          ]
+        },
+        "strict_useful_early": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0,
+          "wilson_95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "strict_safe_early": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0,
+          "wilson_95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "premature": {
+          "numerator": 12,
+          "denominator": 12,
+          "rate": 1.0,
+          "wilson_95": [
+            0.7575,
+            1.0
+          ]
+        },
+        "accepted_chunk_survival_mean": 0.5501,
+        "accepted_section_survival_mean": 0.5306,
+        "latency": {
+          "retrieval_execution_latency_ms": null,
+          "retrieval_execution_latency_status": "NOT_MEASURED_BY_OFFLINE_POLICY_REPLAY",
+          "first_useful_evidence_elapsed_ms_mean": null,
+          "lead_before_end_ms_mean": null
+        },
+        "costs": {
+          "full_searches": 32,
+          "primary_searches": 32,
+          "shadow_searches": 0,
+          "speculative_searches": 0,
+          "refinement_searches": 0,
+          "final_fallback_searches": 20
+        },
+        "uncertainty": {
+          "selected_with_probability": 0,
+          "mean_selected_probability": null
+        },
+        "selected_rows": [
+          {
+            "stream_id": "kairos-dev-S01-u1",
+            "candidate_id": "K-27a5a05c01",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S03-u1",
+            "candidate_id": "K-a26f55821d",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S03-u1",
+            "candidate_id": "K-59494695a3",
+            "prefix_index": 4
+          },
+          {
+            "stream_id": "kairos-dev-S04-u1",
+            "candidate_id": "K-7550b672e1",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S07-u1",
+            "candidate_id": "K-0394e8790a",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S10-u1",
+            "candidate_id": "K-5d3ed55643",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S15-u1",
+            "candidate_id": "K-35675e68f4",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S17-u1",
+            "candidate_id": "K-e959bfaa55",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S18-u1",
+            "candidate_id": "K-1ffb8796ed",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S19-u1",
+            "candidate_id": "K-adc5e1f775",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S21-u1",
+            "candidate_id": "K-55d25800fb",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S25-u1",
+            "candidate_id": "K-27a5a05c01",
+            "prefix_index": 2
+          }
+        ],
+        "definitions": {
+          "intent_denominator": "candidate lineages with at least one non-final opportunity",
+          "raw_early": "lineage has a selected non-final retrieval",
+          "gold_useful_early": "selected prefix retrieves its aligned gold evidence",
+          "strict_useful_early": "gold relevance + constraints + survival + answerability + grounding eligibility",
+          "strict_safe_early": "strict useful and counterfactual action advantage is positive"
+        }
+      }
+    },
+    "A2_psrc_intent_labels": {
+      "description": "five-feature PSRC retrained on intent-conditioned action labels",
+      "metrics": {
+        "intent_denominator": 32,
+        "raw_early": {
+          "numerator": 22,
+          "denominator": 32,
+          "rate": 0.6875,
+          "wilson_95": [
+            0.5143,
+            0.8205
+          ]
+        },
+        "gold_useful_early": {
+          "numerator": 17,
+          "denominator": 32,
+          "rate": 0.5312,
+          "wilson_95": [
+            0.3645,
+            0.6913
+          ]
+        },
+        "strict_useful_early": {
+          "numerator": 7,
+          "denominator": 32,
+          "rate": 0.2188,
+          "wilson_95": [
+            0.1102,
+            0.3876
+          ]
+        },
+        "strict_safe_early": {
+          "numerator": 7,
+          "denominator": 32,
+          "rate": 0.2188,
+          "wilson_95": [
+            0.1102,
+            0.3876
+          ]
+        },
+        "premature": {
+          "numerator": 15,
+          "denominator": 22,
+          "rate": 0.6818,
+          "wilson_95": [
+            0.4732,
+            0.8364
+          ]
+        },
+        "accepted_chunk_survival_mean": 0.4536,
+        "accepted_section_survival_mean": 0.4409,
+        "latency": {
+          "retrieval_execution_latency_ms": null,
+          "retrieval_execution_latency_status": "NOT_MEASURED_BY_OFFLINE_POLICY_REPLAY",
+          "first_useful_evidence_elapsed_ms_mean": 3457.143,
+          "lead_before_end_ms_mean": 1928.571
+        },
+        "costs": {
+          "full_searches": 32,
+          "primary_searches": 32,
+          "shadow_searches": 0,
+          "speculative_searches": 0,
+          "refinement_searches": 0,
+          "final_fallback_searches": 10
+        },
+        "uncertainty": {
+          "selected_with_probability": 22,
+          "mean_selected_probability": 0.5937
+        },
+        "selected_rows": [
+          {
+            "stream_id": "kairos-dev-S01-u1",
+            "candidate_id": "K-27a5a05c01",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S01-u1",
+            "candidate_id": "K-ad6b9100db",
+            "prefix_index": 4
+          },
+          {
+            "stream_id": "kairos-dev-S03-u1",
+            "candidate_id": "K-a26f55821d",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S03-u1",
+            "candidate_id": "K-59494695a3",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S05-u1",
+            "candidate_id": "K-52efcb6c3e",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S07-u1",
+            "candidate_id": "K-0394e8790a",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S09-u1",
+            "candidate_id": "K-818743b967",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S10-u1",
+            "candidate_id": "K-8b1d356b03",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S12-u1",
+            "candidate_id": "K-27a5a05c01",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S13-u1",
+            "candidate_id": "K-53571adf08",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S14-u1",
+            "candidate_id": "K-74c9d2bd1b",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S15-u1",
+            "candidate_id": "K-35675e68f4",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S17-u1",
+            "candidate_id": "K-e959bfaa55",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S19-u1",
+            "candidate_id": "K-adc5e1f775",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S20-u1",
+            "candidate_id": "K-ef443552f0",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S21-u1",
+            "candidate_id": "K-55d25800fb",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S21-u1",
+            "candidate_id": "K-bedcc40ee5",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S22-u1",
+            "candidate_id": "K-27a5a05c01",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S23-u1",
+            "candidate_id": "K-c26eb4e6bc",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S25-u1",
+            "candidate_id": "K-27a5a05c01",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S25-u1",
+            "candidate_id": "K-a3970e7a9e",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S26-u1",
+            "candidate_id": "K-02630b7ef2",
+            "prefix_index": 1
+          }
+        ],
+        "definitions": {
+          "intent_denominator": "candidate lineages with at least one non-final opportunity",
+          "raw_early": "lineage has a selected non-final retrieval",
+          "gold_useful_early": "selected prefix retrieves its aligned gold evidence",
+          "strict_useful_early": "gold relevance + constraints + survival + answerability + grounding eligibility",
+          "strict_safe_early": "strict useful and counterfactual action advantage is positive"
+        }
+      }
+    },
+    "A3_iccos_classifier": {
+      "description": "uncalibrated beneficial-stop classifier",
+      "metrics": {
+        "intent_denominator": 32,
+        "raw_early": {
+          "numerator": 24,
+          "denominator": 32,
+          "rate": 0.75,
+          "wilson_95": [
+            0.5789,
+            0.8675
+          ]
+        },
+        "gold_useful_early": {
+          "numerator": 21,
+          "denominator": 32,
+          "rate": 0.6562,
+          "wilson_95": [
+            0.4831,
+            0.7959
+          ]
+        },
+        "strict_useful_early": {
+          "numerator": 9,
+          "denominator": 32,
+          "rate": 0.2812,
+          "wilson_95": [
+            0.1556,
+            0.4537
+          ]
+        },
+        "strict_safe_early": {
+          "numerator": 9,
+          "denominator": 32,
+          "rate": 0.2812,
+          "wilson_95": [
+            0.1556,
+            0.4537
+          ]
+        },
+        "premature": {
+          "numerator": 15,
+          "denominator": 24,
+          "rate": 0.625,
+          "wilson_95": [
+            0.4271,
+            0.7884
+          ]
+        },
+        "accepted_chunk_survival_mean": 0.5197,
+        "accepted_section_survival_mean": 0.4962,
+        "latency": {
+          "retrieval_execution_latency_ms": null,
+          "retrieval_execution_latency_status": "NOT_MEASURED_BY_OFFLINE_POLICY_REPLAY",
+          "first_useful_evidence_elapsed_ms_mean": 2977.778,
+          "lead_before_end_ms_mean": 1833.333
+        },
+        "costs": {
+          "full_searches": 32,
+          "primary_searches": 32,
+          "shadow_searches": 0,
+          "speculative_searches": 0,
+          "refinement_searches": 0,
+          "final_fallback_searches": 8
+        },
+        "uncertainty": {
+          "selected_with_probability": 24,
+          "mean_selected_probability": 0.7167
+        },
+        "selected_rows": [
+          {
+            "stream_id": "kairos-dev-S01-u1",
+            "candidate_id": "K-27a5a05c01",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S01-u1",
+            "candidate_id": "K-ad6b9100db",
+            "prefix_index": 4
+          },
+          {
+            "stream_id": "kairos-dev-S03-u1",
+            "candidate_id": "K-a26f55821d",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S03-u1",
+            "candidate_id": "K-59494695a3",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S04-u1",
+            "candidate_id": "K-7550b672e1",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S05-u1",
+            "candidate_id": "K-52efcb6c3e",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S06-u1",
+            "candidate_id": "K-034fd63146",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S07-u1",
+            "candidate_id": "K-0394e8790a",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S09-u1",
+            "candidate_id": "K-818743b967",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S10-u1",
+            "candidate_id": "K-5d3ed55643",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S10-u1",
+            "candidate_id": "K-8b1d356b03",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S12-u1",
+            "candidate_id": "K-27a5a05c01",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S14-u1",
+            "candidate_id": "K-74c9d2bd1b",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S15-u1",
+            "candidate_id": "K-35675e68f4",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S17-u1",
+            "candidate_id": "K-e959bfaa55",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S18-u1",
+            "candidate_id": "K-1ffb8796ed",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S19-u1",
+            "candidate_id": "K-adc5e1f775",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S20-u1",
+            "candidate_id": "K-ef443552f0",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S21-u1",
+            "candidate_id": "K-55d25800fb",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S21-u1",
+            "candidate_id": "K-bedcc40ee5",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S22-u1",
+            "candidate_id": "K-27a5a05c01",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S25-u1",
+            "candidate_id": "K-27a5a05c01",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S25-u1",
+            "candidate_id": "K-a3970e7a9e",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S26-u1",
+            "candidate_id": "K-02630b7ef2",
+            "prefix_index": 1
+          }
+        ],
+        "definitions": {
+          "intent_denominator": "candidate lineages with at least one non-final opportunity",
+          "raw_early": "lineage has a selected non-final retrieval",
+          "gold_useful_early": "selected prefix retrieves its aligned gold evidence",
+          "strict_useful_early": "gold relevance + constraints + survival + answerability + grounding eligibility",
+          "strict_safe_early": "strict useful and counterfactual action advantage is positive"
+        }
+      }
+    },
+    "A4_iccos_value_regression": {
+      "description": "direct positive DeltaQ regression",
+      "metrics": {
+        "intent_denominator": 32,
+        "raw_early": {
+          "numerator": 24,
+          "denominator": 32,
+          "rate": 0.75,
+          "wilson_95": [
+            0.5789,
+            0.8675
+          ]
+        },
+        "gold_useful_early": {
+          "numerator": 21,
+          "denominator": 32,
+          "rate": 0.6562,
+          "wilson_95": [
+            0.4831,
+            0.7959
+          ]
+        },
+        "strict_useful_early": {
+          "numerator": 9,
+          "denominator": 32,
+          "rate": 0.2812,
+          "wilson_95": [
+            0.1556,
+            0.4537
+          ]
+        },
+        "strict_safe_early": {
+          "numerator": 9,
+          "denominator": 32,
+          "rate": 0.2812,
+          "wilson_95": [
+            0.1556,
+            0.4537
+          ]
+        },
+        "premature": {
+          "numerator": 15,
+          "denominator": 24,
+          "rate": 0.625,
+          "wilson_95": [
+            0.4271,
+            0.7884
+          ]
+        },
+        "accepted_chunk_survival_mean": 0.5197,
+        "accepted_section_survival_mean": 0.4962,
+        "latency": {
+          "retrieval_execution_latency_ms": null,
+          "retrieval_execution_latency_status": "NOT_MEASURED_BY_OFFLINE_POLICY_REPLAY",
+          "first_useful_evidence_elapsed_ms_mean": 2977.778,
+          "lead_before_end_ms_mean": 1833.333
+        },
+        "costs": {
+          "full_searches": 32,
+          "primary_searches": 32,
+          "shadow_searches": 0,
+          "speculative_searches": 0,
+          "refinement_searches": 0,
+          "final_fallback_searches": 8
+        },
+        "uncertainty": {
+          "selected_with_probability": 0,
+          "mean_selected_probability": null
+        },
+        "selected_rows": [
+          {
+            "stream_id": "kairos-dev-S01-u1",
+            "candidate_id": "K-27a5a05c01",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S01-u1",
+            "candidate_id": "K-ad6b9100db",
+            "prefix_index": 4
+          },
+          {
+            "stream_id": "kairos-dev-S03-u1",
+            "candidate_id": "K-a26f55821d",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S03-u1",
+            "candidate_id": "K-59494695a3",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S04-u1",
+            "candidate_id": "K-7550b672e1",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S05-u1",
+            "candidate_id": "K-52efcb6c3e",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S06-u1",
+            "candidate_id": "K-034fd63146",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S07-u1",
+            "candidate_id": "K-0394e8790a",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S09-u1",
+            "candidate_id": "K-818743b967",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S10-u1",
+            "candidate_id": "K-5d3ed55643",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S10-u1",
+            "candidate_id": "K-8b1d356b03",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S12-u1",
+            "candidate_id": "K-27a5a05c01",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S14-u1",
+            "candidate_id": "K-74c9d2bd1b",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S15-u1",
+            "candidate_id": "K-35675e68f4",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S17-u1",
+            "candidate_id": "K-e959bfaa55",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S18-u1",
+            "candidate_id": "K-1ffb8796ed",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S19-u1",
+            "candidate_id": "K-adc5e1f775",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S20-u1",
+            "candidate_id": "K-ef443552f0",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S21-u1",
+            "candidate_id": "K-55d25800fb",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S21-u1",
+            "candidate_id": "K-bedcc40ee5",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S22-u1",
+            "candidate_id": "K-27a5a05c01",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S25-u1",
+            "candidate_id": "K-27a5a05c01",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S25-u1",
+            "candidate_id": "K-a3970e7a9e",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S26-u1",
+            "candidate_id": "K-02630b7ef2",
+            "prefix_index": 1
+          }
+        ],
+        "definitions": {
+          "intent_denominator": "candidate lineages with at least one non-final opportunity",
+          "raw_early": "lineage has a selected non-final retrieval",
+          "gold_useful_early": "selected prefix retrieves its aligned gold evidence",
+          "strict_useful_early": "gold relevance + constraints + survival + answerability + grounding eligibility",
+          "strict_safe_early": "strict useful and counterfactual action advantage is positive"
+        }
+      }
+    },
+    "A5_iccos_calibrated": {
+      "description": "calibrated classifier plus positive DeltaQ",
+      "metrics": {
+        "intent_denominator": 32,
+        "raw_early": {
+          "numerator": 24,
+          "denominator": 32,
+          "rate": 0.75,
+          "wilson_95": [
+            0.5789,
+            0.8675
+          ]
+        },
+        "gold_useful_early": {
+          "numerator": 21,
+          "denominator": 32,
+          "rate": 0.6562,
+          "wilson_95": [
+            0.4831,
+            0.7959
+          ]
+        },
+        "strict_useful_early": {
+          "numerator": 9,
+          "denominator": 32,
+          "rate": 0.2812,
+          "wilson_95": [
+            0.1556,
+            0.4537
+          ]
+        },
+        "strict_safe_early": {
+          "numerator": 9,
+          "denominator": 32,
+          "rate": 0.2812,
+          "wilson_95": [
+            0.1556,
+            0.4537
+          ]
+        },
+        "premature": {
+          "numerator": 15,
+          "denominator": 24,
+          "rate": 0.625,
+          "wilson_95": [
+            0.4271,
+            0.7884
+          ]
+        },
+        "accepted_chunk_survival_mean": 0.5197,
+        "accepted_section_survival_mean": 0.4962,
+        "latency": {
+          "retrieval_execution_latency_ms": null,
+          "retrieval_execution_latency_status": "NOT_MEASURED_BY_OFFLINE_POLICY_REPLAY",
+          "first_useful_evidence_elapsed_ms_mean": 2977.778,
+          "lead_before_end_ms_mean": 1833.333
+        },
+        "costs": {
+          "full_searches": 32,
+          "primary_searches": 32,
+          "shadow_searches": 0,
+          "speculative_searches": 0,
+          "refinement_searches": 0,
+          "final_fallback_searches": 8
+        },
+        "uncertainty": {
+          "selected_with_probability": 24,
+          "mean_selected_probability": 0.7874
+        },
+        "selected_rows": [
+          {
+            "stream_id": "kairos-dev-S01-u1",
+            "candidate_id": "K-27a5a05c01",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S01-u1",
+            "candidate_id": "K-ad6b9100db",
+            "prefix_index": 4
+          },
+          {
+            "stream_id": "kairos-dev-S03-u1",
+            "candidate_id": "K-a26f55821d",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S03-u1",
+            "candidate_id": "K-59494695a3",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S04-u1",
+            "candidate_id": "K-7550b672e1",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S05-u1",
+            "candidate_id": "K-52efcb6c3e",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S06-u1",
+            "candidate_id": "K-034fd63146",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S07-u1",
+            "candidate_id": "K-0394e8790a",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S09-u1",
+            "candidate_id": "K-818743b967",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S10-u1",
+            "candidate_id": "K-5d3ed55643",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S10-u1",
+            "candidate_id": "K-8b1d356b03",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S12-u1",
+            "candidate_id": "K-27a5a05c01",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S14-u1",
+            "candidate_id": "K-74c9d2bd1b",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S15-u1",
+            "candidate_id": "K-35675e68f4",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S17-u1",
+            "candidate_id": "K-e959bfaa55",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S18-u1",
+            "candidate_id": "K-1ffb8796ed",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S19-u1",
+            "candidate_id": "K-adc5e1f775",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S20-u1",
+            "candidate_id": "K-ef443552f0",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S21-u1",
+            "candidate_id": "K-55d25800fb",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S21-u1",
+            "candidate_id": "K-bedcc40ee5",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S22-u1",
+            "candidate_id": "K-27a5a05c01",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S25-u1",
+            "candidate_id": "K-27a5a05c01",
+            "prefix_index": 1
+          },
+          {
+            "stream_id": "kairos-dev-S25-u1",
+            "candidate_id": "K-a3970e7a9e",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S26-u1",
+            "candidate_id": "K-02630b7ef2",
+            "prefix_index": 1
+          }
+        ],
+        "definitions": {
+          "intent_denominator": "candidate lineages with at least one non-final opportunity",
+          "raw_early": "lineage has a selected non-final retrieval",
+          "gold_useful_early": "selected prefix retrieves its aligned gold evidence",
+          "strict_useful_early": "gold relevance + constraints + survival + answerability + grounding eligibility",
+          "strict_safe_early": "strict useful and counterfactual action advantage is positive"
+        }
+      }
+    },
+    "A6_iccos_risk_selected": {
+      "description": "development-selected empirical-risk threshold",
+      "metrics": {
+        "intent_denominator": 32,
+        "raw_early": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0,
+          "wilson_95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "gold_useful_early": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0,
+          "wilson_95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "strict_useful_early": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0,
+          "wilson_95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "strict_safe_early": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0,
+          "wilson_95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "premature": {
+          "numerator": 0,
+          "denominator": 0,
+          "rate": null,
+          "wilson_95": null
+        },
+        "accepted_chunk_survival_mean": null,
+        "accepted_section_survival_mean": null,
+        "latency": {
+          "retrieval_execution_latency_ms": null,
+          "retrieval_execution_latency_status": "NOT_MEASURED_BY_OFFLINE_POLICY_REPLAY",
+          "first_useful_evidence_elapsed_ms_mean": null,
+          "lead_before_end_ms_mean": null
+        },
+        "costs": {
+          "full_searches": 32,
+          "primary_searches": 32,
+          "shadow_searches": 0,
+          "speculative_searches": 0,
+          "refinement_searches": 0,
+          "final_fallback_searches": 32
+        },
+        "uncertainty": {
+          "selected_with_probability": 0,
+          "mean_selected_probability": null
+        },
+        "selected_rows": [],
+        "definitions": {
+          "intent_denominator": "candidate lineages with at least one non-final opportunity",
+          "raw_early": "lineage has a selected non-final retrieval",
+          "gold_useful_early": "selected prefix retrieves its aligned gold evidence",
+          "strict_useful_early": "gold relevance + constraints + survival + answerability + grounding eligibility",
+          "strict_safe_early": "strict useful and counterfactual action advantage is positive"
+        }
+      }
+    },
+    "A7_iccos_cache": {
+      "description": "A6 policy with cache treated as an independent execution optimization",
+      "metrics": {
+        "intent_denominator": 32,
+        "raw_early": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0,
+          "wilson_95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "gold_useful_early": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0,
+          "wilson_95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "strict_useful_early": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0,
+          "wilson_95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "strict_safe_early": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0,
+          "wilson_95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "premature": {
+          "numerator": 0,
+          "denominator": 0,
+          "rate": null,
+          "wilson_95": null
+        },
+        "accepted_chunk_survival_mean": null,
+        "accepted_section_survival_mean": null,
+        "latency": {
+          "retrieval_execution_latency_ms": null,
+          "retrieval_execution_latency_status": "NOT_MEASURED_BY_OFFLINE_POLICY_REPLAY",
+          "first_useful_evidence_elapsed_ms_mean": null,
+          "lead_before_end_ms_mean": null
+        },
+        "costs": {
+          "full_searches": 32,
+          "primary_searches": 32,
+          "shadow_searches": 0,
+          "speculative_searches": 0,
+          "refinement_searches": 0,
+          "final_fallback_searches": 32
+        },
+        "uncertainty": {
+          "selected_with_probability": 0,
+          "mean_selected_probability": null
+        },
+        "selected_rows": [],
+        "definitions": {
+          "intent_denominator": "candidate lineages with at least one non-final opportunity",
+          "raw_early": "lineage has a selected non-final retrieval",
+          "gold_useful_early": "selected prefix retrieves its aligned gold evidence",
+          "strict_useful_early": "gold relevance + constraints + survival + answerability + grounding eligibility",
+          "strict_safe_early": "strict useful and counterfactual action advantage is positive"
+        }
+      }
+    },
+    "A8_full_integration": {
+      "description": "full guarded IC-COS integration",
+      "metrics": {
+        "intent_denominator": 32,
+        "raw_early": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0,
+          "wilson_95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "gold_useful_early": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0,
+          "wilson_95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "strict_useful_early": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0,
+          "wilson_95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "strict_safe_early": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0,
+          "wilson_95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "premature": {
+          "numerator": 0,
+          "denominator": 0,
+          "rate": null,
+          "wilson_95": null
+        },
+        "accepted_chunk_survival_mean": null,
+        "accepted_section_survival_mean": null,
+        "latency": {
+          "retrieval_execution_latency_ms": null,
+          "retrieval_execution_latency_status": "NOT_MEASURED_BY_OFFLINE_POLICY_REPLAY",
+          "first_useful_evidence_elapsed_ms_mean": null,
+          "lead_before_end_ms_mean": null
+        },
+        "costs": {
+          "full_searches": 32,
+          "primary_searches": 32,
+          "shadow_searches": 0,
+          "speculative_searches": 0,
+          "refinement_searches": 0,
+          "final_fallback_searches": 32
+        },
+        "uncertainty": {
+          "selected_with_probability": 0,
+          "mean_selected_probability": null
+        },
+        "selected_rows": [],
+        "definitions": {
+          "intent_denominator": "candidate lineages with at least one non-final opportunity",
+          "raw_early": "lineage has a selected non-final retrieval",
+          "gold_useful_early": "selected prefix retrieves its aligned gold evidence",
+          "strict_useful_early": "gold relevance + constraints + survival + answerability + grounding eligibility",
+          "strict_safe_early": "strict useful and counterfactual action advantage is positive"
+        }
+      }
+    },
+    "fixed_4": {
+      "description": "retrieve at four content terms",
+      "metrics": {
+        "intent_denominator": 32,
+        "raw_early": {
+          "numerator": 12,
+          "denominator": 32,
+          "rate": 0.375,
+          "wilson_95": [
+            0.2293,
+            0.5475
+          ]
+        },
+        "gold_useful_early": {
+          "numerator": 6,
+          "denominator": 32,
+          "rate": 0.1875,
+          "wilson_95": [
+            0.0889,
+            0.3531
+          ]
+        },
+        "strict_useful_early": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0,
+          "wilson_95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "strict_safe_early": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0,
+          "wilson_95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "premature": {
+          "numerator": 12,
+          "denominator": 12,
+          "rate": 1.0,
+          "wilson_95": [
+            0.7575,
+            1.0
+          ]
+        },
+        "accepted_chunk_survival_mean": 0.4435,
+        "accepted_section_survival_mean": 0.4333,
+        "latency": {
+          "retrieval_execution_latency_ms": null,
+          "retrieval_execution_latency_status": "NOT_MEASURED_BY_OFFLINE_POLICY_REPLAY",
+          "first_useful_evidence_elapsed_ms_mean": null,
+          "lead_before_end_ms_mean": null
+        },
+        "costs": {
+          "full_searches": 32,
+          "primary_searches": 32,
+          "shadow_searches": 0,
+          "speculative_searches": 0,
+          "refinement_searches": 0,
+          "final_fallback_searches": 20
+        },
+        "uncertainty": {
+          "selected_with_probability": 0,
+          "mean_selected_probability": null
+        },
+        "selected_rows": [
+          {
+            "stream_id": "kairos-dev-S01-u1",
+            "candidate_id": "K-27a5a05c01",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S03-u1",
+            "candidate_id": "K-a26f55821d",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S07-u1",
+            "candidate_id": "K-0394e8790a",
+            "prefix_index": 3
+          },
+          {
+            "stream_id": "kairos-dev-S09-u1",
+            "candidate_id": "K-818743b967",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S10-u1",
+            "candidate_id": "K-5d3ed55643",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S13-u1",
+            "candidate_id": "K-53571adf08",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S15-u1",
+            "candidate_id": "K-35675e68f4",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S17-u1",
+            "candidate_id": "K-e959bfaa55",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S19-u1",
+            "candidate_id": "K-adc5e1f775",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S21-u1",
+            "candidate_id": "K-55d25800fb",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S23-u1",
+            "candidate_id": "K-c26eb4e6bc",
+            "prefix_index": 2
+          },
+          {
+            "stream_id": "kairos-dev-S25-u1",
+            "candidate_id": "K-27a5a05c01",
+            "prefix_index": 2
+          }
+        ],
+        "definitions": {
+          "intent_denominator": "candidate lineages with at least one non-final opportunity",
+          "raw_early": "lineage has a selected non-final retrieval",
+          "gold_useful_early": "selected prefix retrieves its aligned gold evidence",
+          "strict_useful_early": "gold relevance + constraints + survival + answerability + grounding eligibility",
+          "strict_safe_early": "strict useful and counterfactual action advantage is positive"
+        }
+      }
+    },
+    "fixed_8": {
+      "description": "retrieve at eight content terms",
+      "metrics": {
+        "intent_denominator": 32,
+        "raw_early": {
+          "numerator": 1,
+          "denominator": 32,
+          "rate": 0.0312,
+          "wilson_95": [
+            0.0055,
+            0.1574
+          ]
+        },
+        "gold_useful_early": {
+          "numerator": 1,
+          "denominator": 32,
+          "rate": 0.0312,
+          "wilson_95": [
+            0.0055,
+            0.1574
+          ]
+        },
+        "strict_useful_early": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0,
+          "wilson_95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "strict_safe_early": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0,
+          "wilson_95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "premature": {
+          "numerator": 1,
+          "denominator": 1,
+          "rate": 1.0,
+          "wilson_95": [
+            0.2065,
+            1.0
+          ]
+        },
+        "accepted_chunk_survival_mean": 0.0,
+        "accepted_section_survival_mean": 0.0,
+        "latency": {
+          "retrieval_execution_latency_ms": null,
+          "retrieval_execution_latency_status": "NOT_MEASURED_BY_OFFLINE_POLICY_REPLAY",
+          "first_useful_evidence_elapsed_ms_mean": null,
+          "lead_before_end_ms_mean": null
+        },
+        "costs": {
+          "full_searches": 32,
+          "primary_searches": 32,
+          "shadow_searches": 0,
+          "speculative_searches": 0,
+          "refinement_searches": 0,
+          "final_fallback_searches": 31
+        },
+        "uncertainty": {
+          "selected_with_probability": 0,
+          "mean_selected_probability": null
+        },
+        "selected_rows": [
+          {
+            "stream_id": "kairos-dev-S07-u1",
+            "candidate_id": "K-0394e8790a",
+            "prefix_index": 4
+          }
+        ],
+        "definitions": {
+          "intent_denominator": "candidate lineages with at least one non-final opportunity",
+          "raw_early": "lineage has a selected non-final retrieval",
+          "gold_useful_early": "selected prefix retrieves its aligned gold evidence",
+          "strict_useful_early": "gold relevance + constraints + survival + answerability + grounding eligibility",
+          "strict_safe_early": "strict useful and counterfactual action advantage is positive"
+        }
+      }
+    },
+    "end_of_utterance": {
+      "description": "no non-final retrieval",
+      "metrics": {
+        "intent_denominator": 32,
+        "raw_early": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0,
+          "wilson_95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "gold_useful_early": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0,
+          "wilson_95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "strict_useful_early": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0,
+          "wilson_95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "strict_safe_early": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0,
+          "wilson_95": [
+            0.0,
+            0.1072
+          ]
+        },
+        "premature": {
+          "numerator": 0,
+          "denominator": 0,
+          "rate": null,
+          "wilson_95": null
+        },
+        "accepted_chunk_survival_mean": null,
+        "accepted_section_survival_mean": null,
+        "latency": {
+          "retrieval_execution_latency_ms": null,
+          "retrieval_execution_latency_status": "NOT_MEASURED_BY_OFFLINE_POLICY_REPLAY",
+          "first_useful_evidence_elapsed_ms_mean": null,
+          "lead_before_end_ms_mean": null
+        },
+        "costs": {
+          "full_searches": 32,
+          "primary_searches": 32,
+          "shadow_searches": 0,
+          "speculative_searches": 0,
+          "refinement_searches": 0,
+          "final_fallback_searches": 32
+        },
+        "uncertainty": {
+          "selected_with_probability": 0,
+          "mean_selected_probability": null
+        },
+        "selected_rows": [],
+        "definitions": {
+          "intent_denominator": "candidate lineages with at least one non-final opportunity",
+          "raw_early": "lineage has a selected non-final retrieval",
+          "gold_useful_early": "selected prefix retrieves its aligned gold evidence",
+          "strict_useful_early": "gold relevance + constraints + survival + answerability + grounding eligibility",
+          "strict_safe_early": "strict useful and counterfactual action advantage is positive"
+        }
+      }
+    },
+    "A0_historical_psrc": {
+      "description": "unaltered V2.2 historical metric record; denominator and aliases are not rewritten",
+      "historical_run_id": "20261019T044812Z",
+      "metrics": {
+        "early_retrieval_rate": 0.6875,
+        "eligible_utterances": 16,
+        "retrieval_lead_s_median": 1.895,
+        "evidence_survival_rate": 0.7333,
+        "premature_retrieval_rate": 0.2963,
+        "false_retrieval_rate": 0.0,
+        "unnecessary_retrieval_count": 0,
+        "elaborate_suppression_rate": 1.0,
+        "turn_classification_accuracy": 1.0,
+        "intent_precision": 0.8947,
+        "intent_recall": 0.9444,
+        "intent_count_accuracy": 0.8846,
+        "gold_section_mrr": 0.8565,
+        "abstention_accuracy": 1.0,
+        "grounded_claim_rate": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "claims_judged": 46,
+        "fabricated_doc_ids": 0,
+        "delta_retrieval_ratio": 0.7,
+        "refinement_correctness": 1.0,
+        "unnecessary_claim_churn": 0,
+        "update_retrievals": 7,
+        "full_restart_retrievals": 11,
+        "update_context_tokens_est": 483,
+        "full_restart_context_tokens_est": 893,
+        "retrieval_latency_ms_mean": 2.719,
+        "retrieval_latency_ms_p95": 7.401,
+        "post_utterance_latency_ms_p50": 6.819,
+        "post_utterance_latency_ms_p95": 40.96,
+        "end_to_end_latency_ms_p50": 2704.7,
+        "llm_tokens_total": 0,
+        "context_tokens_est_total": 3391,
+        "telemetry_coverage": 1.0,
+        "useful_early_retrieval_rate": 0.6875,
+        "useful_early_successes": 11,
+        "useful_early_ci95": [
+          0.444,
+          0.8584
+        ],
+        "useful_early_group_bootstrap_ci95": [
+          0.4375,
+          0.875
+        ],
+        "probe_computations": 95,
+        "probe_cache_hits": 22,
+        "shadow_retrievals": 19,
+        "full_searches": 77,
+        "reused_full_searches": 0,
+        "duplicate_retrievals_avoided": 0,
+        "evidence_cache_hits": 0,
+        "full_searches_by_trigger": {
+          "EARLY": 21,
+          "END_OF_UTTERANCE": 17,
+          "REFINE": 13,
+          "DELTA": 7
+        },
+        "retrievals_per_information_need": 1.9615,
+        "first_useful_evidence_latency_ms_mean": 2.257,
+        "first_useful_evidence_latencies_ms": [
+          1.445,
+          2.912,
+          1.833,
+          1.257,
+          1.245,
+          1.164,
+          1.311,
+          1.673,
+          2.495,
+          5.781,
+          3.71
+        ],
+        "retrieval_latency_ms_p50": 1.607,
+        "intent_level_useful_early_retrieval_rate": 0.6875,
+        "end_of_utterance_correctness": 0.9444,
+        "evaluation_sample_count": 16,
+        "operation_counts": {
+          "BM25_PROBE": 95,
+          "DENSE_QUERY_ENCODING": 77,
+          "EFIS_FOOTPRINT_SEARCH": 51,
+          "SHADOW_RETRIEVAL": 19,
+          "SPECULATIVE_FULL_RETRIEVAL": 0,
+          "PROMOTED_FULL_RETRIEVAL": 21,
+          "DELTA_REFINEMENT": 7,
+          "FINAL_RETRIEVAL": 17,
+          "CACHE_HIT": 22
+        },
+        "intent_gate_diagnostics": {
+          "intent_ready_rows": 0,
+          "intent_ready_but_stability_blocked": 0,
+          "guarded_bypass_decisions": 0
+        },
+        "latency_components_ms_mean": {
+          "dedup_ms": 2.1123,
+          "dense_ms": 0.2764,
+          "fusion_ms": 0.0101,
+          "rerank_ms": 0.1106,
+          "sparse_ms": 0.0543
+        },
+        "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+        "wall_s": 1.877
+      },
+      "metric_status": "HISTORICAL_DEFINITION"
+    },
+    "v2_2_cold_start": {
+      "description": "unaltered V2.2 P3 cold-start comparison",
+      "historical_run_id": "20261019T044812Z",
+      "metrics": {
+        "early_retrieval_rate": 0.75,
+        "eligible_utterances": 16,
+        "retrieval_lead_s_median": 1.988,
+        "evidence_survival_rate": 0.7097,
+        "premature_retrieval_rate": 0.2903,
+        "false_retrieval_rate": 0.0,
+        "unnecessary_retrieval_count": 0,
+        "elaborate_suppression_rate": 1.0,
+        "turn_classification_accuracy": 1.0,
+        "intent_precision": 0.8947,
+        "intent_recall": 0.9444,
+        "intent_count_accuracy": 0.8846,
+        "gold_section_mrr": 0.8565,
+        "abstention_accuracy": 1.0,
+        "grounded_claim_rate": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "claims_judged": 46,
+        "fabricated_doc_ids": 0,
+        "delta_retrieval_ratio": 0.7,
+        "refinement_correctness": 1.0,
+        "unnecessary_claim_churn": 0,
+        "update_retrievals": 7,
+        "full_restart_retrievals": 11,
+        "update_context_tokens_est": 483,
+        "full_restart_context_tokens_est": 893,
+        "retrieval_latency_ms_mean": 4.798,
+        "retrieval_latency_ms_p95": 7.957,
+        "post_utterance_latency_ms_p50": 17.767,
+        "post_utterance_latency_ms_p95": 28.308,
+        "end_to_end_latency_ms_p50": 2715.3,
+        "llm_tokens_total": 0,
+        "context_tokens_est_total": 3391,
+        "telemetry_coverage": 1.0,
+        "useful_early_retrieval_rate": 0.75,
+        "useful_early_successes": 12,
+        "useful_early_ci95": [
+          0.505,
+          0.8982
+        ],
+        "useful_early_group_bootstrap_ci95": [
+          0.5,
+          0.9375
+        ],
+        "probe_computations": 95,
+        "probe_cache_hits": 22,
+        "shadow_retrievals": 26,
+        "full_searches": 87,
+        "reused_full_searches": 0,
+        "duplicate_retrievals_avoided": 0,
+        "evidence_cache_hits": 0,
+        "full_searches_by_trigger": {
+          "EARLY": 24,
+          "END_OF_UTTERANCE": 14,
+          "REFINE": 16,
+          "DELTA": 7
+        },
+        "retrievals_per_information_need": 2.0769,
+        "first_useful_evidence_latency_ms_mean": 4.652,
+        "first_useful_evidence_latencies_ms": [
+          4.263,
+          7.847,
+          4.219,
+          4.491,
+          4.892,
+          4.88,
+          4.48,
+          4.955,
+          4.037,
+          4.07,
+          5.039,
+          2.652
+        ],
+        "retrieval_latency_ms_p50": 4.44,
+        "intent_level_useful_early_retrieval_rate": 0.75,
+        "end_of_utterance_correctness": 0.9444,
+        "evaluation_sample_count": 16,
+        "operation_counts": {
+          "BM25_PROBE": 95,
+          "DENSE_QUERY_ENCODING": 87,
+          "EFIS_FOOTPRINT_SEARCH": 54,
+          "SHADOW_RETRIEVAL": 26,
+          "SPECULATIVE_FULL_RETRIEVAL": 0,
+          "PROMOTED_FULL_RETRIEVAL": 24,
+          "DELTA_REFINEMENT": 7,
+          "FINAL_RETRIEVAL": 14,
+          "CACHE_HIT": 22
+        },
+        "intent_gate_diagnostics": {
+          "intent_ready_rows": 0,
+          "intent_ready_but_stability_blocked": 0,
+          "guarded_bypass_decisions": 0
+        },
+        "latency_components_ms_mean": {
+          "dedup_ms": 3.5289,
+          "dense_ms": 0.6147,
+          "fusion_ms": 0.0238,
+          "rerank_ms": 0.2251,
+          "sparse_ms": 0.133
+        },
+        "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+        "wall_s": 2.327
+      },
+      "metric_status": "HISTORICAL_DEFINITION"
+    }
+  },
+  "selection": {
+    "frozen_before_final_evaluation": true,
+    "selected_policy": "A0_historical_psrc",
+    "runtime_default": "baseline PSRC; IC-COS disabled",
+    "policy_promoted": false,
+    "reasons": [
+      "A8 did not demonstrate a non-zero strict-safe improvement over the corrected PSRC comparison",
+      "The new final set lacks independent authorship and cannot alone justify promotion"
+    ],
+    "cache_selection": {
+      "source_run_id": "20261019T044812Z",
+      "policy_metrics_equal": true,
+      "baseline_full_searches": 77,
+      "cache_full_searches": 65,
+      "searches_avoided": 12,
+      "promotion_independent_of_policy_gate": true,
+      "selected": true
+    }
+  },
+  "post_selection": {
+    "evaluated_policy": "A0_historical_psrc_live_session_engine",
+    "final": {
+      "intent_denominator": 16,
+      "raw_early": {
+        "numerator": 13,
+        "denominator": 16,
+        "rate": 0.8125,
+        "wilson_95": [
+          0.5699,
+          0.9341
+        ]
+      },
+      "gold_useful_early": {
+        "numerator": 4,
+        "denominator": 16,
+        "rate": 0.25,
+        "wilson_95": [
+          0.1018,
+          0.495
+        ]
+      },
+      "strict_useful_early": {
+        "numerator": 0,
+        "denominator": 16,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.1936
+        ]
+      },
+      "strict_safe_early": {
+        "numerator": 0,
+        "denominator": 16,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.1936
+        ]
+      },
+      "premature": {
+        "numerator": 13,
+        "denominator": 13,
+        "rate": 1.0,
+        "wilson_95": [
+          0.7719,
+          1.0
+        ]
+      },
+      "accepted_chunk_survival_mean": 0.2387,
+      "accepted_section_survival_mean": 0.2361,
+      "latency": {
+        "retrieval_execution_latency_ms": null,
+        "retrieval_execution_latency_status": "NOT_MEASURED_BY_OFFLINE_POLICY_REPLAY",
+        "first_useful_evidence_elapsed_ms_mean": null,
+        "lead_before_end_ms_mean": null
+      },
+      "costs": {
+        "full_searches": 16,
+        "primary_searches": 16,
+        "shadow_searches": 0,
+        "speculative_searches": 0,
+        "refinement_searches": 0,
+        "final_fallback_searches": 3
+      },
+      "uncertainty": {
+        "selected_with_probability": 0,
+        "mean_selected_probability": null
+      },
+      "selected_rows": [
+        {
+          "stream_id": "iccos-final-F01",
+          "candidate_id": "K-5c40dc7169",
+          "prefix_index": 2
+        },
+        {
+          "stream_id": "iccos-final-F02",
+          "candidate_id": "K-1127ba2a09",
+          "prefix_index": 2
+        },
+        {
+          "stream_id": "iccos-final-F02",
+          "candidate_id": "K-35675e68f4",
+          "prefix_index": 3
+        },
+        {
+          "stream_id": "iccos-final-F03",
+          "candidate_id": "K-27a5a05c01",
+          "prefix_index": 3
+        },
+        {
+          "stream_id": "iccos-final-F03",
+          "candidate_id": "K-74335d6e37",
+          "prefix_index": 3
+        },
+        {
+          "stream_id": "iccos-final-F04",
+          "candidate_id": "K-a7bb93d561",
+          "prefix_index": 1
+        },
+        {
+          "stream_id": "iccos-final-F05",
+          "candidate_id": "K-bd3027fa56",
+          "prefix_index": 3
+        },
+        {
+          "stream_id": "iccos-final-F06",
+          "candidate_id": "K-a5062f56eb",
+          "prefix_index": 3
+        },
+        {
+          "stream_id": "iccos-final-F07",
+          "candidate_id": "K-52efcb6c3e",
+          "prefix_index": 3
+        },
+        {
+          "stream_id": "iccos-final-F09",
+          "candidate_id": "K-e2ac482d12",
+          "prefix_index": 2
+        },
+        {
+          "stream_id": "iccos-final-F09",
+          "candidate_id": "K-b43c4b8257",
+          "prefix_index": 2
+        },
+        {
+          "stream_id": "iccos-final-F10",
+          "candidate_id": "K-c95c8b9af8",
+          "prefix_index": 3
+        },
+        {
+          "stream_id": "iccos-final-F12",
+          "candidate_id": "K-ffff280a6e",
+          "prefix_index": 2
+        }
+      ],
+      "definitions": {
+        "intent_denominator": "candidate lineages with at least one non-final opportunity",
+        "raw_early": "lineage has a selected non-final retrieval",
+        "gold_useful_early": "selected prefix retrieves its aligned gold evidence",
+        "strict_useful_early": "gold relevance + constraints + survival + answerability + grounding eligibility",
+        "strict_safe_early": "strict useful and counterfactual action advantage is positive"
+      }
+    },
+    "historical_frozen_comparison": {
+      "intent_denominator": 10,
+      "raw_early": {
+        "numerator": 8,
+        "denominator": 10,
+        "rate": 0.8,
+        "wilson_95": [
+          0.4902,
+          0.9433
+        ]
+      },
+      "gold_useful_early": {
+        "numerator": 5,
+        "denominator": 10,
+        "rate": 0.5,
+        "wilson_95": [
+          0.2366,
+          0.7634
+        ]
+      },
+      "strict_useful_early": {
+        "numerator": 3,
+        "denominator": 10,
+        "rate": 0.3,
+        "wilson_95": [
+          0.1078,
+          0.6032
+        ]
+      },
+      "strict_safe_early": {
+        "numerator": 3,
+        "denominator": 10,
+        "rate": 0.3,
+        "wilson_95": [
+          0.1078,
+          0.6032
+        ]
+      },
+      "premature": {
+        "numerator": 5,
+        "denominator": 8,
+        "rate": 0.625,
+        "wilson_95": [
+          0.3057,
+          0.8632
+        ]
+      },
+      "accepted_chunk_survival_mean": 0.5852,
+      "accepted_section_survival_mean": 0.5875,
+      "latency": {
+        "retrieval_execution_latency_ms": null,
+        "retrieval_execution_latency_status": "NOT_MEASURED_BY_OFFLINE_POLICY_REPLAY",
+        "first_useful_evidence_elapsed_ms_mean": 3200.0,
+        "lead_before_end_ms_mean": 800.0
+      },
+      "costs": {
+        "full_searches": 10,
+        "primary_searches": 10,
+        "shadow_searches": 0,
+        "speculative_searches": 0,
+        "refinement_searches": 0,
+        "final_fallback_searches": 2
+      },
+      "uncertainty": {
+        "selected_with_probability": 0,
+        "mean_selected_probability": null
+      },
+      "selected_rows": [
+        {
+          "stream_id": "kairos-heldout_streaming-H01-u1",
+          "candidate_id": "K-b5889a5e88",
+          "prefix_index": 2
+        },
+        {
+          "stream_id": "kairos-heldout_streaming-H02-u1",
+          "candidate_id": "K-978e612f07",
+          "prefix_index": 2
+        },
+        {
+          "stream_id": "kairos-heldout_streaming-H02-u1",
+          "candidate_id": "K-40779e469a",
+          "prefix_index": 2
+        },
+        {
+          "stream_id": "kairos-heldout_streaming-H03-u1",
+          "candidate_id": "K-4ed0428505",
+          "prefix_index": 2
+        },
+        {
+          "stream_id": "kairos-heldout_streaming-H05-u1",
+          "candidate_id": "K-3cc5153261",
+          "prefix_index": 2
+        },
+        {
+          "stream_id": "kairos-heldout_streaming-H06-u1",
+          "candidate_id": "K-0803df4ff1",
+          "prefix_index": 1
+        },
+        {
+          "stream_id": "kairos-heldout_streaming-H07-u1",
+          "candidate_id": "K-733e3d4d26",
+          "prefix_index": 1
+        },
+        {
+          "stream_id": "kairos-heldout_streaming-H08-u1",
+          "candidate_id": "K-2360bc7423",
+          "prefix_index": 1
+        }
+      ],
+      "definitions": {
+        "intent_denominator": "candidate lineages with at least one non-final opportunity",
+        "raw_early": "lineage has a selected non-final retrieval",
+        "gold_useful_early": "selected prefix retrieves its aligned gold evidence",
+        "strict_useful_early": "gold relevance + constraints + survival + answerability + grounding eligibility",
+        "strict_safe_early": "strict useful and counterfactual action advantage is positive"
+      }
+    },
+    "final_limitations": [
+      "project-authored rather than independently authored",
+      "same sample corpus as internal development",
+      "synthetic written-question timing"
+    ]
+  },
+  "profile_evaluation": {
+    "sample": {
+      "intent_denominator": 32,
+      "raw_early": {
+        "numerator": 0,
+        "denominator": 32,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.1072
+        ]
+      },
+      "gold_useful_early": {
+        "numerator": 0,
+        "denominator": 32,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.1072
+        ]
+      },
+      "strict_useful_early": {
+        "numerator": 0,
+        "denominator": 32,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.1072
+        ]
+      },
+      "strict_safe_early": {
+        "numerator": 0,
+        "denominator": 32,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.1072
+        ]
+      },
+      "premature": {
+        "numerator": 0,
+        "denominator": 0,
+        "rate": null,
+        "wilson_95": null
+      },
+      "accepted_chunk_survival_mean": null,
+      "accepted_section_survival_mean": null,
+      "latency": {
+        "retrieval_execution_latency_ms": null,
+        "retrieval_execution_latency_status": "NOT_MEASURED_BY_OFFLINE_POLICY_REPLAY",
+        "first_useful_evidence_elapsed_ms_mean": null,
+        "lead_before_end_ms_mean": null
+      },
+      "costs": {
+        "full_searches": 32,
+        "primary_searches": 32,
+        "shadow_searches": 0,
+        "speculative_searches": 0,
+        "refinement_searches": 0,
+        "final_fallback_searches": 32
+      },
+      "uncertainty": {
+        "selected_with_probability": 0,
+        "mean_selected_probability": null
+      },
+      "selected_rows": [],
+      "definitions": {
+        "intent_denominator": "candidate lineages with at least one non-final opportunity",
+        "raw_early": "lineage has a selected non-final retrieval",
+        "gold_useful_early": "selected prefix retrieves its aligned gold evidence",
+        "strict_useful_early": "gold relevance + constraints + survival + answerability + grounding eligibility",
+        "strict_safe_early": "strict useful and counterfactual action advantage is positive"
+      }
+    },
+    "general_expanded": {
+      "intent_denominator": 9,
+      "raw_early": {
+        "numerator": 0,
+        "denominator": 9,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.2992
+        ]
+      },
+      "gold_useful_early": {
+        "numerator": 0,
+        "denominator": 9,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.2992
+        ]
+      },
+      "strict_useful_early": {
+        "numerator": 0,
+        "denominator": 9,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.2992
+        ]
+      },
+      "strict_safe_early": {
+        "numerator": 0,
+        "denominator": 9,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.2992
+        ]
+      },
+      "premature": {
+        "numerator": 0,
+        "denominator": 0,
+        "rate": null,
+        "wilson_95": null
+      },
+      "accepted_chunk_survival_mean": null,
+      "accepted_section_survival_mean": null,
+      "latency": {
+        "retrieval_execution_latency_ms": null,
+        "retrieval_execution_latency_status": "NOT_MEASURED_BY_OFFLINE_POLICY_REPLAY",
+        "first_useful_evidence_elapsed_ms_mean": null,
+        "lead_before_end_ms_mean": null
+      },
+      "costs": {
+        "full_searches": 9,
+        "primary_searches": 9,
+        "shadow_searches": 0,
+        "speculative_searches": 0,
+        "refinement_searches": 0,
+        "final_fallback_searches": 9
+      },
+      "uncertainty": {
+        "selected_with_probability": 0,
+        "mean_selected_probability": null
+      },
+      "selected_rows": [],
+      "definitions": {
+        "intent_denominator": "candidate lineages with at least one non-final opportunity",
+        "raw_early": "lineage has a selected non-final retrieval",
+        "gold_useful_early": "selected prefix retrieves its aligned gold evidence",
+        "strict_useful_early": "gold relevance + constraints + survival + answerability + grounding eligibility",
+        "strict_safe_early": "strict useful and counterfactual action advantage is positive"
+      }
+    },
+    "science": {
+      "intent_denominator": 1,
+      "raw_early": {
+        "numerator": 0,
+        "denominator": 1,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.7935
+        ]
+      },
+      "gold_useful_early": {
+        "numerator": 0,
+        "denominator": 1,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.7935
+        ]
+      },
+      "strict_useful_early": {
+        "numerator": 0,
+        "denominator": 1,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.7935
+        ]
+      },
+      "strict_safe_early": {
+        "numerator": 0,
+        "denominator": 1,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.7935
+        ]
+      },
+      "premature": {
+        "numerator": 0,
+        "denominator": 0,
+        "rate": null,
+        "wilson_95": null
+      },
+      "accepted_chunk_survival_mean": null,
+      "accepted_section_survival_mean": null,
+      "latency": {
+        "retrieval_execution_latency_ms": null,
+        "retrieval_execution_latency_status": "NOT_MEASURED_BY_OFFLINE_POLICY_REPLAY",
+        "first_useful_evidence_elapsed_ms_mean": null,
+        "lead_before_end_ms_mean": null
+      },
+      "costs": {
+        "full_searches": 1,
+        "primary_searches": 1,
+        "shadow_searches": 0,
+        "speculative_searches": 0,
+        "refinement_searches": 0,
+        "final_fallback_searches": 1
+      },
+      "uncertainty": {
+        "selected_with_probability": 0,
+        "mean_selected_probability": null
+      },
+      "selected_rows": [],
+      "definitions": {
+        "intent_denominator": "candidate lineages with at least one non-final opportunity",
+        "raw_early": "lineage has a selected non-final retrieval",
+        "gold_useful_early": "selected prefix retrieves its aligned gold evidence",
+        "strict_useful_early": "gold relevance + constraints + survival + answerability + grounding eligibility",
+        "strict_safe_early": "strict useful and counterfactual action advantage is positive"
+      }
+    },
+    "multi_domain_demo": {
+      "intent_denominator": 7,
+      "raw_early": {
+        "numerator": 0,
+        "denominator": 7,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.3543
+        ]
+      },
+      "gold_useful_early": {
+        "numerator": 0,
+        "denominator": 7,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.3543
+        ]
+      },
+      "strict_useful_early": {
+        "numerator": 0,
+        "denominator": 7,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.3543
+        ]
+      },
+      "strict_safe_early": {
+        "numerator": 0,
+        "denominator": 7,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.3543
+        ]
+      },
+      "premature": {
+        "numerator": 0,
+        "denominator": 0,
+        "rate": null,
+        "wilson_95": null
+      },
+      "accepted_chunk_survival_mean": null,
+      "accepted_section_survival_mean": null,
+      "latency": {
+        "retrieval_execution_latency_ms": null,
+        "retrieval_execution_latency_status": "NOT_MEASURED_BY_OFFLINE_POLICY_REPLAY",
+        "first_useful_evidence_elapsed_ms_mean": null,
+        "lead_before_end_ms_mean": null
+      },
+      "costs": {
+        "full_searches": 7,
+        "primary_searches": 7,
+        "shadow_searches": 0,
+        "speculative_searches": 0,
+        "refinement_searches": 0,
+        "final_fallback_searches": 7
+      },
+      "uncertainty": {
+        "selected_with_probability": 0,
+        "mean_selected_probability": null
+      },
+      "selected_rows": [],
+      "definitions": {
+        "intent_denominator": "candidate lineages with at least one non-final opportunity",
+        "raw_early": "lineage has a selected non-final retrieval",
+        "gold_useful_early": "selected prefix retrieves its aligned gold evidence",
+        "strict_useful_early": "gold relevance + constraints + survival + answerability + grounding eligibility",
+        "strict_safe_early": "strict useful and counterfactual action advantage is positive"
+      }
+    }
+  },
+  "counterfactual_stage_b": [
+    {
+      "stage": "B_REAL_SESSION_ENGINE",
+      "stream_id": "kairos-dev-S01-u1",
+      "candidate_id": "K-ad6b9100db",
+      "prefix_index": 4,
+      "same_continuation": true,
+      "same_corpus_and_config": true,
+      "retrieve_now": {
+        "action": "RETRIEVE",
+        "accepted_chunks": [
+          "D01:C01",
+          "D01:C03",
+          "D07:C01",
+          "D07:C02",
+          "D07:C03"
+        ],
+        "accepted_sections": [
+          "D01#1",
+          "D01#3",
+          "D07#1",
+          "D07#2",
+          "D07#3"
+        ],
+        "accepted_documents": [
+          "D01",
+          "D07"
+        ],
+        "gold_relevant": true,
+        "full_searches": 5,
+        "first_early_retrieval_elapsed_s": 2.6019,
+        "events": 39
+      },
+      "wait_next": {
+        "action": "WAIT",
+        "accepted_chunks": [
+          "D01:C01",
+          "D01:C03",
+          "D07:C01",
+          "D07:C02",
+          "D07:C03"
+        ],
+        "accepted_sections": [
+          "D01#1",
+          "D01#3",
+          "D07#1",
+          "D07#2",
+          "D07#3"
+        ],
+        "accepted_documents": [
+          "D01",
+          "D07"
+        ],
+        "gold_relevant": true,
+        "full_searches": 4,
+        "first_early_retrieval_elapsed_s": 2.6018,
+        "events": 39
+      }
+    },
+    {
+      "stage": "B_REAL_SESSION_ENGINE",
+      "stream_id": "kairos-dev-S04-u1",
+      "candidate_id": "K-7550b672e1",
+      "prefix_index": 1,
+      "same_continuation": true,
+      "same_corpus_and_config": true,
+      "retrieve_now": {
+        "action": "RETRIEVE",
+        "accepted_chunks": [
+          "D03:C05",
+          "D08:C02"
+        ],
+        "accepted_sections": [
+          "D03#4",
+          "D08#2"
+        ],
+        "accepted_documents": [
+          "D03",
+          "D08"
+        ],
+        "gold_relevant": true,
+        "full_searches": 2,
+        "first_early_retrieval_elapsed_s": 1.7019,
+        "events": 23
+      },
+      "wait_next": {
+        "action": "WAIT",
+        "accepted_chunks": [
+          "D03:C05",
+          "D08:C02"
+        ],
+        "accepted_sections": [
+          "D03#4",
+          "D08#2"
+        ],
+        "accepted_documents": [
+          "D03",
+          "D08"
+        ],
+        "gold_relevant": true,
+        "full_searches": 2,
+        "first_early_retrieval_elapsed_s": 1.702,
+        "events": 23
+      }
+    },
+    {
+      "stage": "B_REAL_SESSION_ENGINE",
+      "stream_id": "kairos-dev-S06-u1",
+      "candidate_id": "K-034fd63146",
+      "prefix_index": 1,
+      "same_continuation": true,
+      "same_corpus_and_config": true,
+      "retrieve_now": {
+        "action": "RETRIEVE",
+        "accepted_chunks": [
+          "D03:C03",
+          "D03:C04",
+          "D03:C05",
+          "D03:C06"
+        ],
+        "accepted_sections": [
+          "D03#3.1",
+          "D03#3.2",
+          "D03#4",
+          "D03#5"
+        ],
+        "accepted_documents": [
+          "D03"
+        ],
+        "gold_relevant": true,
+        "full_searches": 2,
+        "first_early_retrieval_elapsed_s": 1.3017,
+        "events": 23
+      },
+      "wait_next": {
+        "action": "WAIT",
+        "accepted_chunks": [
+          "D03:C03",
+          "D03:C04",
+          "D03:C05",
+          "D03:C06"
+        ],
+        "accepted_sections": [
+          "D03#3.1",
+          "D03#3.2",
+          "D03#4",
+          "D03#5"
+        ],
+        "accepted_documents": [
+          "D03"
+        ],
+        "gold_relevant": true,
+        "full_searches": 2,
+        "first_early_retrieval_elapsed_s": null,
+        "events": 21
+      }
+    }
+  ],
+  "v2_2_anomaly_audit": {
+    "status": "AUDITED",
+    "scope": "historical V2.2 non-final feature rows with empty final accepted evidence",
+    "expected_counts": {
+      "train": 29,
+      "calibration": 3,
+      "development": 22
+    },
+    "actual_counts": {
+      "train": 29,
+      "calibration": 3,
+      "development": 22
+    },
+    "cause_counts": {
+      "MISSING_GOLD_ANNOTATION": 13,
+      "OUT_OF_DOMAIN": 20,
+      "NO_RELEVANT_EVIDENCE_AFTER_ADMISSION": 21
+    },
+    "historical_metrics_rewritten": false
+  },
+  "metric_reconciliation": {
+    "historical_G2": {
+      "value": 0.6875,
+      "numerator": 11,
+      "denominator": 16,
+      "status": "PRESERVED_HISTORICAL_UTTERANCE_LEVEL"
+    },
+    "oracle": "separate gold/constraint/useful/strict-safe earliest-prefix fields; final excluded",
+    "intent_metric_alias": "V2.2 intent_level_useful_early_retrieval_rate was an alias; V2.3 uses actual candidate-lineage denominators",
+    "latency_alias": "V2.2 first_useful_evidence_latency_ms was retrieval execution duration; V2.3 reports execution, elapsed-to-useful, and lead-before-end separately"
+  }
+}

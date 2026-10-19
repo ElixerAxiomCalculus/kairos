@@ -159,6 +159,37 @@ const ControllerBenchmarkReportSchema = z.object({
 });
 export type ControllerBenchmarkReport = z.infer<typeof ControllerBenchmarkReportSchema>;
 
+const IntentRateSchema = z.object({
+  numerator: z.number(),
+  denominator: z.number(),
+  rate: z.number().nullable(),
+}).passthrough();
+
+const ControllerV23MetricsSchema = z.object({
+  intent_denominator: z.number(),
+  raw_early: IntentRateSchema,
+  gold_useful_early: IntentRateSchema,
+  strict_useful_early: IntentRateSchema,
+  strict_safe_early: IntentRateSchema,
+  premature: IntentRateSchema,
+  accepted_chunk_survival_mean: z.number().nullable(),
+  accepted_section_survival_mean: z.number().nullable(),
+  costs: z.object({ full_searches: z.number() }).passthrough(),
+}).passthrough();
+
+const ControllerV23ReportSchema = z.object({
+  status: z.literal("MEASURED"),
+  run_id: z.string(),
+  variants: z.record(z.object({ metrics: z.union([ControllerV23MetricsSchema, z.record(z.unknown())]) }).passthrough()),
+  selection: z.object({
+    selected_policy: z.string(),
+    policy_promoted: z.boolean(),
+    runtime_default: z.string(),
+  }).passthrough(),
+  post_selection: z.object({ final: ControllerV23MetricsSchema }).passthrough(),
+}).passthrough();
+export type ControllerV23Report = z.infer<typeof ControllerV23ReportSchema>;
+
 async function fetchJson(url: string): Promise<unknown | null> {
   try {
     const res = await fetch(apiUrl(url));
@@ -211,6 +242,14 @@ export async function loadControllerBenchmark(): Promise<{ report: ControllerBen
   }
   const snap = ControllerBenchmarkReportSchema.safeParse(await loadControllerBenchmarkSnapshot());
   return snap.success ? { report: snap.data, source: "BUNDLED_SNAPSHOT" } : { report: null, source: "NONE" };
+}
+
+export async function loadControllerV23(): Promise<{ report: ControllerV23Report | null; source: Source; error?: string }> {
+  const live = await fetchJson("/api/controller-v2-3/latest");
+  if (!live) return { report: null, source: "NONE" };
+  const parsed = ControllerV23ReportSchema.safeParse(live);
+  if (parsed.success) return { report: parsed.data, source: "BACKEND" };
+  return { report: null, source: "NONE", error: "Backend returned a malformed V2.3 controller report." };
 }
 
 export interface ExperimentsReport {

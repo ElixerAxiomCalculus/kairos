@@ -16,6 +16,7 @@ from dataclasses import dataclass, field
 from pydantic import BaseModel
 
 from kairos.config import Config, resolve_path
+from kairos.controller.features import candidate_slot_snapshot
 from kairos.controller.policy import CandidateState, RetrievalController
 from kairos.controller.turns import TurnClassifier, TurnResult
 from kairos.corpus.ingest import load_corpus
@@ -463,6 +464,8 @@ class SessionEngine:
             st.observations += 1
             st.last_text = cand.text
             st.last_probe = probe
+            st.last_query_text = q.dense_text
+            st.last_slots = candidate_slot_snapshot(cand, frame)
             st.s_hat_prev = sig["s_hat"]
             st.history.append({"t": round(self._base_t, 3), "text": cand.text, **sig})
             decisions.append((cand, st, dec))
@@ -542,6 +545,10 @@ class SessionEngine:
                 st.retrieved_probe = dec.probe
                 if st.sub_query_id in self.sub_queries:
                     st.retrieved_ids = list(self.sub_queries[st.sub_query_id].evidence)
+                    st.retrieved_sections = sorted({
+                        self.ctx.index.chunks[self.ctx.index.pos[chunk_id]].section_key
+                        for chunk_id in st.retrieved_ids if chunk_id in self.ctx.index.pos
+                    })
                 st.retrievals += 1
         u.words_since_retrieval = 0
 

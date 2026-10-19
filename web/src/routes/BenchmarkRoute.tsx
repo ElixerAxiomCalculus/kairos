@@ -4,10 +4,12 @@ import { EmptyState } from "@/components/common/EmptyState";
 import {
   loadBenchmark,
   loadControllerBenchmark,
+  loadControllerV23,
   loadHardeningBenchmark,
   loadSemanticBenchmark,
   type BenchmarkReport,
   type ControllerBenchmarkReport,
+  type ControllerV23Report,
   type HardeningBenchmarkReport,
   type SemanticBenchmarkReport,
   type Source,
@@ -41,18 +43,21 @@ export default function BenchmarkRoute() {
   const [semanticState, setSemanticState] = useState<ReportState<SemanticBenchmarkReport> | null>(null);
   const [hardeningState, setHardeningState] = useState<ReportState<HardeningBenchmarkReport> | null>(null);
   const [controllerState, setControllerState] = useState<ReportState<ControllerBenchmarkReport> | null>(null);
+  const [controllerV23State, setControllerV23State] = useState<ReportState<ControllerV23Report> | null>(null);
   useEffect(() => {
-    void Promise.all([loadBenchmark(), loadSemanticBenchmark(), loadHardeningBenchmark(), loadControllerBenchmark()]).then(([development, semantic, hardening, controller]) => {
+    void Promise.all([loadBenchmark(), loadSemanticBenchmark(), loadHardeningBenchmark(), loadControllerBenchmark(), loadControllerV23()]).then(([development, semantic, hardening, controller, controllerV23]) => {
       setState(development);
       setSemanticState(semantic);
       setHardeningState(hardening);
       setControllerState(controller);
+      setControllerV23State(controllerV23);
     });
   }, []);
   const r = state?.report ?? null;
   const semantic = semanticState?.report ?? null;
   const hardening = hardeningState?.report ?? null;
   const controller = controllerState?.report ?? null;
+  const controllerV23 = controllerV23State?.report ?? null;
   const measured = r?.status === "MEASURED";
   return (
     <main className={styles.page} data-testid="benchmark-page">
@@ -74,6 +79,7 @@ export default function BenchmarkRoute() {
       {semanticState?.error ? <div className="px" style={{ color: "var(--status-fail)" }}>{semanticState.error}</div> : null}
       {hardeningState?.error ? <div className="px" style={{ color: "var(--status-fail)" }}>{hardeningState.error}</div> : null}
       {controllerState?.error ? <div className="px" style={{ color: "var(--status-fail)" }}>{controllerState.error}</div> : null}
+      {controllerV23State?.error ? <div className="px" style={{ color: "var(--status-fail)" }}>{controllerV23State.error}</div> : null}
       {state && !r ? <EmptyState label="No benchmark report">Run <code>python -m kairos bench</code> to measure.</EmptyState> : null}
       {r ? (
         <>
@@ -87,6 +93,42 @@ export default function BenchmarkRoute() {
             system; treat these as development measurements, not a claim about the official benchmark.
           </p>
         </>
+      ) : null}
+      {controllerV23 ? (
+        <section className="panel" style={{ padding: 0 }} data-testid="controller-v2-3-benchmark">
+          <header className="panel-head">
+            <span className="px secondary">V2.3 IC-COS RESEARCH · RUN {controllerV23.run_id}</span>
+          </header>
+          <div style={{ overflowX: "auto" }}>
+            <table className={styles.table}>
+              <thead><tr><th>POLICY</th><th>RAW EARLY</th><th>GOLD-USEFUL</th><th>STRICT-SAFE</th><th>PREMATURE</th><th>FULL SEARCHES</th></tr></thead>
+              <tbody>
+                {(["A1_psrc_shared_features", "A3_iccos_classifier", "A4_iccos_value_regression", "A6_iccos_risk_selected", "A8_full_integration"] as const).map((name) => {
+                  const metrics = controllerV23.variants[name]?.metrics;
+                  if (!metrics || !("raw_early" in metrics)) return null;
+                  const measured = metrics as {
+                    raw_early: { numerator: number; denominator: number; rate: number | null };
+                    gold_useful_early: { numerator: number; denominator: number; rate: number | null };
+                    strict_safe_early: { numerator: number; denominator: number; rate: number | null };
+                    premature: { numerator: number; denominator: number; rate: number | null };
+                    costs: { full_searches: number };
+                  };
+                  const show = (item: { numerator: number; denominator: number; rate: number | null }) =>
+                    `${item.numerator}/${item.denominator} (${item.rate?.toFixed(4) ?? "—"})`;
+                  return <tr key={name}>
+                    <td>{name}</td><td>{show(measured.raw_early)}</td><td>{show(measured.gold_useful_early)}</td>
+                    <td>{show(measured.strict_safe_early)}</td><td>{show(measured.premature)}</td><td>{measured.costs.full_searches}</td>
+                  </tr>;
+                })}
+              </tbody>
+            </table>
+          </div>
+          <p className={styles.note} style={{ padding: "0 var(--sp-4) var(--sp-4)", margin: 0 }}>
+            Frozen selection: {controllerV23.selection.selected_policy}. IC-COS promoted: {controllerV23.selection.policy_promoted ? "yes" : "no"}.
+            Runtime default: {controllerV23.selection.runtime_default}. Rates show numerator/actual intent-lineage denominator;
+            the frozen final set is project-authored and is reported as limited validation, not external proof.
+          </p>
+        </section>
       ) : null}
       {controller ? (
         <section className="panel" style={{ padding: 0 }} data-testid="controller-v2-2-benchmark">

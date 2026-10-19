@@ -1,0 +1,98 @@
+{
+  "iccos-final-F01": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "iccos-final-F02": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "iccos-final-F03": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 4,
+    "terminal_rows_excluded": 2
+  },
+  "iccos-final-F04": {
+    "earliest_gold_relevant_prefix": 2,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 2
+  },
+  "iccos-final-F05": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "iccos-final-F06": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "iccos-final-F07": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "iccos-final-F08": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "iccos-final-F09": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 5,
+    "terminal_rows_excluded": 2
+  },
+  "iccos-final-F10": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 2
+  },
+  "iccos-final-F11": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "iccos-final-F12": {
+    "earliest_gold_relevant_prefix": 2,
+    "earliest_constraint_ready_prefix": 2,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  }
+}

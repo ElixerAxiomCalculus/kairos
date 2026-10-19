@@ -39,6 +39,21 @@ The complete experiment command writes `runs/bench/controller_v2_2/latest.json` 
 oracle, cost, selection, held-out, and 12-plot artifact set. Original PSRC remains the default unless a later
 candidate passes all frozen promotion filters.
 
+IC-COS V2.3 research workflow:
+
+```bash
+python -m kairos controller-v2-3-data build
+python -m kairos controller-v2-3-data validate
+python -m kairos controller-v2-3-train
+python -m kairos controller-v2-3-experiments
+python -m kairos controller-v2-3-report
+```
+
+The experiment writes `runs/bench/controller_v2_3/latest.json` and the frozen selection bundle. IC-COS did
+not pass the promotion gates in run `20261019T051008Z`; it remains disabled by default. The validated evidence
+cache is an independently selected execution optimization. See the V2.3 research and engineering reports for
+the corrected intent denominators, latency definitions, and final-set limitations.
+
 ### Corpus profiles and reproducible imports
 
 The default `sample` profile stays small. The repository also contains bounded, attributed `science`

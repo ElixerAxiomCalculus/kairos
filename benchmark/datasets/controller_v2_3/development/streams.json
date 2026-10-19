@@ -1,0 +1,1689 @@
+{
+  "schema_version": 2,
+  "split": "development",
+  "streams": [
+    {
+      "stream_id": "kairos-dev-S01-u1",
+      "session_id": "kairos-dev-S01-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S01:u1",
+      "question_family": "kairos:S01:u1",
+      "corpus_profile": "sample",
+      "full_text": "Can you tell me which room in Pune fits a team of 20, and what AV support I can request?",
+      "prefixes": [
+        "Can you tell me",
+        "Can you tell me which room in Pune",
+        "Can you tell me which room in Pune fits a team of 20,",
+        "Can you tell me which room in Pune fits a team of 20, and what AV support",
+        "Can you tell me which room in Pune fits a team of 20, and what AV support I can request?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "prefix_timestamps": [
+        1.3,
+        2.6,
+        4.2,
+        5.5,
+        6.5
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D01#2",
+        "D01#3",
+        "D07#1",
+        "D07#2"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "01410824ec9307721ab86ae85c839271ce1222fb09a557590cc6a181d92e7802",
+      "gold_intents": [
+        {
+          "intent_id": "S01:u1:A",
+          "gold_sections": [
+            "D01#2",
+            "D01#3"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        },
+        {
+          "intent_id": "S01:u1:B",
+          "gold_sections": [
+            "D07#1",
+            "D07#2"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S02-u1",
+      "session_id": "kairos-dev-S02-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S02:u1",
+      "question_family": "kairos:S02:u1",
+      "corpus_profile": "sample",
+      "full_text": "What is the per diem for domestic travel?",
+      "prefixes": [
+        "What is the",
+        "What is the per diem for",
+        "What is the per diem for domestic travel?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.0,
+        2.7
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D05#3.1"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "d8ae429c685988ca4436c85ef96fec03c053fb5a083182a90b6dd8656d3c2d6e",
+      "gold_intents": [
+        {
+          "intent_id": "S02:u1:A",
+          "gold_sections": [
+            "D05#3.1"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S03-u1",
+      "session_id": "kairos-dev-S03-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S03:u1",
+      "question_family": "kairos:S03:u1",
+      "corpus_profile": "sample",
+      "full_text": "I'm planning an international trip next month, what approvals do I need and are receipts required for small expenses?",
+      "prefixes": [
+        "I'm planning an",
+        "I'm planning an international trip next month,",
+        "I'm planning an international trip next month, what approvals do I need",
+        "I'm planning an international trip next month, what approvals do I need and are receipts required",
+        "I'm planning an international trip next month, what approvals do I need and are receipts required for small expenses?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.3,
+        3.9,
+        5.2,
+        6.2
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D05#2",
+        "D05#3.2"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "206fe190d91fe5ad06a500e1d2bc14e955e5169d0258113640fdbfd9d3bdba0f",
+      "gold_intents": [
+        {
+          "intent_id": "S03:u1:A",
+          "gold_sections": [
+            "D05#3.2"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        },
+        {
+          "intent_id": "S03:u1:B",
+          "gold_sections": [
+            "D05#2"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S04-u1",
+      "session_id": "kairos-dev-S04-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S04:u1",
+      "question_family": "kairos:S04:u1",
+      "corpus_profile": "sample",
+      "full_text": "Can I change the headcount after booking a room?",
+      "prefixes": [
+        "Can I change the",
+        "Can I change the headcount",
+        "Can I change the headcount after booking a room?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3
+      ],
+      "prefix_timestamps": [
+        1.3,
+        1.7,
+        3.0
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D03#4",
+        "D08#2"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "5b21af4fc1512d54cb3423565c7a9d6db79dcf2aeb3b677cec9f20bb61968f6b",
+      "gold_intents": [
+        {
+          "intent_id": "S04:u1:A",
+          "gold_sections": [
+            "D03#4",
+            "D08#2"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S05-u1",
+      "session_id": "kairos-dev-S05-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S05:u1",
+      "question_family": "kairos:S05:u1",
+      "corpus_profile": "sample",
+      "full_text": "Is alcohol served at company venues?",
+      "prefixes": [
+        "Is alcohol",
+        "Is alcohol served at company venues?"
+      ],
+      "prefix_order": [
+        1,
+        2
+      ],
+      "prefix_timestamps": [
+        0.7,
+        2.0
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D04#5"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "f1e125fa0aab394d08dcaa2c5ed6f9264cc1248b51b4904c95d7e2fa3efc3cb3",
+      "gold_intents": [
+        {
+          "intent_id": "S05:u1:A",
+          "gold_sections": [
+            "D04#5"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S05-u2",
+      "session_id": "kairos-dev-S05-u2",
+      "utterance_id": "u2",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S05:u2",
+      "question_family": "kairos:S05:u2",
+      "corpus_profile": "sample",
+      "full_text": "Make it one line.",
+      "prefixes": [
+        "Make it",
+        "Make it one line."
+      ],
+      "prefix_order": [
+        1,
+        2
+      ],
+      "prefix_timestamps": [
+        0.7,
+        1.4
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [],
+      "gold_documents": [],
+      "category": "TRANSFORM",
+      "answerable": false,
+      "content_hash": "229c82bbbe3963a9da3023dc86ceaa1526c124d1dd2b344691ec27595c585c65",
+      "gold_intents": [],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S06-u1",
+      "session_id": "kairos-dev-S06-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S06:u1",
+      "question_family": "kairos:S06:u1",
+      "corpus_profile": "sample",
+      "full_text": "What is the cancellation policy for venue bookings?",
+      "prefixes": [
+        "What is the cancellation",
+        "What is the cancellation policy for venue bookings?"
+      ],
+      "prefix_order": [
+        1,
+        2
+      ],
+      "prefix_timestamps": [
+        1.3,
+        2.6
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D03#3.1",
+        "D03#3.2"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "85e4c5ec1f7177cc26c4912a8c70481b7c127da5e7ea32b44d919e4db7383c08",
+      "gold_intents": [
+        {
+          "intent_id": "S06:u1:A",
+          "gold_sections": [
+            "D03#3.1",
+            "D03#3.2"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S06-u2",
+      "session_id": "kairos-dev-S06-u2",
+      "utterance_id": "u2",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S06:u2",
+      "question_family": "kairos:S06:u2",
+      "corpus_profile": "sample",
+      "full_text": "Actually it's an international event.",
+      "prefixes": [
+        "Actually it's an",
+        "Actually it's an international event."
+      ],
+      "prefix_order": [
+        1,
+        2
+      ],
+      "prefix_timestamps": [
+        1.0,
+        1.7
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [],
+      "gold_documents": [],
+      "category": "CONSTRAINT",
+      "answerable": false,
+      "content_hash": "5d93afd153766cdfa8fea23b1a0e6fd1aee34fc1c28ea08d8480b6d36296af77",
+      "gold_intents": [],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S07-u1",
+      "session_id": "kairos-dev-S07-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S07:u1",
+      "question_family": "kairos:S07:u1",
+      "corpus_profile": "sample",
+      "full_text": "For a hybrid offsite in Mumbai, which hall seats 60 people, do I need the streaming kit reserved early, and is parking available?",
+      "prefixes": [
+        "For a hybrid offsite",
+        "For a hybrid offsite in Mumbai,",
+        "For a hybrid offsite in Mumbai, which hall seats 60 people,",
+        "For a hybrid offsite in Mumbai, which hall seats 60 people, do I need the streaming kit reserved early,",
+        "For a hybrid offsite in Mumbai, which hall seats 60 people, do I need the streaming kit reserved early, and is parking available?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "prefix_timestamps": [
+        1.3,
+        2.0,
+        3.6,
+        6.1,
+        7.4
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D02#2",
+        "D02#4",
+        "D07#3"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "71958a76359557823b975ff7201f92209c078f0c41b4cd17a57d0b92a6119622",
+      "gold_intents": [
+        {
+          "intent_id": "S07:u1:A",
+          "gold_sections": [
+            "D02#2"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        },
+        {
+          "intent_id": "S07:u1:B",
+          "gold_sections": [
+            "D07#3"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        },
+        {
+          "intent_id": "S07:u1:C",
+          "gold_sections": [
+            "D02#4"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S08-u1",
+      "session_id": "kairos-dev-S08-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S08:u1",
+      "question_family": "kairos:S08:u1",
+      "corpus_profile": "sample",
+      "full_text": "Is there a swimming pool at the Pune venue?",
+      "prefixes": [
+        "Is there a",
+        "Is there a swimming pool",
+        "Is there a swimming pool at the Pune venue?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3
+      ],
+      "prefix_timestamps": [
+        1.0,
+        1.7,
+        3.0
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": false,
+      "content_hash": "95cf2719492a67fa3fb1c6923f7f6efc091eaa7198a2ba1f26dd1ce8b551bdab",
+      "gold_intents": [
+        {
+          "intent_id": "S08:u1:A",
+          "gold_sections": [],
+          "gold_documents": [],
+          "unanswerable": true
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S09-u1",
+      "session_id": "kairos-dev-S09-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S09:u1",
+      "question_family": "kairos:S09:u1",
+      "corpus_profile": "sample",
+      "full_text": "How early must I register external guests for an international event?",
+      "prefixes": [
+        "How early must I",
+        "How early must I register external guests",
+        "How early must I register external guests for an international event?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3
+      ],
+      "prefix_timestamps": [
+        1.3,
+        2.3,
+        3.6
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D06#2.2"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "3821a763b8dc672ce4e3145933769271a9b1649717b49a1414581ea014b2ed73",
+      "gold_intents": [
+        {
+          "intent_id": "S09:u1:A",
+          "gold_sections": [
+            "D06#2.2"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S10-u1",
+      "session_id": "kairos-dev-S10-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S10:u1",
+      "question_family": "kairos:S10:u1",
+      "corpus_profile": "sample",
+      "full_text": "I need catering for a workshop at Banyan Hall, what menus are available and when do I confirm numbers?",
+      "prefixes": [
+        "I need catering",
+        "I need catering for a workshop at Banyan Hall,",
+        "I need catering for a workshop at Banyan Hall, what menus are available",
+        "I need catering for a workshop at Banyan Hall, what menus are available and when do I confirm numbers?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.9,
+        4.2,
+        6.1
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D03#4",
+        "D04#1",
+        "D04#2",
+        "D04#4.1",
+        "D04#4.2"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "b5f4b9c0834a682e192858f1b4dd735016e521f1460408986f98e797fe85aa76",
+      "gold_intents": [
+        {
+          "intent_id": "S10:u1:A",
+          "gold_sections": [
+            "D04#1"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        },
+        {
+          "intent_id": "S10:u1:B",
+          "gold_sections": [
+            "D04#2"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        },
+        {
+          "intent_id": "S10:u1:C",
+          "gold_sections": [
+            "D04#4.1",
+            "D04#4.2",
+            "D03#4"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S10-u2",
+      "session_id": "kairos-dev-S10-u2",
+      "utterance_id": "u2",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S10:u2",
+      "question_family": "kairos:S10:u2",
+      "corpus_profile": "sample",
+      "full_text": "Actually it's an international delegation.",
+      "prefixes": [
+        "Actually",
+        "Actually it's an international delegation."
+      ],
+      "prefix_order": [
+        1,
+        2
+      ],
+      "prefix_timestamps": [
+        0.4,
+        1.7
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [],
+      "gold_documents": [],
+      "category": "CONSTRAINT",
+      "answerable": false,
+      "content_hash": "0118c9d46eab56778a14f1c68ce21e8bc677a7b2ded19d380482ace65d177f1a",
+      "gold_intents": [],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S11-u1",
+      "session_id": "kairos-dev-S11-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S11:u1",
+      "question_family": "kairos:S11:u1",
+      "corpus_profile": "sample",
+      "full_text": "Summarize the travel reimbursement rules.",
+      "prefixes": [
+        "Summarize the",
+        "Summarize the travel reimbursement rules."
+      ],
+      "prefix_order": [
+        1,
+        2
+      ],
+      "prefix_timestamps": [
+        0.7,
+        1.7
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D05#1",
+        "D05#2",
+        "D05#3.1",
+        "D05#3.2"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "8a56e07d8b775fceaacf2b749af4b65c910cbc64fc63be557166979a1d469378",
+      "gold_intents": [
+        {
+          "intent_id": "S11:u1:A",
+          "gold_sections": [
+            "D05#1",
+            "D05#2",
+            "D05#3.1",
+            "D05#3.2"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S11-u2",
+      "session_id": "kairos-dev-S11-u2",
+      "utterance_id": "u2",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S11:u2",
+      "question_family": "kairos:S11:u2",
+      "corpus_profile": "sample",
+      "full_text": "Shorter please.",
+      "prefixes": [
+        "Shorter please."
+      ],
+      "prefix_order": [
+        1
+      ],
+      "prefix_timestamps": [
+        0.7
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [],
+      "gold_documents": [],
+      "category": "TRANSFORM",
+      "answerable": false,
+      "content_hash": "33da4a158ebc6ca1a401c95eb8961cda5275f8d0367c1012e973b0746a08f275",
+      "gold_intents": [],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S12-u1",
+      "session_id": "kairos-dev-S12-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S12:u1",
+      "question_family": "kairos:S12:u1",
+      "corpus_profile": "sample",
+      "full_text": "Which Pune room has video conferencing?",
+      "prefixes": [
+        "Which Pune room",
+        "Which Pune room has video conferencing?"
+      ],
+      "prefix_order": [
+        1,
+        2
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.0
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D01#3"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "aa8dd5b092cf8e41f02d3cf831e46971fa50394bd14c121c81d08e7fe4ffc0e1",
+      "gold_intents": [
+        {
+          "intent_id": "S12:u1:A",
+          "gold_sections": [
+            "D01#3"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S13-u1",
+      "session_id": "kairos-dev-S13-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S13:u1",
+      "question_family": "kairos:S13:u1",
+      "corpus_profile": "sample",
+      "full_text": "What happens if I cancel a standard event five days before?",
+      "prefixes": [
+        "What happens if",
+        "What happens if I cancel a standard event",
+        "What happens if I cancel a standard event five days before?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.6,
+        3.6
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D03#3.1"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "91a2a54098f0dd690872edf6554e828f3f5fde5714eb84f57d3b7d07a59d5696",
+      "gold_intents": [
+        {
+          "intent_id": "S13:u1:A",
+          "gold_sections": [
+            "D03#3.1"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S14-u1",
+      "session_id": "kairos-dev-S14-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S14:u1",
+      "question_family": "kairos:S14:u1",
+      "corpus_profile": "sample",
+      "full_text": "When will my approved expense claim be paid?",
+      "prefixes": [
+        "When will my",
+        "When will my approved expense claim",
+        "When will my approved expense claim be paid?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.0,
+        2.7
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D05#5"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "a39ab5bd78ada822745647217d6ffa3e1cdadb048bbffd2126d44033f33abe96",
+      "gold_intents": [
+        {
+          "intent_id": "S14:u1:A",
+          "gold_sections": [
+            "D05#5"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S15-u1",
+      "session_id": "kairos-dev-S15-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S15:u1",
+      "question_family": "kairos:S15:u1",
+      "corpus_profile": "sample",
+      "full_text": "Can guests enter the server room if escorted?",
+      "prefixes": [
+        "Can guests",
+        "Can guests enter the server room",
+        "Can guests enter the server room if escorted?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3
+      ],
+      "prefix_timestamps": [
+        0.7,
+        2.0,
+        2.7
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D06#3"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "79cbd37fb479c10f1c1ba89599d87fb0d2293625a0894070bd84f477110b192b",
+      "gold_intents": [
+        {
+          "intent_id": "S15:u1:A",
+          "gold_sections": [
+            "D06#3"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S16-u1",
+      "session_id": "kairos-dev-S16-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S16:u1",
+      "question_family": "kairos:S16:u1",
+      "corpus_profile": "sample",
+      "full_text": "Tell me about Skyline Terrace.",
+      "prefixes": [
+        "Tell me about",
+        "Tell me about Skyline Terrace."
+      ],
+      "prefix_order": [
+        1,
+        2
+      ],
+      "prefix_timestamps": [
+        1.0,
+        1.7
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D01#4"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "140c97a6409eebecdcd66e9d2c903dee897532df359380bef94c5298d190baf9",
+      "gold_intents": [
+        {
+          "intent_id": "S16:u1:A",
+          "gold_sections": [
+            "D01#4"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S16-u2",
+      "session_id": "kairos-dev-S16-u2",
+      "utterance_id": "u2",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S16:u2",
+      "question_family": "kairos:S16:u2",
+      "corpus_profile": "sample",
+      "full_text": "Tell me more about it.",
+      "prefixes": [
+        "Tell me more about it."
+      ],
+      "prefix_order": [
+        1
+      ],
+      "prefix_timestamps": [
+        1.6
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [],
+      "gold_documents": [],
+      "category": "ELABORATE",
+      "answerable": false,
+      "content_hash": "3b1a797d2751cda282eecef28ee3f241ea9d09bb1bbc6520e91b6f2639c004e5",
+      "gold_intents": [],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S17-u1",
+      "session_id": "kairos-dev-S17-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S17:u1",
+      "question_family": "kairos:S17:u1",
+      "corpus_profile": "sample",
+      "full_text": "How far in advance do I book a venue through the Facilities portal?",
+      "prefixes": [
+        "How far in advance",
+        "How far in advance do I book a venue",
+        "How far in advance do I book a venue through the Facilities portal?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3
+      ],
+      "prefix_timestamps": [
+        1.3,
+        2.9,
+        4.2
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D03#2",
+        "D08#1"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "313d3e65e193ecfe52769c7d2d30734101a8a7d70f90a500a6daa16d304fc8b4",
+      "gold_intents": [
+        {
+          "intent_id": "S17:u1:A",
+          "gold_sections": [
+            "D03#2",
+            "D08#1"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S18-u1",
+      "session_id": "kairos-dev-S18-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S18:u1",
+      "question_family": "kairos:S18:u1",
+      "corpus_profile": "sample",
+      "full_text": "What is the deposit for a venue booking and when is the rest invoiced?",
+      "prefixes": [
+        "What is the deposit",
+        "What is the deposit for a venue booking",
+        "What is the deposit for a venue booking and when is the rest invoiced?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3
+      ],
+      "prefix_timestamps": [
+        1.3,
+        2.6,
+        4.5
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D03#2",
+        "D03#3.2",
+        "D03#5"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "fef1fc826b48a5a542ee575b2b6204b5e7aae31b29c75fbef5156d1aa03f38cd",
+      "gold_intents": [
+        {
+          "intent_id": "S18:u1:A",
+          "gold_sections": [
+            "D03#2",
+            "D03#3.2"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        },
+        {
+          "intent_id": "S18:u1:B",
+          "gold_sections": [
+            "D03#5"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S19-u1",
+      "session_id": "kairos-dev-S19-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S19:u1",
+      "question_family": "kairos:S19:u1",
+      "corpus_profile": "sample",
+      "full_text": "Which rooms can seat 100 people in Pune, sorry, Mumbai?",
+      "prefixes": [
+        "Which rooms can seat",
+        "Which rooms can seat 100 people in Pune,",
+        "Which rooms can seat 100 people in Pune, sorry, Mumbai?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3
+      ],
+      "prefix_timestamps": [
+        1.3,
+        2.6,
+        3.3
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D02#2"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "13edc223268a0bd3df641e145d8f3dd992b9f2b2767ccbccdc5ad69767d7228f",
+      "gold_intents": [
+        {
+          "intent_id": "S19:u1:A",
+          "gold_sections": [
+            "D02#2"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S20-u1",
+      "session_id": "kairos-dev-S20-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S20:u1",
+      "question_family": "kairos:S20:u1",
+      "corpus_profile": "sample",
+      "full_text": "Which caterer serves Banyan Hall?",
+      "prefixes": [
+        "Which caterer",
+        "Which caterer serves Banyan Hall?"
+      ],
+      "prefix_order": [
+        1,
+        2
+      ],
+      "prefix_timestamps": [
+        0.7,
+        1.7
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D04#1"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "84f1f9f00fdc157956d6830386936e7b3be664aebe951b8adffa10b98db54569",
+      "gold_intents": [
+        {
+          "intent_id": "S20:u1:A",
+          "gold_sections": [
+            "D04#1"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S20-u2",
+      "session_id": "kairos-dev-S20-u2",
+      "utterance_id": "u2",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S20:u2",
+      "question_family": "kairos:S20:u2",
+      "corpus_profile": "sample",
+      "full_text": "Translate that into Hindi.",
+      "prefixes": [
+        "Translate that",
+        "Translate that into Hindi."
+      ],
+      "prefix_order": [
+        1,
+        2
+      ],
+      "prefix_timestamps": [
+        0.7,
+        1.4
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [],
+      "gold_documents": [],
+      "category": "TRANSFORM",
+      "answerable": false,
+      "content_hash": "e7aa9c43a7bd048a01f1eb7b8f6d039e69b8b64e91185640ff0c8d567f022f09",
+      "gold_intents": [],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S21-u1",
+      "session_id": "kairos-dev-S21-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S21:u1",
+      "question_family": "kairos:S21:u1",
+      "corpus_profile": "sample",
+      "full_text": "Do I need a technician for the first part of my event, and what equipment is standard in every room?",
+      "prefixes": [
+        "Do I need a technician",
+        "Do I need a technician for the first part of my event,",
+        "Do I need a technician for the first part of my event, and what equipment",
+        "Do I need a technician for the first part of my event, and what equipment is standard in every room?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.6,
+        3.8,
+        4.8,
+        6.4
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D07#1",
+        "D07#2"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "e01475046b80103fa86e31ad56ed50ecec4196954418fa2f56cb6a62fc026c04",
+      "gold_intents": [
+        {
+          "intent_id": "S21:u1:A",
+          "gold_sections": [
+            "D07#2"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        },
+        {
+          "intent_id": "S21:u1:B",
+          "gold_sections": [
+            "D07#1"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S22-u1",
+      "session_id": "kairos-dev-S22-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S22:u1",
+      "question_family": "kairos:S22:u1",
+      "corpus_profile": "sample",
+      "full_text": "What rooms are available in Pune for a board meeting?",
+      "prefixes": [
+        "What rooms are",
+        "What rooms are available in Pune",
+        "What rooms are available in Pune for a board meeting?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.0,
+        3.3
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D01#1",
+        "D01#3"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "dac31634773ae76eeb04adfb0a376cf473e42b504db5921a585d1fc2ac757aaf",
+      "gold_intents": [
+        {
+          "intent_id": "S22:u1:A",
+          "gold_sections": [
+            "D01#3",
+            "D01#1"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S22-u2",
+      "session_id": "kairos-dev-S22-u2",
+      "utterance_id": "u2",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S22:u2",
+      "question_family": "kairos:S22:u2",
+      "corpus_profile": "sample",
+      "full_text": "Actually, make it Mumbai.",
+      "prefixes": [
+        "Actually,",
+        "Actually, make it Mumbai."
+      ],
+      "prefix_order": [
+        1,
+        2
+      ],
+      "prefix_timestamps": [
+        0.4,
+        1.4
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [],
+      "gold_documents": [],
+      "category": "CONSTRAINT",
+      "answerable": false,
+      "content_hash": "ef7f0fb54a065540850e2d742be9948e430b205296dda4a03b7700653efa5cfc",
+      "gold_intents": [],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S23-u1",
+      "session_id": "kairos-dev-S23-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S23:u1",
+      "question_family": "kairos:S23:u1",
+      "corpus_profile": "sample",
+      "full_text": "Can I bring my dog to the Pune venue, and where is the nearest metro?",
+      "prefixes": [
+        "Can I bring my dog",
+        "Can I bring my dog to the Pune venue,",
+        "Can I bring my dog to the Pune venue, and where is the nearest metro?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3
+      ],
+      "prefix_timestamps": [
+        1.6,
+        2.9,
+        4.8
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D01#5"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "cd1ac7e1fce871efb9e179387d5fa0961aab6bd7998a7c859260e3d1208c83b5",
+      "gold_intents": [
+        {
+          "intent_id": "S23:u1:A",
+          "gold_sections": [],
+          "gold_documents": [],
+          "unanswerable": true
+        },
+        {
+          "intent_id": "S23:u1:B",
+          "gold_sections": [
+            "D01#5"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S24-u1",
+      "session_id": "kairos-dev-S24-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S24:u1",
+      "question_family": "kairos:S24:u1",
+      "corpus_profile": "sample",
+      "full_text": "Tell me the flight class rules for long international flights.",
+      "prefixes": [
+        "Tell me the",
+        "Tell me the flight class rules",
+        "Tell me the flight class rules for long international flights."
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.0,
+        3.3
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D05#3.2"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "418e253c3e2354249689b4d585a76a680d998f8f6dd2d505e0e31fe93f639353",
+      "gold_intents": [
+        {
+          "intent_id": "S24:u1:A",
+          "gold_sections": [
+            "D05#3.2"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S24-u2",
+      "session_id": "kairos-dev-S24-u2",
+      "utterance_id": "u2",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S24:u2",
+      "question_family": "kairos:S24:u2",
+      "corpus_profile": "sample",
+      "full_text": "Give it to me in two bullets.",
+      "prefixes": [
+        "Give it to me",
+        "Give it to me in two bullets."
+      ],
+      "prefix_order": [
+        1,
+        2
+      ],
+      "prefix_timestamps": [
+        1.3,
+        2.3
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [],
+      "gold_documents": [],
+      "category": "TRANSFORM",
+      "answerable": false,
+      "content_hash": "8755a739824e5632a88beecbbb32bd459879c8d057910099cf771012594b62d3",
+      "gold_intents": [],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S25-u1",
+      "session_id": "kairos-dev-S25-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S25:u1",
+      "question_family": "kairos:S25:u1",
+      "corpus_profile": "sample",
+      "full_text": "I need a room in Pune for 20 people, what AV equipment is standard and how do guests register?",
+      "prefixes": [
+        "I need a room in Pune",
+        "I need a room in Pune for 20 people,",
+        "I need a room in Pune for 20 people, what AV equipment is standard",
+        "I need a room in Pune for 20 people, what AV equipment is standard and how do guests register?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.9,
+        2.9,
+        4.5,
+        6.1
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D01#2",
+        "D01#3",
+        "D06#1",
+        "D06#2.1",
+        "D06#2.2",
+        "D07#1"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "e3d5e7c60270ffd58c8e6156ad7fab5edcdd3b06a671828a972368ac2519d348",
+      "gold_intents": [
+        {
+          "intent_id": "S25:u1:A",
+          "gold_sections": [
+            "D01#2",
+            "D01#3"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        },
+        {
+          "intent_id": "S25:u1:B",
+          "gold_sections": [
+            "D07#1"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        },
+        {
+          "intent_id": "S25:u1:C",
+          "gold_sections": [
+            "D06#1",
+            "D06#2.1",
+            "D06#2.2"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S25-u2",
+      "session_id": "kairos-dev-S25-u2",
+      "utterance_id": "u2",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S25:u2",
+      "question_family": "kairos:S25:u2",
+      "corpus_profile": "sample",
+      "full_text": "Actually, it's an international event.",
+      "prefixes": [
+        "Actually,",
+        "Actually, it's an international event."
+      ],
+      "prefix_order": [
+        1,
+        2
+      ],
+      "prefix_timestamps": [
+        0.4,
+        1.7
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [],
+      "gold_documents": [],
+      "category": "CONSTRAINT",
+      "answerable": false,
+      "content_hash": "c14a4b1478b41934f41ab8748597f1c4678b7362b1adfe0c06ebf0d1b87132eb",
+      "gold_intents": [],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S26-u1",
+      "session_id": "kairos-dev-S26-u1",
+      "utterance_id": "u1",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S26:u1",
+      "question_family": "kairos:S26:u1",
+      "corpus_profile": "sample",
+      "full_text": "What's the domestic per diem and which expenses are not reimbursed?",
+      "prefixes": [
+        "What's the domestic per diem",
+        "What's the domestic per diem and which expenses are not reimbursed?"
+      ],
+      "prefix_order": [
+        1,
+        2
+      ],
+      "prefix_timestamps": [
+        1.6,
+        3.5
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [
+        "D05#3.1",
+        "D05#4"
+      ],
+      "gold_documents": [],
+      "category": "NEW_INFO",
+      "answerable": true,
+      "content_hash": "c1a02c1128f3373ea7c5c574f4ca7979bdf649eeeb41a23a1eeccb0662b45545",
+      "gold_intents": [
+        {
+          "intent_id": "S26:u1:A",
+          "gold_sections": [
+            "D05#3.1"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        },
+        {
+          "intent_id": "S26:u1:B",
+          "gold_sections": [
+            "D05#4"
+          ],
+          "gold_documents": [],
+          "unanswerable": false
+        }
+      ],
+      "intent_annotation_scope": "source_utterance_intents"
+    },
+    {
+      "stream_id": "kairos-dev-S26-u2",
+      "session_id": "kairos-dev-S26-u2",
+      "utterance_id": "u2",
+      "source_dataset": "kairos-dev-v1",
+      "source_question_id": "S26:u2",
+      "question_family": "kairos:S26:u2",
+      "corpus_profile": "sample",
+      "full_text": "Actually the trip is international.",
+      "prefixes": [
+        "Actually",
+        "Actually the trip is international."
+      ],
+      "prefix_order": [
+        1,
+        2
+      ],
+      "prefix_timestamps": [
+        0.4,
+        1.7
+      ],
+      "timing_source": "benchmark synthetic chunk timing (0.3 seconds/word + 0.1 seconds/chunk)",
+      "annotation_source": "KAIROS authored benchmark annotation",
+      "split": "development",
+      "source_revision": "1a32ca92b3904e129ec4f998570692b0d87b42f7c3d7e2e3f5bd533c45d8f777",
+      "gold_sections": [],
+      "gold_documents": [],
+      "category": "CONSTRAINT",
+      "answerable": false,
+      "content_hash": "fbd825bfc46bebc458143a4bc1dcd69d410575e1bf68a2aaed898cb4579f8cb7",
+      "gold_intents": [],
+      "intent_annotation_scope": "source_utterance_intents"
+    }
+  ]
+}

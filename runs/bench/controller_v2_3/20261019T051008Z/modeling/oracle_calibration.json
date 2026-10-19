@@ -1,0 +1,74 @@
+{
+  "squad-5733b3d64776f419006610a4": {
+    "earliest_gold_relevant_prefix": 2,
+    "earliest_constraint_ready_prefix": 2,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733b3d64776f419006610a5": {
+    "earliest_gold_relevant_prefix": 2,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733b5344776f419006610df": {
+    "earliest_gold_relevant_prefix": 2,
+    "earliest_constraint_ready_prefix": 2,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733b5344776f419006610e1": {
+    "earliest_gold_relevant_prefix": 3,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733b7f74776f4190066112d": {
+    "earliest_gold_relevant_prefix": 2,
+    "earliest_constraint_ready_prefix": 2,
+    "earliest_useful_prefix": 2,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733b7f74776f4190066112f": {
+    "earliest_gold_relevant_prefix": 2,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733b7f74776f41900661131": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733bf84d058e614000b61bd": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733bf84d058e614000b61c1": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  }
+}

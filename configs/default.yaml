@@ -102,6 +102,14 @@ controller:
     extra_retrieval_cost: 0.12
     wait_utility: 0.0
     max_predicted_risk: 0.35
+  iccos:
+    enabled: false             # V2.3 remains behind a flag unless frozen promotion gates pass
+    model_path: models/controller_v2_3/iccos_v1.json
+    min_evidence_relevance: 0.16
+    min_constraint_readiness: 0.75
+    max_constraint_revision_risk: 0.70
+    max_uncertainty: 0.70
+    minimum_delta_q: 0.0
   intent_scheduling:
     enabled: false
 

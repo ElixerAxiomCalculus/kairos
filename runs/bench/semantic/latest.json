@@ -1,10 +1,10 @@
 {
   "status": "MEASURED",
-  "run_id": "20261019T011659Z",
+  "run_id": "20261019T051614Z",
   "provenance": {
-    "git_commit": "25bdc65dd26f2c39b1ba40c090fadae8197e5eb4",
+    "git_commit": "6a13a8ff951bd561cef8d0be751220c3c4398589",
     "working_tree_may_be_dirty": true,
-    "config_sha256": "f00feef9ce9e1fc86aa09faa881ef0ef06b5128ba8896e808c5e1fa14a8c805e",
+    "config_sha256": "7406c6d024e27ba50f4da1130dd89135666dfcd5f02be6121930fa545bce9a68",
     "corpus_sha256": "dc7e934de99eb723ee23a6eaa96f4db56df1ddd968cab041e6614e39018d3a15",
     "dataset_revisions": [],
     "corpus_profile": "sample",
@@ -966,51 +966,51 @@
       "retrieval_count": 11,
       "duplicate_retrieval_rate": 0.0909,
       "supported_claims": 0,
-      "wall_ms": 56.032
+      "wall_ms": 73.855
     },
     "scale": [
       {
         "profile": "sample",
         "documents": 8,
         "chunks": 37,
-        "build_ms": 252.26,
-        "python_peak_bytes": 1352521,
-        "retrieval_p50_ms": 7.357,
-        "retrieval_p95_ms": 9.414,
-        "throughput_qps_single_thread": 127.92,
+        "build_ms": 249.469,
+        "python_peak_bytes": 1353153,
+        "retrieval_p50_ms": 7.804,
+        "retrieval_p95_ms": 9.176,
+        "throughput_qps_single_thread": 126.16,
         "dedup_representation": "sparse-tfidf-csr"
       },
       {
         "profile": "science",
         "documents": 12,
         "chunks": 29,
-        "build_ms": 497.957,
-        "python_peak_bytes": 2516063,
-        "retrieval_p50_ms": 8.154,
-        "retrieval_p95_ms": 9.33,
-        "throughput_qps_single_thread": 113.96,
+        "build_ms": 620.176,
+        "python_peak_bytes": 2516241,
+        "retrieval_p50_ms": 12.729,
+        "retrieval_p95_ms": 17.77,
+        "throughput_qps_single_thread": 75.81,
         "dedup_representation": "sparse-tfidf-csr"
       },
       {
         "profile": "general",
         "documents": 8,
         "chunks": 16,
-        "build_ms": 293.735,
-        "python_peak_bytes": 798711,
-        "retrieval_p50_ms": 8.304,
-        "retrieval_p95_ms": 9.201,
-        "throughput_qps_single_thread": 123.83,
+        "build_ms": 403.808,
+        "python_peak_bytes": 799181,
+        "retrieval_p50_ms": 8.497,
+        "retrieval_p95_ms": 13.242,
+        "throughput_qps_single_thread": 106.91,
         "dedup_representation": "sparse-tfidf-csr"
       },
       {
         "profile": "multi_domain_demo",
         "documents": 28,
         "chunks": 82,
-        "build_ms": 1129.384,
-        "python_peak_bytes": 10138769,
-        "retrieval_p50_ms": 7.791,
-        "retrieval_p95_ms": 13.007,
-        "throughput_qps_single_thread": 118.5,
+        "build_ms": 1061.71,
+        "python_peak_bytes": 10139630,
+        "retrieval_p50_ms": 7.38,
+        "retrieval_p95_ms": 12.071,
+        "throughput_qps_single_thread": 121.07,
         "dedup_representation": "sparse-tfidf-csr"
       }
     ]
@@ -5304,7 +5304,7 @@
         "retrieval_count": 11,
         "duplicate_retrieval_rate": 0.0909,
         "supported_claims": 0,
-        "wall_ms": 61.189
+        "wall_ms": 69.095
       },
       "optimized": {
         "transcript_chunks": 14,
@@ -5315,7 +5315,7 @@
         "retrieval_count": 11,
         "duplicate_retrieval_rate": 0.0909,
         "supported_claims": 0,
-        "wall_ms": 56.032
+        "wall_ms": 73.855
       }
     },
     "psrc_policy": {

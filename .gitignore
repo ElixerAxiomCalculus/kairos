@@ -40,6 +40,11 @@ runs/bench/controller_v2_2/modeling/
 # Keep the frozen V2.2 publication bundle (including its 12 plots); ignore rerun churn.
 !runs/bench/controller_v2_2/20261019T012057Z/
 !runs/bench/controller_v2_2/20261019T012057Z/**
+runs/bench/controller_v2_3/20*/
+runs/bench/controller_v2_3/modeling/
+# Keep the frozen V2.3 IC-COS selection/final-evaluation bundle; ignore rerun churn.
+!runs/bench/controller_v2_3/20261019T051008Z/
+!runs/bench/controller_v2_3/20261019T051008Z/**
 *.log
 !runs/baselines/**/*.log
 *.pid

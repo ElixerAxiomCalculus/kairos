@@ -1,0 +1,82 @@
+{
+  "scifact-957": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733a7bd4776f41900660f6e": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733ac31d058e614000b5ff5": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 2,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733ac31d058e614000b5ff6": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 2,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733ac31d058e614000b5ff7": {
+    "earliest_gold_relevant_prefix": 3,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733b5df4776f41900661105": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733b5df4776f41900661106": {
+    "earliest_gold_relevant_prefix": 3,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733b5df4776f41900661108": {
+    "earliest_gold_relevant_prefix": 2,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733b699d058e614000b6118": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  },
+  "squad-5733b699d058e614000b611a": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": 1,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 1
+  }
+}

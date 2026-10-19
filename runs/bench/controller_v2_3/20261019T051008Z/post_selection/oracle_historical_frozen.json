@@ -1,0 +1,66 @@
+{
+  "kairos-heldout_streaming-H01-u1": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-heldout_streaming-H02-u1": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": 1,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 3,
+    "terminal_rows_excluded": 2
+  },
+  "kairos-heldout_streaming-H03-u1": {
+    "earliest_gold_relevant_prefix": 2,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-heldout_streaming-H04-u1": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 2
+  },
+  "kairos-heldout_streaming-H05-u1": {
+    "earliest_gold_relevant_prefix": 2,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": 2,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-heldout_streaming-H06-u1": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-heldout_streaming-H07-u1": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-heldout_streaming-H08-u1": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 2
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "frozen_before_final_evaluation": true,
+  "selected_policy": "A0_historical_psrc",
+  "runtime_default": "baseline PSRC; IC-COS disabled",
+  "policy_promoted": false,
+  "reasons": [
+    "A8 did not demonstrate a non-zero strict-safe improvement over the corrected PSRC comparison",
+    "The new final set lacks independent authorship and cannot alone justify promotion"
+  ],
+  "cache_selection": {
+    "source_run_id": "20261019T044812Z",
+    "policy_metrics_equal": true,
+    "baseline_full_searches": 77,
+    "cache_full_searches": 65,
+    "searches_avoided": 12,
+    "promotion_independent_of_policy_gate": true,
+    "selected": true
+  }
+}

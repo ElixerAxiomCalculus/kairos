@@ -1,0 +1,13 @@
+{
+  "status": "NOT_INDEPENDENTLY_HUMAN_REVIEWED",
+  "review_protocol": "Review QueryFrame stable-key lineage, final candidate assignment, and each gold-intent evidence match.",
+  "required_fields": [
+    "reviewer",
+    "reviewed_at",
+    "stream_id",
+    "candidate_id",
+    "decision",
+    "notes"
+  ],
+  "rows": []
+}

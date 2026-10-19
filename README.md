@@ -133,7 +133,7 @@ V2.2 PSRC research run `20261019T012057Z` retained the original controller after
 | P0 original PSRC · development | 0.6875 | 0.2963 | 0.7333 | 77 | **Selected** |
 | P3 constraint-aware cold start · development | 0.7500 | 0.2903 | 0.7097 | 87 | Not promoted |
 | P6 validated evidence reuse · development | 0.6875 | 0.2963 | 0.7333 | 65 (12 avoided) | Not promoted |
-| P0 · frozen held-out (8 streams) | 0.5000 | 0.0000 | 0.8545 | 26 | Post-selection only |
+| P0 · historical frozen comparison set (8 streams) | 0.5000 | 0.0000 | 0.8545 | 26 | Historical post-selection result |
 
 The held-out useful-early group-bootstrap 95% interval is `[0.1250, 0.8750]`. No V2.2 arm passed every
 correctness, G2, survival, and search-cost filter; the new controller paths remain opt-in. The `/benchmark`
@@ -159,7 +159,7 @@ share-alike/usage cautions are recorded in [Corpus provenance](docs/CORPUS_PROVE
 
 | Problem in conversational RAG | Kairos mechanism | Code |
 |---|---|---|
-| Retrieval waits for the end of the turn | **PSRC controller.** Signals ρ (result stability, RBO of BM25 probes), χ (clarity), κ (completeness), σ (slot stability), π (continuation) and ν (novelty) feed a calibrated ŝ. It retrieves when ŝ ≥ θ = 1 − λ_L·H / (λ_C·C_r + λ_N·N) | `kairos/controller/policy.py` |
+| Retrieval waits for the end of the turn | **PSRC controller.** Signals ρ (result stability, RBO of BM25 probes), χ (clarity), κ (completeness), σ (slot stability), π (continuation) and ν (novelty) feed ŝ. The selected baseline uses its historical uncalibrated model; separately calibrated variants are experimental and disabled. It retrieves when ŝ ≥ θ = 1 − λ_L·H / (λ_C·C_r + λ_N·N) | `kairos/controller/policy.py` |
 | One vector for three questions | **EFIS.** Two clauses are separate intents iff their evidence footprints diverge (RBO₀.₈ of parent sections < 0.4). Constraint clauses attach to the need they modify | `kairos/decomposer/efis.py` |
 | Refinement restarts everything | **Claim-dependency delta.** A late constraint re-retrieves only sub-queries whose *cited* evidence depends on it. Each claim is then KEEP, REVISE, RETRACT or ADD; kept claims carry over verbatim | `kairos/delta/engine.py` |
 | "Make it shorter" triggers retrieval | Turn classifier plus **SUPPRESS**. The answer is re-rendered from its claim set, and a transformation firewall proves no new facts, numbers or citations were added | `kairos/controller/turns.py`, `kairos/synthesis/transform.py` |
@@ -295,13 +295,13 @@ Open `/live`, press **Presentation** (`P`) and **Demo** (`D`), then use `pune-de
 ```bash
 python -m kairos controller-data build     # provenance-controlled grouped stream dataset
 python -m kairos controller-data validate  # duplicate, leakage, timing, and manifest checks
-python -m kairos controller-train          # policy-independent M0-M5 survival study
+python -m kairos controller-train          # all-prefix M0-M5 study; labels/features remain corpus/index-dependent
 python -m kairos controller-calibrate      # separate-set calibration report
-python -m kairos controller-experiments    # P0-P12 + CS0-CS4 + frozen held-out evaluation
+python -m kairos controller-experiments    # P0-P12 + CS0-CS4 + historical frozen comparison
 python -m kairos controller-oracle         # strengthened prefix-opportunity artifact
 python -m kairos controller-compare        # compact latest comparison
 python -m kairos controller-select         # frozen selection record
-python -m kairos controller-heldout        # untouched selected-policy result
+python -m kairos controller-heldout        # historical frozen comparison result
 python -m kairos controller-report         # report locations and selected policy
 ```
 
@@ -317,10 +317,71 @@ but survival remained below baseline (`0.7097 < 0.7333`). Validated evidence reu
 while reducing actual full searches from 77 to 65. The unchanged G2 gate still fails (`0.6875 < 0.80`), so
 **original PSRC remains the runtime default** and every V2.2 method stays opt-in.
 
+## KAIROS V2.3 — IC-COS counterfactual stopping research
+
+V2.3 corrects a research flaw rather than relabeling the old score. Historical offline features disagreed with
+serving on first-observation rank overlap, relevance, overlap identity, informativeness, domain transformation,
+candidate age, and slot history. `kairos/controller/features.py` is now the single online extractor for training
+and serving; a deterministic parity test requires identical vectors. Missing history has its own availability
+bit and is never encoded as instability. Historical V2.2 measurements remain unchanged and therefore are not
+directly comparable feature-for-feature.
+
+IC-COS—**Intent-Conditioned Counterfactual Optimal Stopping**—is a KAIROS-specific research contribution,
+not a published algorithm. QueryFrame stable keys and EFIS candidate lineage align each prefix to its own final
+intent evidence. Targets keep gold relevance, constraint compatibility, accepted-chunk survival,
+accepted-section survival, answerability, retrieval cost, time saved, revision cost, and grounding eligibility
+separate. Deterministic `RETRIEVE NOW`/`WAIT NEXT` branches produce a finite-horizon backward-induction target;
+a regularized classifier and ridge value model predict beneficial stopping and `DeltaQ`. Calibration and a
+development-only empirical-risk threshold determine whether the live controller may act. The model is behind
+`controller.iccos.enabled: false`, has a strict feature-schema hash, and falls back to baseline with a diagnostic
+on any incompatibility; it never feeds its score into historical `s_hat` or `theta`.
+
+Frozen run `20261019T051008Z` reports actual candidate-lineage denominators:
+
+| Arm · development | Raw early | Gold-useful early | Strict-safe early | Premature among selected | Outcome |
+|---|---:|---:|---:|---:|---|
+| A1 · PSRC/shared features | 12/32 (37.50%) | 9/32 (28.12%) | 0/32 (0%) | 12/12 (100%) | Corrected comparator |
+| A2 · PSRC/intent labels | 22/32 (68.75%) | 17/32 (53.12%) | 7/32 (21.88%) | 15/22 (68.18%) | Not promoted |
+| A3 · IC-COS classifier | 24/32 (75.00%) | 21/32 (65.62%) | 9/32 (28.12%) | 15/24 (62.50%) | Unsafe |
+| A4 · IC-COS value regression | 24/32 (75.00%) | 21/32 (65.62%) | 9/32 (28.12%) | 15/24 (62.50%) | Unsafe |
+| A6/A8 · calibrated risk selection | 0/32 (0%) | 0/32 (0%) | 0/32 (0%) | 0/0 (undefined) | No retention |
+
+The classifier measured Brier `0.1534`, ECE `0.1419`, and log loss `0.4787` on 56 development rows; direct
+`DeltaQ` regression measured MAE `0.239157` and sign accuracy `0.803571`. The development risk sweep selected
+threshold `0.85`, which retained 0/32 lineages. Consequently IC-COS is **not the active default** and was not
+promoted. The actual baseline SessionEngine on the newly frozen, project-authored final set retrieved early on
+13/16 lineages (81.25%) but achieved only 4/16 gold-useful and 0/16 strict-safe; this set reuses the sample corpus,
+lacks independent authorship, and is limited validation rather than external proof. The earlier eight-stream set
+is now called the **historical frozen comparison set**, because its results already informed development.
+
+V2.3 also separates historical G2 (`11/16`, 68.75% utterance-level early retrieval) from the corrected strict
+oracle; they answer different questions. The old `intent_level_useful_early_retrieval_rate` was a legacy alias,
+not an independently intent-level value. Likewise, historical `first_useful_evidence_latency_ms` measured search
+execution duration. V2.3 distinguishes `retrieval_execution_latency_ms`,
+`first_useful_evidence_elapsed_ms`, and `lead_before_end_ms`. Ranking overlap, accepted-evidence overlap, gold
+relevance, survival, useful early retrieval, and strict-safe early retrieval are reported as distinct quantities.
+
+The evidence cache is selected independently as an execution optimization: V2.2 P6 preserved policy and
+grounding metrics while reducing full searches from 77 to 65 (12 avoided). This does not count as an
+early-retrieval policy promotion.
+
+```bash
+python -m kairos controller-v2-3-data build
+python -m kairos controller-v2-3-data validate
+python -m kairos controller-v2-3-train
+python -m kairos controller-v2-3-experiments
+python -m kairos controller-v2-3-report
+```
+
+See the [V2.3 research report](docs/PSRC_V2_3_ICCOS_RESEARCH.md),
+[V2.3 engineering report](docs/PSRC_V2_3_ICCOS_ENGINEERING_REPORT.md), and the live `/benchmark` table.
+
 ## Research Foundations and References
 
 KAIROS's PSRC problem is sequential retrieval under uncertain, evolving speech: retrieve early enough to hide
-latency while avoiding irrelevant or soon-obsolete evidence. V2.2 adds policy-independent prefix labels,
+latency while avoiding irrelevant or soon-obsolete evidence. V2.2 adds policy-independent prefix coverage—not
+fully policy-independent labels or observations—because features and labels still depend on the corpus, index,
+candidate extraction, admission, and final-query construction. It also adds
 separate grouped calibration, explicit missing-history and constraint-risk signals, guarded intent readiness,
 and a session-local validated evidence cache. Original PSRC remains selected because no P0-P12 arm met all
 correctness, G2, survival, and search-cost filters. The eight-utterance frozen project holdout measured `0.875`
@@ -356,3 +417,17 @@ measurements, not results reported by the papers below, and no formal theoretica
   and Accuracy in Incremental Speech Recognition,” *SIGDIAL 2011*, pp. 110–119.
   <https://aclanthology.org/W11-2014/>. KAIROS used recorded revision sequences to compare commitment policies;
   real microphone/provider validation remains pending.
+- **Dynamic programming foundation.** Richard Bellman, *Dynamic Programming*. Princeton University Press,
+  1957. <https://books.google.com/books?id=ZzoS0QEACAAJ>. Backward induction motivates the finite-horizon
+  recurrence; Bellman did not describe KAIROS or IC-COS.
+- **Sequential decision-making foundation.** Richard S. Sutton and Andrew G. Barto, *Reinforcement Learning:
+  An Introduction*, second edition. MIT Press, 2018. <https://mitpress.mit.edu/9780262352703/reinforcement-learning/>.
+  KAIROS uses the state/action/value vocabulary, not a learned reinforcement-learning agent.
+- **Counterfactual policy-evaluation foundation.** Miroslav Dudík, John Langford, and Lihong Li, “Doubly
+  Robust Policy Evaluation and Learning,” *ICML 2011*, pp. 1097–1104.
+  <https://icml.cc/2011/papers/554_icmlpaper.pdf>. V2.3 instead uses deterministic paired replay under a fixed
+  continuation and does not claim doubly robust estimation guarantees.
+- **Counterfactual risk minimization inspiration.** Adith Swaminathan and Thorsten Joachims, “Counterfactual
+  Risk Minimization: Learning from Logged Bandit Feedback,” *ICML 2015*, PMLR 37:814–823.
+  <https://proceedings.mlr.press/v37/swaminathan15.html>. IC-COS does not use logged-bandit propensity scoring;
+  the citation motivates keeping action value, selection, and risk explicit.

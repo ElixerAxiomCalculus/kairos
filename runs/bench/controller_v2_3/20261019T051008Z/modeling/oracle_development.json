@@ -1,0 +1,282 @@
+{
+  "kairos-dev-S01-u1": {
+    "earliest_gold_relevant_prefix": 2,
+    "earliest_constraint_ready_prefix": 2,
+    "earliest_useful_prefix": 4,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 4,
+    "terminal_rows_excluded": 2
+  },
+  "kairos-dev-S02-u1": {
+    "earliest_gold_relevant_prefix": 2,
+    "earliest_constraint_ready_prefix": null,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 1,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S03-u1": {
+    "earliest_gold_relevant_prefix": 3,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 6,
+    "terminal_rows_excluded": 2
+  },
+  "kairos-dev-S04-u1": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": 1,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S05-u1": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 1,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S05-u2": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 1,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S06-u1": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": 1,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 1,
+    "terminal_rows_excluded": 2
+  },
+  "kairos-dev-S06-u2": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": null,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 0,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S07-u1": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 4,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S08-u1": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 2,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 1,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S09-u1": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S10-u1": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": 3,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 4,
+    "terminal_rows_excluded": 3
+  },
+  "kairos-dev-S10-u2": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": null,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 0,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S11-u1": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 1,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S11-u2": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": null,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 0,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S12-u1": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 1,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S13-u1": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S14-u1": {
+    "earliest_gold_relevant_prefix": 2,
+    "earliest_constraint_ready_prefix": 2,
+    "earliest_useful_prefix": 2,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 1,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S15-u1": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S16-u1": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": null,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 0,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S17-u1": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S18-u1": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 2
+  },
+  "kairos-dev-S19-u1": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S20-u1": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 1,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S20-u2": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 1,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S21-u1": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": 1,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 4,
+    "terminal_rows_excluded": 2
+  },
+  "kairos-dev-S22-u1": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S22-u2": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": null,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 0,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S23-u1": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 2,
+    "terminal_rows_excluded": 2
+  },
+  "kairos-dev-S24-u1": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": 2,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 1,
+    "terminal_rows_excluded": 2
+  },
+  "kairos-dev-S24-u2": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": null,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 0,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S25-u1": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": 3,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 4,
+    "terminal_rows_excluded": 3
+  },
+  "kairos-dev-S25-u2": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": null,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 0,
+    "terminal_rows_excluded": 1
+  },
+  "kairos-dev-S26-u1": {
+    "earliest_gold_relevant_prefix": 1,
+    "earliest_constraint_ready_prefix": 1,
+    "earliest_useful_prefix": 1,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 1,
+    "terminal_rows_excluded": 2
+  },
+  "kairos-dev-S26-u2": {
+    "earliest_gold_relevant_prefix": null,
+    "earliest_constraint_ready_prefix": null,
+    "earliest_useful_prefix": null,
+    "earliest_strict_safe_prefix": null,
+    "eligible_nonfinal_rows": 0,
+    "terminal_rows_excluded": 1
+  }
+}

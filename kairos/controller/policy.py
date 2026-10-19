@@ -28,7 +28,9 @@ from kairos.config import resolve_path
 from kairos.controller.calibration import calibrate_probability
 from kairos.controller.cold_start import assess_cold_start
 from kairos.controller.evidence_cache import EvidenceCache, query_fingerprint
+from kairos.controller.features import extract_online_features, probe_clarity
 from kairos.controller.intent_readiness import assess_intent_readiness
+from kairos.controller.stopping_model import ModelCompatibilityError, StoppingModel
 from kairos.controller.utility import assess_utility
 from kairos.retrieval.index import HybridIndex, RetrievalQuery
 from kairos.streaming.frame import CandidateNeed, Frame, completeness, continuation_hazard
@@ -74,6 +76,9 @@ class CandidateState:
     retrieved_text: str | None = None
     retrieved_probe: list[str] = field(default_factory=list)
     retrieved_ids: list[str] = field(default_factory=list)
+    retrieved_sections: list[str] = field(default_factory=list)
+    last_query_text: str = ""
+    last_slots: dict[str, str] = field(default_factory=dict)
     retrievals: int = 0
     history: list[dict] = field(default_factory=list)
 
@@ -89,15 +94,8 @@ class CandidateDecision:
 
 
 def clarity(scores: list[float], temperature: float = 0.25) -> float:
-    if not scores or scores[0] <= 0:
-        return 0.0
-    if len(scores) == 1:
-        return 1.0
-    s = np.array(scores) / (scores[0] * temperature)
-    p = np.exp(s - s.max())
-    p /= p.sum()
-    h = -(p * np.log(p + 1e-12)).sum()
-    return float(max(0.0, 1.0 - h / math.log(len(scores))))
+    """Historical import alias; V2.3 uses the canonical implementation."""
+    return probe_clarity(scores, temperature)
 
 
 class RetrievalController:
@@ -113,6 +111,28 @@ class RetrievalController:
         self.corpus_version = hashlib.sha256(
             "\n".join(f"{chunk.chunk_id}:{chunk.sha256}" for chunk in index.chunks).encode()
         ).hexdigest()
+        # Test/research-only branch intervention. Production leaves this empty.
+        self._counterfactual_actions: dict[tuple[str, int], str] = {}
+        self.iccos_model: StoppingModel | None = None
+        self.iccos_diagnostic = "DISABLED"
+        iccos_cfg = cfg.get("iccos", {})
+        if iccos_cfg.get("enabled", False):
+            try:
+                self.iccos_model = StoppingModel.load(iccos_cfg.get("model_path", "models/controller_v2_3/iccos_v1.json"))
+                self.iccos_diagnostic = "MODEL_READY"
+            except ModelCompatibilityError as exc:
+                self.iccos_diagnostic = f"FALLBACK_BASELINE:{exc}"
+
+    def set_counterfactual_action(self, candidate_key: str, observation: int, action: str) -> None:
+        """Force one RETRIEVE/WAIT branch after correctness guards.
+
+        This is intentionally an in-memory evaluator hook, never a config or
+        deployable policy path.
+        """
+        normalized = action.upper()
+        if normalized not in {"RETRIEVE", "WAIT"}:
+            raise ValueError(f"unsupported counterfactual action: {action}")
+        self._counterfactual_actions[(candidate_key, int(observation))] = normalized
 
     def fingerprint(self, query: RetrievalQuery, *, objective: str | None = None,
                     typed_constraints: list[dict] | None = None) -> str:
@@ -184,6 +204,20 @@ class RetrievalController:
             nu = 1.0
         p_end = 1.0 if is_final else (0.6 if utterance_end_cue else 0.0)
         remaining = (1.0 - p_end) * self.cfg["remaining_prior_s"]
+        typed = [item.to_public() for item in cand.typed_constraints]
+        fingerprint = self.fingerprint(q, objective=cand.need_text, typed_constraints=typed)
+        canonical = extract_online_features(
+            index=self.index,
+            query=q,
+            candidate=cand,
+            frame=frame,
+            state=state,
+            probe=probe,
+            is_final=is_final,
+            utterance_end_cue=utterance_end_cue,
+            remaining_prior_s=float(self.cfg["remaining_prior_s"]),
+            cache_reusable=self.evidence_cache.is_reusable(fingerprint, self.corpus_version),
+        )
         feats = {"rho": rho, "chi": chi, "kappa": kappa, "sigma": sigma, "cont": 1.0 - pi}
         cold_cfg = self.cfg.get("cold_start", {})
         need_extended = any(feature not in FEATURES for feature in self.model.features)
@@ -213,10 +247,22 @@ class RetrievalController:
         # Historical config-level calibration remains available for legacy experiments.
         s_hat = calibrate_probability(model_output, self.cfg.get("calibration", {}))
         theta, hidden = self.threshold(remaining)
-        sig = {**feats, "pi": pi, "nu": max(0.0, nu), "s_hat": s_hat, "theta": theta,
+        sig = {**feats, **canonical, "pi": pi, "nu": max(0.0, nu), "s_hat": s_hat, "theta": theta,
                "s_hat_raw": raw_s_hat, "remaining_s": remaining, "hidden_latency_s": hidden,
                "rho_available": float(state.observations > 0), **({key: extended[key] for key in self.model.features
                                                                   if key in extended} if need_extended else {})}
+        sig["iccos_status"] = self.iccos_diagnostic
+        if self.iccos_model is not None:
+            try:
+                prediction = self.iccos_model.predict(canonical)
+                sig.update({
+                    "iccos_delta_q": prediction.delta_q,
+                    "iccos_beneficial_probability": prediction.beneficial_probability,
+                    "iccos_uncertainty": prediction.uncertainty,
+                    "iccos_threshold": self.iccos_model.decision_threshold,
+                })
+            except ModelCompatibilityError as exc:
+                sig["iccos_status"] = f"FALLBACK_BASELINE:{exc}"
         if cold_cfg.get("enabled", False) or state.observations == 0:
             sig.update({f"cold_{key}": value for key, value in assessment.signals().items()})
         intent_cfg = self.cfg.get("intent_completion", {})
@@ -238,6 +284,16 @@ class RetrievalController:
         if cand.status in ("INCOMPLETE", "CONSTRAINT_ONLY") and sig["kappa"] < cfg["kappa_min"]:
             return CandidateDecision(cand.key, "WAIT", "NONE", ["CLARIFICATION_REQUIRED", "INCOMPLETE_CLAUSE"],
                                      sig, probe)
+
+        forced = self._counterfactual_actions.pop((cand.key, state.observations), None)
+        if forced == "WAIT":
+            return CandidateDecision(cand.key, "WAIT", "NONE", ["COUNTERFACTUAL_FORCE_WAIT"], sig, probe)
+        if forced == "RETRIEVE":
+            if not query.terms:
+                return CandidateDecision(cand.key, "WAIT", "NONE", ["NO_CONTENT"], sig, probe)
+            if budget_left <= 0:
+                return CandidateDecision(cand.key, "WAIT", "NONE", ["BUDGET_EXHAUSTED"], sig, probe)
+            return CandidateDecision(cand.key, "RETRIEVE", "EARLY", ["COUNTERFACTUAL_FORCE_RETRIEVE"], sig, probe)
 
         if state.sub_query_id is not None:
             if cand.text == state.retrieved_text:
@@ -294,6 +350,29 @@ class RetrievalController:
             return CandidateDecision(cand.key, "SUPPRESS", "NONE", ["DUPLICATE_OF_PRIOR_RETRIEVAL"], sig, probe)
         if is_final:
             return CandidateDecision(cand.key, "RETRIEVE", "END_OF_UTTERANCE", ["END_OF_UTTERANCE"], sig, probe)
+        iccos_cfg = cfg.get("iccos", {})
+        if iccos_cfg.get("enabled", False) and self.iccos_model is not None and sig.get("iccos_status") == "MODEL_READY":
+            rejected = []
+            if sig.get("domain_availability", 0.0) <= 0.0:
+                rejected.append("ICCOS_OUT_OF_DOMAIN")
+            if sig.get("probe_evidence_relevance", 0.0) < float(iccos_cfg.get("min_evidence_relevance", 0.16)):
+                rejected.append("ICCOS_INSUFFICIENT_PROBE_EVIDENCE")
+            if sig.get("constraint_readiness", 0.0) < float(iccos_cfg.get("min_constraint_readiness", 0.75)):
+                rejected.append("ICCOS_CONSTRAINTS_NOT_READY")
+            if sig.get("constraint_revision_risk", 1.0) > float(iccos_cfg.get("max_constraint_revision_risk", 0.70)):
+                rejected.append("ICCOS_REVISION_RISK")
+            if sig.get("iccos_uncertainty", 1.0) > float(iccos_cfg.get("max_uncertainty", 0.70)):
+                rejected.append("ICCOS_UNCERTAIN")
+            if sig.get("iccos_delta_q", float("-inf")) <= float(iccos_cfg.get("minimum_delta_q", 0.0)):
+                rejected.append("ICCOS_WAIT_VALUE_HIGHER")
+            if sig.get("iccos_beneficial_probability", 0.0) < float(sig.get("iccos_threshold", 1.0)):
+                rejected.append("ICCOS_BELOW_RISK_THRESHOLD")
+            if budget_left <= 0:
+                rejected.append("BUDGET_EXHAUSTED")
+            if rejected:
+                return CandidateDecision(cand.key, "WAIT", "NONE", rejected, sig, probe)
+            return CandidateDecision(cand.key, "RETRIEVE", "EARLY",
+                                     ["ICCOS_POSITIVE_ADVANTAGE", "ICCOS_RISK_ACCEPTED"], sig, probe)
         threshold = sig["theta"] + (cfg["hysteresis"] if state.retrievals else 0.0)
         ok_stable = sig["s_hat"] >= threshold
         ok_rho = sig["rho"] >= cfg["rho_min"] or sig["remaining_s"] <= self.pipeline_latency_s

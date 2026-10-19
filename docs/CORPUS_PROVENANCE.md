@@ -76,6 +76,20 @@ question ID, source revision, corpus profile, annotation source, timing source, 
 The same CC BY-SA 4.0 attribution/share-alike obligations and the academic citations below apply to these
 derived controller examples. Project-authored KAIROS streams remain project content and are identified separately.
 
+### IC-COS V2.3 controller-dataset use
+
+`benchmark/datasets/controller_v2_3/` is append-only over V2.2. It preserves the imported SQuAD/SciFact source
+IDs, immutable revisions, labels-outside-index boundary, licenses, and citations above. It adds candidate-lineage
+intent annotations, canonical online features, counterfactual action labels, separate train/calibration/development
+groups, and a frozen final manifest. The former V2.2 held-out split is named `historical_frozen` because its
+published results already informed engineering decisions.
+
+The 12 new final questions are project-authored, use `corpus/sample`, and are excluded from V2.3 training,
+calibration, development selection, and threshold selection. They are not independently authored and do not add
+third-party corpus content or a new license. The manifest records `independent_authorship: false`; this is limited
+final validation, not external generalization evidence. External profile evaluation continues to use the CC
+BY-SA 4.0 SQuAD and SciFact subsets under their existing attribution/share-alike terms.
+
 ## Academic citations
 
 - David Wadden, Shanchuan Lin, Kyle Lo, Lucy Lu Wang, Madeleine van Zuylen, Arman Cohan, and Hannaneh Hajishirzi. 2020. “Fact or Fiction: Verifying Scientific Claims.” *Proceedings of EMNLP 2020*, pages 7534–7550. DOI: [10.18653/v1/2020.emnlp-main.609](https://doi.org/10.18653/v1/2020.emnlp-main.609).
