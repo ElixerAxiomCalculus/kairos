@@ -44,6 +44,7 @@ retrieval:
 
 controller:
   mode: psrc                   # psrc | fixed_tokens | eou          (ablation A)
+  policy_variant: baseline     # baseline | selected_v3 | named experiment arm
   fixed_tokens_n: 6
   stability_model: models/stability.json   # trained by `python -m kairos train-stability`; falls back to default_weights
   default_weights: {rho: 2.2, chi: 2.0, kappa: 2.4, sigma: 0.8, cont: 1.2, bias: -4.2}
@@ -63,6 +64,46 @@ controller:
   hysteresis: 0.05
   tau_refine: 0.6
   budget_per_utterance: 6
+  cold_start:
+    enabled: false
+    variant: CS0_original_heuristic
+    threshold: 0.68
+    min_relevance: 0.45
+    min_constraint_readiness: 0.75
+    max_constraint_risk: 0.45
+    kappa_min: 0.30
+    calibration:
+      enabled: false
+      method: platt
+      slope: 1.0
+      intercept: 0.0
+  intent_completion:
+    enabled: false
+    threshold: 0.76
+    guarded_first_observation_bypass: false
+    min_evidence_relevance: 0.45
+    max_constraint_risk: 0.35
+  calibration:
+    enabled: false
+    method: identity
+    slope: 1.0
+    intercept: 0.0
+  speculative:
+    enabled: false
+    min_term_jaccard: 0.75
+  evidence_reuse:
+    enabled: false
+    max_entries: 64
+    ttl_s: 300.0
+  utility:
+    enabled: false
+    latency_scale_s: 1.2
+    refinement_cost: 0.45
+    extra_retrieval_cost: 0.12
+    wait_utility: 0.0
+    max_predicted_risk: 0.35
+  intent_scheduling:
+    enabled: false
 
 decomposer:
   mode: efis                   # efis | single                     (ablation E)

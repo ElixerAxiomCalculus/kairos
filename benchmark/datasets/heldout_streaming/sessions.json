@@ -1,0 +1,82 @@
+{
+  "name": "kairos-controller-heldout-v1",
+  "seed": 20261019,
+  "note": "Project-authored frozen streaming holdout created after policy selection and evaluated without threshold changes. Wording is disjoint from train/dev, but topics share the bounded sample corpus; this is not external generalization evidence. Chunk timing is synthetic (0.3 s/word + 0.1 s).",
+  "sessions": [
+    {
+      "id": "H01",
+      "utterances": [{
+        "id": "u1", "type": "NEW_INFO",
+        "chunks": ["For an ordinary meeting,", "which audio and display gear", "is included in every room?"],
+        "eligible_chunk": 2,
+        "intents": [{"id": "A", "gold_sections": ["D07#1"]}]
+      }]
+    },
+    {
+      "id": "H02",
+      "utterances": [{
+        "id": "u1", "type": "NEW_INFO",
+        "chunks": ["We are streaming an event,", "how early should the hybrid kit", "be reserved?"],
+        "eligible_chunk": 2,
+        "intents": [{"id": "A", "gold_sections": ["D07#3"]}]
+      }]
+    },
+    {
+      "id": "H03",
+      "utterances": [{
+        "id": "u1", "type": "NEW_INFO",
+        "chunks": ["May a visitor", "go into a restricted server area", "with an employee escort?"],
+        "eligible_chunk": 2,
+        "intents": [{"id": "A", "gold_sections": ["D06#3"]}]
+      }]
+    },
+    {
+      "id": "H04",
+      "utterances": [{
+        "id": "u1", "type": "NEW_INFO",
+        "chunks": ["After finance approves", "an expense reimbursement,", "when should payment arrive?"],
+        "eligible_chunk": 2,
+        "intents": [{"id": "A", "gold_sections": ["D05#5"]}]
+      }]
+    },
+    {
+      "id": "H05",
+      "utterances": [{
+        "id": "u1", "type": "NEW_INFO",
+        "chunks": ["For a regular event,", "what cancellation charge applies", "ten days beforehand?"],
+        "eligible_chunk": 2,
+        "intents": [{"id": "A", "gold_sections": ["D03#3.1"]}]
+      }]
+    },
+    {
+      "id": "H06",
+      "utterances": [{
+        "id": "u1", "type": "NEW_INFO",
+        "chunks": ["I need space in Mumbai", "for sixty attendees,", "which room fits?"],
+        "eligible_chunk": 2,
+        "intents": [{"id": "A", "gold_sections": ["D02#2"]}]
+      }]
+    },
+    {
+      "id": "H07",
+      "utterances": [{
+        "id": "u1", "type": "NEW_INFO",
+        "chunks": ["Do company venues", "offer supervised childcare", "during workshops?"],
+        "eligible_chunk": 2,
+        "intents": [{"id": "A", "gold_sections": [], "unanswerable": true}]
+      }]
+    },
+    {
+      "id": "H08",
+      "utterances": [{
+        "id": "u1", "type": "NEW_INFO",
+        "chunks": ["For a Pune workshop of twenty,", "which room works,", "and what dietary menus can catering provide?"],
+        "eligible_chunk": 1,
+        "intents": [
+          {"id": "A", "gold_sections": ["D01#2", "D01#3"]},
+          {"id": "B", "gold_sections": ["D04#2"]}
+        ]
+      }]
+    }
+  ]
+}

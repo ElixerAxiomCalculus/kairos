@@ -1,0 +1,8 @@
+{
+  "kairos_train": "benchmark/datasets/train/utterances.txt (project-authored)",
+  "kairos_development": "benchmark/datasets/dev/sessions.json (project-authored)",
+  "kairos_heldout": "benchmark/datasets/heldout_streaming/sessions.json (separately authored, small)",
+  "squad": "rajpurkar/squad, revision and CC BY-SA 4.0 metadata in corpus/imported/squad_v2_1/manifest.json",
+  "scifact": "BeIR/scifact, revision and CC BY-SA 4.0 metadata in corpus/imported/scifact/manifest.json",
+  "timing_warning": "External written questions use synthetic segmentation and are not recorded speech."
+}

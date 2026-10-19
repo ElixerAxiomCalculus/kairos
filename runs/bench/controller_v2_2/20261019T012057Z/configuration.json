@@ -1,0 +1,252 @@
+{
+  "corpus": {
+    "profile": "sample",
+    "path": "corpus/sample",
+    "profiles": {
+      "sample": [
+        "corpus/sample"
+      ],
+      "science": [
+        "corpus/imported/scifact"
+      ],
+      "general": [
+        "corpus/imported/squad"
+      ],
+      "general_expanded": [
+        "corpus/imported/squad_v2_1"
+      ],
+      "multi_domain_demo": [
+        "corpus/sample",
+        "corpus/imported/scifact",
+        "corpus/imported/squad"
+      ],
+      "multi_domain_v2_1": [
+        "corpus/sample",
+        "corpus/imported/scifact",
+        "corpus/imported/squad_v2_1"
+      ]
+    },
+    "places": [
+      "Pune",
+      "Mumbai",
+      "Delhi",
+      "New Delhi",
+      "Goa",
+      "Bengaluru",
+      "Bangalore",
+      "Chennai",
+      "Hyderabad",
+      "Kolkata",
+      "Jaipur",
+      "Ahmedabad",
+      "Gurugram",
+      "Noida"
+    ]
+  },
+  "retrieval": {
+    "mode": "hybrid",
+    "dense_backend": "lsa",
+    "dense_model": "BAAI/bge-small-en-v1.5",
+    "lsa_dims": 128,
+    "bm25_k1": 1.5,
+    "bm25_b": 0.75,
+    "heading_boost": 2,
+    "rrf_k": 60,
+    "candidates": 10,
+    "top_k": 5,
+    "probe_k": 10,
+    "reranker": "hybrid-linear",
+    "cross_encoder_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "dedup_threshold": 0.92,
+    "facet_bonus": 0.1,
+    "heading_focus_bonus": 0.12,
+    "place_mismatch_penalty": 0.5,
+    "relevance_gate": true,
+    "domain_routing": true,
+    "relevance_min_coverage": 0.16,
+    "relevance_min_rerank": 0.28,
+    "relevance_min_dense": 0.08,
+    "relevance_min_focus_terms": 1,
+    "relevance_min_objective_coverage": 0.3,
+    "domain_routing_min_confidence": 0.25,
+    "probe_cache_size": 4096,
+    "probe_cache_enabled": true
+  },
+  "controller": {
+    "mode": "psrc",
+    "policy_variant": "baseline",
+    "fixed_tokens_n": 6,
+    "stability_model": "models/stability.json",
+    "default_weights": {
+      "rho": 2.2,
+      "chi": 2.0,
+      "kappa": 2.4,
+      "sigma": 0.8,
+      "cont": 1.2,
+      "bias": -4.2
+    },
+    "lambda_latency": 0.5,
+    "cost_retrieval": 0.4,
+    "cost_noise": 0.6,
+    "pipeline_latency_prior_s": 1.2,
+    "adapt_latency": false,
+    "remaining_prior_s": 1.5,
+    "theta_min": 0.3,
+    "theta_max": 0.9,
+    "rho_min": 0.3,
+    "kappa_min": 0.45,
+    "nu_min": 0.08,
+    "hysteresis": 0.05,
+    "tau_refine": 0.6,
+    "budget_per_utterance": 6,
+    "cold_start": {
+      "enabled": false,
+      "variant": "CS0_original_heuristic",
+      "threshold": 0.68,
+      "min_relevance": 0.45,
+      "min_constraint_readiness": 0.75,
+      "max_constraint_risk": 0.45,
+      "kappa_min": 0.3,
+      "calibration": {
+        "enabled": false,
+        "method": "platt",
+        "slope": 1.0,
+        "intercept": 0.0
+      }
+    },
+    "intent_completion": {
+      "enabled": false,
+      "threshold": 0.76,
+      "guarded_first_observation_bypass": false,
+      "min_evidence_relevance": 0.45,
+      "max_constraint_risk": 0.35
+    },
+    "calibration": {
+      "enabled": false,
+      "method": "identity",
+      "slope": 1.0,
+      "intercept": 0.0
+    },
+    "speculative": {
+      "enabled": false,
+      "min_term_jaccard": 0.75
+    },
+    "evidence_reuse": {
+      "enabled": false,
+      "max_entries": 64,
+      "ttl_s": 300.0
+    },
+    "utility": {
+      "enabled": false,
+      "latency_scale_s": 1.2,
+      "refinement_cost": 0.45,
+      "extra_retrieval_cost": 0.12,
+      "wait_utility": 0.0,
+      "max_predicted_risk": 0.35
+    },
+    "intent_scheduling": {
+      "enabled": false
+    }
+  },
+  "decomposer": {
+    "mode": "efis",
+    "theta_merge": 0.4,
+    "theta_sem": 0.9,
+    "chi_min": 0.12,
+    "anchor_weight": 0.4,
+    "footprint_validity_gate": true,
+    "footprint_min_relevance": 0.35,
+    "lexical_merge_min": 0.28,
+    "semantic_subject_min": 0.5,
+    "objective_compatibility_min": 0.75,
+    "semantic_objective_merge": true,
+    "topic_shift_guard": true
+  },
+  "synthesis": {
+    "backend": "extractive",
+    "gemini_model": "gemini-flash-latest",
+    "gemini_thinking_level": "low",
+    "gemini_timeout_s": 30,
+    "ollama_model": "qwen2.5:7b-instruct",
+    "llm_cache_dir": "runs/llm_cache",
+    "llm_mode": "record",
+    "sentences_per_subquery": 2,
+    "tau_sufficiency": 0.3,
+    "tau_sentence": 0.34,
+    "require_sentence_focus": true
+  },
+  "grounding": {
+    "nli": "lexical",
+    "nli_model": "cross-encoder/nli-deberta-v3-small",
+    "tau_support": 0.8,
+    "tau_partial": 0.5,
+    "conflict_overlap": 0.35,
+    "require_quote": true,
+    "verify_checksums": true
+  },
+  "delta": {
+    "refinement": "delta",
+    "max_added_per_subquery": 1,
+    "scope_guard": true
+  },
+  "session": {
+    "ttl_s": 1800,
+    "max_sessions": 64
+  },
+  "live": {
+    "mutable_tail_tokens": 2,
+    "max_utterance_chars": 4000,
+    "max_message_bytes": 16384,
+    "outbound_queue_size": 256
+  },
+  "telemetry": {
+    "trace_dir": "runs/traces",
+    "sqlite_path": "runs/telemetry.sqlite",
+    "trace_content": true
+  },
+  "bench": {
+    "results_dir": "runs/bench",
+    "targets": {
+      "early_retrieval_rate": {
+        "op": ">=",
+        "value": 0.8,
+        "gate": "G2"
+      },
+      "intent_recall": {
+        "op": ">=",
+        "value": 0.7,
+        "gate": "G3"
+      },
+      "grounded_claim_rate": {
+        "op": ">=",
+        "value": 0.85,
+        "gate": "G4"
+      },
+      "fabricated_doc_ids": {
+        "op": "==",
+        "value": 0,
+        "gate": "G4"
+      },
+      "delta_retrieval_ratio": {
+        "op": "<",
+        "value": 1.0,
+        "gate": "G5"
+      },
+      "false_retrieval_rate": {
+        "op": "==",
+        "value": 0.0,
+        "gate": "G5"
+      },
+      "telemetry_coverage": {
+        "op": "==",
+        "value": 1.0,
+        "gate": "G6"
+      },
+      "reproducibility_delta": {
+        "op": "==",
+        "value": 0.0,
+        "gate": "G1"
+      }
+    }
+  }
+}

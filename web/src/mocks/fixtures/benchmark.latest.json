@@ -1,6 +1,6 @@
 {
  "status": "MEASURED",
- "run_id": "20261018T154934Z",
+  "run_id": "20261019T011656Z",
  "label": "default",
  "dataset": {
   "split": "dev",
@@ -38,7 +38,7 @@
  "metrics": {
   "early_retrieval_rate": 0.6875,
   "eligible_utterances": 16,
-  "retrieval_lead_s_median": 1.897,
+    "retrieval_lead_s_median": 1.898,
   "evidence_survival_rate": 0.7333,
   "premature_retrieval_rate": 0.2963,
   "false_retrieval_rate": 0.0,
@@ -62,11 +62,11 @@
   "full_restart_retrievals": 11,
   "update_context_tokens_est": 483,
   "full_restart_context_tokens_est": 893,
-  "retrieval_latency_ms_mean": 1.83,
-  "retrieval_latency_ms_p95": 2.697,
-  "post_utterance_latency_ms_p50": 6.229,
-  "post_utterance_latency_ms_p95": 13.79,
-  "end_to_end_latency_ms_p50": 2705.4,
+    "retrieval_latency_ms_mean": 1.26,
+    "retrieval_latency_ms_p95": 1.825,
+    "post_utterance_latency_ms_p50": 4.332,
+    "post_utterance_latency_ms_p95": 7.808,
+    "end_to_end_latency_ms_p50": 2703.7,
   "llm_tokens_total": 0,
   "context_tokens_est_total": 3391,
   "telemetry_coverage": 1.0,

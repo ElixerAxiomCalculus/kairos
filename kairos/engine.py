@@ -81,6 +81,7 @@ class EngineContext:
         c = self.cfg
         return {
             "controller_mode": c["controller"]["mode"],
+            "controller_policy_variant": c["controller"].get("policy_variant", "baseline"),
             "retrieval_mode": c["retrieval"]["mode"],
             "reranker": c["retrieval"]["reranker"],
             "synthesis_backend": getattr(self.synth, "name", "extractive"),
@@ -142,7 +143,9 @@ class SessionEngine:
         self.ctx = ctx
         self.cfg = ctx.cfg
         self.id = session_id or f"s-{uuid.uuid4().hex}"
-        self.controller = RetrievalController(self.cfg["controller"], ctx.index)
+        controller_cfg = copy.deepcopy(self.cfg["controller"])
+        controller_cfg["_corpus_profile"] = self.cfg["corpus"].get("profile", "sample")
+        self.controller = RetrievalController(controller_cfg, ctx.index)
         self.graph = EvidenceGraph()
         self.utterances: dict[str, UtteranceState] = {}
         self.order: list[str] = []
@@ -398,8 +401,27 @@ class SessionEngine:
                        confidence=signals.get("s_hat"), payload={
             "decision": decision, "reasons": reasons, "signals": signals, "candidates": candidates,
             "turn_type": turn.turn_type, "controller_mode": self.cfg["controller"]["mode"],
+            "policy_variant": self.controller.policy_variant,
             "stability_model": self.controller.model.source,
             "budget_left": self.cfg["controller"]["budget_per_utterance"] - u.retrievals,
+            "decision_provenance": [{
+                "controller_variant": self.controller.policy_variant,
+                "model_version": self.controller.model.source,
+                "query_version": self.query_version,
+                "candidate_id": candidate.get("key"),
+                "information_need_id": candidate.get("sub_query_id"),
+                "feature_values": candidate.get("signals", {}),
+                "predicted_survival": candidate.get("signals", {}).get("s_hat_raw"),
+                "calibrated_probability": candidate.get("signals", {}).get("s_hat"),
+                "decision_threshold": candidate.get("signals", {}).get("theta"),
+                "cold_start_confidence": candidate.get("signals", {}).get("cold_confidence"),
+                "intent_readiness": candidate.get("signals", {}).get("intent_readiness"),
+                "constraint_risk": candidate.get("signals", {}).get("cold_constraint_risk"),
+                "evidence_relevance": candidate.get("signals", {}).get("cold_evidence_relevance"),
+                "cache_status": candidate.get("signals", {}).get("cache_status", "MISS_OR_DISABLED"),
+                "decision": candidate.get("action"),
+                "decision_reasons": candidate.get("reasons", []),
+            } for candidate in candidates],
         })
         u.decision_events.append(ev.event_id)
         return ev
@@ -545,10 +567,24 @@ class SessionEngine:
             await self._constraint_stream(u, u.frame, u.last_frame_event, True)
 
     # ------------------------------------------------------------------ retrieval
-    def _timed_search(self, sq: SubQuery) -> tuple[SearchResult, float, float]:
+    def _timed_search(self, sq: SubQuery) -> tuple[SearchResult, float, float, bool, str]:
         start = time.perf_counter()
-        res = self.ctx.index.search(sq.query)
-        return res, start, time.perf_counter()
+        reuse_cfg = self.cfg["controller"].get("evidence_reuse", {})
+        fingerprint = self.controller.fingerprint(
+            sq.query, objective=" ".join(sq.need_texts), typed_constraints=sq.typed_constraints
+        )
+        res = None
+        if reuse_cfg.get("enabled", False):
+            res = self.controller.evidence_cache.get(fingerprint, self.controller.corpus_version)
+        reused = res is not None
+        if res is None:
+            res = self.ctx.index.search(sq.query)
+            if reuse_cfg.get("enabled", False):
+                # Admission already ran inside HybridIndex.search; grounding still runs downstream.
+                self.controller.evidence_cache.put(
+                    fingerprint, res, self.controller.corpus_version, validated=True
+                )
+        return res, start, time.perf_counter(), reused, fingerprint
 
     async def _retrieve(self, u: UtteranceState, jobs: list[tuple[SubQuery, str]], parent: str | None) -> list[Event]:
         started: dict[str, Event] = {}
@@ -567,7 +603,7 @@ class SessionEngine:
         completed: list[Event] = []
         all_ids: list[str] = []
         all_candidate_ids: list[str] = []
-        for (sq, trig), (res, start, end) in zip(jobs, results):
+        for (sq, trig), (res, start, end, reused, fingerprint) in zip(jobs, results):
             sq.candidate_hits = res.hits
             sq.hits = res.relevant_hits
             sq.status = "RETRIEVED"
@@ -611,6 +647,9 @@ class SessionEngine:
                 "domain_confidence": round(res.domain_confidence, 4),
                 "started_offset_ms": round((start - base_perf) * 1000, 3),
                 "ended_offset_ms": round(end_off * 1000, 3), "label": sq.label,
+                "search_executed": not reused, "cache_status": "REUSABLE" if reused else "MISS_STORED",
+                "query_fingerprint": fingerprint,
+                "cache": self.controller.evidence_cache.status(),
             })
             completed.append(ev)
         contradictions = find_contradictions(self.ctx.index, list(dict.fromkeys(all_ids)),
@@ -626,7 +665,7 @@ class SessionEngine:
             "candidate_evidence_count": len(set(all_candidate_ids)),
             "accepted_evidence_count": len(set(all_ids)),
             "shared_across_sub_queries": shared, "contradictions": contradictions,
-            "duplicates_collapsed": sum(len(r.duplicates) for r, _, _ in results),
+            "duplicates_collapsed": sum(len(r.duplicates) for r, _, _, _, _ in results),
         })
         u.fused_events.append(fused.event_id)
         return completed

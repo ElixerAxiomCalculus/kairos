@@ -61,6 +61,21 @@ Questions, answer text, and answer offsets are stored only in `evaluation-labels
 - Output: 21 Markdown documents, 41 index chunks, and 48 non-indexed records in `evaluation-labels.jsonl`.
 - This profile augments rather than overwrites the original small demonstration corpus.
 
+### PSRC V2.2 controller-dataset use
+
+`benchmark/datasets/controller_v2_2/` reuses the non-indexed SQuAD questions/document labels and the one
+intersecting SciFact query/qrel as independently sourced controller examples. It does not copy answer text into
+the retrieval corpus. Source documents/question families are kept wholly within one train, calibration, or
+external split; individual prefixes are never randomly split.
+
+These are written QA questions. V2.2's deterministic cumulative segmentation and timestamps are labeled
+`synthetic written-question segmentation; not recorded speech` in every record. Their use does not convert them
+into a natural spoken-dialogue dataset. The controller dataset manifest records upstream dataset name, source
+question ID, source revision, corpus profile, annotation source, timing source, split, and content hash.
+
+The same CC BY-SA 4.0 attribution/share-alike obligations and the academic citations below apply to these
+derived controller examples. Project-authored KAIROS streams remain project content and are identified separately.
+
 ## Academic citations
 
 - David Wadden, Shanchuan Lin, Kyle Lo, Lucy Lu Wang, Madeleine van Zuylen, Arman Cohan, and Hannaneh Hajishirzi. 2020. “Fact or Fiction: Verifying Scientific Claims.” *Proceedings of EMNLP 2020*, pages 7534–7550. DOI: [10.18653/v1/2020.emnlp-main.609](https://doi.org/10.18653/v1/2020.emnlp-main.609).

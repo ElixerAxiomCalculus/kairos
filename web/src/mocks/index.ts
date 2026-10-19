@@ -44,3 +44,8 @@ export async function loadHardeningBenchmarkSnapshot(): Promise<unknown> {
   const mod = await import("./fixtures/hardening.latest.json");
   return mod.default;
 }
+
+export async function loadControllerBenchmarkSnapshot(): Promise<unknown> {
+  const mod = await import("./fixtures/controller-v2-2.latest.json");
+  return mod.default;
+}

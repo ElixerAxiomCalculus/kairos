@@ -109,6 +109,10 @@ def create_app(cfg: Config) -> FastAPI:
     def hardening_benchmark_latest() -> JSONResponse:
         return _latest("hardening")
 
+    @app.get("/api/controller-benchmark/latest")
+    def controller_benchmark_latest() -> JSONResponse:
+        return _latest("controller_v2_2")
+
     @app.get("/api/experiments/latest")
     def experiments_latest() -> JSONResponse:
         return _latest("experiments")

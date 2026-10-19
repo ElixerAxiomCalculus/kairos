@@ -1,0 +1,24 @@
+{
+  "weights": {
+    "rho": 1.5719951,
+    "chi": 1.98132584,
+    "kappa": -0.10077841,
+    "sigma": -0.23277599,
+    "cont": -0.55398439,
+    "bias": -1.3412426
+  },
+  "feature_names": [
+    "rho",
+    "chi",
+    "kappa",
+    "sigma",
+    "cont"
+  ],
+  "trained_on": "controller_v2_2/train",
+  "training_groups": 36,
+  "examples": 128,
+  "positive_rate": 0.2812,
+  "regularization_C": 1.0,
+  "target": "V2.2 composite accepted-evidence survival >= 0.7",
+  "dataset_hash": "bd368d1878cbb86a3b27758dfb87d269a9bdc9f039f758d9ebb713b22a02a540"
+}

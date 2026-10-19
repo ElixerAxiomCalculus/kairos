@@ -14,6 +14,7 @@ def test_rest_and_websocket_session(cfg, tmp_path):
     assert client.get("/api/benchmark/latest").json()["status"] == "NOT_MEASURED"
     assert client.get("/api/semantic-benchmark/latest").json()["status"] == "NOT_MEASURED"
     assert client.get("/api/hardening-benchmark/latest").json()["status"] == "NOT_MEASURED"
+    assert client.get("/api/controller-benchmark/latest").json()["status"] == "NOT_MEASURED"
     assert any(s["id"] == "pune-demo" for s in client.get("/api/scripts").json())
 
     with client.websocket_connect("/ws") as ws:

@@ -3,9 +3,11 @@ import { GateTable, MetricGrid, SemanticMetricGrid } from "@/components/benchmar
 import { EmptyState } from "@/components/common/EmptyState";
 import {
   loadBenchmark,
+  loadControllerBenchmark,
   loadHardeningBenchmark,
   loadSemanticBenchmark,
   type BenchmarkReport,
+  type ControllerBenchmarkReport,
   type HardeningBenchmarkReport,
   type SemanticBenchmarkReport,
   type Source,
@@ -38,16 +40,19 @@ export default function BenchmarkRoute() {
   const [state, setState] = useState<ReportState<BenchmarkReport> | null>(null);
   const [semanticState, setSemanticState] = useState<ReportState<SemanticBenchmarkReport> | null>(null);
   const [hardeningState, setHardeningState] = useState<ReportState<HardeningBenchmarkReport> | null>(null);
+  const [controllerState, setControllerState] = useState<ReportState<ControllerBenchmarkReport> | null>(null);
   useEffect(() => {
-    void Promise.all([loadBenchmark(), loadSemanticBenchmark(), loadHardeningBenchmark()]).then(([development, semantic, hardening]) => {
+    void Promise.all([loadBenchmark(), loadSemanticBenchmark(), loadHardeningBenchmark(), loadControllerBenchmark()]).then(([development, semantic, hardening, controller]) => {
       setState(development);
       setSemanticState(semantic);
       setHardeningState(hardening);
+      setControllerState(controller);
     });
   }, []);
   const r = state?.report ?? null;
   const semantic = semanticState?.report ?? null;
   const hardening = hardeningState?.report ?? null;
+  const controller = controllerState?.report ?? null;
   const measured = r?.status === "MEASURED";
   return (
     <main className={styles.page} data-testid="benchmark-page">
@@ -68,6 +73,7 @@ export default function BenchmarkRoute() {
       {state?.error ? <div className="px" style={{ color: "var(--status-fail)" }}>{state.error}</div> : null}
       {semanticState?.error ? <div className="px" style={{ color: "var(--status-fail)" }}>{semanticState.error}</div> : null}
       {hardeningState?.error ? <div className="px" style={{ color: "var(--status-fail)" }}>{hardeningState.error}</div> : null}
+      {controllerState?.error ? <div className="px" style={{ color: "var(--status-fail)" }}>{controllerState.error}</div> : null}
       {state && !r ? <EmptyState label="No benchmark report">Run <code>python -m kairos bench</code> to measure.</EmptyState> : null}
       {r ? (
         <>
@@ -81,6 +87,40 @@ export default function BenchmarkRoute() {
             system; treat these as development measurements, not a claim about the official benchmark.
           </p>
         </>
+      ) : null}
+      {controller ? (
+        <section className="panel" style={{ padding: 0 }} data-testid="controller-v2-2-benchmark">
+          <header className="panel-head">
+            <span className="px secondary">V2.2 PSRC RESEARCH · RUN {controller.run_id}</span>
+          </header>
+          <div style={{ overflowX: "auto" }}>
+            <table className={styles.table}>
+              <thead><tr><th>POLICY / SPLIT</th><th>USEFUL EARLY</th><th>PREMATURE</th><th>SURVIVAL</th><th>FULL SEARCHES</th><th>OUTCOME</th></tr></thead>
+              <tbody>
+                {([
+                  ["P0 · original PSRC", controller.variants.P0_original_psrc?.metrics, "SELECTED"],
+                  ["P3 · constraint-aware cold start", controller.variants.P3_constraint_cold_start?.metrics, "NOT PROMOTED"],
+                  ["P6 · validated evidence reuse", controller.variants.P6_evidence_reuse?.metrics, "NOT PROMOTED"],
+                  ["Frozen held-out · P0", controller.held_out.metrics, "POST-SELECTION"],
+                ] as const).map(([label, metrics, outcome]) => metrics ? (
+                  <tr key={label}>
+                    <td>{label}</td><td>{metrics.useful_early_retrieval_rate.toFixed(4)}</td>
+                    <td>{metrics.premature_retrieval_rate?.toFixed(4) ?? "—"}</td>
+                    <td>{metrics.evidence_survival_rate?.toFixed(4) ?? "—"}</td>
+                    <td>{metrics.full_searches}{metrics.duplicate_retrievals_avoided ? ` (${metrics.duplicate_retrievals_avoided} avoided)` : ""}</td>
+                    <td>{outcome}</td>
+                  </tr>
+                ) : null)}
+              </tbody>
+            </table>
+          </div>
+          <p className={styles.note} style={{ padding: "0 var(--sp-4) var(--sp-4)", margin: 0 }}>
+            Development policies use 36 grouped streams; the frozen holdout has 8 project-authored streams and a useful-early
+            group-bootstrap 95% interval of {controller.held_out.metrics.useful_early_group_bootstrap_ci95.join("–")}.
+            No V2.2 arm passed every correctness, G2, survival, and search-cost filter, so original PSRC remains the default.
+            These are small-corpus research measurements, not external benchmark claims.
+          </p>
+        </section>
       ) : null}
       {semantic ? (
         <>

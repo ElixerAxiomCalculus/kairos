@@ -1,0 +1,22 @@
+{
+  "status": "MEASURED",
+  "run_id": "20261019T012057Z",
+  "dataset_hash": "1e53f94a2aa8abd5a2b97dfe262f1df036fc2e8395e3b6928ad7906cf4523cc2",
+  "variants": {
+    "P0_original_psrc": {
+      "metrics": {"early_retrieval_rate": 0.6875, "useful_early_retrieval_rate": 0.6875, "premature_retrieval_rate": 0.2963, "evidence_survival_rate": 0.7333, "full_searches": 77, "duplicate_retrievals_avoided": 0}
+    },
+    "P3_constraint_cold_start": {
+      "metrics": {"early_retrieval_rate": 0.75, "useful_early_retrieval_rate": 0.75, "premature_retrieval_rate": 0.2903, "evidence_survival_rate": 0.7097, "full_searches": 87, "duplicate_retrievals_avoided": 0}
+    },
+    "P6_evidence_reuse": {
+      "metrics": {"early_retrieval_rate": 0.6875, "useful_early_retrieval_rate": 0.6875, "premature_retrieval_rate": 0.2963, "evidence_survival_rate": 0.7333, "full_searches": 65, "duplicate_retrievals_avoided": 12}
+    }
+  },
+  "selection": {"selected": "P0_original_psrc", "promoted": false},
+  "held_out": {
+    "status": "MEASURED_FROZEN_NO_POST_SELECTION_TUNING",
+    "selected_variant": "P0_original_psrc",
+    "metrics": {"early_retrieval_rate": 0.875, "useful_early_retrieval_rate": 0.5, "premature_retrieval_rate": 0.0, "evidence_survival_rate": 0.8545, "full_searches": 26, "duplicate_retrievals_avoided": 0, "useful_early_group_bootstrap_ci95": [0.125, 0.875], "telemetry_coverage": 1.0, "grounded_claim_rate": 1.0}
+  }
+}

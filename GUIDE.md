@@ -20,6 +20,25 @@ python -m kairos semantic-bench         # V2.1 semantics, external labels, groun
 python -m kairos hardening-bench --max-documents 5000  # official-corpus scale/concurrency/short soak
 ```
 
+PSRC V2.2 research and frozen-selection workflow:
+
+```bash
+python -m kairos controller-data build
+python -m kairos controller-data validate
+python -m kairos controller-train
+python -m kairos controller-calibrate
+python -m kairos controller-experiments
+python -m kairos controller-oracle
+python -m kairos controller-compare
+python -m kairos controller-select
+python -m kairos controller-heldout
+python -m kairos controller-report
+```
+
+The complete experiment command writes `runs/bench/controller_v2_2/latest.json` plus the model comparison,
+oracle, cost, selection, held-out, and 12-plot artifact set. Original PSRC remains the default unless a later
+candidate passes all frozen promotion filters.
+
 ### Corpus profiles and reproducible imports
 
 The default `sample` profile stays small. The repository also contains bounded, attributed `science`

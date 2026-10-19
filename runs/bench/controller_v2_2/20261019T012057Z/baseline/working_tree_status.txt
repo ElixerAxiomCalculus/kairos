@@ -1,0 +1,38 @@
+M .gitignore
+ M GUIDE.md
+ M README.md
+ M configs/default.yaml
+ M docs/CORPUS_PROVENANCE.md
+ M kairos/__main__.py
+ M kairos/api/server.py
+ M kairos/controller/policy.py
+ M kairos/engine.py
+ M runs/bench/benchmark/latest.json
+ M runs/bench/semantic/latest.json
+ M tests/test_api.py
+ M web/src/features/replay/benchmarkData.ts
+ M web/src/mocks/fixtures/benchmark.latest.json
+ M web/src/mocks/fixtures/semantic.latest.json
+ M web/src/mocks/index.ts
+ M web/src/routes/BenchmarkRoute.tsx
+?? benchmark/controller/
+?? benchmark/datasets/controller_v2_2/
+?? benchmark/datasets/heldout_streaming/
+?? docs/PSRC_EARLY_RETRIEVAL_ENGINEERING_REPORT.md
+?? docs/PSRC_EARLY_RETRIEVAL_RESEARCH.md
+?? docs/PSRC_V2_2_ENGINEERING_REPORT.md
+?? docs/PSRC_V2_2_RESEARCH.md
+?? kairos/controller/asr_policy.py
+?? kairos/controller/calibration.py
+?? kairos/controller/cold_start.py
+?? kairos/controller/evidence_cache.py
+?? kairos/controller/intent_readiness.py
+?? kairos/controller/scheduling.py
+?? kairos/controller/speculative.py
+?? kairos/controller/utility.py
+?? models/controller_v2_2/
+?? runs/bench/controller/
+?? runs/bench/controller_v2_2/
+?? tests/test_controller_research.py
+?? tests/test_controller_v2_2.py
+?? web/src/mocks/fixtures/controller-v2-2.latest.json

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "name": "kairos-controller-v2.2",
+  "dataset_hash": "1e53f94a2aa8abd5a2b97dfe262f1df036fc2e8395e3b6928ad7906cf4523cc2",
+  "split_hashes": {
+    "train": "35a4a6cae96ef6e6d8fb4855a5ea4f48ea7c3a9644ca3f9224c6eae0a3d509a3",
+    "calibration": "fea5604494981bc033b6db250335a4e4d6f79e0aaef140385be488814ad0ea46",
+    "development": "959082c0d7a0e6ed958a9ab684e71b52a995d684511e30cc1c96ccb33318fc43",
+    "heldout": "0c059965931a18735b5381b35e8c1d26f47b91e2e6bce3ddbeadc1be16660b76",
+    "external": "363fc1b2a229ba2c6f1296eb18e61fb132e352cb9dc18123f59cd4cff1d57769"
+  },
+  "source_revision": "local working tree plus immutable imported manifests",
+  "status": "PASS",
+  "streams": 117,
+  "prefixes": 389,
+  "split_counts": {
+    "calibration": 9,
+    "development": 36,
+    "external": 10,
+    "heldout": 8,
+    "train": 54
+  },
+  "families": 90,
+  "errors": [],
+  "validation_hash": "1e53f94a2aa8abd5a2b97dfe262f1df036fc2e8395e3b6928ad7906cf4523cc2",
+  "limitations": [
+    "Initial engineering dataset contains fewer than several hundred independent utterances.",
+    "Most examples are written questions with synthetic segmentation, not microphone recordings.",
+    "Project-authored development and held-out streams share the sample corpus and are not external generalization evidence."
+  ]
+}

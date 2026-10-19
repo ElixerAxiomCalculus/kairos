@@ -1,0 +1,10 @@
+{
+  "survival_threshold": 0.7,
+  "target": "accepted evidence at a prefix remains useful for the finalized question",
+  "components": [
+    "rank-biased overlap",
+    "accepted section overlap",
+    "independent gold-document overlap when available"
+  ],
+  "policy_independent": true
+}

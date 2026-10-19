@@ -34,6 +34,12 @@ runs/llm_cache/
 runs/bench/benchmark/traces/
 runs/bench/benchmark/20*.json
 runs/bench/semantic/20*.json
+runs/bench/controller/20*/
+runs/bench/controller_v2_2/20*/
+runs/bench/controller_v2_2/modeling/
+# Keep the frozen V2.2 publication bundle (including its 12 plots); ignore rerun churn.
+!runs/bench/controller_v2_2/20261019T012057Z/
+!runs/bench/controller_v2_2/20261019T012057Z/**
 *.log
 !runs/baselines/**/*.log
 *.pid

@@ -6,6 +6,11 @@
   python -m kairos ablate              run ablation experiments (writes runs/bench/experiments/latest.json)
   python -m kairos train-stability     fit the stability model on training streams (self-supervised)
   python -m kairos tune-controller     tune controller cost weights on training streams
+  python -m kairos controller-data build   build the grouped V2.2 streaming dataset
+  python -m kairos controller-train        fit V2.2 policy-independent survival models
+  python -m kairos controller-calibrate    report separately fitted calibration results
+  python -m kairos controller-experiments  run V2.2 PSRC variants and frozen selection
+  python -m kairos controller-oracle       produce/read prefix opportunity analysis
   python -m kairos record-demo         record demo traces as frontend fixtures
   python -m kairos reproduce           train → bench (2 repeats) → ablate, in one command
 """
@@ -152,6 +157,94 @@ def cmd_hardening_bench(args) -> None:
                       "concurrency": report["concurrency"], "soak": report["soak"]}, indent=2))
 
 
+def cmd_controller_experiments(args) -> None:
+    from benchmark.controller.v2_2 import run_v2_2
+
+    report = run_v2_2(_cfg(args))
+    compact = {name: {
+        "early": arm["metrics"].get("early_retrieval_rate"),
+        "useful_early": arm["metrics"].get("useful_early_retrieval_rate"),
+        "premature": arm["metrics"].get("premature_retrieval_rate"),
+        "survival": arm["metrics"].get("evidence_survival_rate"),
+        "full_searches": arm["metrics"].get("full_searches"),
+    } for name, arm in report["variants"].items()}
+    print(json.dumps({"run_id": report["run_id"], "variants": compact,
+                      "selection": report["selection"]}, indent=2))
+
+
+def cmd_controller_oracle(args) -> None:
+    from benchmark.controller.v2_2 import load_latest, run_v2_2
+
+    try:
+        report = load_latest()
+    except FileNotFoundError:
+        report = run_v2_2(_cfg(args))
+    path = resolve_path(f"runs/bench/controller_v2_2/{report['run_id']}/oracle.json")
+    print(json.dumps({"run_id": report["run_id"], "oracle": str(path)}, indent=2))
+
+
+def cmd_controller_compare(args) -> None:
+    from benchmark.controller.v2_2 import load_latest
+
+    report = load_latest()
+    rows = []
+    for name, arm in report["variants"].items():
+        metrics = arm["metrics"]
+        rows.append({"variant": name, "early": metrics.get("early_retrieval_rate"),
+                     "useful_early": metrics.get("useful_early_retrieval_rate"),
+                     "premature": metrics.get("premature_retrieval_rate"),
+                     "survival": metrics.get("evidence_survival_rate"),
+                     "retrievals_per_need": metrics.get("retrievals_per_information_need"),
+                     "full_searches": metrics.get("full_searches")})
+    print(json.dumps(rows, indent=2))
+
+
+def cmd_controller_select(args) -> None:
+    from benchmark.controller.v2_2 import load_latest
+
+    print(json.dumps(load_latest()["selection"], indent=2))
+
+
+def cmd_controller_data(args) -> None:
+    from benchmark.controller.dataset_v2_2 import build_dataset, validate_dataset
+
+    result = build_dataset() if args.action == "build" else validate_dataset()
+    print(json.dumps(result, indent=2))
+
+
+def cmd_controller_train(args) -> None:
+    from benchmark.controller.dataset_v2_2 import build_dataset
+    from benchmark.controller.modeling_v2_2 import train_models
+
+    build_dataset()
+    print(json.dumps(train_models(_cfg(args)), indent=2))
+
+
+def cmd_controller_calibrate(args) -> None:
+    from benchmark.controller.dataset_v2_2 import build_dataset
+    from benchmark.controller.modeling_v2_2 import train_models
+
+    build_dataset()
+    result = train_models(_cfg(args))
+    print(json.dumps({"survival": result["models"]["M4_calibrated_logistic"],
+                      "cold_start": result["cold_start_calibration"]}, indent=2))
+
+
+def cmd_controller_heldout(args) -> None:
+    from benchmark.controller.v2_2 import load_latest
+
+    print(json.dumps(load_latest()["held_out"], indent=2))
+
+
+def cmd_controller_report(args) -> None:
+    from benchmark.controller.v2_2 import load_latest
+
+    report = load_latest()
+    print(json.dumps({"run_id": report["run_id"], "selected": report["selection"]["selected"],
+                      "research_report": str(resolve_path("docs/PSRC_V2_2_RESEARCH.md")),
+                      "engineering_report": str(resolve_path("docs/PSRC_V2_2_ENGINEERING_REPORT.md"))}, indent=2))
+
+
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(prog="kairos", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--config", default=None, help="YAML merged over configs/default.yaml")
@@ -202,6 +295,33 @@ def main(argv: list[str] | None = None) -> None:
     p = sub.add_parser("hardening-bench", help="run official-corpus scale, concurrency, and short soak studies")
     p.add_argument("--max-documents", type=int, default=5000, choices=[100, 500, 1000, 5000])
     p.set_defaults(fn=cmd_hardening_bench)
+    p = sub.add_parser("controller-data", help="build or validate the grouped V2.2 controller dataset")
+    p.add_argument("action", choices=["build", "validate"])
+    p.set_defaults(fn=cmd_controller_data)
+    sub.add_parser("controller-train", help="fit policy-independent V2.2 survival models").set_defaults(
+        fn=cmd_controller_train
+    )
+    sub.add_parser("controller-calibrate", help="fit/report separate V2.2 probability calibration").set_defaults(
+        fn=cmd_controller_calibrate
+    )
+    sub.add_parser("controller-experiments", help="run controlled PSRC research variants").set_defaults(
+        fn=cmd_controller_experiments
+    )
+    sub.add_parser("controller-oracle", help="produce or locate the prefix opportunity analysis").set_defaults(
+        fn=cmd_controller_oracle
+    )
+    sub.add_parser("controller-compare", help="print the latest PSRC variant comparison").set_defaults(
+        fn=cmd_controller_compare
+    )
+    sub.add_parser("controller-select", help="print the frozen controller selection record").set_defaults(
+        fn=cmd_controller_select
+    )
+    sub.add_parser("controller-heldout", help="print the frozen V2.2 held-out result").set_defaults(
+        fn=cmd_controller_heldout
+    )
+    sub.add_parser("controller-report", help="locate the controller research reports").set_defaults(
+        fn=cmd_controller_report
+    )
     args = parser.parse_args(argv)
     args.fn(args)
 

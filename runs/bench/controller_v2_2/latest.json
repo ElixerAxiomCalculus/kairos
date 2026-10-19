@@ -1,0 +1,3627 @@
+{
+  "status": "MEASURED",
+  "run_id": "20261019T012057Z",
+  "commit_sha": "25bdc65dd26f2c39b1ba40c090fadae8197e5eb4",
+  "corpus_profile": "sample",
+  "corpus_hash": "dff687c772f49e5afc00c5cbce4970d9954c9c30840d9973183d8e018c24fdea",
+  "dataset_hash": "1e53f94a2aa8abd5a2b97dfe262f1df036fc2e8395e3b6928ad7906cf4523cc2",
+  "split_hashes": {
+    "train": "35a4a6cae96ef6e6d8fb4855a5ea4f48ea7c3a9644ca3f9224c6eae0a3d509a3",
+    "calibration": "fea5604494981bc033b6db250335a4e4d6f79e0aaef140385be488814ad0ea46",
+    "development": "959082c0d7a0e6ed958a9ab684e71b52a995d684511e30cc1c96ccb33318fc43",
+    "heldout": "0c059965931a18735b5381b35e8c1d26f47b91e2e6bce3ddbeadc1be16660b76",
+    "external": "363fc1b2a229ba2c6f1296eb18e61fb132e352cb9dc18123f59cd4cff1d57769"
+  },
+  "model_hashes": {
+    "cold_start_calibration.json": "9cb438bdf5c091d7ffec5c5947cf79b3fcb54b3e717dcae0a4be7798c75638c4",
+    "M1_retrained_historical.json": "71d36fbf1d364731618bcdfa00acf63a3dec118ecd76db62d2186ae0ed4a9474",
+    "M2_extended_logistic.json": "c53054ff3e2176d2b5a8c58fe39c9e9a5da2568b206d148fd15911c5b8f1390e",
+    "M3_regularized_logistic.json": "cbbc499570f36a0f0342ecfb19e0c35639fdbc82f1f4e6893b1397e3dcce7a5f",
+    "M4_calibrated_logistic.json": "a9fa37502d4d8faea5de852d79c0b9454862a971994ca72b1adb3175ca44c4c3"
+  },
+  "random_seed": 42,
+  "environment": {
+    "commit_sha": "25bdc65dd26f2c39b1ba40c090fadae8197e5eb4",
+    "git_status": [
+      "M .gitignore",
+      " M GUIDE.md",
+      " M README.md",
+      " M configs/default.yaml",
+      " M docs/CORPUS_PROVENANCE.md",
+      " M kairos/__main__.py",
+      " M kairos/api/server.py",
+      " M kairos/controller/policy.py",
+      " M kairos/engine.py",
+      " M runs/bench/benchmark/latest.json",
+      " M runs/bench/semantic/latest.json",
+      " M tests/test_api.py",
+      " M web/src/features/replay/benchmarkData.ts",
+      " M web/src/mocks/fixtures/benchmark.latest.json",
+      " M web/src/mocks/fixtures/semantic.latest.json",
+      " M web/src/mocks/index.ts",
+      " M web/src/routes/BenchmarkRoute.tsx",
+      "?? benchmark/controller/",
+      "?? benchmark/datasets/controller_v2_2/",
+      "?? benchmark/datasets/heldout_streaming/",
+      "?? docs/PSRC_EARLY_RETRIEVAL_ENGINEERING_REPORT.md",
+      "?? docs/PSRC_EARLY_RETRIEVAL_RESEARCH.md",
+      "?? docs/PSRC_V2_2_ENGINEERING_REPORT.md",
+      "?? docs/PSRC_V2_2_RESEARCH.md",
+      "?? kairos/controller/asr_policy.py",
+      "?? kairos/controller/calibration.py",
+      "?? kairos/controller/cold_start.py",
+      "?? kairos/controller/evidence_cache.py",
+      "?? kairos/controller/intent_readiness.py",
+      "?? kairos/controller/scheduling.py",
+      "?? kairos/controller/speculative.py",
+      "?? kairos/controller/utility.py",
+      "?? models/controller_v2_2/",
+      "?? runs/bench/controller/",
+      "?? runs/bench/controller_v2_2/",
+      "?? tests/test_controller_research.py",
+      "?? tests/test_controller_v2_2.py",
+      "?? web/src/mocks/fixtures/controller-v2-2.latest.json"
+    ],
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "model_and_artifact_hashes": {
+      "historical_stability.json": "396c9851388e136784386e6d4add7651af08b1d70bc6f9cbd220cfdc041ce65f",
+      "prior_controller_latest.json": "ced4c0fe2c6cbb5b1db71d3ccab1538ae5f1d83153a112420fb44f63e18ac4c7",
+      "default_configuration.yaml": "9bcd351c764041d5e2c669564172ae79b50f546c36b26e8b53a779ef26a0956b"
+    },
+    "note": "Immutable run-local copies; prior runs outside this directory were not modified."
+  },
+  "configuration": {
+    "corpus": {
+      "profile": "sample",
+      "path": "corpus/sample",
+      "profiles": {
+        "sample": [
+          "corpus/sample"
+        ],
+        "science": [
+          "corpus/imported/scifact"
+        ],
+        "general": [
+          "corpus/imported/squad"
+        ],
+        "general_expanded": [
+          "corpus/imported/squad_v2_1"
+        ],
+        "multi_domain_demo": [
+          "corpus/sample",
+          "corpus/imported/scifact",
+          "corpus/imported/squad"
+        ],
+        "multi_domain_v2_1": [
+          "corpus/sample",
+          "corpus/imported/scifact",
+          "corpus/imported/squad_v2_1"
+        ]
+      },
+      "places": [
+        "Pune",
+        "Mumbai",
+        "Delhi",
+        "New Delhi",
+        "Goa",
+        "Bengaluru",
+        "Bangalore",
+        "Chennai",
+        "Hyderabad",
+        "Kolkata",
+        "Jaipur",
+        "Ahmedabad",
+        "Gurugram",
+        "Noida"
+      ]
+    },
+    "retrieval": {
+      "mode": "hybrid",
+      "dense_backend": "lsa",
+      "dense_model": "BAAI/bge-small-en-v1.5",
+      "lsa_dims": 128,
+      "bm25_k1": 1.5,
+      "bm25_b": 0.75,
+      "heading_boost": 2,
+      "rrf_k": 60,
+      "candidates": 10,
+      "top_k": 5,
+      "probe_k": 10,
+      "reranker": "hybrid-linear",
+      "cross_encoder_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+      "dedup_threshold": 0.92,
+      "facet_bonus": 0.1,
+      "heading_focus_bonus": 0.12,
+      "place_mismatch_penalty": 0.5,
+      "relevance_gate": true,
+      "domain_routing": true,
+      "relevance_min_coverage": 0.16,
+      "relevance_min_rerank": 0.28,
+      "relevance_min_dense": 0.08,
+      "relevance_min_focus_terms": 1,
+      "relevance_min_objective_coverage": 0.3,
+      "domain_routing_min_confidence": 0.25,
+      "probe_cache_size": 4096,
+      "probe_cache_enabled": true
+    },
+    "controller": {
+      "mode": "psrc",
+      "policy_variant": "baseline",
+      "fixed_tokens_n": 6,
+      "stability_model": "models/stability.json",
+      "default_weights": {
+        "rho": 2.2,
+        "chi": 2.0,
+        "kappa": 2.4,
+        "sigma": 0.8,
+        "cont": 1.2,
+        "bias": -4.2
+      },
+      "lambda_latency": 0.5,
+      "cost_retrieval": 0.4,
+      "cost_noise": 0.6,
+      "pipeline_latency_prior_s": 1.2,
+      "adapt_latency": false,
+      "remaining_prior_s": 1.5,
+      "theta_min": 0.3,
+      "theta_max": 0.9,
+      "rho_min": 0.3,
+      "kappa_min": 0.45,
+      "nu_min": 0.08,
+      "hysteresis": 0.05,
+      "tau_refine": 0.6,
+      "budget_per_utterance": 6,
+      "cold_start": {
+        "enabled": false,
+        "variant": "CS0_original_heuristic",
+        "threshold": 0.68,
+        "min_relevance": 0.45,
+        "min_constraint_readiness": 0.75,
+        "max_constraint_risk": 0.45,
+        "kappa_min": 0.3,
+        "calibration": {
+          "enabled": false,
+          "method": "platt",
+          "slope": 1.0,
+          "intercept": 0.0
+        }
+      },
+      "intent_completion": {
+        "enabled": false,
+        "threshold": 0.76,
+        "guarded_first_observation_bypass": false,
+        "min_evidence_relevance": 0.45,
+        "max_constraint_risk": 0.35
+      },
+      "calibration": {
+        "enabled": false,
+        "method": "identity",
+        "slope": 1.0,
+        "intercept": 0.0
+      },
+      "speculative": {
+        "enabled": false,
+        "min_term_jaccard": 0.75
+      },
+      "evidence_reuse": {
+        "enabled": false,
+        "max_entries": 64,
+        "ttl_s": 300.0
+      },
+      "utility": {
+        "enabled": false,
+        "latency_scale_s": 1.2,
+        "refinement_cost": 0.45,
+        "extra_retrieval_cost": 0.12,
+        "wait_utility": 0.0,
+        "max_predicted_risk": 0.35
+      },
+      "intent_scheduling": {
+        "enabled": false
+      }
+    },
+    "decomposer": {
+      "mode": "efis",
+      "theta_merge": 0.4,
+      "theta_sem": 0.9,
+      "chi_min": 0.12,
+      "anchor_weight": 0.4,
+      "footprint_validity_gate": true,
+      "footprint_min_relevance": 0.35,
+      "lexical_merge_min": 0.28,
+      "semantic_subject_min": 0.5,
+      "objective_compatibility_min": 0.75,
+      "semantic_objective_merge": true,
+      "topic_shift_guard": true
+    },
+    "synthesis": {
+      "backend": "extractive",
+      "gemini_model": "gemini-flash-latest",
+      "gemini_thinking_level": "low",
+      "gemini_timeout_s": 30,
+      "ollama_model": "qwen2.5:7b-instruct",
+      "llm_cache_dir": "runs/llm_cache",
+      "llm_mode": "record",
+      "sentences_per_subquery": 2,
+      "tau_sufficiency": 0.3,
+      "tau_sentence": 0.34,
+      "require_sentence_focus": true
+    },
+    "grounding": {
+      "nli": "lexical",
+      "nli_model": "cross-encoder/nli-deberta-v3-small",
+      "tau_support": 0.8,
+      "tau_partial": 0.5,
+      "conflict_overlap": 0.35,
+      "require_quote": true,
+      "verify_checksums": true
+    },
+    "delta": {
+      "refinement": "delta",
+      "max_added_per_subquery": 1,
+      "scope_guard": true
+    },
+    "session": {
+      "ttl_s": 1800,
+      "max_sessions": 64
+    },
+    "live": {
+      "mutable_tail_tokens": 2,
+      "max_utterance_chars": 4000,
+      "max_message_bytes": 16384,
+      "outbound_queue_size": 256
+    },
+    "telemetry": {
+      "trace_dir": "runs/traces",
+      "sqlite_path": "runs/telemetry.sqlite",
+      "trace_content": true
+    },
+    "bench": {
+      "results_dir": "runs/bench",
+      "targets": {
+        "early_retrieval_rate": {
+          "op": ">=",
+          "value": 0.8,
+          "gate": "G2"
+        },
+        "intent_recall": {
+          "op": ">=",
+          "value": 0.7,
+          "gate": "G3"
+        },
+        "grounded_claim_rate": {
+          "op": ">=",
+          "value": 0.85,
+          "gate": "G4"
+        },
+        "fabricated_doc_ids": {
+          "op": "==",
+          "value": 0,
+          "gate": "G4"
+        },
+        "delta_retrieval_ratio": {
+          "op": "<",
+          "value": 1.0,
+          "gate": "G5"
+        },
+        "false_retrieval_rate": {
+          "op": "==",
+          "value": 0.0,
+          "gate": "G5"
+        },
+        "telemetry_coverage": {
+          "op": "==",
+          "value": 1.0,
+          "gate": "G6"
+        },
+        "reproducibility_delta": {
+          "op": "==",
+          "value": 0.0,
+          "gate": "G1"
+        }
+      }
+    }
+  },
+  "dataset_validation": {
+    "status": "PASS",
+    "streams": 117,
+    "prefixes": 389,
+    "split_counts": {
+      "calibration": 9,
+      "development": 36,
+      "external": 10,
+      "heldout": 8,
+      "train": 54
+    },
+    "families": 90,
+    "errors": [],
+    "validation_hash": "1e53f94a2aa8abd5a2b97dfe262f1df036fc2e8395e3b6928ad7906cf4523cc2",
+    "manifest_dataset_hash_matches": true
+  },
+  "modeling": {
+    "status": "MEASURED",
+    "models": {
+      "M0_historical": {
+        "metrics": {
+          "examples": 50,
+          "brier_score": 0.2293,
+          "ece": 0.2774,
+          "log_loss": 0.6554,
+          "bins": [
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 1,
+              "mean_score": 0.1757,
+              "observed": 0
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.3,
+              "count": 4,
+              "mean_score": 0.2912,
+              "observed": 0.25
+            },
+            {
+              "lower": 0.3,
+              "upper": 0.4,
+              "count": 20,
+              "mean_score": 0.3574,
+              "observed": 0.2
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 13,
+              "mean_score": 0.4509,
+              "observed": 0.0769
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6,
+              "count": 6,
+              "mean_score": 0.5266,
+              "observed": 0.1667
+            },
+            {
+              "lower": 0.6,
+              "upper": 0.7,
+              "count": 1,
+              "mean_score": 0.6071,
+              "observed": 0
+            },
+            {
+              "lower": 0.7,
+              "upper": 0.8,
+              "count": 5,
+              "mean_score": 0.7507,
+              "observed": 0.2
+            }
+          ]
+        },
+        "source": "trained:stability.json"
+      },
+      "M1_retrained_historical": {
+        "path": "models/controller_v2_2/M1_retrained_historical.json",
+        "metrics": {
+          "examples": 50,
+          "brier_score": 0.1868,
+          "ece": 0.2281,
+          "log_loss": 0.5587,
+          "bins": [
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 2,
+              "mean_score": 0.1408,
+              "observed": 0
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.3,
+              "count": 10,
+              "mean_score": 0.2444,
+              "observed": 0.1
+            },
+            {
+              "lower": 0.3,
+              "upper": 0.4,
+              "count": 18,
+              "mean_score": 0.3411,
+              "observed": 0.1111
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 10,
+              "mean_score": 0.4464,
+              "observed": 0.2
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6,
+              "count": 5,
+              "mean_score": 0.5264,
+              "observed": 0.2
+            },
+            {
+              "lower": 0.6,
+              "upper": 0.7,
+              "count": 2,
+              "mean_score": 0.6331,
+              "observed": 0.5
+            },
+            {
+              "lower": 0.7,
+              "upper": 0.8,
+              "count": 3,
+              "mean_score": 0.7262,
+              "observed": 0.3333
+            }
+          ]
+        },
+        "feature_names": [
+          "rho",
+          "chi",
+          "kappa",
+          "sigma",
+          "cont"
+        ],
+        "trained_on": "controller_v2_2/train",
+        "training_groups": 36,
+        "examples": 128,
+        "positive_rate": 0.2812,
+        "regularization_C": 1.0,
+        "target": "V2.2 composite accepted-evidence survival >= 0.7",
+        "dataset_hash": "bd368d1878cbb86a3b27758dfb87d269a9bdc9f039f758d9ebb713b22a02a540"
+      },
+      "M2_extended_logistic": {
+        "path": "models/controller_v2_2/M2_extended_logistic.json",
+        "metrics": {
+          "examples": 50,
+          "brier_score": 0.139,
+          "ece": 0.2019,
+          "log_loss": 0.4247,
+          "bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 11,
+              "mean_score": 0.0425,
+              "observed": 0
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 5,
+              "mean_score": 0.1751,
+              "observed": 0
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.3,
+              "count": 8,
+              "mean_score": 0.2287,
+              "observed": 0
+            },
+            {
+              "lower": 0.3,
+              "upper": 0.4,
+              "count": 5,
+              "mean_score": 0.3258,
+              "observed": 0.4
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 6,
+              "mean_score": 0.4528,
+              "observed": 0.1667
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6,
+              "count": 6,
+              "mean_score": 0.5169,
+              "observed": 0
+            },
+            {
+              "lower": 0.6,
+              "upper": 0.7,
+              "count": 4,
+              "mean_score": 0.6578,
+              "observed": 0.5
+            },
+            {
+              "lower": 0.7,
+              "upper": 0.8,
+              "count": 4,
+              "mean_score": 0.7384,
+              "observed": 0.5
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 1,
+              "mean_score": 0.8496,
+              "observed": 1
+            }
+          ]
+        },
+        "feature_names": [
+          "rho",
+          "chi",
+          "kappa",
+          "sigma",
+          "cont",
+          "first_observation",
+          "cold_start_confidence",
+          "query_informativeness",
+          "rank_separation",
+          "objective_clarity",
+          "intent_readiness",
+          "constraint_readiness",
+          "constraint_revision_risk",
+          "evidence_relevance",
+          "domain_availability",
+          "prefix_length",
+          "candidate_age",
+          "last_slot_change",
+          "accepted_evidence_overlap"
+        ],
+        "trained_on": "controller_v2_2/train",
+        "training_groups": 36,
+        "examples": 128,
+        "positive_rate": 0.2812,
+        "regularization_C": 1.0,
+        "target": "V2.2 composite accepted-evidence survival >= 0.7",
+        "dataset_hash": "bd368d1878cbb86a3b27758dfb87d269a9bdc9f039f758d9ebb713b22a02a540"
+      },
+      "M3_regularized_logistic": {
+        "path": "models/controller_v2_2/M3_regularized_logistic.json",
+        "metrics": {
+          "examples": 50,
+          "brier_score": 0.154,
+          "ece": 0.2296,
+          "log_loss": 0.478,
+          "bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 2,
+              "mean_score": 0.0979,
+              "observed": 0
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 7,
+              "mean_score": 0.1253,
+              "observed": 0
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.3,
+              "count": 8,
+              "mean_score": 0.2654,
+              "observed": 0
+            },
+            {
+              "lower": 0.3,
+              "upper": 0.4,
+              "count": 11,
+              "mean_score": 0.3454,
+              "observed": 0.1818
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 9,
+              "mean_score": 0.4586,
+              "observed": 0.1111
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6,
+              "count": 7,
+              "mean_score": 0.5414,
+              "observed": 0.1429
+            },
+            {
+              "lower": 0.6,
+              "upper": 0.7,
+              "count": 5,
+              "mean_score": 0.6643,
+              "observed": 0.6
+            },
+            {
+              "lower": 0.7,
+              "upper": 0.8,
+              "count": 1,
+              "mean_score": 0.7528,
+              "observed": 1
+            }
+          ]
+        },
+        "feature_names": [
+          "rho",
+          "chi",
+          "kappa",
+          "sigma",
+          "cont",
+          "first_observation",
+          "cold_start_confidence",
+          "query_informativeness",
+          "rank_separation",
+          "objective_clarity",
+          "intent_readiness",
+          "constraint_readiness",
+          "constraint_revision_risk",
+          "evidence_relevance",
+          "domain_availability",
+          "prefix_length",
+          "candidate_age",
+          "last_slot_change",
+          "accepted_evidence_overlap"
+        ],
+        "trained_on": "controller_v2_2/train",
+        "training_groups": 36,
+        "examples": 128,
+        "positive_rate": 0.2812,
+        "regularization_C": 0.25,
+        "target": "V2.2 composite accepted-evidence survival >= 0.7",
+        "dataset_hash": "bd368d1878cbb86a3b27758dfb87d269a9bdc9f039f758d9ebb713b22a02a540"
+      },
+      "M4_calibrated_logistic": {
+        "path": "models/controller_v2_2/M4_calibrated_logistic.json",
+        "metrics": {
+          "examples": 50,
+          "brier_score": 0.1121,
+          "ece": 0.1012,
+          "log_loss": 0.3736,
+          "bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 9,
+              "mean_score": 0.075,
+              "observed": 0
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 13,
+              "mean_score": 0.1682,
+              "observed": 0
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.3,
+              "count": 15,
+              "mean_score": 0.2516,
+              "observed": 0.2
+            },
+            {
+              "lower": 0.3,
+              "upper": 0.4,
+              "count": 8,
+              "mean_score": 0.3419,
+              "observed": 0.25
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 4,
+              "mean_score": 0.4467,
+              "observed": 0.5
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6,
+              "count": 1,
+              "mean_score": 0.526,
+              "observed": 1
+            }
+          ]
+        },
+        "calibration": {
+          "method": "platt",
+          "slope": 0.8398869564966038,
+          "intercept": -0.8312044830650073
+        }
+      },
+      "M5_isotonic": {
+        "status": "SKIPPED_INSUFFICIENT_INDEPENDENT_CALIBRATION_GROUPS",
+        "calibration_groups": 4
+      }
+    },
+    "samples": {
+      "train_prefixes": 128,
+      "calibration_prefixes": 24,
+      "development_prefixes": 50
+    },
+    "groups": {
+      "train": 36,
+      "calibration": 4,
+      "development": 27
+    },
+    "policy_independent": true,
+    "future_text_features": [],
+    "cold_start_calibration": {
+      "path": "models/controller_v2_2/cold_start_calibration.json",
+      "configuration": {
+        "enabled": false,
+        "method": "identity",
+        "slope": 1.0,
+        "intercept": 0.0
+      },
+      "metrics": {
+        "examples": 22,
+        "brier_score": 0.4444,
+        "ece": 0.583,
+        "log_loss": 1.213,
+        "bins": [
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 4,
+            "mean_score": 0.271,
+            "observed": 0
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 2,
+            "mean_score": 0.325,
+            "observed": 0
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 7,
+            "mean_score": 0.7386,
+            "observed": 0
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 6,
+            "mean_score": 0.8677,
+            "observed": 0.1667
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "count": 3,
+            "mean_score": 0.905,
+            "observed": 0.3333
+          }
+        ]
+      },
+      "development_first_observations": 22
+    }
+  },
+  "variants": {
+    "P0_original_psrc": {
+      "variant": "P0_original_psrc",
+      "overrides": {
+        "controller.policy_variant": "P0_original_psrc"
+      },
+      "metrics": {
+        "early_retrieval_rate": 0.6875,
+        "eligible_utterances": 16,
+        "retrieval_lead_s_median": 1.898,
+        "evidence_survival_rate": 0.7333,
+        "premature_retrieval_rate": 0.2963,
+        "false_retrieval_rate": 0.0,
+        "unnecessary_retrieval_count": 0,
+        "elaborate_suppression_rate": 1.0,
+        "turn_classification_accuracy": 1.0,
+        "intent_precision": 0.8947,
+        "intent_recall": 0.9444,
+        "intent_count_accuracy": 0.8846,
+        "gold_section_mrr": 0.8565,
+        "abstention_accuracy": 1.0,
+        "grounded_claim_rate": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "claims_judged": 46,
+        "fabricated_doc_ids": 0,
+        "delta_retrieval_ratio": 0.7,
+        "refinement_correctness": 1.0,
+        "unnecessary_claim_churn": 0,
+        "update_retrievals": 7,
+        "full_restart_retrievals": 11,
+        "update_context_tokens_est": 483,
+        "full_restart_context_tokens_est": 893,
+        "retrieval_latency_ms_mean": 1.175,
+        "retrieval_latency_ms_p95": 1.846,
+        "post_utterance_latency_ms_p50": 4.232,
+        "post_utterance_latency_ms_p95": 8.132,
+        "end_to_end_latency_ms_p50": 2725.6,
+        "llm_tokens_total": 0,
+        "context_tokens_est_total": 3391,
+        "telemetry_coverage": 1.0,
+        "useful_early_retrieval_rate": 0.6875,
+        "useful_early_successes": 11,
+        "useful_early_ci95": [
+          0.444,
+          0.8584
+        ],
+        "useful_early_group_bootstrap_ci95": [
+          0.4375,
+          0.875
+        ],
+        "probe_computations": 95,
+        "probe_cache_hits": 22,
+        "shadow_retrievals": 19,
+        "full_searches": 77,
+        "reused_full_searches": 0,
+        "duplicate_retrievals_avoided": 0,
+        "evidence_cache_hits": 0,
+        "full_searches_by_trigger": {
+          "EARLY": 21,
+          "END_OF_UTTERANCE": 17,
+          "REFINE": 13,
+          "DELTA": 7
+        },
+        "retrievals_per_information_need": 1.9615,
+        "first_useful_evidence_latency_ms_mean": 1.077,
+        "first_useful_evidence_latencies_ms": [
+          1.109,
+          1.198,
+          1.127,
+          1.07,
+          0.945,
+          1.075,
+          0.999,
+          1.052,
+          1.054,
+          1.016,
+          1.203
+        ],
+        "retrieval_latency_ms_p50": 1.088,
+        "intent_level_useful_early_retrieval_rate": 0.6875,
+        "end_of_utterance_correctness": 0.9444,
+        "evaluation_sample_count": 16,
+        "operation_counts": {
+          "BM25_PROBE": 95,
+          "DENSE_QUERY_ENCODING": 77,
+          "EFIS_FOOTPRINT_SEARCH": 51,
+          "SHADOW_RETRIEVAL": 19,
+          "SPECULATIVE_FULL_RETRIEVAL": 0,
+          "PROMOTED_FULL_RETRIEVAL": 21,
+          "DELTA_REFINEMENT": 7,
+          "FINAL_RETRIEVAL": 17,
+          "CACHE_HIT": 22
+        },
+        "intent_gate_diagnostics": {
+          "intent_ready_rows": 0,
+          "intent_ready_but_stability_blocked": 0,
+          "guarded_bypass_decisions": 0
+        },
+        "latency_components_ms_mean": {
+          "dedup_ms": 0.8387,
+          "dense_ms": 0.1602,
+          "fusion_ms": 0.0062,
+          "rerank_ms": 0.0619,
+          "sparse_ms": 0.0305
+        },
+        "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+        "wall_s": 0.57
+      },
+      "validation": {
+        "coverage": 1.0,
+        "instances": 1055,
+        "passed": 1055,
+        "per_invariant": {
+          "I1": {
+            "checked": 35,
+            "passed": 35
+          },
+          "I2": {
+            "checked": 58,
+            "passed": 58
+          },
+          "I3": {
+            "checked": 61,
+            "passed": 61
+          },
+          "I4": {
+            "checked": 61,
+            "passed": 61
+          },
+          "I5": {
+            "checked": 5,
+            "passed": 5
+          },
+          "I6": {
+            "checked": 835,
+            "passed": 835
+          }
+        }
+      }
+    },
+    "P1_retrained_stability": {
+      "variant": "P1_retrained_stability",
+      "overrides": {
+        "controller.policy_variant": "P1_retrained_stability",
+        "controller.stability_model": "models/controller_v2_2/M1_retrained_historical.json"
+      },
+      "metrics": {
+        "early_retrieval_rate": 0.625,
+        "eligible_utterances": 16,
+        "retrieval_lead_s_median": 1.747,
+        "evidence_survival_rate": 0.7091,
+        "premature_retrieval_rate": 0.3636,
+        "false_retrieval_rate": 0.0,
+        "unnecessary_retrieval_count": 0,
+        "elaborate_suppression_rate": 1.0,
+        "turn_classification_accuracy": 1.0,
+        "intent_precision": 0.8947,
+        "intent_recall": 0.9444,
+        "intent_count_accuracy": 0.8846,
+        "gold_section_mrr": 0.8565,
+        "abstention_accuracy": 1.0,
+        "grounded_claim_rate": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "claims_judged": 46,
+        "fabricated_doc_ids": 0,
+        "delta_retrieval_ratio": 0.7,
+        "refinement_correctness": 1.0,
+        "unnecessary_claim_churn": 0,
+        "update_retrievals": 7,
+        "full_restart_retrievals": 11,
+        "update_context_tokens_est": 483,
+        "full_restart_context_tokens_est": 893,
+        "retrieval_latency_ms_mean": 1.291,
+        "retrieval_latency_ms_p95": 2.464,
+        "post_utterance_latency_ms_p50": 4.224,
+        "post_utterance_latency_ms_p95": 8.86,
+        "end_to_end_latency_ms_p50": 2704.2,
+        "llm_tokens_total": 0,
+        "context_tokens_est_total": 3391,
+        "telemetry_coverage": 1.0,
+        "useful_early_retrieval_rate": 0.625,
+        "useful_early_successes": 10,
+        "useful_early_ci95": [
+          0.3864,
+          0.8152
+        ],
+        "useful_early_group_bootstrap_ci95": [
+          0.375,
+          0.8125
+        ],
+        "probe_computations": 95,
+        "probe_cache_hits": 22,
+        "shadow_retrievals": 16,
+        "full_searches": 70,
+        "reused_full_searches": 0,
+        "duplicate_retrievals_avoided": 0,
+        "evidence_cache_hits": 0,
+        "full_searches_by_trigger": {
+          "EARLY": 19,
+          "END_OF_UTTERANCE": 19,
+          "REFINE": 9,
+          "DELTA": 7
+        },
+        "retrievals_per_information_need": 1.8077,
+        "first_useful_evidence_latency_ms_mean": 1.155,
+        "first_useful_evidence_latencies_ms": [
+          1.685,
+          1.117,
+          1.109,
+          1.036,
+          1.065,
+          1.113,
+          1.091,
+          1.156,
+          1.149,
+          1.033
+        ],
+        "retrieval_latency_ms_p50": 1.117,
+        "intent_level_useful_early_retrieval_rate": 0.625,
+        "end_of_utterance_correctness": 0.9444,
+        "evaluation_sample_count": 16,
+        "operation_counts": {
+          "BM25_PROBE": 95,
+          "DENSE_QUERY_ENCODING": 70,
+          "EFIS_FOOTPRINT_SEARCH": 47,
+          "SHADOW_RETRIEVAL": 16,
+          "SPECULATIVE_FULL_RETRIEVAL": 0,
+          "PROMOTED_FULL_RETRIEVAL": 19,
+          "DELTA_REFINEMENT": 7,
+          "FINAL_RETRIEVAL": 19,
+          "CACHE_HIT": 22
+        },
+        "intent_gate_diagnostics": {
+          "intent_ready_rows": 0,
+          "intent_ready_but_stability_blocked": 0,
+          "guarded_bypass_decisions": 0
+        },
+        "latency_components_ms_mean": {
+          "dedup_ms": 0.932,
+          "dense_ms": 0.1721,
+          "fusion_ms": 0.006,
+          "rerank_ms": 0.0637,
+          "sparse_ms": 0.0364
+        },
+        "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+        "wall_s": 0.898
+      },
+      "validation": {
+        "coverage": 1.0,
+        "instances": 1029,
+        "passed": 1029,
+        "per_invariant": {
+          "I1": {
+            "checked": 35,
+            "passed": 35
+          },
+          "I2": {
+            "checked": 54,
+            "passed": 54
+          },
+          "I3": {
+            "checked": 61,
+            "passed": 61
+          },
+          "I4": {
+            "checked": 61,
+            "passed": 61
+          },
+          "I5": {
+            "checked": 5,
+            "passed": 5
+          },
+          "I6": {
+            "checked": 813,
+            "passed": 813
+          }
+        }
+      }
+    },
+    "P2_calibrated_stability": {
+      "variant": "P2_calibrated_stability",
+      "overrides": {
+        "controller.policy_variant": "P2_calibrated_stability",
+        "controller.stability_model": "models/controller_v2_2/M4_calibrated_logistic.json"
+      },
+      "metrics": {
+        "early_retrieval_rate": 0.0,
+        "eligible_utterances": 16,
+        "retrieval_lead_s_median": null,
+        "evidence_survival_rate": null,
+        "premature_retrieval_rate": null,
+        "false_retrieval_rate": 0.0,
+        "unnecessary_retrieval_count": 0,
+        "elaborate_suppression_rate": 1.0,
+        "turn_classification_accuracy": 1.0,
+        "intent_precision": 0.8947,
+        "intent_recall": 0.9444,
+        "intent_count_accuracy": 0.8846,
+        "gold_section_mrr": 0.8704,
+        "abstention_accuracy": 1.0,
+        "grounded_claim_rate": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "claims_judged": 47,
+        "fabricated_doc_ids": 0,
+        "delta_retrieval_ratio": 0.7,
+        "refinement_correctness": 1.0,
+        "unnecessary_claim_churn": 0,
+        "update_retrievals": 7,
+        "full_restart_retrievals": 11,
+        "update_context_tokens_est": 483,
+        "full_restart_context_tokens_est": 893,
+        "retrieval_latency_ms_mean": 12.616,
+        "retrieval_latency_ms_p95": 21.489,
+        "post_utterance_latency_ms_p50": 33.654,
+        "post_utterance_latency_ms_p95": 92.615,
+        "end_to_end_latency_ms_p50": 2737.6,
+        "llm_tokens_total": 0,
+        "context_tokens_est_total": 3411,
+        "telemetry_coverage": 1.0,
+        "useful_early_retrieval_rate": 0.0,
+        "useful_early_successes": 0,
+        "useful_early_ci95": [
+          0.0,
+          0.1936
+        ],
+        "useful_early_group_bootstrap_ci95": [
+          0.0,
+          0.0
+        ],
+        "probe_computations": 95,
+        "probe_cache_hits": 22,
+        "shadow_retrievals": 0,
+        "full_searches": 45,
+        "reused_full_searches": 0,
+        "duplicate_retrievals_avoided": 0,
+        "evidence_cache_hits": 0,
+        "full_searches_by_trigger": {
+          "EARLY": 0,
+          "END_OF_UTTERANCE": 38,
+          "REFINE": 0,
+          "DELTA": 7
+        },
+        "retrievals_per_information_need": 1.4615,
+        "first_useful_evidence_latency_ms_mean": null,
+        "first_useful_evidence_latencies_ms": [],
+        "retrieval_latency_ms_p50": 10.27,
+        "intent_level_useful_early_retrieval_rate": 0.0,
+        "end_of_utterance_correctness": 0.9444,
+        "evaluation_sample_count": 16,
+        "operation_counts": {
+          "BM25_PROBE": 95,
+          "DENSE_QUERY_ENCODING": 45,
+          "EFIS_FOOTPRINT_SEARCH": 38,
+          "SHADOW_RETRIEVAL": 0,
+          "SPECULATIVE_FULL_RETRIEVAL": 0,
+          "PROMOTED_FULL_RETRIEVAL": 0,
+          "DELTA_REFINEMENT": 7,
+          "FINAL_RETRIEVAL": 38,
+          "CACHE_HIT": 22
+        },
+        "intent_gate_diagnostics": {
+          "intent_ready_rows": 71,
+          "intent_ready_but_stability_blocked": 33,
+          "guarded_bypass_decisions": 0
+        },
+        "latency_components_ms_mean": {
+          "dedup_ms": 9.7342,
+          "dense_ms": 1.7339,
+          "fusion_ms": 0.0327,
+          "rerank_ms": 0.4016,
+          "sparse_ms": 0.2767
+        },
+        "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+        "wall_s": 3.796
+      },
+      "validation": {
+        "coverage": 1.0,
+        "instances": 978,
+        "passed": 978,
+        "per_invariant": {
+          "I1": {
+            "checked": 35,
+            "passed": 35
+          },
+          "I2": {
+            "checked": 45,
+            "passed": 45
+          },
+          "I3": {
+            "checked": 62,
+            "passed": 62
+          },
+          "I4": {
+            "checked": 62,
+            "passed": 62
+          },
+          "I5": {
+            "checked": 5,
+            "passed": 5
+          },
+          "I6": {
+            "checked": 769,
+            "passed": 769
+          }
+        }
+      }
+    },
+    "P3_constraint_cold_start": {
+      "variant": "P3_constraint_cold_start",
+      "overrides": {
+        "controller.policy_variant": "P3_constraint_cold_start",
+        "controller.cold_start.enabled": true,
+        "controller.cold_start.variant": "CS1_constraint_aware"
+      },
+      "metrics": {
+        "early_retrieval_rate": 0.75,
+        "eligible_utterances": 16,
+        "retrieval_lead_s_median": 1.986,
+        "evidence_survival_rate": 0.7097,
+        "premature_retrieval_rate": 0.2903,
+        "false_retrieval_rate": 0.0,
+        "unnecessary_retrieval_count": 0,
+        "elaborate_suppression_rate": 1.0,
+        "turn_classification_accuracy": 1.0,
+        "intent_precision": 0.8947,
+        "intent_recall": 0.9444,
+        "intent_count_accuracy": 0.8846,
+        "gold_section_mrr": 0.8565,
+        "abstention_accuracy": 1.0,
+        "grounded_claim_rate": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "claims_judged": 46,
+        "fabricated_doc_ids": 0,
+        "delta_retrieval_ratio": 0.7,
+        "refinement_correctness": 1.0,
+        "unnecessary_claim_churn": 0,
+        "update_retrievals": 7,
+        "full_restart_retrievals": 11,
+        "update_context_tokens_est": 483,
+        "full_restart_context_tokens_est": 893,
+        "retrieval_latency_ms_mean": 9.606,
+        "retrieval_latency_ms_p95": 16.31,
+        "post_utterance_latency_ms_p50": 31.943,
+        "post_utterance_latency_ms_p95": 56.239,
+        "end_to_end_latency_ms_p50": 2728.7,
+        "llm_tokens_total": 0,
+        "context_tokens_est_total": 3391,
+        "telemetry_coverage": 1.0,
+        "useful_early_retrieval_rate": 0.75,
+        "useful_early_successes": 12,
+        "useful_early_ci95": [
+          0.505,
+          0.8982
+        ],
+        "useful_early_group_bootstrap_ci95": [
+          0.5,
+          0.9375
+        ],
+        "probe_computations": 95,
+        "probe_cache_hits": 22,
+        "shadow_retrievals": 26,
+        "full_searches": 87,
+        "reused_full_searches": 0,
+        "duplicate_retrievals_avoided": 0,
+        "evidence_cache_hits": 0,
+        "full_searches_by_trigger": {
+          "EARLY": 24,
+          "END_OF_UTTERANCE": 14,
+          "REFINE": 16,
+          "DELTA": 7
+        },
+        "retrievals_per_information_need": 2.0769,
+        "first_useful_evidence_latency_ms_mean": 8.895,
+        "first_useful_evidence_latencies_ms": [
+          8.006,
+          11.168,
+          9.106,
+          7.651,
+          8.374,
+          8.635,
+          8.591,
+          7.946,
+          8.068,
+          12.383,
+          8.096,
+          8.719
+        ],
+        "retrieval_latency_ms_p50": 8.591,
+        "intent_level_useful_early_retrieval_rate": 0.75,
+        "end_of_utterance_correctness": 0.9444,
+        "evaluation_sample_count": 16,
+        "operation_counts": {
+          "BM25_PROBE": 95,
+          "DENSE_QUERY_ENCODING": 87,
+          "EFIS_FOOTPRINT_SEARCH": 54,
+          "SHADOW_RETRIEVAL": 26,
+          "SPECULATIVE_FULL_RETRIEVAL": 0,
+          "PROMOTED_FULL_RETRIEVAL": 24,
+          "DELTA_REFINEMENT": 7,
+          "FINAL_RETRIEVAL": 14,
+          "CACHE_HIT": 22
+        },
+        "intent_gate_diagnostics": {
+          "intent_ready_rows": 0,
+          "intent_ready_but_stability_blocked": 0,
+          "guarded_bypass_decisions": 0
+        },
+        "latency_components_ms_mean": {
+          "dedup_ms": 7.5445,
+          "dense_ms": 1.0287,
+          "fusion_ms": 0.0331,
+          "rerank_ms": 0.3648,
+          "sparse_ms": 0.2041
+        },
+        "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+        "wall_s": 4.425
+      },
+      "validation": {
+        "coverage": 1.0,
+        "instances": 1074,
+        "passed": 1074,
+        "per_invariant": {
+          "I1": {
+            "checked": 35,
+            "passed": 35
+          },
+          "I2": {
+            "checked": 61,
+            "passed": 61
+          },
+          "I3": {
+            "checked": 61,
+            "passed": 61
+          },
+          "I4": {
+            "checked": 61,
+            "passed": 61
+          },
+          "I5": {
+            "checked": 5,
+            "passed": 5
+          },
+          "I6": {
+            "checked": 851,
+            "passed": 851
+          }
+        }
+      }
+    },
+    "P4_calibrated_cold_start": {
+      "variant": "P4_calibrated_cold_start",
+      "overrides": {
+        "controller.policy_variant": "P4_calibrated_cold_start",
+        "controller.cold_start.enabled": true,
+        "controller.cold_start.variant": "CS2_calibrated",
+        "controller.cold_start.calibration.enabled": false,
+        "controller.cold_start.calibration.method": "identity",
+        "controller.cold_start.calibration.slope": 1.0,
+        "controller.cold_start.calibration.intercept": 0.0
+      },
+      "metrics": {
+        "early_retrieval_rate": 0.75,
+        "eligible_utterances": 16,
+        "retrieval_lead_s_median": 1.986,
+        "evidence_survival_rate": 0.7097,
+        "premature_retrieval_rate": 0.2903,
+        "false_retrieval_rate": 0.0,
+        "unnecessary_retrieval_count": 0,
+        "elaborate_suppression_rate": 1.0,
+        "turn_classification_accuracy": 1.0,
+        "intent_precision": 0.8947,
+        "intent_recall": 0.9444,
+        "intent_count_accuracy": 0.8846,
+        "gold_section_mrr": 0.8565,
+        "abstention_accuracy": 1.0,
+        "grounded_claim_rate": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "claims_judged": 46,
+        "fabricated_doc_ids": 0,
+        "delta_retrieval_ratio": 0.7,
+        "refinement_correctness": 1.0,
+        "unnecessary_claim_churn": 0,
+        "update_retrievals": 7,
+        "full_restart_retrievals": 11,
+        "update_context_tokens_est": 483,
+        "full_restart_context_tokens_est": 893,
+        "retrieval_latency_ms_mean": 9.968,
+        "retrieval_latency_ms_p95": 16.096,
+        "post_utterance_latency_ms_p50": 36.633,
+        "post_utterance_latency_ms_p95": 60.018,
+        "end_to_end_latency_ms_p50": 2728.4,
+        "llm_tokens_total": 0,
+        "context_tokens_est_total": 3391,
+        "telemetry_coverage": 1.0,
+        "useful_early_retrieval_rate": 0.75,
+        "useful_early_successes": 12,
+        "useful_early_ci95": [
+          0.505,
+          0.8982
+        ],
+        "useful_early_group_bootstrap_ci95": [
+          0.5,
+          0.9375
+        ],
+        "probe_computations": 95,
+        "probe_cache_hits": 22,
+        "shadow_retrievals": 26,
+        "full_searches": 87,
+        "reused_full_searches": 0,
+        "duplicate_retrievals_avoided": 0,
+        "evidence_cache_hits": 0,
+        "full_searches_by_trigger": {
+          "EARLY": 24,
+          "END_OF_UTTERANCE": 14,
+          "REFINE": 16,
+          "DELTA": 7
+        },
+        "retrievals_per_information_need": 2.0769,
+        "first_useful_evidence_latency_ms_mean": 8.952,
+        "first_useful_evidence_latencies_ms": [
+          8.06,
+          18.026,
+          9.181,
+          8.147,
+          8.447,
+          8.292,
+          8.334,
+          9.012,
+          8.173,
+          7.923,
+          8.392,
+          5.433
+        ],
+        "retrieval_latency_ms_p50": 9.237,
+        "intent_level_useful_early_retrieval_rate": 0.75,
+        "end_of_utterance_correctness": 0.9444,
+        "evaluation_sample_count": 16,
+        "operation_counts": {
+          "BM25_PROBE": 95,
+          "DENSE_QUERY_ENCODING": 87,
+          "EFIS_FOOTPRINT_SEARCH": 54,
+          "SHADOW_RETRIEVAL": 26,
+          "SPECULATIVE_FULL_RETRIEVAL": 0,
+          "PROMOTED_FULL_RETRIEVAL": 24,
+          "DELTA_REFINEMENT": 7,
+          "FINAL_RETRIEVAL": 14,
+          "CACHE_HIT": 22
+        },
+        "intent_gate_diagnostics": {
+          "intent_ready_rows": 0,
+          "intent_ready_but_stability_blocked": 0,
+          "guarded_bypass_decisions": 0
+        },
+        "latency_components_ms_mean": {
+          "dedup_ms": 7.8298,
+          "dense_ms": 1.0087,
+          "fusion_ms": 0.0348,
+          "rerank_ms": 0.409,
+          "sparse_ms": 0.2067
+        },
+        "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+        "wall_s": 4.599
+      },
+      "validation": {
+        "coverage": 1.0,
+        "instances": 1074,
+        "passed": 1074,
+        "per_invariant": {
+          "I1": {
+            "checked": 35,
+            "passed": 35
+          },
+          "I2": {
+            "checked": 61,
+            "passed": 61
+          },
+          "I3": {
+            "checked": 61,
+            "passed": 61
+          },
+          "I4": {
+            "checked": 61,
+            "passed": 61
+          },
+          "I5": {
+            "checked": 5,
+            "passed": 5
+          },
+          "I6": {
+            "checked": 851,
+            "passed": 851
+          }
+        }
+      }
+    },
+    "P5_guarded_intent_bypass": {
+      "variant": "P5_guarded_intent_bypass",
+      "overrides": {
+        "controller.policy_variant": "P5_guarded_intent_bypass",
+        "controller.intent_completion.enabled": true,
+        "controller.intent_completion.guarded_first_observation_bypass": true
+      },
+      "metrics": {
+        "early_retrieval_rate": 0.6875,
+        "eligible_utterances": 16,
+        "retrieval_lead_s_median": 1.889,
+        "evidence_survival_rate": 0.7333,
+        "premature_retrieval_rate": 0.2963,
+        "false_retrieval_rate": 0.0,
+        "unnecessary_retrieval_count": 0,
+        "elaborate_suppression_rate": 1.0,
+        "turn_classification_accuracy": 1.0,
+        "intent_precision": 0.8947,
+        "intent_recall": 0.9444,
+        "intent_count_accuracy": 0.8846,
+        "gold_section_mrr": 0.8565,
+        "abstention_accuracy": 1.0,
+        "grounded_claim_rate": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "claims_judged": 46,
+        "fabricated_doc_ids": 0,
+        "delta_retrieval_ratio": 0.7,
+        "refinement_correctness": 1.0,
+        "unnecessary_claim_churn": 0,
+        "update_retrievals": 7,
+        "full_restart_retrievals": 11,
+        "update_context_tokens_est": 483,
+        "full_restart_context_tokens_est": 893,
+        "retrieval_latency_ms_mean": 10.187,
+        "retrieval_latency_ms_p95": 16.54,
+        "post_utterance_latency_ms_p50": 33.634,
+        "post_utterance_latency_ms_p95": 57.45,
+        "end_to_end_latency_ms_p50": 2728.3,
+        "llm_tokens_total": 0,
+        "context_tokens_est_total": 3391,
+        "telemetry_coverage": 1.0,
+        "useful_early_retrieval_rate": 0.6875,
+        "useful_early_successes": 11,
+        "useful_early_ci95": [
+          0.444,
+          0.8584
+        ],
+        "useful_early_group_bootstrap_ci95": [
+          0.4375,
+          0.875
+        ],
+        "probe_computations": 95,
+        "probe_cache_hits": 22,
+        "shadow_retrievals": 19,
+        "full_searches": 77,
+        "reused_full_searches": 0,
+        "duplicate_retrievals_avoided": 0,
+        "evidence_cache_hits": 0,
+        "full_searches_by_trigger": {
+          "EARLY": 21,
+          "END_OF_UTTERANCE": 17,
+          "REFINE": 13,
+          "DELTA": 7
+        },
+        "retrievals_per_information_need": 1.9615,
+        "first_useful_evidence_latency_ms_mean": 9.0,
+        "first_useful_evidence_latencies_ms": [
+          8.224,
+          11.111,
+          8.367,
+          8.822,
+          8.499,
+          8.435,
+          8.08,
+          10.246,
+          8.724,
+          9.439,
+          9.054
+        ],
+        "retrieval_latency_ms_p50": 8.902,
+        "intent_level_useful_early_retrieval_rate": 0.6875,
+        "end_of_utterance_correctness": 0.9444,
+        "evaluation_sample_count": 16,
+        "operation_counts": {
+          "BM25_PROBE": 95,
+          "DENSE_QUERY_ENCODING": 77,
+          "EFIS_FOOTPRINT_SEARCH": 51,
+          "SHADOW_RETRIEVAL": 19,
+          "SPECULATIVE_FULL_RETRIEVAL": 0,
+          "PROMOTED_FULL_RETRIEVAL": 21,
+          "DELTA_REFINEMENT": 7,
+          "FINAL_RETRIEVAL": 17,
+          "CACHE_HIT": 22
+        },
+        "intent_gate_diagnostics": {
+          "intent_ready_rows": 71,
+          "intent_ready_but_stability_blocked": 6,
+          "guarded_bypass_decisions": 9
+        },
+        "latency_components_ms_mean": {
+          "dedup_ms": 8.1387,
+          "dense_ms": 0.9491,
+          "fusion_ms": 0.0323,
+          "rerank_ms": 0.4174,
+          "sparse_ms": 0.21
+        },
+        "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+        "wall_s": 4.258
+      },
+      "validation": {
+        "coverage": 1.0,
+        "instances": 1055,
+        "passed": 1055,
+        "per_invariant": {
+          "I1": {
+            "checked": 35,
+            "passed": 35
+          },
+          "I2": {
+            "checked": 58,
+            "passed": 58
+          },
+          "I3": {
+            "checked": 61,
+            "passed": 61
+          },
+          "I4": {
+            "checked": 61,
+            "passed": 61
+          },
+          "I5": {
+            "checked": 5,
+            "passed": 5
+          },
+          "I6": {
+            "checked": 835,
+            "passed": 835
+          }
+        }
+      }
+    },
+    "P6_evidence_reuse": {
+      "variant": "P6_evidence_reuse",
+      "overrides": {
+        "controller.policy_variant": "P6_evidence_reuse",
+        "controller.evidence_reuse.enabled": true
+      },
+      "metrics": {
+        "early_retrieval_rate": 0.6875,
+        "eligible_utterances": 16,
+        "retrieval_lead_s_median": 1.885,
+        "evidence_survival_rate": 0.7333,
+        "premature_retrieval_rate": 0.2963,
+        "false_retrieval_rate": 0.0,
+        "unnecessary_retrieval_count": 0,
+        "elaborate_suppression_rate": 1.0,
+        "turn_classification_accuracy": 1.0,
+        "intent_precision": 0.8947,
+        "intent_recall": 0.9444,
+        "intent_count_accuracy": 0.8846,
+        "gold_section_mrr": 0.8565,
+        "abstention_accuracy": 1.0,
+        "grounded_claim_rate": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "claims_judged": 46,
+        "fabricated_doc_ids": 0,
+        "delta_retrieval_ratio": 0.7,
+        "refinement_correctness": 1.0,
+        "unnecessary_claim_churn": 0,
+        "update_retrievals": 7,
+        "full_restart_retrievals": 11,
+        "update_context_tokens_est": 483,
+        "full_restart_context_tokens_est": 893,
+        "retrieval_latency_ms_mean": 9.477,
+        "retrieval_latency_ms_p95": 19.516,
+        "post_utterance_latency_ms_p50": 31.476,
+        "post_utterance_latency_ms_p95": 57.854,
+        "end_to_end_latency_ms_p50": 2735.1,
+        "llm_tokens_total": 0,
+        "context_tokens_est_total": 3391,
+        "telemetry_coverage": 1.0,
+        "useful_early_retrieval_rate": 0.6875,
+        "useful_early_successes": 11,
+        "useful_early_ci95": [
+          0.444,
+          0.8584
+        ],
+        "useful_early_group_bootstrap_ci95": [
+          0.4375,
+          0.875
+        ],
+        "probe_computations": 95,
+        "probe_cache_hits": 22,
+        "shadow_retrievals": 19,
+        "full_searches": 65,
+        "reused_full_searches": 12,
+        "duplicate_retrievals_avoided": 12,
+        "evidence_cache_hits": 12,
+        "full_searches_by_trigger": {
+          "EARLY": 21,
+          "END_OF_UTTERANCE": 17,
+          "REFINE": 13,
+          "DELTA": 7
+        },
+        "retrievals_per_information_need": 1.9615,
+        "first_useful_evidence_latency_ms_mean": 11.038,
+        "first_useful_evidence_latencies_ms": [
+          9.395,
+          21.054,
+          9.268,
+          8.742,
+          11.117,
+          10.15,
+          8.548,
+          9.523,
+          13.4,
+          11.191,
+          9.026
+        ],
+        "retrieval_latency_ms_p50": 9.731,
+        "intent_level_useful_early_retrieval_rate": 0.6875,
+        "end_of_utterance_correctness": 0.9444,
+        "evaluation_sample_count": 16,
+        "operation_counts": {
+          "BM25_PROBE": 95,
+          "DENSE_QUERY_ENCODING": 65,
+          "EFIS_FOOTPRINT_SEARCH": 51,
+          "SHADOW_RETRIEVAL": 19,
+          "SPECULATIVE_FULL_RETRIEVAL": 0,
+          "PROMOTED_FULL_RETRIEVAL": 21,
+          "DELTA_REFINEMENT": 7,
+          "FINAL_RETRIEVAL": 17,
+          "CACHE_HIT": 34
+        },
+        "intent_gate_diagnostics": {
+          "intent_ready_rows": 0,
+          "intent_ready_but_stability_blocked": 0,
+          "guarded_bypass_decisions": 0
+        },
+        "latency_components_ms_mean": {
+          "dedup_ms": 8.6446,
+          "dense_ms": 1.3397,
+          "fusion_ms": 0.0349,
+          "rerank_ms": 0.4063,
+          "sparse_ms": 0.2505
+        },
+        "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+        "wall_s": 4.324
+      },
+      "validation": {
+        "coverage": 1.0,
+        "instances": 1055,
+        "passed": 1055,
+        "per_invariant": {
+          "I1": {
+            "checked": 35,
+            "passed": 35
+          },
+          "I2": {
+            "checked": 58,
+            "passed": 58
+          },
+          "I3": {
+            "checked": 61,
+            "passed": 61
+          },
+          "I4": {
+            "checked": 61,
+            "passed": 61
+          },
+          "I5": {
+            "checked": 5,
+            "passed": 5
+          },
+          "I6": {
+            "checked": 835,
+            "passed": 835
+          }
+        }
+      }
+    },
+    "P7_calibrated_reuse": {
+      "variant": "P7_calibrated_reuse",
+      "overrides": {
+        "controller.policy_variant": "P7_calibrated_reuse",
+        "controller.stability_model": "models/controller_v2_2/M4_calibrated_logistic.json",
+        "controller.evidence_reuse.enabled": true
+      },
+      "metrics": {
+        "early_retrieval_rate": 0.0,
+        "eligible_utterances": 16,
+        "retrieval_lead_s_median": null,
+        "evidence_survival_rate": null,
+        "premature_retrieval_rate": null,
+        "false_retrieval_rate": 0.0,
+        "unnecessary_retrieval_count": 0,
+        "elaborate_suppression_rate": 1.0,
+        "turn_classification_accuracy": 1.0,
+        "intent_precision": 0.8947,
+        "intent_recall": 0.9444,
+        "intent_count_accuracy": 0.8846,
+        "gold_section_mrr": 0.8704,
+        "abstention_accuracy": 1.0,
+        "grounded_claim_rate": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "claims_judged": 47,
+        "fabricated_doc_ids": 0,
+        "delta_retrieval_ratio": 0.7,
+        "refinement_correctness": 1.0,
+        "unnecessary_claim_churn": 0,
+        "update_retrievals": 7,
+        "full_restart_retrievals": 11,
+        "update_context_tokens_est": 483,
+        "full_restart_context_tokens_est": 893,
+        "retrieval_latency_ms_mean": 13.32,
+        "retrieval_latency_ms_p95": 22.021,
+        "post_utterance_latency_ms_p50": 37.859,
+        "post_utterance_latency_ms_p95": 73.91,
+        "end_to_end_latency_ms_p50": 2740.3,
+        "llm_tokens_total": 0,
+        "context_tokens_est_total": 3411,
+        "telemetry_coverage": 1.0,
+        "useful_early_retrieval_rate": 0.0,
+        "useful_early_successes": 0,
+        "useful_early_ci95": [
+          0.0,
+          0.1936
+        ],
+        "useful_early_group_bootstrap_ci95": [
+          0.0,
+          0.0
+        ],
+        "probe_computations": 95,
+        "probe_cache_hits": 22,
+        "shadow_retrievals": 0,
+        "full_searches": 45,
+        "reused_full_searches": 0,
+        "duplicate_retrievals_avoided": 0,
+        "evidence_cache_hits": 0,
+        "full_searches_by_trigger": {
+          "EARLY": 0,
+          "END_OF_UTTERANCE": 38,
+          "REFINE": 0,
+          "DELTA": 7
+        },
+        "retrievals_per_information_need": 1.4615,
+        "first_useful_evidence_latency_ms_mean": null,
+        "first_useful_evidence_latencies_ms": [],
+        "retrieval_latency_ms_p50": 11.603,
+        "intent_level_useful_early_retrieval_rate": 0.0,
+        "end_of_utterance_correctness": 0.9444,
+        "evaluation_sample_count": 16,
+        "operation_counts": {
+          "BM25_PROBE": 95,
+          "DENSE_QUERY_ENCODING": 45,
+          "EFIS_FOOTPRINT_SEARCH": 38,
+          "SHADOW_RETRIEVAL": 0,
+          "SPECULATIVE_FULL_RETRIEVAL": 0,
+          "PROMOTED_FULL_RETRIEVAL": 0,
+          "DELTA_REFINEMENT": 7,
+          "FINAL_RETRIEVAL": 38,
+          "CACHE_HIT": 22
+        },
+        "intent_gate_diagnostics": {
+          "intent_ready_rows": 71,
+          "intent_ready_but_stability_blocked": 33,
+          "guarded_bypass_decisions": 0
+        },
+        "latency_components_ms_mean": {
+          "dedup_ms": 9.685,
+          "dense_ms": 1.9679,
+          "fusion_ms": 0.0336,
+          "rerank_ms": 0.4204,
+          "sparse_ms": 0.2735
+        },
+        "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+        "wall_s": 3.686
+      },
+      "validation": {
+        "coverage": 1.0,
+        "instances": 978,
+        "passed": 978,
+        "per_invariant": {
+          "I1": {
+            "checked": 35,
+            "passed": 35
+          },
+          "I2": {
+            "checked": 45,
+            "passed": 45
+          },
+          "I3": {
+            "checked": 62,
+            "passed": 62
+          },
+          "I4": {
+            "checked": 62,
+            "passed": 62
+          },
+          "I5": {
+            "checked": 5,
+            "passed": 5
+          },
+          "I6": {
+            "checked": 769,
+            "passed": 769
+          }
+        }
+      }
+    },
+    "P8_calibrated_cold_reuse": {
+      "variant": "P8_calibrated_cold_reuse",
+      "overrides": {
+        "controller.policy_variant": "P8_calibrated_cold_reuse",
+        "controller.stability_model": "models/controller_v2_2/M4_calibrated_logistic.json",
+        "controller.cold_start.enabled": true,
+        "controller.cold_start.variant": "CS4_calibrated_reuse",
+        "controller.evidence_reuse.enabled": true,
+        "controller.cold_start.calibration.enabled": false,
+        "controller.cold_start.calibration.method": "identity",
+        "controller.cold_start.calibration.slope": 1.0,
+        "controller.cold_start.calibration.intercept": 0.0
+      },
+      "metrics": {
+        "early_retrieval_rate": 0.5625,
+        "eligible_utterances": 16,
+        "retrieval_lead_s_median": 2.285,
+        "evidence_survival_rate": 0.6824,
+        "premature_retrieval_rate": 0.2941,
+        "false_retrieval_rate": 0.0,
+        "unnecessary_retrieval_count": 0,
+        "elaborate_suppression_rate": 1.0,
+        "turn_classification_accuracy": 1.0,
+        "intent_precision": 0.8947,
+        "intent_recall": 0.9444,
+        "intent_count_accuracy": 0.8846,
+        "gold_section_mrr": 0.8565,
+        "abstention_accuracy": 1.0,
+        "grounded_claim_rate": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "claims_judged": 47,
+        "fabricated_doc_ids": 0,
+        "delta_retrieval_ratio": 0.7,
+        "refinement_correctness": 1.0,
+        "unnecessary_claim_churn": 0,
+        "update_retrievals": 7,
+        "full_restart_retrievals": 11,
+        "update_context_tokens_est": 483,
+        "full_restart_context_tokens_est": 893,
+        "retrieval_latency_ms_mean": 10.238,
+        "retrieval_latency_ms_p95": 20.96,
+        "post_utterance_latency_ms_p50": 37.933,
+        "post_utterance_latency_ms_p95": 62.815,
+        "end_to_end_latency_ms_p50": 2730.9,
+        "llm_tokens_total": 0,
+        "context_tokens_est_total": 3411,
+        "telemetry_coverage": 1.0,
+        "useful_early_retrieval_rate": 0.5625,
+        "useful_early_successes": 9,
+        "useful_early_ci95": [
+          0.3318,
+          0.769
+        ],
+        "useful_early_group_bootstrap_ci95": [
+          0.3125,
+          0.8125
+        ],
+        "probe_computations": 95,
+        "probe_cache_hits": 22,
+        "shadow_retrievals": 19,
+        "full_searches": 64,
+        "reused_full_searches": 10,
+        "duplicate_retrievals_avoided": 15,
+        "evidence_cache_hits": 10,
+        "full_searches_by_trigger": {
+          "EARLY": 15,
+          "END_OF_UTTERANCE": 23,
+          "REFINE": 10,
+          "DELTA": 7
+        },
+        "retrievals_per_information_need": 1.8462,
+        "first_useful_evidence_latency_ms_mean": 10.368,
+        "first_useful_evidence_latencies_ms": [
+          9.177,
+          11.023,
+          12.092,
+          12.767,
+          8.808,
+          8.908,
+          9.578,
+          9.239,
+          11.718
+        ],
+        "retrieval_latency_ms_p50": 10.135,
+        "intent_level_useful_early_retrieval_rate": 0.5625,
+        "end_of_utterance_correctness": 0.9444,
+        "evaluation_sample_count": 16,
+        "operation_counts": {
+          "BM25_PROBE": 95,
+          "DENSE_QUERY_ENCODING": 64,
+          "EFIS_FOOTPRINT_SEARCH": 48,
+          "SHADOW_RETRIEVAL": 19,
+          "SPECULATIVE_FULL_RETRIEVAL": 0,
+          "PROMOTED_FULL_RETRIEVAL": 15,
+          "DELTA_REFINEMENT": 7,
+          "FINAL_RETRIEVAL": 23,
+          "CACHE_HIT": 32
+        },
+        "intent_gate_diagnostics": {
+          "intent_ready_rows": 71,
+          "intent_ready_but_stability_blocked": 14,
+          "guarded_bypass_decisions": 0
+        },
+        "latency_components_ms_mean": {
+          "dedup_ms": 8.7694,
+          "dense_ms": 1.8271,
+          "fusion_ms": 0.0335,
+          "rerank_ms": 0.4567,
+          "sparse_ms": 0.2165
+        },
+        "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+        "wall_s": 4.456
+      },
+      "validation": {
+        "coverage": 1.0,
+        "instances": 1038,
+        "passed": 1038,
+        "per_invariant": {
+          "I1": {
+            "checked": 35,
+            "passed": 35
+          },
+          "I2": {
+            "checked": 55,
+            "passed": 55
+          },
+          "I3": {
+            "checked": 62,
+            "passed": 62
+          },
+          "I4": {
+            "checked": 62,
+            "passed": 62
+          },
+          "I5": {
+            "checked": 5,
+            "passed": 5
+          },
+          "I6": {
+            "checked": 819,
+            "passed": 819
+          }
+        }
+      }
+    },
+    "P9_calibrated_intent": {
+      "variant": "P9_calibrated_intent",
+      "overrides": {
+        "controller.policy_variant": "P9_calibrated_intent",
+        "controller.stability_model": "models/controller_v2_2/M4_calibrated_logistic.json",
+        "controller.intent_completion.enabled": true,
+        "controller.intent_completion.guarded_first_observation_bypass": true
+      },
+      "metrics": {
+        "early_retrieval_rate": 0.0,
+        "eligible_utterances": 16,
+        "retrieval_lead_s_median": null,
+        "evidence_survival_rate": null,
+        "premature_retrieval_rate": null,
+        "false_retrieval_rate": 0.0,
+        "unnecessary_retrieval_count": 0,
+        "elaborate_suppression_rate": 1.0,
+        "turn_classification_accuracy": 1.0,
+        "intent_precision": 0.8947,
+        "intent_recall": 0.9444,
+        "intent_count_accuracy": 0.8846,
+        "gold_section_mrr": 0.8704,
+        "abstention_accuracy": 1.0,
+        "grounded_claim_rate": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "claims_judged": 47,
+        "fabricated_doc_ids": 0,
+        "delta_retrieval_ratio": 0.7,
+        "refinement_correctness": 1.0,
+        "unnecessary_claim_churn": 0,
+        "update_retrievals": 7,
+        "full_restart_retrievals": 11,
+        "update_context_tokens_est": 483,
+        "full_restart_context_tokens_est": 893,
+        "retrieval_latency_ms_mean": 12.056,
+        "retrieval_latency_ms_p95": 20.546,
+        "post_utterance_latency_ms_p50": 37.079,
+        "post_utterance_latency_ms_p95": 69.863,
+        "end_to_end_latency_ms_p50": 2738.8,
+        "llm_tokens_total": 0,
+        "context_tokens_est_total": 3411,
+        "telemetry_coverage": 1.0,
+        "useful_early_retrieval_rate": 0.0,
+        "useful_early_successes": 0,
+        "useful_early_ci95": [
+          0.0,
+          0.1936
+        ],
+        "useful_early_group_bootstrap_ci95": [
+          0.0,
+          0.0
+        ],
+        "probe_computations": 95,
+        "probe_cache_hits": 22,
+        "shadow_retrievals": 0,
+        "full_searches": 45,
+        "reused_full_searches": 0,
+        "duplicate_retrievals_avoided": 0,
+        "evidence_cache_hits": 0,
+        "full_searches_by_trigger": {
+          "EARLY": 0,
+          "END_OF_UTTERANCE": 38,
+          "REFINE": 0,
+          "DELTA": 7
+        },
+        "retrievals_per_information_need": 1.4615,
+        "first_useful_evidence_latency_ms_mean": null,
+        "first_useful_evidence_latencies_ms": [],
+        "retrieval_latency_ms_p50": 10.795,
+        "intent_level_useful_early_retrieval_rate": 0.0,
+        "end_of_utterance_correctness": 0.9444,
+        "evaluation_sample_count": 16,
+        "operation_counts": {
+          "BM25_PROBE": 95,
+          "DENSE_QUERY_ENCODING": 45,
+          "EFIS_FOOTPRINT_SEARCH": 38,
+          "SHADOW_RETRIEVAL": 0,
+          "SPECULATIVE_FULL_RETRIEVAL": 0,
+          "PROMOTED_FULL_RETRIEVAL": 0,
+          "DELTA_REFINEMENT": 7,
+          "FINAL_RETRIEVAL": 38,
+          "CACHE_HIT": 22
+        },
+        "intent_gate_diagnostics": {
+          "intent_ready_rows": 71,
+          "intent_ready_but_stability_blocked": 33,
+          "guarded_bypass_decisions": 0
+        },
+        "latency_components_ms_mean": {
+          "dedup_ms": 8.7214,
+          "dense_ms": 2.1369,
+          "fusion_ms": 0.0338,
+          "rerank_ms": 0.4445,
+          "sparse_ms": 0.2469
+        },
+        "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+        "wall_s": 3.529
+      },
+      "validation": {
+        "coverage": 1.0,
+        "instances": 978,
+        "passed": 978,
+        "per_invariant": {
+          "I1": {
+            "checked": 35,
+            "passed": 35
+          },
+          "I2": {
+            "checked": 45,
+            "passed": 45
+          },
+          "I3": {
+            "checked": 62,
+            "passed": 62
+          },
+          "I4": {
+            "checked": 62,
+            "passed": 62
+          },
+          "I5": {
+            "checked": 5,
+            "passed": 5
+          },
+          "I6": {
+            "checked": 769,
+            "passed": 769
+          }
+        }
+      }
+    },
+    "P10_cold_intent_reuse": {
+      "variant": "P10_cold_intent_reuse",
+      "overrides": {
+        "controller.policy_variant": "P10_cold_intent_reuse",
+        "controller.stability_model": "models/controller_v2_2/M4_calibrated_logistic.json",
+        "controller.cold_start.enabled": true,
+        "controller.intent_completion.enabled": true,
+        "controller.intent_completion.guarded_first_observation_bypass": true,
+        "controller.evidence_reuse.enabled": true,
+        "controller.cold_start.calibration.enabled": false,
+        "controller.cold_start.calibration.method": "identity",
+        "controller.cold_start.calibration.slope": 1.0,
+        "controller.cold_start.calibration.intercept": 0.0
+      },
+      "metrics": {
+        "early_retrieval_rate": 0.6875,
+        "eligible_utterances": 16,
+        "retrieval_lead_s_median": 2.285,
+        "evidence_survival_rate": 0.6909,
+        "premature_retrieval_rate": 0.2727,
+        "false_retrieval_rate": 0.0,
+        "unnecessary_retrieval_count": 0,
+        "elaborate_suppression_rate": 1.0,
+        "turn_classification_accuracy": 1.0,
+        "intent_precision": 0.8947,
+        "intent_recall": 0.9444,
+        "intent_count_accuracy": 0.8846,
+        "gold_section_mrr": 0.8565,
+        "abstention_accuracy": 1.0,
+        "grounded_claim_rate": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "claims_judged": 47,
+        "fabricated_doc_ids": 0,
+        "delta_retrieval_ratio": 0.7,
+        "refinement_correctness": 1.0,
+        "unnecessary_claim_churn": 0,
+        "update_retrievals": 7,
+        "full_restart_retrievals": 11,
+        "update_context_tokens_est": 483,
+        "full_restart_context_tokens_est": 893,
+        "retrieval_latency_ms_mean": 8.676,
+        "retrieval_latency_ms_p95": 19.099,
+        "post_utterance_latency_ms_p50": 31.373,
+        "post_utterance_latency_ms_p95": 57.579,
+        "end_to_end_latency_ms_p50": 2728.5,
+        "llm_tokens_total": 0,
+        "context_tokens_est_total": 3411,
+        "telemetry_coverage": 1.0,
+        "useful_early_retrieval_rate": 0.6875,
+        "useful_early_successes": 11,
+        "useful_early_ci95": [
+          0.444,
+          0.8584
+        ],
+        "useful_early_group_bootstrap_ci95": [
+          0.4375,
+          0.875
+        ],
+        "probe_computations": 95,
+        "probe_cache_hits": 22,
+        "shadow_retrievals": 23,
+        "full_searches": 68,
+        "reused_full_searches": 12,
+        "duplicate_retrievals_avoided": 18,
+        "evidence_cache_hits": 12,
+        "full_searches_by_trigger": {
+          "EARLY": 18,
+          "END_OF_UTTERANCE": 20,
+          "REFINE": 12,
+          "DELTA": 7
+        },
+        "retrievals_per_information_need": 1.9231,
+        "first_useful_evidence_latency_ms_mean": 8.521,
+        "first_useful_evidence_latencies_ms": [
+          8.886,
+          10.187,
+          8.943,
+          8.815,
+          8.916,
+          8.019,
+          8.451,
+          8.95,
+          9.293,
+          4.626,
+          8.646
+        ],
+        "retrieval_latency_ms_p50": 8.943,
+        "intent_level_useful_early_retrieval_rate": 0.6875,
+        "end_of_utterance_correctness": 0.9444,
+        "evaluation_sample_count": 16,
+        "operation_counts": {
+          "BM25_PROBE": 95,
+          "DENSE_QUERY_ENCODING": 68,
+          "EFIS_FOOTPRINT_SEARCH": 50,
+          "SHADOW_RETRIEVAL": 23,
+          "SPECULATIVE_FULL_RETRIEVAL": 0,
+          "PROMOTED_FULL_RETRIEVAL": 18,
+          "DELTA_REFINEMENT": 7,
+          "FINAL_RETRIEVAL": 20,
+          "CACHE_HIT": 34
+        },
+        "intent_gate_diagnostics": {
+          "intent_ready_rows": 71,
+          "intent_ready_but_stability_blocked": 11,
+          "guarded_bypass_decisions": 0
+        },
+        "latency_components_ms_mean": {
+          "dedup_ms": 7.9104,
+          "dense_ms": 1.4941,
+          "fusion_ms": 0.0315,
+          "rerank_ms": 0.3773,
+          "sparse_ms": 0.1972
+        },
+        "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+        "wall_s": 4.156
+      },
+      "validation": {
+        "coverage": 1.0,
+        "instances": 1050,
+        "passed": 1050,
+        "per_invariant": {
+          "I1": {
+            "checked": 35,
+            "passed": 35
+          },
+          "I2": {
+            "checked": 57,
+            "passed": 57
+          },
+          "I3": {
+            "checked": 62,
+            "passed": 62
+          },
+          "I4": {
+            "checked": 62,
+            "passed": 62
+          },
+          "I5": {
+            "checked": 5,
+            "passed": 5
+          },
+          "I6": {
+            "checked": 829,
+            "passed": 829
+          }
+        }
+      }
+    },
+    "P11_risk_utility": {
+      "variant": "P11_risk_utility",
+      "overrides": {
+        "controller.policy_variant": "P11_risk_utility",
+        "controller.stability_model": "models/controller_v2_2/M4_calibrated_logistic.json",
+        "controller.evidence_reuse.enabled": true,
+        "controller.utility.enabled": true,
+        "controller.utility.max_predicted_risk": 0.45,
+        "controller.utility.extra_retrieval_cost": 0.03
+      },
+      "metrics": {
+        "early_retrieval_rate": 0.0,
+        "eligible_utterances": 16,
+        "retrieval_lead_s_median": null,
+        "evidence_survival_rate": null,
+        "premature_retrieval_rate": null,
+        "false_retrieval_rate": 0.0,
+        "unnecessary_retrieval_count": 0,
+        "elaborate_suppression_rate": 1.0,
+        "turn_classification_accuracy": 1.0,
+        "intent_precision": 0.8947,
+        "intent_recall": 0.9444,
+        "intent_count_accuracy": 0.8846,
+        "gold_section_mrr": 0.8704,
+        "abstention_accuracy": 1.0,
+        "grounded_claim_rate": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "claims_judged": 47,
+        "fabricated_doc_ids": 0,
+        "delta_retrieval_ratio": 0.7,
+        "refinement_correctness": 1.0,
+        "unnecessary_claim_churn": 0,
+        "update_retrievals": 7,
+        "full_restart_retrievals": 11,
+        "update_context_tokens_est": 483,
+        "full_restart_context_tokens_est": 893,
+        "retrieval_latency_ms_mean": 14.621,
+        "retrieval_latency_ms_p95": 23.786,
+        "post_utterance_latency_ms_p50": 37.119,
+        "post_utterance_latency_ms_p95": 74.154,
+        "end_to_end_latency_ms_p50": 2743.1,
+        "llm_tokens_total": 0,
+        "context_tokens_est_total": 3411,
+        "telemetry_coverage": 1.0,
+        "useful_early_retrieval_rate": 0.0,
+        "useful_early_successes": 0,
+        "useful_early_ci95": [
+          0.0,
+          0.1936
+        ],
+        "useful_early_group_bootstrap_ci95": [
+          0.0,
+          0.0
+        ],
+        "probe_computations": 95,
+        "probe_cache_hits": 22,
+        "shadow_retrievals": 0,
+        "full_searches": 45,
+        "reused_full_searches": 0,
+        "duplicate_retrievals_avoided": 0,
+        "evidence_cache_hits": 0,
+        "full_searches_by_trigger": {
+          "EARLY": 0,
+          "END_OF_UTTERANCE": 38,
+          "REFINE": 0,
+          "DELTA": 7
+        },
+        "retrievals_per_information_need": 1.4615,
+        "first_useful_evidence_latency_ms_mean": null,
+        "first_useful_evidence_latencies_ms": [],
+        "retrieval_latency_ms_p50": 14.165,
+        "intent_level_useful_early_retrieval_rate": 0.0,
+        "end_of_utterance_correctness": 0.9444,
+        "evaluation_sample_count": 16,
+        "operation_counts": {
+          "BM25_PROBE": 95,
+          "DENSE_QUERY_ENCODING": 45,
+          "EFIS_FOOTPRINT_SEARCH": 38,
+          "SHADOW_RETRIEVAL": 0,
+          "SPECULATIVE_FULL_RETRIEVAL": 0,
+          "PROMOTED_FULL_RETRIEVAL": 0,
+          "DELTA_REFINEMENT": 7,
+          "FINAL_RETRIEVAL": 38,
+          "CACHE_HIT": 22
+        },
+        "intent_gate_diagnostics": {
+          "intent_ready_rows": 71,
+          "intent_ready_but_stability_blocked": 33,
+          "guarded_bypass_decisions": 0
+        },
+        "latency_components_ms_mean": {
+          "dedup_ms": 11.3542,
+          "dense_ms": 1.5314,
+          "fusion_ms": 0.0305,
+          "rerank_ms": 0.4029,
+          "sparse_ms": 0.2851
+        },
+        "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+        "wall_s": 3.612
+      },
+      "validation": {
+        "coverage": 1.0,
+        "instances": 978,
+        "passed": 978,
+        "per_invariant": {
+          "I1": {
+            "checked": 35,
+            "passed": 35
+          },
+          "I2": {
+            "checked": 45,
+            "passed": 45
+          },
+          "I3": {
+            "checked": 62,
+            "passed": 62
+          },
+          "I4": {
+            "checked": 62,
+            "passed": 62
+          },
+          "I5": {
+            "checked": 5,
+            "passed": 5
+          },
+          "I6": {
+            "checked": 769,
+            "passed": 769
+          }
+        }
+      }
+    },
+    "P12_measured_latency": {
+      "variant": "P12_measured_latency",
+      "overrides": {
+        "controller.policy_variant": "P12_measured_latency",
+        "controller.stability_model": "models/controller_v2_2/M4_calibrated_logistic.json",
+        "controller.evidence_reuse.enabled": true,
+        "controller.adapt_latency": true,
+        "controller.pipeline_latency_prior_s": 0.02
+      },
+      "metrics": {
+        "early_retrieval_rate": 0.0,
+        "eligible_utterances": 16,
+        "retrieval_lead_s_median": null,
+        "evidence_survival_rate": null,
+        "premature_retrieval_rate": null,
+        "false_retrieval_rate": 0.0,
+        "unnecessary_retrieval_count": 0,
+        "elaborate_suppression_rate": 1.0,
+        "turn_classification_accuracy": 1.0,
+        "intent_precision": 0.8947,
+        "intent_recall": 0.9444,
+        "intent_count_accuracy": 0.8846,
+        "gold_section_mrr": 0.8704,
+        "abstention_accuracy": 1.0,
+        "grounded_claim_rate": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "claims_judged": 47,
+        "fabricated_doc_ids": 0,
+        "delta_retrieval_ratio": 0.7,
+        "refinement_correctness": 1.0,
+        "unnecessary_claim_churn": 0,
+        "update_retrievals": 7,
+        "full_restart_retrievals": 11,
+        "update_context_tokens_est": 483,
+        "full_restart_context_tokens_est": 893,
+        "retrieval_latency_ms_mean": 13.851,
+        "retrieval_latency_ms_p95": 23.872,
+        "post_utterance_latency_ms_p50": 34.44,
+        "post_utterance_latency_ms_p95": 77.391,
+        "end_to_end_latency_ms_p50": 2734.6,
+        "llm_tokens_total": 0,
+        "context_tokens_est_total": 3411,
+        "telemetry_coverage": 1.0,
+        "useful_early_retrieval_rate": 0.0,
+        "useful_early_successes": 0,
+        "useful_early_ci95": [
+          0.0,
+          0.1936
+        ],
+        "useful_early_group_bootstrap_ci95": [
+          0.0,
+          0.0
+        ],
+        "probe_computations": 95,
+        "probe_cache_hits": 22,
+        "shadow_retrievals": 0,
+        "full_searches": 45,
+        "reused_full_searches": 0,
+        "duplicate_retrievals_avoided": 0,
+        "evidence_cache_hits": 0,
+        "full_searches_by_trigger": {
+          "EARLY": 0,
+          "END_OF_UTTERANCE": 38,
+          "REFINE": 0,
+          "DELTA": 7
+        },
+        "retrievals_per_information_need": 1.4615,
+        "first_useful_evidence_latency_ms_mean": null,
+        "first_useful_evidence_latencies_ms": [],
+        "retrieval_latency_ms_p50": 11.376,
+        "intent_level_useful_early_retrieval_rate": 0.0,
+        "end_of_utterance_correctness": 0.9444,
+        "evaluation_sample_count": 16,
+        "operation_counts": {
+          "BM25_PROBE": 95,
+          "DENSE_QUERY_ENCODING": 45,
+          "EFIS_FOOTPRINT_SEARCH": 38,
+          "SHADOW_RETRIEVAL": 0,
+          "SPECULATIVE_FULL_RETRIEVAL": 0,
+          "PROMOTED_FULL_RETRIEVAL": 0,
+          "DELTA_REFINEMENT": 7,
+          "FINAL_RETRIEVAL": 38,
+          "CACHE_HIT": 22
+        },
+        "intent_gate_diagnostics": {
+          "intent_ready_rows": 71,
+          "intent_ready_but_stability_blocked": 33,
+          "guarded_bypass_decisions": 0
+        },
+        "latency_components_ms_mean": {
+          "dedup_ms": 10.428,
+          "dense_ms": 1.775,
+          "fusion_ms": 0.0317,
+          "rerank_ms": 0.3999,
+          "sparse_ms": 0.2611
+        },
+        "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+        "wall_s": 3.53
+      },
+      "validation": {
+        "coverage": 1.0,
+        "instances": 978,
+        "passed": 978,
+        "per_invariant": {
+          "I1": {
+            "checked": 35,
+            "passed": 35
+          },
+          "I2": {
+            "checked": 45,
+            "passed": 45
+          },
+          "I3": {
+            "checked": 62,
+            "passed": 62
+          },
+          "I4": {
+            "checked": 62,
+            "passed": 62
+          },
+          "I5": {
+            "checked": 5,
+            "passed": 5
+          },
+          "I6": {
+            "checked": 769,
+            "passed": 769
+          }
+        }
+      }
+    }
+  },
+  "cold_start_ablation": {
+    "CS0_original_heuristic": {
+      "overrides": {
+        "controller.policy_variant": "CS0_original_heuristic",
+        "controller.cold_start.enabled": true,
+        "controller.cold_start.variant": "CS0_original_heuristic"
+      },
+      "metrics": {
+        "early_retrieval_rate": 0.75,
+        "eligible_utterances": 16,
+        "retrieval_lead_s_median": 1.987,
+        "evidence_survival_rate": 0.697,
+        "premature_retrieval_rate": 0.303,
+        "false_retrieval_rate": 0.0,
+        "unnecessary_retrieval_count": 0,
+        "elaborate_suppression_rate": 1.0,
+        "turn_classification_accuracy": 1.0,
+        "intent_precision": 0.8947,
+        "intent_recall": 0.9444,
+        "intent_count_accuracy": 0.8846,
+        "gold_section_mrr": 0.8565,
+        "abstention_accuracy": 1.0,
+        "grounded_claim_rate": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "claims_judged": 46,
+        "fabricated_doc_ids": 0,
+        "delta_retrieval_ratio": 0.7,
+        "refinement_correctness": 1.0,
+        "unnecessary_claim_churn": 0,
+        "update_retrievals": 7,
+        "full_restart_retrievals": 11,
+        "update_context_tokens_est": 483,
+        "full_restart_context_tokens_est": 893,
+        "retrieval_latency_ms_mean": 9.87,
+        "retrieval_latency_ms_p95": 18.435,
+        "post_utterance_latency_ms_p50": 33.209,
+        "post_utterance_latency_ms_p95": 53.637,
+        "end_to_end_latency_ms_p50": 2728.4,
+        "llm_tokens_total": 0,
+        "context_tokens_est_total": 3391,
+        "telemetry_coverage": 1.0,
+        "useful_early_retrieval_rate": 0.75,
+        "useful_early_successes": 12,
+        "useful_early_ci95": [
+          0.505,
+          0.8982
+        ],
+        "useful_early_group_bootstrap_ci95": [
+          0.5,
+          0.9375
+        ],
+        "probe_computations": 95,
+        "probe_cache_hits": 22,
+        "shadow_retrievals": 28,
+        "full_searches": 91,
+        "reused_full_searches": 0,
+        "duplicate_retrievals_avoided": 0,
+        "evidence_cache_hits": 0,
+        "full_searches_by_trigger": {
+          "EARLY": 24,
+          "END_OF_UTTERANCE": 14,
+          "REFINE": 18,
+          "DELTA": 7
+        },
+        "retrievals_per_information_need": 2.1538,
+        "first_useful_evidence_latency_ms_mean": 8.522,
+        "first_useful_evidence_latencies_ms": [
+          8.731,
+          17.944,
+          8.535,
+          8.297,
+          8.02,
+          7.678,
+          7.714,
+          7.73,
+          7.704,
+          7.351,
+          8.65,
+          3.913
+        ],
+        "retrieval_latency_ms_p50": 8.748,
+        "intent_level_useful_early_retrieval_rate": 0.75,
+        "end_of_utterance_correctness": 0.9444,
+        "evaluation_sample_count": 16,
+        "operation_counts": {
+          "BM25_PROBE": 95,
+          "DENSE_QUERY_ENCODING": 91,
+          "EFIS_FOOTPRINT_SEARCH": 56,
+          "SHADOW_RETRIEVAL": 28,
+          "SPECULATIVE_FULL_RETRIEVAL": 0,
+          "PROMOTED_FULL_RETRIEVAL": 24,
+          "DELTA_REFINEMENT": 7,
+          "FINAL_RETRIEVAL": 14,
+          "CACHE_HIT": 22
+        },
+        "intent_gate_diagnostics": {
+          "intent_ready_rows": 0,
+          "intent_ready_but_stability_blocked": 0,
+          "guarded_bypass_decisions": 0
+        },
+        "latency_components_ms_mean": {
+          "dedup_ms": 7.8797,
+          "dense_ms": 0.972,
+          "fusion_ms": 0.033,
+          "rerank_ms": 0.362,
+          "sparse_ms": 0.2039
+        },
+        "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+        "wall_s": 4.21
+      },
+      "calibration_supported": null
+    },
+    "CS1_constraint_aware": {
+      "overrides": {
+        "controller.policy_variant": "CS1_constraint_aware",
+        "controller.cold_start.enabled": true,
+        "controller.cold_start.variant": "CS1_constraint_aware"
+      },
+      "metrics": {
+        "early_retrieval_rate": 0.75,
+        "eligible_utterances": 16,
+        "retrieval_lead_s_median": 1.986,
+        "evidence_survival_rate": 0.7097,
+        "premature_retrieval_rate": 0.2903,
+        "false_retrieval_rate": 0.0,
+        "unnecessary_retrieval_count": 0,
+        "elaborate_suppression_rate": 1.0,
+        "turn_classification_accuracy": 1.0,
+        "intent_precision": 0.8947,
+        "intent_recall": 0.9444,
+        "intent_count_accuracy": 0.8846,
+        "gold_section_mrr": 0.8565,
+        "abstention_accuracy": 1.0,
+        "grounded_claim_rate": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "claims_judged": 46,
+        "fabricated_doc_ids": 0,
+        "delta_retrieval_ratio": 0.7,
+        "refinement_correctness": 1.0,
+        "unnecessary_claim_churn": 0,
+        "update_retrievals": 7,
+        "full_restart_retrievals": 11,
+        "update_context_tokens_est": 483,
+        "full_restart_context_tokens_est": 893,
+        "retrieval_latency_ms_mean": 10.867,
+        "retrieval_latency_ms_p95": 19.793,
+        "post_utterance_latency_ms_p50": 35.726,
+        "post_utterance_latency_ms_p95": 54.791,
+        "end_to_end_latency_ms_p50": 2736.4,
+        "llm_tokens_total": 0,
+        "context_tokens_est_total": 3391,
+        "telemetry_coverage": 1.0,
+        "useful_early_retrieval_rate": 0.75,
+        "useful_early_successes": 12,
+        "useful_early_ci95": [
+          0.505,
+          0.8982
+        ],
+        "useful_early_group_bootstrap_ci95": [
+          0.5,
+          0.9375
+        ],
+        "probe_computations": 95,
+        "probe_cache_hits": 22,
+        "shadow_retrievals": 26,
+        "full_searches": 87,
+        "reused_full_searches": 0,
+        "duplicate_retrievals_avoided": 0,
+        "evidence_cache_hits": 0,
+        "full_searches_by_trigger": {
+          "EARLY": 24,
+          "END_OF_UTTERANCE": 14,
+          "REFINE": 16,
+          "DELTA": 7
+        },
+        "retrievals_per_information_need": 2.0769,
+        "first_useful_evidence_latency_ms_mean": 9.412,
+        "first_useful_evidence_latencies_ms": [
+          8.017,
+          19.793,
+          9.917,
+          8.158,
+          8.289,
+          7.881,
+          8.681,
+          8.123,
+          8.333,
+          8.673,
+          8.128,
+          8.945
+        ],
+        "retrieval_latency_ms_p50": 9.062,
+        "intent_level_useful_early_retrieval_rate": 0.75,
+        "end_of_utterance_correctness": 0.9444,
+        "evaluation_sample_count": 16,
+        "operation_counts": {
+          "BM25_PROBE": 95,
+          "DENSE_QUERY_ENCODING": 87,
+          "EFIS_FOOTPRINT_SEARCH": 54,
+          "SHADOW_RETRIEVAL": 26,
+          "SPECULATIVE_FULL_RETRIEVAL": 0,
+          "PROMOTED_FULL_RETRIEVAL": 24,
+          "DELTA_REFINEMENT": 7,
+          "FINAL_RETRIEVAL": 14,
+          "CACHE_HIT": 22
+        },
+        "intent_gate_diagnostics": {
+          "intent_ready_rows": 0,
+          "intent_ready_but_stability_blocked": 0,
+          "guarded_bypass_decisions": 0
+        },
+        "latency_components_ms_mean": {
+          "dedup_ms": 8.9835,
+          "dense_ms": 0.8716,
+          "fusion_ms": 0.0285,
+          "rerank_ms": 0.408,
+          "sparse_ms": 0.1945
+        },
+        "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+        "wall_s": 4.397
+      },
+      "calibration_supported": null
+    },
+    "CS2_calibrated": {
+      "overrides": {
+        "controller.policy_variant": "CS2_calibrated",
+        "controller.cold_start.enabled": true,
+        "controller.cold_start.variant": "CS2_calibrated",
+        "controller.cold_start.calibration.enabled": false,
+        "controller.cold_start.calibration.method": "identity",
+        "controller.cold_start.calibration.slope": 1.0,
+        "controller.cold_start.calibration.intercept": 0.0
+      },
+      "metrics": {
+        "early_retrieval_rate": 0.75,
+        "eligible_utterances": 16,
+        "retrieval_lead_s_median": 1.987,
+        "evidence_survival_rate": 0.7097,
+        "premature_retrieval_rate": 0.2903,
+        "false_retrieval_rate": 0.0,
+        "unnecessary_retrieval_count": 0,
+        "elaborate_suppression_rate": 1.0,
+        "turn_classification_accuracy": 1.0,
+        "intent_precision": 0.8947,
+        "intent_recall": 0.9444,
+        "intent_count_accuracy": 0.8846,
+        "gold_section_mrr": 0.8565,
+        "abstention_accuracy": 1.0,
+        "grounded_claim_rate": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "claims_judged": 46,
+        "fabricated_doc_ids": 0,
+        "delta_retrieval_ratio": 0.7,
+        "refinement_correctness": 1.0,
+        "unnecessary_claim_churn": 0,
+        "update_retrievals": 7,
+        "full_restart_retrievals": 11,
+        "update_context_tokens_est": 483,
+        "full_restart_context_tokens_est": 893,
+        "retrieval_latency_ms_mean": 9.616,
+        "retrieval_latency_ms_p95": 17.856,
+        "post_utterance_latency_ms_p50": 29.483,
+        "post_utterance_latency_ms_p95": 53.232,
+        "end_to_end_latency_ms_p50": 2729.0,
+        "llm_tokens_total": 0,
+        "context_tokens_est_total": 3391,
+        "telemetry_coverage": 1.0,
+        "useful_early_retrieval_rate": 0.75,
+        "useful_early_successes": 12,
+        "useful_early_ci95": [
+          0.505,
+          0.8982
+        ],
+        "useful_early_group_bootstrap_ci95": [
+          0.5,
+          0.9375
+        ],
+        "probe_computations": 95,
+        "probe_cache_hits": 22,
+        "shadow_retrievals": 26,
+        "full_searches": 87,
+        "reused_full_searches": 0,
+        "duplicate_retrievals_avoided": 0,
+        "evidence_cache_hits": 0,
+        "full_searches_by_trigger": {
+          "EARLY": 24,
+          "END_OF_UTTERANCE": 14,
+          "REFINE": 16,
+          "DELTA": 7
+        },
+        "retrievals_per_information_need": 2.0769,
+        "first_useful_evidence_latency_ms_mean": 8.375,
+        "first_useful_evidence_latencies_ms": [
+          8.672,
+          11.661,
+          7.897,
+          8.413,
+          9.212,
+          8.447,
+          9.401,
+          7.833,
+          7.825,
+          8.772,
+          8.411,
+          3.951
+        ],
+        "retrieval_latency_ms_p50": 8.772,
+        "intent_level_useful_early_retrieval_rate": 0.75,
+        "end_of_utterance_correctness": 0.9444,
+        "evaluation_sample_count": 16,
+        "operation_counts": {
+          "BM25_PROBE": 95,
+          "DENSE_QUERY_ENCODING": 87,
+          "EFIS_FOOTPRINT_SEARCH": 54,
+          "SHADOW_RETRIEVAL": 26,
+          "SPECULATIVE_FULL_RETRIEVAL": 0,
+          "PROMOTED_FULL_RETRIEVAL": 24,
+          "DELTA_REFINEMENT": 7,
+          "FINAL_RETRIEVAL": 14,
+          "CACHE_HIT": 22
+        },
+        "intent_gate_diagnostics": {
+          "intent_ready_rows": 0,
+          "intent_ready_but_stability_blocked": 0,
+          "guarded_bypass_decisions": 0
+        },
+        "latency_components_ms_mean": {
+          "dedup_ms": 7.7585,
+          "dense_ms": 0.8544,
+          "fusion_ms": 0.0302,
+          "rerank_ms": 0.3608,
+          "sparse_ms": 0.1973
+        },
+        "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+        "wall_s": 4.245
+      },
+      "calibration_supported": false
+    },
+    "CS3_constraint_reuse": {
+      "overrides": {
+        "controller.policy_variant": "CS3_constraint_reuse",
+        "controller.cold_start.enabled": true,
+        "controller.cold_start.variant": "CS3_constraint_reuse",
+        "controller.evidence_reuse.enabled": true
+      },
+      "metrics": {
+        "early_retrieval_rate": 0.75,
+        "eligible_utterances": 16,
+        "retrieval_lead_s_median": 1.986,
+        "evidence_survival_rate": 0.7097,
+        "premature_retrieval_rate": 0.2903,
+        "false_retrieval_rate": 0.0,
+        "unnecessary_retrieval_count": 0,
+        "elaborate_suppression_rate": 1.0,
+        "turn_classification_accuracy": 1.0,
+        "intent_precision": 0.8947,
+        "intent_recall": 0.9444,
+        "intent_count_accuracy": 0.8846,
+        "gold_section_mrr": 0.8565,
+        "abstention_accuracy": 1.0,
+        "grounded_claim_rate": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "claims_judged": 46,
+        "fabricated_doc_ids": 0,
+        "delta_retrieval_ratio": 0.7,
+        "refinement_correctness": 1.0,
+        "unnecessary_claim_churn": 0,
+        "update_retrievals": 7,
+        "full_restart_retrievals": 11,
+        "update_context_tokens_est": 483,
+        "full_restart_context_tokens_est": 893,
+        "retrieval_latency_ms_mean": 8.726,
+        "retrieval_latency_ms_p95": 18.37,
+        "post_utterance_latency_ms_p50": 32.227,
+        "post_utterance_latency_ms_p95": 55.56,
+        "end_to_end_latency_ms_p50": 2732.5,
+        "llm_tokens_total": 0,
+        "context_tokens_est_total": 3391,
+        "telemetry_coverage": 1.0,
+        "useful_early_retrieval_rate": 0.75,
+        "useful_early_successes": 12,
+        "useful_early_ci95": [
+          0.505,
+          0.8982
+        ],
+        "useful_early_group_bootstrap_ci95": [
+          0.5,
+          0.9375
+        ],
+        "probe_computations": 95,
+        "probe_cache_hits": 22,
+        "shadow_retrievals": 24,
+        "full_searches": 70,
+        "reused_full_searches": 15,
+        "duplicate_retrievals_avoided": 17,
+        "evidence_cache_hits": 15,
+        "full_searches_by_trigger": {
+          "EARLY": 24,
+          "END_OF_UTTERANCE": 14,
+          "REFINE": 16,
+          "DELTA": 7
+        },
+        "retrievals_per_information_need": 2.0769,
+        "first_useful_evidence_latency_ms_mean": 10.259,
+        "first_useful_evidence_latencies_ms": [
+          9.029,
+          20.606,
+          9.372,
+          8.926,
+          8.927,
+          9.33,
+          9.905,
+          8.632,
+          10.588,
+          8.867,
+          9.473,
+          9.452
+        ],
+        "retrieval_latency_ms_p50": 9.372,
+        "intent_level_useful_early_retrieval_rate": 0.75,
+        "end_of_utterance_correctness": 0.9444,
+        "evaluation_sample_count": 16,
+        "operation_counts": {
+          "BM25_PROBE": 95,
+          "DENSE_QUERY_ENCODING": 70,
+          "EFIS_FOOTPRINT_SEARCH": 54,
+          "SHADOW_RETRIEVAL": 24,
+          "SPECULATIVE_FULL_RETRIEVAL": 0,
+          "PROMOTED_FULL_RETRIEVAL": 24,
+          "DELTA_REFINEMENT": 7,
+          "FINAL_RETRIEVAL": 14,
+          "CACHE_HIT": 37
+        },
+        "intent_gate_diagnostics": {
+          "intent_ready_rows": 0,
+          "intent_ready_but_stability_blocked": 0,
+          "guarded_bypass_decisions": 0
+        },
+        "latency_components_ms_mean": {
+          "dedup_ms": 8.408,
+          "dense_ms": 1.3872,
+          "fusion_ms": 0.0322,
+          "rerank_ms": 0.4206,
+          "sparse_ms": 0.2217
+        },
+        "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+        "wall_s": 4.465
+      },
+      "calibration_supported": null
+    },
+    "CS4_calibrated_reuse": {
+      "overrides": {
+        "controller.policy_variant": "CS4_calibrated_reuse",
+        "controller.cold_start.enabled": true,
+        "controller.cold_start.variant": "CS4_calibrated_reuse",
+        "controller.evidence_reuse.enabled": true,
+        "controller.cold_start.calibration.enabled": false,
+        "controller.cold_start.calibration.method": "identity",
+        "controller.cold_start.calibration.slope": 1.0,
+        "controller.cold_start.calibration.intercept": 0.0
+      },
+      "metrics": {
+        "early_retrieval_rate": 0.75,
+        "eligible_utterances": 16,
+        "retrieval_lead_s_median": 1.99,
+        "evidence_survival_rate": 0.7097,
+        "premature_retrieval_rate": 0.2903,
+        "false_retrieval_rate": 0.0,
+        "unnecessary_retrieval_count": 0,
+        "elaborate_suppression_rate": 1.0,
+        "turn_classification_accuracy": 1.0,
+        "intent_precision": 0.8947,
+        "intent_recall": 0.9444,
+        "intent_count_accuracy": 0.8846,
+        "gold_section_mrr": 0.8565,
+        "abstention_accuracy": 1.0,
+        "grounded_claim_rate": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0,
+        "claims_judged": 46,
+        "fabricated_doc_ids": 0,
+        "delta_retrieval_ratio": 0.7,
+        "refinement_correctness": 1.0,
+        "unnecessary_claim_churn": 0,
+        "update_retrievals": 7,
+        "full_restart_retrievals": 11,
+        "update_context_tokens_est": 483,
+        "full_restart_context_tokens_est": 893,
+        "retrieval_latency_ms_mean": 8.731,
+        "retrieval_latency_ms_p95": 19.246,
+        "post_utterance_latency_ms_p50": 30.214,
+        "post_utterance_latency_ms_p95": 54.454,
+        "end_to_end_latency_ms_p50": 2726.9,
+        "llm_tokens_total": 0,
+        "context_tokens_est_total": 3391,
+        "telemetry_coverage": 1.0,
+        "useful_early_retrieval_rate": 0.75,
+        "useful_early_successes": 12,
+        "useful_early_ci95": [
+          0.505,
+          0.8982
+        ],
+        "useful_early_group_bootstrap_ci95": [
+          0.5,
+          0.9375
+        ],
+        "probe_computations": 95,
+        "probe_cache_hits": 22,
+        "shadow_retrievals": 24,
+        "full_searches": 70,
+        "reused_full_searches": 15,
+        "duplicate_retrievals_avoided": 17,
+        "evidence_cache_hits": 15,
+        "full_searches_by_trigger": {
+          "EARLY": 24,
+          "END_OF_UTTERANCE": 14,
+          "REFINE": 16,
+          "DELTA": 7
+        },
+        "retrievals_per_information_need": 2.0769,
+        "first_useful_evidence_latency_ms_mean": 10.175,
+        "first_useful_evidence_latencies_ms": [
+          9.488,
+          9.762,
+          8.613,
+          18.146,
+          8.808,
+          8.371,
+          8.241,
+          13.253,
+          9.947,
+          8.568,
+          9.908,
+          8.991
+        ],
+        "retrieval_latency_ms_p50": 9.049,
+        "intent_level_useful_early_retrieval_rate": 0.75,
+        "end_of_utterance_correctness": 0.9444,
+        "evaluation_sample_count": 16,
+        "operation_counts": {
+          "BM25_PROBE": 95,
+          "DENSE_QUERY_ENCODING": 70,
+          "EFIS_FOOTPRINT_SEARCH": 54,
+          "SHADOW_RETRIEVAL": 24,
+          "SPECULATIVE_FULL_RETRIEVAL": 0,
+          "PROMOTED_FULL_RETRIEVAL": 24,
+          "DELTA_REFINEMENT": 7,
+          "FINAL_RETRIEVAL": 14,
+          "CACHE_HIT": 37
+        },
+        "intent_gate_diagnostics": {
+          "intent_ready_rows": 0,
+          "intent_ready_but_stability_blocked": 0,
+          "guarded_bypass_decisions": 0
+        },
+        "latency_components_ms_mean": {
+          "dedup_ms": 8.1703,
+          "dense_ms": 1.4257,
+          "fusion_ms": 0.0348,
+          "rerank_ms": 0.4151,
+          "sparse_ms": 0.2144
+        },
+        "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+        "wall_s": 4.597
+      },
+      "calibration_supported": false
+    }
+  },
+  "cost_breakdown": {
+    "P0_original_psrc": {
+      "actual_full_searches": 77,
+      "shadow_searches": 19,
+      "reused_full_searches": 0,
+      "probe_computations": 95,
+      "retrievals_per_need": 1.9615
+    },
+    "P1_retrained_stability": {
+      "actual_full_searches": 70,
+      "shadow_searches": 16,
+      "reused_full_searches": 0,
+      "probe_computations": 95,
+      "retrievals_per_need": 1.8077
+    },
+    "P2_calibrated_stability": {
+      "actual_full_searches": 45,
+      "shadow_searches": 0,
+      "reused_full_searches": 0,
+      "probe_computations": 95,
+      "retrievals_per_need": 1.4615
+    },
+    "P3_constraint_cold_start": {
+      "actual_full_searches": 87,
+      "shadow_searches": 26,
+      "reused_full_searches": 0,
+      "probe_computations": 95,
+      "retrievals_per_need": 2.0769
+    },
+    "P4_calibrated_cold_start": {
+      "actual_full_searches": 87,
+      "shadow_searches": 26,
+      "reused_full_searches": 0,
+      "probe_computations": 95,
+      "retrievals_per_need": 2.0769
+    },
+    "P5_guarded_intent_bypass": {
+      "actual_full_searches": 77,
+      "shadow_searches": 19,
+      "reused_full_searches": 0,
+      "probe_computations": 95,
+      "retrievals_per_need": 1.9615
+    },
+    "P6_evidence_reuse": {
+      "actual_full_searches": 65,
+      "shadow_searches": 19,
+      "reused_full_searches": 12,
+      "probe_computations": 95,
+      "retrievals_per_need": 1.9615
+    },
+    "P7_calibrated_reuse": {
+      "actual_full_searches": 45,
+      "shadow_searches": 0,
+      "reused_full_searches": 0,
+      "probe_computations": 95,
+      "retrievals_per_need": 1.4615
+    },
+    "P8_calibrated_cold_reuse": {
+      "actual_full_searches": 64,
+      "shadow_searches": 19,
+      "reused_full_searches": 10,
+      "probe_computations": 95,
+      "retrievals_per_need": 1.8462
+    },
+    "P9_calibrated_intent": {
+      "actual_full_searches": 45,
+      "shadow_searches": 0,
+      "reused_full_searches": 0,
+      "probe_computations": 95,
+      "retrievals_per_need": 1.4615
+    },
+    "P10_cold_intent_reuse": {
+      "actual_full_searches": 68,
+      "shadow_searches": 23,
+      "reused_full_searches": 12,
+      "probe_computations": 95,
+      "retrievals_per_need": 1.9231
+    },
+    "P11_risk_utility": {
+      "actual_full_searches": 45,
+      "shadow_searches": 0,
+      "reused_full_searches": 0,
+      "probe_computations": 95,
+      "retrievals_per_need": 1.4615
+    },
+    "P12_measured_latency": {
+      "actual_full_searches": 45,
+      "shadow_searches": 0,
+      "reused_full_searches": 0,
+      "probe_computations": 95,
+      "retrievals_per_need": 1.4615
+    }
+  },
+  "selection": {
+    "selected": "P0_original_psrc",
+    "promoted": false,
+    "feasible": [
+      {
+        "variant": "P0_original_psrc",
+        "failures": []
+      }
+    ],
+    "rejected": [
+      {
+        "variant": "P1_retrained_stability",
+        "failures": [
+          "PREMATURE_ABOVE_BASELINE",
+          "SURVIVAL_BELOW_BASELINE",
+          "G2_BELOW_0_80"
+        ]
+      },
+      {
+        "variant": "P2_calibrated_stability",
+        "failures": [
+          "SURVIVAL_BELOW_BASELINE",
+          "G2_BELOW_0_80"
+        ]
+      },
+      {
+        "variant": "P3_constraint_cold_start",
+        "failures": [
+          "SURVIVAL_BELOW_BASELINE",
+          "FULL_SEARCH_COST_ABOVE_BASELINE",
+          "G2_BELOW_0_80"
+        ]
+      },
+      {
+        "variant": "P4_calibrated_cold_start",
+        "failures": [
+          "SURVIVAL_BELOW_BASELINE",
+          "FULL_SEARCH_COST_ABOVE_BASELINE",
+          "G2_BELOW_0_80"
+        ]
+      },
+      {
+        "variant": "P5_guarded_intent_bypass",
+        "failures": [
+          "G2_BELOW_0_80"
+        ]
+      },
+      {
+        "variant": "P6_evidence_reuse",
+        "failures": [
+          "G2_BELOW_0_80"
+        ]
+      },
+      {
+        "variant": "P7_calibrated_reuse",
+        "failures": [
+          "SURVIVAL_BELOW_BASELINE",
+          "G2_BELOW_0_80"
+        ]
+      },
+      {
+        "variant": "P8_calibrated_cold_reuse",
+        "failures": [
+          "SURVIVAL_BELOW_BASELINE",
+          "G2_BELOW_0_80"
+        ]
+      },
+      {
+        "variant": "P9_calibrated_intent",
+        "failures": [
+          "SURVIVAL_BELOW_BASELINE",
+          "G2_BELOW_0_80"
+        ]
+      },
+      {
+        "variant": "P10_cold_intent_reuse",
+        "failures": [
+          "SURVIVAL_BELOW_BASELINE",
+          "G2_BELOW_0_80"
+        ]
+      },
+      {
+        "variant": "P11_risk_utility",
+        "failures": [
+          "SURVIVAL_BELOW_BASELINE",
+          "G2_BELOW_0_80"
+        ]
+      },
+      {
+        "variant": "P12_measured_latency",
+        "failures": [
+          "SURVIVAL_BELOW_BASELINE",
+          "G2_BELOW_0_80"
+        ]
+      }
+    ],
+    "pareto_frontier": [
+      "P10_cold_intent_reuse",
+      "P11_risk_utility",
+      "P12_measured_latency",
+      "P2_calibrated_stability",
+      "P3_constraint_cold_start",
+      "P4_calibrated_cold_start",
+      "P6_evidence_reuse",
+      "P7_calibrated_reuse",
+      "P8_calibrated_cold_reuse",
+      "P9_calibrated_intent"
+    ],
+    "rules": [
+      "correctness",
+      "G2 >= 0.80 for promotion",
+      "premature <= baseline",
+      "survival >= baseline",
+      "full searches <= baseline",
+      "maximize gold-useful early",
+      "simplicity"
+    ],
+    "held_out_status": "MEASURED_FROZEN_NO_POST_SELECTION_TUNING",
+    "note": "The untouched held-out split is evaluated only after this development selection is frozen.",
+    "held_out_metrics": {
+      "early_retrieval_rate": 0.875,
+      "eligible_utterances": 8,
+      "retrieval_lead_s_median": 1.586,
+      "evidence_survival_rate": 0.8545,
+      "premature_retrieval_rate": 0.0,
+      "false_retrieval_rate": null,
+      "unnecessary_retrieval_count": 0,
+      "elaborate_suppression_rate": null,
+      "turn_classification_accuracy": 1.0,
+      "intent_precision": 0.7273,
+      "intent_recall": 1.0,
+      "intent_count_accuracy": 0.75,
+      "gold_section_mrr": 0.7708,
+      "abstention_accuracy": 1.0,
+      "grounded_claim_rate": 1.0,
+      "citation_precision": 1.0,
+      "citation_recall": 1.0,
+      "claims_judged": 8,
+      "fabricated_doc_ids": 0,
+      "delta_retrieval_ratio": null,
+      "refinement_correctness": null,
+      "unnecessary_claim_churn": 0,
+      "update_retrievals": 0,
+      "full_restart_retrievals": 0,
+      "update_context_tokens_est": 0,
+      "full_restart_context_tokens_est": 0,
+      "retrieval_latency_ms_mean": 9.682,
+      "retrieval_latency_ms_p95": 16.502,
+      "post_utterance_latency_ms_p50": 34.513,
+      "post_utterance_latency_ms_p95": 60.219,
+      "end_to_end_latency_ms_p50": 4218.5,
+      "llm_tokens_total": 0,
+      "context_tokens_est_total": 400,
+      "telemetry_coverage": 1.0,
+      "useful_early_retrieval_rate": 0.5,
+      "useful_early_successes": 4,
+      "useful_early_ci95": [
+        0.2152,
+        0.7848
+      ],
+      "useful_early_group_bootstrap_ci95": [
+        0.125,
+        0.875
+      ],
+      "probe_computations": 35,
+      "probe_cache_hits": 4,
+      "shadow_retrievals": 9,
+      "full_searches": 26,
+      "reused_full_searches": 0,
+      "duplicate_retrievals_avoided": 0,
+      "evidence_cache_hits": 0,
+      "full_searches_by_trigger": {
+        "EARLY": 8,
+        "END_OF_UTTERANCE": 3,
+        "REFINE": 6,
+        "DELTA": 0
+      },
+      "retrievals_per_information_need": 2.125,
+      "first_useful_evidence_latency_ms_mean": 11.005,
+      "first_useful_evidence_latencies_ms": [
+        18.168,
+        8.75,
+        9.02,
+        8.08
+      ],
+      "retrieval_latency_ms_p50": 8.75,
+      "intent_level_useful_early_retrieval_rate": 0.5,
+      "end_of_utterance_correctness": 1.0,
+      "evaluation_sample_count": 8,
+      "operation_counts": {
+        "BM25_PROBE": 35,
+        "DENSE_QUERY_ENCODING": 26,
+        "EFIS_FOOTPRINT_SEARCH": 17,
+        "SHADOW_RETRIEVAL": 9,
+        "SPECULATIVE_FULL_RETRIEVAL": 0,
+        "PROMOTED_FULL_RETRIEVAL": 8,
+        "DELTA_REFINEMENT": 0,
+        "FINAL_RETRIEVAL": 3,
+        "CACHE_HIT": 4
+      },
+      "intent_gate_diagnostics": {
+        "intent_ready_rows": 0,
+        "intent_ready_but_stability_blocked": 0,
+        "guarded_bypass_decisions": 0
+      },
+      "latency_components_ms_mean": {
+        "dedup_ms": 8.2041,
+        "dense_ms": 0.4246,
+        "fusion_ms": 0.0374,
+        "rerank_ms": 0.4046,
+        "sparse_ms": 0.1953
+      },
+      "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+      "wall_s": 1.282
+    }
+  },
+  "held_out": {
+    "status": "MEASURED_FROZEN_NO_POST_SELECTION_TUNING",
+    "selected_variant": "P0_original_psrc",
+    "dataset": "kairos-controller-heldout-v1",
+    "metrics": {
+      "early_retrieval_rate": 0.875,
+      "eligible_utterances": 8,
+      "retrieval_lead_s_median": 1.586,
+      "evidence_survival_rate": 0.8545,
+      "premature_retrieval_rate": 0.0,
+      "false_retrieval_rate": null,
+      "unnecessary_retrieval_count": 0,
+      "elaborate_suppression_rate": null,
+      "turn_classification_accuracy": 1.0,
+      "intent_precision": 0.7273,
+      "intent_recall": 1.0,
+      "intent_count_accuracy": 0.75,
+      "gold_section_mrr": 0.7708,
+      "abstention_accuracy": 1.0,
+      "grounded_claim_rate": 1.0,
+      "citation_precision": 1.0,
+      "citation_recall": 1.0,
+      "claims_judged": 8,
+      "fabricated_doc_ids": 0,
+      "delta_retrieval_ratio": null,
+      "refinement_correctness": null,
+      "unnecessary_claim_churn": 0,
+      "update_retrievals": 0,
+      "full_restart_retrievals": 0,
+      "update_context_tokens_est": 0,
+      "full_restart_context_tokens_est": 0,
+      "retrieval_latency_ms_mean": 9.682,
+      "retrieval_latency_ms_p95": 16.502,
+      "post_utterance_latency_ms_p50": 34.513,
+      "post_utterance_latency_ms_p95": 60.219,
+      "end_to_end_latency_ms_p50": 4218.5,
+      "llm_tokens_total": 0,
+      "context_tokens_est_total": 400,
+      "telemetry_coverage": 1.0,
+      "useful_early_retrieval_rate": 0.5,
+      "useful_early_successes": 4,
+      "useful_early_ci95": [
+        0.2152,
+        0.7848
+      ],
+      "useful_early_group_bootstrap_ci95": [
+        0.125,
+        0.875
+      ],
+      "probe_computations": 35,
+      "probe_cache_hits": 4,
+      "shadow_retrievals": 9,
+      "full_searches": 26,
+      "reused_full_searches": 0,
+      "duplicate_retrievals_avoided": 0,
+      "evidence_cache_hits": 0,
+      "full_searches_by_trigger": {
+        "EARLY": 8,
+        "END_OF_UTTERANCE": 3,
+        "REFINE": 6,
+        "DELTA": 0
+      },
+      "retrievals_per_information_need": 2.125,
+      "first_useful_evidence_latency_ms_mean": 11.005,
+      "first_useful_evidence_latencies_ms": [
+        18.168,
+        8.75,
+        9.02,
+        8.08
+      ],
+      "retrieval_latency_ms_p50": 8.75,
+      "intent_level_useful_early_retrieval_rate": 0.5,
+      "end_of_utterance_correctness": 1.0,
+      "evaluation_sample_count": 8,
+      "operation_counts": {
+        "BM25_PROBE": 35,
+        "DENSE_QUERY_ENCODING": 26,
+        "EFIS_FOOTPRINT_SEARCH": 17,
+        "SHADOW_RETRIEVAL": 9,
+        "SPECULATIVE_FULL_RETRIEVAL": 0,
+        "PROMOTED_FULL_RETRIEVAL": 8,
+        "DELTA_REFINEMENT": 0,
+        "FINAL_RETRIEVAL": 3,
+        "CACHE_HIT": 4
+      },
+      "intent_gate_diagnostics": {
+        "intent_ready_rows": 0,
+        "intent_ready_but_stability_blocked": 0,
+        "guarded_bypass_decisions": 0
+      },
+      "latency_components_ms_mean": {
+        "dedup_ms": 8.2041,
+        "dense_ms": 0.4246,
+        "fusion_ms": 0.0374,
+        "rerank_ms": 0.4046,
+        "sparse_ms": 0.1953
+      },
+      "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+      "wall_s": 1.282
+    },
+    "validation": {
+      "coverage": 1.0,
+      "instances": 257,
+      "passed": 257,
+      "per_invariant": {
+        "I1": {
+          "checked": 8,
+          "passed": 8
+        },
+        "I2": {
+          "checked": 17,
+          "passed": 17
+        },
+        "I3": {
+          "checked": 8,
+          "passed": 8
+        },
+        "I4": {
+          "checked": 8,
+          "passed": 8
+        },
+        "I5": {
+          "checked": 0,
+          "passed": 0
+        },
+        "I6": {
+          "checked": 216,
+          "passed": 216
+        }
+      }
+    },
+    "limitations": "Project-authored frozen streaming holdout created after policy selection and evaluated without threshold changes. Wording is disjoint from train/dev, but topics share the bounded sample corpus; this is not external generalization evidence. Chunk timing is synthetic (0.3 s/word + 0.1 s)."
+  },
+  "claims_boundary": "Engineering evidence on small, mixed-source streams; not production-generalization evidence.",
+  "hardware_microphone_validation": "PENDING"
+}

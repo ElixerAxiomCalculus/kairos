@@ -1,0 +1,133 @@
+{
+  "status": "MEASURED_FROZEN_NO_POST_SELECTION_TUNING",
+  "selected_variant": "P0_original_psrc",
+  "dataset": "kairos-controller-heldout-v1",
+  "metrics": {
+    "early_retrieval_rate": 0.875,
+    "eligible_utterances": 8,
+    "retrieval_lead_s_median": 1.586,
+    "evidence_survival_rate": 0.8545,
+    "premature_retrieval_rate": 0.0,
+    "false_retrieval_rate": null,
+    "unnecessary_retrieval_count": 0,
+    "elaborate_suppression_rate": null,
+    "turn_classification_accuracy": 1.0,
+    "intent_precision": 0.7273,
+    "intent_recall": 1.0,
+    "intent_count_accuracy": 0.75,
+    "gold_section_mrr": 0.7708,
+    "abstention_accuracy": 1.0,
+    "grounded_claim_rate": 1.0,
+    "citation_precision": 1.0,
+    "citation_recall": 1.0,
+    "claims_judged": 8,
+    "fabricated_doc_ids": 0,
+    "delta_retrieval_ratio": null,
+    "refinement_correctness": null,
+    "unnecessary_claim_churn": 0,
+    "update_retrievals": 0,
+    "full_restart_retrievals": 0,
+    "update_context_tokens_est": 0,
+    "full_restart_context_tokens_est": 0,
+    "retrieval_latency_ms_mean": 9.682,
+    "retrieval_latency_ms_p95": 16.502,
+    "post_utterance_latency_ms_p50": 34.513,
+    "post_utterance_latency_ms_p95": 60.219,
+    "end_to_end_latency_ms_p50": 4218.5,
+    "llm_tokens_total": 0,
+    "context_tokens_est_total": 400,
+    "telemetry_coverage": 1.0,
+    "useful_early_retrieval_rate": 0.5,
+    "useful_early_successes": 4,
+    "useful_early_ci95": [
+      0.2152,
+      0.7848
+    ],
+    "useful_early_group_bootstrap_ci95": [
+      0.125,
+      0.875
+    ],
+    "probe_computations": 35,
+    "probe_cache_hits": 4,
+    "shadow_retrievals": 9,
+    "full_searches": 26,
+    "reused_full_searches": 0,
+    "duplicate_retrievals_avoided": 0,
+    "evidence_cache_hits": 0,
+    "full_searches_by_trigger": {
+      "EARLY": 8,
+      "END_OF_UTTERANCE": 3,
+      "REFINE": 6,
+      "DELTA": 0
+    },
+    "retrievals_per_information_need": 2.125,
+    "first_useful_evidence_latency_ms_mean": 11.005,
+    "first_useful_evidence_latencies_ms": [
+      18.168,
+      8.75,
+      9.02,
+      8.08
+    ],
+    "retrieval_latency_ms_p50": 8.75,
+    "intent_level_useful_early_retrieval_rate": 0.5,
+    "end_of_utterance_correctness": 1.0,
+    "evaluation_sample_count": 8,
+    "operation_counts": {
+      "BM25_PROBE": 35,
+      "DENSE_QUERY_ENCODING": 26,
+      "EFIS_FOOTPRINT_SEARCH": 17,
+      "SHADOW_RETRIEVAL": 9,
+      "SPECULATIVE_FULL_RETRIEVAL": 0,
+      "PROMOTED_FULL_RETRIEVAL": 8,
+      "DELTA_REFINEMENT": 0,
+      "FINAL_RETRIEVAL": 3,
+      "CACHE_HIT": 4
+    },
+    "intent_gate_diagnostics": {
+      "intent_ready_rows": 0,
+      "intent_ready_but_stability_blocked": 0,
+      "guarded_bypass_decisions": 0
+    },
+    "latency_components_ms_mean": {
+      "dedup_ms": 8.2041,
+      "dense_ms": 0.4246,
+      "fusion_ms": 0.0374,
+      "rerank_ms": 0.4046,
+      "sparse_ms": 0.1953
+    },
+    "latency_scope": "backend monotonic processing only; transcript timing is synthetic in benchmark; WebSocket and microphone/ASR not measured",
+    "wall_s": 1.282
+  },
+  "validation": {
+    "coverage": 1.0,
+    "instances": 257,
+    "passed": 257,
+    "per_invariant": {
+      "I1": {
+        "checked": 8,
+        "passed": 8
+      },
+      "I2": {
+        "checked": 17,
+        "passed": 17
+      },
+      "I3": {
+        "checked": 8,
+        "passed": 8
+      },
+      "I4": {
+        "checked": 8,
+        "passed": 8
+      },
+      "I5": {
+        "checked": 0,
+        "passed": 0
+      },
+      "I6": {
+        "checked": 216,
+        "passed": 216
+      }
+    }
+  },
+  "limitations": "Project-authored frozen streaming holdout created after policy selection and evaluated without threshold changes. Wording is disjoint from train/dev, but topics share the bounded sample corpus; this is not external generalization evidence. Chunk timing is synthetic (0.3 s/word + 0.1 s)."
+}

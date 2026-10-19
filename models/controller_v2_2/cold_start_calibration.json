@@ -1,0 +1,11 @@
+{
+  "calibration": {
+    "enabled": false,
+    "method": "identity",
+    "slope": 1.0,
+    "intercept": 0.0
+  },
+  "fit_split": "controller_v2_2/calibration",
+  "groups": 4,
+  "examples": 6
+}

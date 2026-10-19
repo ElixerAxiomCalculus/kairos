@@ -1,0 +1,463 @@
+{
+  "status": "MEASURED",
+  "models": {
+    "M0_historical": {
+      "metrics": {
+        "examples": 50,
+        "brier_score": 0.2293,
+        "ece": 0.2774,
+        "log_loss": 0.6554,
+        "bins": [
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 1,
+            "mean_score": 0.1757,
+            "observed": 0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 4,
+            "mean_score": 0.2912,
+            "observed": 0.25
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 20,
+            "mean_score": 0.3574,
+            "observed": 0.2
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 13,
+            "mean_score": 0.4509,
+            "observed": 0.0769
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 6,
+            "mean_score": 0.5266,
+            "observed": 0.1667
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 1,
+            "mean_score": 0.6071,
+            "observed": 0
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 5,
+            "mean_score": 0.7507,
+            "observed": 0.2
+          }
+        ]
+      },
+      "source": "trained:stability.json"
+    },
+    "M1_retrained_historical": {
+      "path": "models/controller_v2_2/M1_retrained_historical.json",
+      "metrics": {
+        "examples": 50,
+        "brier_score": 0.1868,
+        "ece": 0.2281,
+        "log_loss": 0.5587,
+        "bins": [
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 2,
+            "mean_score": 0.1408,
+            "observed": 0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 10,
+            "mean_score": 0.2444,
+            "observed": 0.1
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 18,
+            "mean_score": 0.3411,
+            "observed": 0.1111
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 10,
+            "mean_score": 0.4464,
+            "observed": 0.2
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 5,
+            "mean_score": 0.5264,
+            "observed": 0.2
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 2,
+            "mean_score": 0.6331,
+            "observed": 0.5
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 3,
+            "mean_score": 0.7262,
+            "observed": 0.3333
+          }
+        ]
+      },
+      "feature_names": [
+        "rho",
+        "chi",
+        "kappa",
+        "sigma",
+        "cont"
+      ],
+      "trained_on": "controller_v2_2/train",
+      "training_groups": 36,
+      "examples": 128,
+      "positive_rate": 0.2812,
+      "regularization_C": 1.0,
+      "target": "V2.2 composite accepted-evidence survival >= 0.7",
+      "dataset_hash": "bd368d1878cbb86a3b27758dfb87d269a9bdc9f039f758d9ebb713b22a02a540"
+    },
+    "M2_extended_logistic": {
+      "path": "models/controller_v2_2/M2_extended_logistic.json",
+      "metrics": {
+        "examples": 50,
+        "brier_score": 0.139,
+        "ece": 0.2019,
+        "log_loss": 0.4247,
+        "bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 11,
+            "mean_score": 0.0425,
+            "observed": 0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 5,
+            "mean_score": 0.1751,
+            "observed": 0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 8,
+            "mean_score": 0.2287,
+            "observed": 0
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 5,
+            "mean_score": 0.3258,
+            "observed": 0.4
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 6,
+            "mean_score": 0.4528,
+            "observed": 0.1667
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 6,
+            "mean_score": 0.5169,
+            "observed": 0
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 4,
+            "mean_score": 0.6578,
+            "observed": 0.5
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 4,
+            "mean_score": 0.7384,
+            "observed": 0.5
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 1,
+            "mean_score": 0.8496,
+            "observed": 1
+          }
+        ]
+      },
+      "feature_names": [
+        "rho",
+        "chi",
+        "kappa",
+        "sigma",
+        "cont",
+        "first_observation",
+        "cold_start_confidence",
+        "query_informativeness",
+        "rank_separation",
+        "objective_clarity",
+        "intent_readiness",
+        "constraint_readiness",
+        "constraint_revision_risk",
+        "evidence_relevance",
+        "domain_availability",
+        "prefix_length",
+        "candidate_age",
+        "last_slot_change",
+        "accepted_evidence_overlap"
+      ],
+      "trained_on": "controller_v2_2/train",
+      "training_groups": 36,
+      "examples": 128,
+      "positive_rate": 0.2812,
+      "regularization_C": 1.0,
+      "target": "V2.2 composite accepted-evidence survival >= 0.7",
+      "dataset_hash": "bd368d1878cbb86a3b27758dfb87d269a9bdc9f039f758d9ebb713b22a02a540"
+    },
+    "M3_regularized_logistic": {
+      "path": "models/controller_v2_2/M3_regularized_logistic.json",
+      "metrics": {
+        "examples": 50,
+        "brier_score": 0.154,
+        "ece": 0.2296,
+        "log_loss": 0.478,
+        "bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 2,
+            "mean_score": 0.0979,
+            "observed": 0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 7,
+            "mean_score": 0.1253,
+            "observed": 0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 8,
+            "mean_score": 0.2654,
+            "observed": 0
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 11,
+            "mean_score": 0.3454,
+            "observed": 0.1818
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 9,
+            "mean_score": 0.4586,
+            "observed": 0.1111
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 7,
+            "mean_score": 0.5414,
+            "observed": 0.1429
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 5,
+            "mean_score": 0.6643,
+            "observed": 0.6
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 1,
+            "mean_score": 0.7528,
+            "observed": 1
+          }
+        ]
+      },
+      "feature_names": [
+        "rho",
+        "chi",
+        "kappa",
+        "sigma",
+        "cont",
+        "first_observation",
+        "cold_start_confidence",
+        "query_informativeness",
+        "rank_separation",
+        "objective_clarity",
+        "intent_readiness",
+        "constraint_readiness",
+        "constraint_revision_risk",
+        "evidence_relevance",
+        "domain_availability",
+        "prefix_length",
+        "candidate_age",
+        "last_slot_change",
+        "accepted_evidence_overlap"
+      ],
+      "trained_on": "controller_v2_2/train",
+      "training_groups": 36,
+      "examples": 128,
+      "positive_rate": 0.2812,
+      "regularization_C": 0.25,
+      "target": "V2.2 composite accepted-evidence survival >= 0.7",
+      "dataset_hash": "bd368d1878cbb86a3b27758dfb87d269a9bdc9f039f758d9ebb713b22a02a540"
+    },
+    "M4_calibrated_logistic": {
+      "path": "models/controller_v2_2/M4_calibrated_logistic.json",
+      "metrics": {
+        "examples": 50,
+        "brier_score": 0.1121,
+        "ece": 0.1012,
+        "log_loss": 0.3736,
+        "bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 9,
+            "mean_score": 0.075,
+            "observed": 0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 13,
+            "mean_score": 0.1682,
+            "observed": 0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 15,
+            "mean_score": 0.2516,
+            "observed": 0.2
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 8,
+            "mean_score": 0.3419,
+            "observed": 0.25
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 4,
+            "mean_score": 0.4467,
+            "observed": 0.5
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 1,
+            "mean_score": 0.526,
+            "observed": 1
+          }
+        ]
+      },
+      "calibration": {
+        "method": "platt",
+        "slope": 0.8398869564966038,
+        "intercept": -0.8312044830650073
+      }
+    },
+    "M5_isotonic": {
+      "status": "SKIPPED_INSUFFICIENT_INDEPENDENT_CALIBRATION_GROUPS",
+      "calibration_groups": 4
+    }
+  },
+  "samples": {
+    "train_prefixes": 128,
+    "calibration_prefixes": 24,
+    "development_prefixes": 50
+  },
+  "groups": {
+    "train": 36,
+    "calibration": 4,
+    "development": 27
+  },
+  "policy_independent": true,
+  "future_text_features": [],
+  "cold_start_calibration": {
+    "path": "models/controller_v2_2/cold_start_calibration.json",
+    "configuration": {
+      "enabled": false,
+      "method": "identity",
+      "slope": 1.0,
+      "intercept": 0.0
+    },
+    "metrics": {
+      "examples": 22,
+      "brier_score": 0.4444,
+      "ece": 0.583,
+      "log_loss": 1.213,
+      "bins": [
+        {
+          "lower": 0.2,
+          "upper": 0.3,
+          "count": 4,
+          "mean_score": 0.271,
+          "observed": 0
+        },
+        {
+          "lower": 0.3,
+          "upper": 0.4,
+          "count": 2,
+          "mean_score": 0.325,
+          "observed": 0
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "count": 7,
+          "mean_score": 0.7386,
+          "observed": 0
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "count": 6,
+          "mean_score": 0.8677,
+          "observed": 0.1667
+        },
+        {
+          "lower": 0.9,
+          "upper": 1.0,
+          "count": 3,
+          "mean_score": 0.905,
+          "observed": 0.3333
+        }
+      ]
+    },
+    "development_first_observations": 22
+  }
+}

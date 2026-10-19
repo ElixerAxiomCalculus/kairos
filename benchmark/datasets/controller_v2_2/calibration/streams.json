@@ -1,0 +1,357 @@
+{
+  "schema_version": 1,
+  "split": "calibration",
+  "streams": [
+    {
+      "stream_id": "squad-5733bf84d058e614000b61c1",
+      "session_id": "squad-5733bf84d058e614000b61c1",
+      "utterance_id": "u1",
+      "source_dataset": "rajpurkar/squad",
+      "source_question_id": "5733bf84d058e614000b61c1",
+      "question_family": "squad-doc:SQUAD:8978e606ac815776",
+      "corpus_profile": "general_expanded",
+      "full_text": "In what year did the student paper Common Sense begin publication at Notre Dame?",
+      "prefixes": [
+        "In what year did",
+        "In what year did the student paper Common",
+        "In what year did the student paper Common Sense begin publication",
+        "In what year did the student paper Common Sense begin publication at Notre Dame?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.3,
+        2.6,
+        3.6,
+        4.6
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "SQuAD answer/document label",
+      "split": "calibration",
+      "source_revision": "7b6d24c440a36b6815f21b70d25016731768db1f",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:8978e606ac815776"
+      ],
+      "category": "EXTERNAL_FACTUAL_QA",
+      "answerable": true,
+      "content_hash": "4807a7f685c393b5611acfe8b08933600d8879f9d55523962805a6ec416fa786"
+    },
+    {
+      "stream_id": "squad-5733b3d64776f419006610a4",
+      "session_id": "squad-5733b3d64776f419006610a4",
+      "utterance_id": "u1",
+      "source_dataset": "rajpurkar/squad",
+      "source_question_id": "5733b3d64776f419006610a4",
+      "question_family": "squad-doc:SQUAD:fcec8b729ee45e04",
+      "corpus_profile": "general_expanded",
+      "full_text": "What was the Review of Politics inspired by?",
+      "prefixes": [
+        "What was",
+        "What was the Review",
+        "What was the Review of Politics",
+        "What was the Review of Politics inspired by?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        0.7,
+        1.4,
+        2.1,
+        2.8
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "SQuAD answer/document label",
+      "split": "calibration",
+      "source_revision": "7b6d24c440a36b6815f21b70d25016731768db1f",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:fcec8b729ee45e04"
+      ],
+      "category": "EXTERNAL_FACTUAL_QA",
+      "answerable": true,
+      "content_hash": "5df9158c9736989e096e77d31a5c044bb421a8af10278465a3081fa41096d654"
+    },
+    {
+      "stream_id": "squad-5733b5344776f419006610df",
+      "session_id": "squad-5733b5344776f419006610df",
+      "utterance_id": "u1",
+      "source_dataset": "rajpurkar/squad",
+      "source_question_id": "5733b5344776f419006610df",
+      "question_family": "squad-doc:SQUAD:d452dee77c48fa5d",
+      "corpus_profile": "general_expanded",
+      "full_text": "What does the Kroc Institute at Notre Dame focus on?",
+      "prefixes": [
+        "What does the",
+        "What does the Kroc Institute at",
+        "What does the Kroc Institute at Notre Dame",
+        "What does the Kroc Institute at Notre Dame focus on?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.0,
+        2.7,
+        3.4
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "SQuAD answer/document label",
+      "split": "calibration",
+      "source_revision": "7b6d24c440a36b6815f21b70d25016731768db1f",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:d452dee77c48fa5d"
+      ],
+      "category": "EXTERNAL_FACTUAL_QA",
+      "answerable": true,
+      "content_hash": "1cb1cf3f0b3c949179e71da15bcf9b4448e99527c5251f506bab24e33a263a92"
+    },
+    {
+      "stream_id": "squad-5733b5344776f419006610e1",
+      "session_id": "squad-5733b5344776f419006610e1",
+      "utterance_id": "u1",
+      "source_dataset": "rajpurkar/squad",
+      "source_question_id": "5733b5344776f419006610e1",
+      "question_family": "squad-doc:SQUAD:d452dee77c48fa5d",
+      "corpus_profile": "general_expanded",
+      "full_text": "What threat does the Global Adaptation Index study?",
+      "prefixes": [
+        "What threat",
+        "What threat does the",
+        "What threat does the Global Adaptation",
+        "What threat does the Global Adaptation Index study?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        0.7,
+        1.4,
+        2.1,
+        2.8
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "SQuAD answer/document label",
+      "split": "calibration",
+      "source_revision": "7b6d24c440a36b6815f21b70d25016731768db1f",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:d452dee77c48fa5d"
+      ],
+      "category": "EXTERNAL_FACTUAL_QA",
+      "answerable": true,
+      "content_hash": "fef3d141f29ba7dd3b90d03af4647954625c98ed9895505e900276a1ef7d3f2a"
+    },
+    {
+      "stream_id": "squad-5733b7f74776f4190066112d",
+      "session_id": "squad-5733b7f74776f4190066112d",
+      "utterance_id": "u1",
+      "source_dataset": "rajpurkar/squad",
+      "source_question_id": "5733b7f74776f4190066112d",
+      "question_family": "squad-doc:SQUAD:f1c5f43afc46a764",
+      "corpus_profile": "general_expanded",
+      "full_text": "What is Congregation of Holy Cross in Latin?",
+      "prefixes": [
+        "What is",
+        "What is Congregation of",
+        "What is Congregation of Holy Cross",
+        "What is Congregation of Holy Cross in Latin?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        0.7,
+        1.4,
+        2.1,
+        2.8
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "SQuAD answer/document label",
+      "split": "calibration",
+      "source_revision": "7b6d24c440a36b6815f21b70d25016731768db1f",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:f1c5f43afc46a764"
+      ],
+      "category": "EXTERNAL_FACTUAL_QA",
+      "answerable": true,
+      "content_hash": "78af704e6b708c5261a5bd793987ff431ffb025d024c2146a8c64c31091640da"
+    },
+    {
+      "stream_id": "squad-5733b7f74776f41900661131",
+      "session_id": "squad-5733b7f74776f41900661131",
+      "utterance_id": "u1",
+      "source_dataset": "rajpurkar/squad",
+      "source_question_id": "5733b7f74776f41900661131",
+      "question_family": "squad-doc:SQUAD:f1c5f43afc46a764",
+      "corpus_profile": "general_expanded",
+      "full_text": "What amount of the student body of Notre Dame identifies as Catholic?",
+      "prefixes": [
+        "What amount of",
+        "What amount of the student body of",
+        "What amount of the student body of Notre Dame",
+        "What amount of the student body of Notre Dame identifies as Catholic?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.3,
+        3.0,
+        4.0
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "SQuAD answer/document label",
+      "split": "calibration",
+      "source_revision": "7b6d24c440a36b6815f21b70d25016731768db1f",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:f1c5f43afc46a764"
+      ],
+      "category": "EXTERNAL_FACTUAL_QA",
+      "answerable": true,
+      "content_hash": "d6a3071fc0095319d1ac627be65c50a8ee505887aeed5b6874b27ee8965838b9"
+    },
+    {
+      "stream_id": "squad-5733bf84d058e614000b61bd",
+      "session_id": "squad-5733bf84d058e614000b61bd",
+      "utterance_id": "u1",
+      "source_dataset": "rajpurkar/squad",
+      "source_question_id": "5733bf84d058e614000b61bd",
+      "question_family": "squad-doc:SQUAD:8978e606ac815776",
+      "corpus_profile": "general_expanded",
+      "full_text": "How many student news papers are found at Notre Dame?",
+      "prefixes": [
+        "How many student",
+        "How many student news papers are",
+        "How many student news papers are found at",
+        "How many student news papers are found at Notre Dame?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.0,
+        2.7,
+        3.4
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "SQuAD answer/document label",
+      "split": "calibration",
+      "source_revision": "7b6d24c440a36b6815f21b70d25016731768db1f",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:8978e606ac815776"
+      ],
+      "category": "EXTERNAL_FACTUAL_QA",
+      "answerable": true,
+      "content_hash": "f995fb8015ff901be4ed8b9afa970ae93d349629cf59acb8d232085a4b2cf03d"
+    },
+    {
+      "stream_id": "squad-5733b7f74776f4190066112f",
+      "session_id": "squad-5733b7f74776f4190066112f",
+      "utterance_id": "u1",
+      "source_dataset": "rajpurkar/squad",
+      "source_question_id": "5733b7f74776f4190066112f",
+      "question_family": "squad-doc:SQUAD:f1c5f43afc46a764",
+      "corpus_profile": "general_expanded",
+      "full_text": "How often is Catholic mass held at Notre Dame in a week?",
+      "prefixes": [
+        "How often is",
+        "How often is Catholic mass held at",
+        "How often is Catholic mass held at Notre Dame",
+        "How often is Catholic mass held at Notre Dame in a week?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.0,
+        2.3,
+        3.0,
+        4.0
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "SQuAD answer/document label",
+      "split": "calibration",
+      "source_revision": "7b6d24c440a36b6815f21b70d25016731768db1f",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:f1c5f43afc46a764"
+      ],
+      "category": "EXTERNAL_FACTUAL_QA",
+      "answerable": true,
+      "content_hash": "549d1c3c3952656f329afdb0b269d1a4c9d972177eefa6b150e34639f5fc57d2"
+    },
+    {
+      "stream_id": "squad-5733b3d64776f419006610a5",
+      "session_id": "squad-5733b3d64776f419006610a5",
+      "utterance_id": "u1",
+      "source_dataset": "rajpurkar/squad",
+      "source_question_id": "5733b3d64776f419006610a5",
+      "question_family": "squad-doc:SQUAD:fcec8b729ee45e04",
+      "corpus_profile": "general_expanded",
+      "full_text": "Over how many years did Gurian edit the Review of Politics at Notre Dame?",
+      "prefixes": [
+        "Over how many years",
+        "Over how many years did Gurian edit the",
+        "Over how many years did Gurian edit the Review of Politics",
+        "Over how many years did Gurian edit the Review of Politics at Notre Dame?"
+      ],
+      "prefix_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "prefix_timestamps": [
+        1.3,
+        2.6,
+        3.6,
+        4.6
+      ],
+      "timing_source": "synthetic written-question segmentation; not recorded speech",
+      "annotation_source": "SQuAD answer/document label",
+      "split": "calibration",
+      "source_revision": "7b6d24c440a36b6815f21b70d25016731768db1f",
+      "gold_sections": [],
+      "gold_documents": [
+        "SQUAD:fcec8b729ee45e04"
+      ],
+      "category": "EXTERNAL_FACTUAL_QA",
+      "answerable": true,
+      "content_hash": "df91146fd2a7eeaca30eb9d279939ea7db05929bbd7eb928af367cfd892ab79f"
+    }
+  ]
+}

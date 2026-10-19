@@ -1,0 +1,93 @@
+{
+  "P0_original_psrc": {
+    "actual_full_searches": 77,
+    "shadow_searches": 19,
+    "reused_full_searches": 0,
+    "probe_computations": 95,
+    "retrievals_per_need": 1.9615
+  },
+  "P1_retrained_stability": {
+    "actual_full_searches": 70,
+    "shadow_searches": 16,
+    "reused_full_searches": 0,
+    "probe_computations": 95,
+    "retrievals_per_need": 1.8077
+  },
+  "P2_calibrated_stability": {
+    "actual_full_searches": 45,
+    "shadow_searches": 0,
+    "reused_full_searches": 0,
+    "probe_computations": 95,
+    "retrievals_per_need": 1.4615
+  },
+  "P3_constraint_cold_start": {
+    "actual_full_searches": 87,
+    "shadow_searches": 26,
+    "reused_full_searches": 0,
+    "probe_computations": 95,
+    "retrievals_per_need": 2.0769
+  },
+  "P4_calibrated_cold_start": {
+    "actual_full_searches": 87,
+    "shadow_searches": 26,
+    "reused_full_searches": 0,
+    "probe_computations": 95,
+    "retrievals_per_need": 2.0769
+  },
+  "P5_guarded_intent_bypass": {
+    "actual_full_searches": 77,
+    "shadow_searches": 19,
+    "reused_full_searches": 0,
+    "probe_computations": 95,
+    "retrievals_per_need": 1.9615
+  },
+  "P6_evidence_reuse": {
+    "actual_full_searches": 65,
+    "shadow_searches": 19,
+    "reused_full_searches": 12,
+    "probe_computations": 95,
+    "retrievals_per_need": 1.9615
+  },
+  "P7_calibrated_reuse": {
+    "actual_full_searches": 45,
+    "shadow_searches": 0,
+    "reused_full_searches": 0,
+    "probe_computations": 95,
+    "retrievals_per_need": 1.4615
+  },
+  "P8_calibrated_cold_reuse": {
+    "actual_full_searches": 64,
+    "shadow_searches": 19,
+    "reused_full_searches": 10,
+    "probe_computations": 95,
+    "retrievals_per_need": 1.8462
+  },
+  "P9_calibrated_intent": {
+    "actual_full_searches": 45,
+    "shadow_searches": 0,
+    "reused_full_searches": 0,
+    "probe_computations": 95,
+    "retrievals_per_need": 1.4615
+  },
+  "P10_cold_intent_reuse": {
+    "actual_full_searches": 68,
+    "shadow_searches": 23,
+    "reused_full_searches": 12,
+    "probe_computations": 95,
+    "retrievals_per_need": 1.9231
+  },
+  "P11_risk_utility": {
+    "actual_full_searches": 45,
+    "shadow_searches": 0,
+    "reused_full_searches": 0,
+    "probe_computations": 95,
+    "retrievals_per_need": 1.4615
+  },
+  "P12_measured_latency": {
+    "actual_full_searches": 45,
+    "shadow_searches": 0,
+    "reused_full_searches": 0,
+    "probe_computations": 95,
+    "retrievals_per_need": 1.4615
+  }
+}

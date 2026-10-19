@@ -1,5 +1,10 @@
 import { z } from "zod";
-import { loadBenchmarkSnapshot, loadHardeningBenchmarkSnapshot, loadSemanticBenchmarkSnapshot } from "@/mocks";
+import {
+  loadBenchmarkSnapshot,
+  loadControllerBenchmarkSnapshot,
+  loadHardeningBenchmarkSnapshot,
+  loadSemanticBenchmarkSnapshot,
+} from "@/mocks";
 import { apiUrl } from "@/services/apiBase";
 
 /** Benchmark reports are produced by `python -m kairos bench`; the UI only displays them. */
@@ -127,6 +132,33 @@ const HardeningBenchmarkReportSchema = z.object({
 });
 export type HardeningBenchmarkReport = z.infer<typeof HardeningBenchmarkReportSchema>;
 
+const ControllerMetricsSchema = z.object({
+  early_retrieval_rate: z.number(),
+  useful_early_retrieval_rate: z.number(),
+  premature_retrieval_rate: z.number().nullable(),
+  evidence_survival_rate: z.number().nullable(),
+  full_searches: z.number(),
+  duplicate_retrievals_avoided: z.number(),
+});
+
+const ControllerBenchmarkReportSchema = z.object({
+  status: z.literal("MEASURED"),
+  run_id: z.string(),
+  dataset_hash: z.string(),
+  variants: z.record(z.object({ metrics: ControllerMetricsSchema }).passthrough()),
+  selection: z.object({ selected: z.string(), promoted: z.boolean() }).passthrough(),
+  held_out: z.object({
+    status: z.string(),
+    selected_variant: z.string(),
+    metrics: ControllerMetricsSchema.extend({
+      useful_early_group_bootstrap_ci95: z.tuple([z.number(), z.number()]),
+      telemetry_coverage: z.number(),
+      grounded_claim_rate: z.number(),
+    }).passthrough(),
+  }).passthrough(),
+});
+export type ControllerBenchmarkReport = z.infer<typeof ControllerBenchmarkReportSchema>;
+
 async function fetchJson(url: string): Promise<unknown | null> {
   try {
     const res = await fetch(apiUrl(url));
@@ -167,6 +199,17 @@ export async function loadHardeningBenchmark(): Promise<{ report: HardeningBench
     if (!parsed.success) return { report: null, source: "NONE", error: "Backend returned a malformed hardening report." };
   }
   const snap = HardeningBenchmarkReportSchema.safeParse(await loadHardeningBenchmarkSnapshot());
+  return snap.success ? { report: snap.data, source: "BUNDLED_SNAPSHOT" } : { report: null, source: "NONE" };
+}
+
+export async function loadControllerBenchmark(): Promise<{ report: ControllerBenchmarkReport | null; source: Source; error?: string }> {
+  const live = await fetchJson("/api/controller-benchmark/latest");
+  if (live) {
+    const parsed = ControllerBenchmarkReportSchema.safeParse(live);
+    if (parsed.success) return { report: parsed.data, source: "BACKEND" };
+    return { report: null, source: "NONE", error: "Backend returned a malformed controller benchmark report." };
+  }
+  const snap = ControllerBenchmarkReportSchema.safeParse(await loadControllerBenchmarkSnapshot());
   return snap.success ? { report: snap.data, source: "BUNDLED_SNAPSHOT" } : { report: null, source: "NONE" };
 }
 
