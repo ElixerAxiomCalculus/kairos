@@ -1,0 +1,1214 @@
+{
+  "C0_baseline_psrc": {
+    "metrics": {
+      "caper_totals": {
+        "backpressure_rejections": 0,
+        "canceled_before_execution": 0,
+        "cancellation_requests": 0,
+        "committed": 0,
+        "completed_discarded": 0,
+        "decisions": 0,
+        "expired": 0,
+        "failed": 0,
+        "queued": 0,
+        "reused": 0,
+        "searches_completed": 0,
+        "searches_started": 0,
+        "validated": 0
+      },
+      "family_bootstrap_verified_early": {
+        "ci_95": [
+          0.28,
+          0.68
+        ],
+        "estimate": 0.48,
+        "families": 25,
+        "resampling_unit": "question_family",
+        "samples": 2000,
+        "seed": 42
+      },
+      "invalid_citation_rate": {
+        "denominator": 49,
+        "eligibility": "claim emitted after Grounding Firewall",
+        "grounding_status": "verified by Grounding Firewall",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 0,
+        "rate": 0.0,
+        "split": "development",
+        "timing_source": "not applicable",
+        "unit": "emitted claim",
+        "wilson_95": [
+          0.0,
+          0.0727
+        ]
+      },
+      "lead_time_ms": {
+        "count": 12,
+        "mean": 1777.8,
+        "median": 1443.1,
+        "timing_source": "synthetic stream clock; accelerated scheduled replay",
+        "unit": "ms"
+      },
+      "preparation_coverage_before_final": {
+        "denominator": 25,
+        "eligibility": "gold-labeled stream with at least one non-final prefix",
+        "grounding_status": "provisional only",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 0,
+        "rate": 0.0,
+        "split": "development",
+        "timing_source": "accelerated scheduled replay; synthetic timestamps",
+        "unit": "stream",
+        "wilson_95": [
+          0.0,
+          0.1332
+        ]
+      },
+      "retrieval_latency_ms": {
+        "count": 60,
+        "max": 4.338,
+        "measurement_source": "RetrievalCompleted latency_ms",
+        "p50": 1.538,
+        "p95": 3.389,
+        "unit": "ms"
+      },
+      "search_cost": {
+        "actual_hybrid_search_executions": 60,
+        "by_retrieval_type": {
+          "FINAL_FALLBACK": 26,
+          "PRIMARY": 21,
+          "REFINEMENT": 13
+        },
+        "cache_reuse_events": 0,
+        "canceled_before_execution": 0,
+        "cancellation_requests": 0,
+        "completed_but_discarded": 0,
+        "measurement_source": "HybridIndex.search execution registry"
+      },
+      "verified_useful_evidence_before_final": {
+        "denominator": 25,
+        "eligibility": "gold-labeled stream with at least one non-final prefix",
+        "grounding_status": "early evidence was gold-aligned and later cited by an emitted Grounding Firewall claim",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 12,
+        "rate": 0.48,
+        "split": "development",
+        "timing_source": "accelerated scheduled replay; synthetic timestamps",
+        "unit": "stream",
+        "wilson_95": [
+          0.3003,
+          0.665
+        ]
+      },
+      "wasted_preparation_rate": {
+        "denominator": 0,
+        "eligibility": "CAPER provisional search completed",
+        "grounding_status": "not committed",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 0,
+        "rate": null,
+        "split": "development",
+        "timing_source": "actual task lifecycle",
+        "unit": "completed provisional search",
+        "wilson_95": null
+      }
+    },
+    "name": "C0_baseline_psrc",
+    "split": "development",
+    "status": "MEASURED"
+  },
+  "C10_end_of_utterance": {
+    "metrics": {
+      "caper_totals": {
+        "backpressure_rejections": 0,
+        "canceled_before_execution": 0,
+        "cancellation_requests": 0,
+        "committed": 0,
+        "completed_discarded": 0,
+        "decisions": 0,
+        "expired": 0,
+        "failed": 0,
+        "queued": 0,
+        "reused": 0,
+        "searches_completed": 0,
+        "searches_started": 0,
+        "validated": 0
+      },
+      "family_bootstrap_verified_early": {
+        "ci_95": [
+          0.0,
+          0.0
+        ],
+        "estimate": 0.0,
+        "families": 25,
+        "resampling_unit": "question_family",
+        "samples": 2000,
+        "seed": 42
+      },
+      "invalid_citation_rate": {
+        "denominator": 50,
+        "eligibility": "claim emitted after Grounding Firewall",
+        "grounding_status": "verified by Grounding Firewall",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 0,
+        "rate": 0.0,
+        "split": "development",
+        "timing_source": "not applicable",
+        "unit": "emitted claim",
+        "wilson_95": [
+          0.0,
+          0.0714
+        ]
+      },
+      "lead_time_ms": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "timing_source": "synthetic stream clock; accelerated scheduled replay",
+        "unit": "ms"
+      },
+      "preparation_coverage_before_final": {
+        "denominator": 25,
+        "eligibility": "gold-labeled stream with at least one non-final prefix",
+        "grounding_status": "provisional only",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 0,
+        "rate": 0.0,
+        "split": "development",
+        "timing_source": "accelerated scheduled replay; synthetic timestamps",
+        "unit": "stream",
+        "wilson_95": [
+          0.0,
+          0.1332
+        ]
+      },
+      "retrieval_latency_ms": {
+        "count": 47,
+        "max": 2.667,
+        "measurement_source": "RetrievalCompleted latency_ms",
+        "p50": 1.151,
+        "p95": 2.441,
+        "unit": "ms"
+      },
+      "search_cost": {
+        "actual_hybrid_search_executions": 47,
+        "by_retrieval_type": {
+          "FINAL_FALLBACK": 47
+        },
+        "cache_reuse_events": 0,
+        "canceled_before_execution": 0,
+        "cancellation_requests": 0,
+        "completed_but_discarded": 0,
+        "measurement_source": "HybridIndex.search execution registry"
+      },
+      "verified_useful_evidence_before_final": {
+        "denominator": 25,
+        "eligibility": "gold-labeled stream with at least one non-final prefix",
+        "grounding_status": "early evidence was gold-aligned and later cited by an emitted Grounding Firewall claim",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 0,
+        "rate": 0.0,
+        "split": "development",
+        "timing_source": "accelerated scheduled replay; synthetic timestamps",
+        "unit": "stream",
+        "wilson_95": [
+          0.0,
+          0.1332
+        ]
+      },
+      "wasted_preparation_rate": {
+        "denominator": 0,
+        "eligibility": "CAPER provisional search completed",
+        "grounding_status": "not committed",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 0,
+        "rate": null,
+        "split": "development",
+        "timing_source": "actual task lifecycle",
+        "unit": "completed provisional search",
+        "wilson_95": null
+      }
+    },
+    "name": "C10_end_of_utterance",
+    "split": "development",
+    "status": "MEASURED"
+  },
+  "C1_validated_cache_only": {
+    "metrics": {
+      "caper_totals": {
+        "backpressure_rejections": 0,
+        "canceled_before_execution": 0,
+        "cancellation_requests": 0,
+        "committed": 0,
+        "completed_discarded": 0,
+        "decisions": 0,
+        "expired": 0,
+        "failed": 0,
+        "queued": 0,
+        "reused": 0,
+        "searches_completed": 0,
+        "searches_started": 0,
+        "validated": 0
+      },
+      "family_bootstrap_verified_early": {
+        "ci_95": [
+          0.28,
+          0.68
+        ],
+        "estimate": 0.48,
+        "families": 25,
+        "resampling_unit": "question_family",
+        "samples": 2000,
+        "seed": 42
+      },
+      "invalid_citation_rate": {
+        "denominator": 49,
+        "eligibility": "claim emitted after Grounding Firewall",
+        "grounding_status": "verified by Grounding Firewall",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 0,
+        "rate": 0.0,
+        "split": "development",
+        "timing_source": "not applicable",
+        "unit": "emitted claim",
+        "wilson_95": [
+          0.0,
+          0.0727
+        ]
+      },
+      "lead_time_ms": {
+        "count": 12,
+        "mean": 1778.117,
+        "median": 1444.1,
+        "timing_source": "synthetic stream clock; accelerated scheduled replay",
+        "unit": "ms"
+      },
+      "preparation_coverage_before_final": {
+        "denominator": 25,
+        "eligibility": "gold-labeled stream with at least one non-final prefix",
+        "grounding_status": "provisional only",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 0,
+        "rate": 0.0,
+        "split": "development",
+        "timing_source": "accelerated scheduled replay; synthetic timestamps",
+        "unit": "stream",
+        "wilson_95": [
+          0.0,
+          0.1332
+        ]
+      },
+      "retrieval_latency_ms": {
+        "count": 60,
+        "max": 3.853,
+        "measurement_source": "RetrievalCompleted latency_ms",
+        "p50": 1.456,
+        "p95": 2.525,
+        "unit": "ms"
+      },
+      "search_cost": {
+        "actual_hybrid_search_executions": 48,
+        "by_retrieval_type": {
+          "FINAL_FALLBACK": 26,
+          "PRIMARY": 21,
+          "REFINEMENT": 1
+        },
+        "cache_reuse_events": 12,
+        "canceled_before_execution": 0,
+        "cancellation_requests": 0,
+        "completed_but_discarded": 0,
+        "measurement_source": "HybridIndex.search execution registry"
+      },
+      "verified_useful_evidence_before_final": {
+        "denominator": 25,
+        "eligibility": "gold-labeled stream with at least one non-final prefix",
+        "grounding_status": "early evidence was gold-aligned and later cited by an emitted Grounding Firewall claim",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 12,
+        "rate": 0.48,
+        "split": "development",
+        "timing_source": "accelerated scheduled replay; synthetic timestamps",
+        "unit": "stream",
+        "wilson_95": [
+          0.3003,
+          0.665
+        ]
+      },
+      "wasted_preparation_rate": {
+        "denominator": 0,
+        "eligibility": "CAPER provisional search completed",
+        "grounding_status": "not committed",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 0,
+        "rate": null,
+        "split": "development",
+        "timing_source": "actual task lifecycle",
+        "unit": "completed provisional search",
+        "wilson_95": null
+      }
+    },
+    "name": "C1_validated_cache_only",
+    "split": "development",
+    "status": "MEASURED"
+  },
+  "C2_prefetch_no_reuse": {
+    "metrics": {
+      "caper_totals": {
+        "backpressure_rejections": 0,
+        "canceled_before_execution": 0,
+        "cancellation_requests": 0,
+        "committed": 0,
+        "completed_discarded": 0,
+        "decisions": 103,
+        "expired": 0,
+        "failed": 0,
+        "queued": 11,
+        "reused": 8,
+        "searches_completed": 11,
+        "searches_started": 11,
+        "validated": 6
+      },
+      "family_bootstrap_verified_early": {
+        "ci_95": [
+          0.32,
+          0.72
+        ],
+        "estimate": 0.52,
+        "families": 25,
+        "resampling_unit": "question_family",
+        "samples": 2000,
+        "seed": 42
+      },
+      "invalid_citation_rate": {
+        "denominator": 49,
+        "eligibility": "claim emitted after Grounding Firewall",
+        "grounding_status": "verified by Grounding Firewall",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 0,
+        "rate": 0.0,
+        "split": "development",
+        "timing_source": "not applicable",
+        "unit": "emitted claim",
+        "wilson_95": [
+          0.0,
+          0.0727
+        ]
+      },
+      "lead_time_ms": {
+        "count": 13,
+        "mean": 1818.7,
+        "median": 1295.9,
+        "timing_source": "synthetic stream clock; accelerated scheduled replay",
+        "unit": "ms"
+      },
+      "preparation_coverage_before_final": {
+        "denominator": 25,
+        "eligibility": "gold-labeled stream with at least one non-final prefix",
+        "grounding_status": "provisional only",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 10,
+        "rate": 0.4,
+        "split": "development",
+        "timing_source": "accelerated scheduled replay; synthetic timestamps",
+        "unit": "stream",
+        "wilson_95": [
+          0.234,
+          0.5926
+        ]
+      },
+      "retrieval_latency_ms": {
+        "count": 60,
+        "max": 3.169,
+        "measurement_source": "RetrievalCompleted latency_ms",
+        "p50": 1.174,
+        "p95": 2.05,
+        "unit": "ms"
+      },
+      "search_cost": {
+        "actual_hybrid_search_executions": 71,
+        "by_retrieval_type": {
+          "FINAL_FALLBACK": 26,
+          "PRIMARY": 21,
+          "PROVISIONAL": 11,
+          "REFINEMENT": 13
+        },
+        "cache_reuse_events": 0,
+        "canceled_before_execution": 0,
+        "cancellation_requests": 0,
+        "completed_but_discarded": 0,
+        "measurement_source": "HybridIndex.search execution registry"
+      },
+      "verified_useful_evidence_before_final": {
+        "denominator": 25,
+        "eligibility": "gold-labeled stream with at least one non-final prefix",
+        "grounding_status": "early evidence was gold-aligned and later cited by an emitted Grounding Firewall claim",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 13,
+        "rate": 0.52,
+        "split": "development",
+        "timing_source": "accelerated scheduled replay; synthetic timestamps",
+        "unit": "stream",
+        "wilson_95": [
+          0.335,
+          0.6997
+        ]
+      },
+      "wasted_preparation_rate": {
+        "denominator": 11,
+        "eligibility": "CAPER provisional search completed",
+        "grounding_status": "not committed",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 11,
+        "rate": 1.0,
+        "split": "development",
+        "timing_source": "actual task lifecycle",
+        "unit": "completed provisional search",
+        "wilson_95": [
+          0.7412,
+          1.0
+        ]
+      }
+    },
+    "name": "C2_prefetch_no_reuse",
+    "split": "development",
+    "status": "MEASURED"
+  },
+  "C3_provisional_cache_no_commit_reuse": {
+    "metrics": {
+      "caper_totals": {
+        "backpressure_rejections": 0,
+        "canceled_before_execution": 0,
+        "cancellation_requests": 0,
+        "committed": 0,
+        "completed_discarded": 0,
+        "decisions": 103,
+        "expired": 0,
+        "failed": 0,
+        "queued": 11,
+        "reused": 8,
+        "searches_completed": 11,
+        "searches_started": 11,
+        "validated": 6
+      },
+      "family_bootstrap_verified_early": {
+        "ci_95": [
+          0.32,
+          0.72
+        ],
+        "estimate": 0.52,
+        "families": 25,
+        "resampling_unit": "question_family",
+        "samples": 2000,
+        "seed": 42
+      },
+      "invalid_citation_rate": {
+        "denominator": 49,
+        "eligibility": "claim emitted after Grounding Firewall",
+        "grounding_status": "verified by Grounding Firewall",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 0,
+        "rate": 0.0,
+        "split": "development",
+        "timing_source": "not applicable",
+        "unit": "emitted claim",
+        "wilson_95": [
+          0.0,
+          0.0727
+        ]
+      },
+      "lead_time_ms": {
+        "count": 13,
+        "mean": 1818.938,
+        "median": 1296.6,
+        "timing_source": "synthetic stream clock; accelerated scheduled replay",
+        "unit": "ms"
+      },
+      "preparation_coverage_before_final": {
+        "denominator": 25,
+        "eligibility": "gold-labeled stream with at least one non-final prefix",
+        "grounding_status": "provisional only",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 10,
+        "rate": 0.4,
+        "split": "development",
+        "timing_source": "accelerated scheduled replay; synthetic timestamps",
+        "unit": "stream",
+        "wilson_95": [
+          0.234,
+          0.5926
+        ]
+      },
+      "retrieval_latency_ms": {
+        "count": 60,
+        "max": 2.922,
+        "measurement_source": "RetrievalCompleted latency_ms",
+        "p50": 1.073,
+        "p95": 2.084,
+        "unit": "ms"
+      },
+      "search_cost": {
+        "actual_hybrid_search_executions": 71,
+        "by_retrieval_type": {
+          "FINAL_FALLBACK": 26,
+          "PRIMARY": 21,
+          "PROVISIONAL": 11,
+          "REFINEMENT": 13
+        },
+        "cache_reuse_events": 0,
+        "canceled_before_execution": 0,
+        "cancellation_requests": 0,
+        "completed_but_discarded": 0,
+        "measurement_source": "HybridIndex.search execution registry"
+      },
+      "verified_useful_evidence_before_final": {
+        "denominator": 25,
+        "eligibility": "gold-labeled stream with at least one non-final prefix",
+        "grounding_status": "early evidence was gold-aligned and later cited by an emitted Grounding Firewall claim",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 13,
+        "rate": 0.52,
+        "split": "development",
+        "timing_source": "accelerated scheduled replay; synthetic timestamps",
+        "unit": "stream",
+        "wilson_95": [
+          0.335,
+          0.6997
+        ]
+      },
+      "wasted_preparation_rate": {
+        "denominator": 11,
+        "eligibility": "CAPER provisional search completed",
+        "grounding_status": "not committed",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 11,
+        "rate": 1.0,
+        "split": "development",
+        "timing_source": "actual task lifecycle",
+        "unit": "completed provisional search",
+        "wilson_95": [
+          0.7412,
+          1.0
+        ]
+      }
+    },
+    "name": "C3_provisional_cache_no_commit_reuse",
+    "split": "development",
+    "status": "MEASURED"
+  },
+  "C4_strict_validated_reuse": {
+    "metrics": {
+      "caper_totals": {
+        "backpressure_rejections": 0,
+        "canceled_before_execution": 0,
+        "cancellation_requests": 0,
+        "committed": 3,
+        "completed_discarded": 0,
+        "decisions": 103,
+        "expired": 0,
+        "failed": 0,
+        "queued": 11,
+        "reused": 12,
+        "searches_completed": 11,
+        "searches_started": 11,
+        "validated": 9
+      },
+      "family_bootstrap_verified_early": {
+        "ci_95": [
+          0.32,
+          0.72
+        ],
+        "estimate": 0.52,
+        "families": 25,
+        "resampling_unit": "question_family",
+        "samples": 2000,
+        "seed": 42
+      },
+      "invalid_citation_rate": {
+        "denominator": 49,
+        "eligibility": "claim emitted after Grounding Firewall",
+        "grounding_status": "verified by Grounding Firewall",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 0,
+        "rate": 0.0,
+        "split": "development",
+        "timing_source": "not applicable",
+        "unit": "emitted claim",
+        "wilson_95": [
+          0.0,
+          0.0727
+        ]
+      },
+      "lead_time_ms": {
+        "count": 13,
+        "mean": 1819.023,
+        "median": 1296.9,
+        "timing_source": "synthetic stream clock; accelerated scheduled replay",
+        "unit": "ms"
+      },
+      "preparation_coverage_before_final": {
+        "denominator": 25,
+        "eligibility": "gold-labeled stream with at least one non-final prefix",
+        "grounding_status": "provisional only",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 10,
+        "rate": 0.4,
+        "split": "development",
+        "timing_source": "accelerated scheduled replay; synthetic timestamps",
+        "unit": "stream",
+        "wilson_95": [
+          0.234,
+          0.5926
+        ]
+      },
+      "retrieval_latency_ms": {
+        "count": 60,
+        "max": 2.688,
+        "measurement_source": "RetrievalCompleted latency_ms",
+        "p50": 1.048,
+        "p95": 1.938,
+        "unit": "ms"
+      },
+      "search_cost": {
+        "actual_hybrid_search_executions": 67,
+        "by_retrieval_type": {
+          "FINAL_FALLBACK": 25,
+          "PRIMARY": 20,
+          "PROVISIONAL": 11,
+          "REFINEMENT": 11
+        },
+        "cache_reuse_events": 4,
+        "canceled_before_execution": 0,
+        "cancellation_requests": 0,
+        "completed_but_discarded": 0,
+        "measurement_source": "HybridIndex.search execution registry"
+      },
+      "verified_useful_evidence_before_final": {
+        "denominator": 25,
+        "eligibility": "gold-labeled stream with at least one non-final prefix",
+        "grounding_status": "early evidence was gold-aligned and later cited by an emitted Grounding Firewall claim",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 13,
+        "rate": 0.52,
+        "split": "development",
+        "timing_source": "accelerated scheduled replay; synthetic timestamps",
+        "unit": "stream",
+        "wilson_95": [
+          0.335,
+          0.6997
+        ]
+      },
+      "wasted_preparation_rate": {
+        "denominator": 11,
+        "eligibility": "CAPER provisional search completed",
+        "grounding_status": "not committed",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 8,
+        "rate": 0.7273,
+        "split": "development",
+        "timing_source": "actual task lifecycle",
+        "unit": "completed provisional search",
+        "wilson_95": [
+          0.4343,
+          0.9025
+        ]
+      }
+    },
+    "name": "C4_strict_validated_reuse",
+    "split": "development",
+    "status": "MEASURED"
+  },
+  "C5_query_version_reconciliation": {
+    "metrics": {
+      "caper_totals": {
+        "backpressure_rejections": 0,
+        "canceled_before_execution": 0,
+        "cancellation_requests": 0,
+        "committed": 3,
+        "completed_discarded": 0,
+        "decisions": 103,
+        "expired": 0,
+        "failed": 0,
+        "queued": 11,
+        "reused": 12,
+        "searches_completed": 11,
+        "searches_started": 11,
+        "validated": 9
+      },
+      "family_bootstrap_verified_early": {
+        "ci_95": [
+          0.32,
+          0.72
+        ],
+        "estimate": 0.52,
+        "families": 25,
+        "resampling_unit": "question_family",
+        "samples": 2000,
+        "seed": 42
+      },
+      "invalid_citation_rate": {
+        "denominator": 49,
+        "eligibility": "claim emitted after Grounding Firewall",
+        "grounding_status": "verified by Grounding Firewall",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 0,
+        "rate": 0.0,
+        "split": "development",
+        "timing_source": "not applicable",
+        "unit": "emitted claim",
+        "wilson_95": [
+          0.0,
+          0.0727
+        ]
+      },
+      "lead_time_ms": {
+        "count": 13,
+        "mean": 1819.223,
+        "median": 1296.2,
+        "timing_source": "synthetic stream clock; accelerated scheduled replay",
+        "unit": "ms"
+      },
+      "preparation_coverage_before_final": {
+        "denominator": 25,
+        "eligibility": "gold-labeled stream with at least one non-final prefix",
+        "grounding_status": "provisional only",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 10,
+        "rate": 0.4,
+        "split": "development",
+        "timing_source": "accelerated scheduled replay; synthetic timestamps",
+        "unit": "stream",
+        "wilson_95": [
+          0.234,
+          0.5926
+        ]
+      },
+      "retrieval_latency_ms": {
+        "count": 60,
+        "max": 2.086,
+        "measurement_source": "RetrievalCompleted latency_ms",
+        "p50": 0.976,
+        "p95": 1.88,
+        "unit": "ms"
+      },
+      "search_cost": {
+        "actual_hybrid_search_executions": 67,
+        "by_retrieval_type": {
+          "FINAL_FALLBACK": 25,
+          "PRIMARY": 20,
+          "PROVISIONAL": 11,
+          "REFINEMENT": 11
+        },
+        "cache_reuse_events": 4,
+        "canceled_before_execution": 0,
+        "cancellation_requests": 0,
+        "completed_but_discarded": 0,
+        "measurement_source": "HybridIndex.search execution registry"
+      },
+      "verified_useful_evidence_before_final": {
+        "denominator": 25,
+        "eligibility": "gold-labeled stream with at least one non-final prefix",
+        "grounding_status": "early evidence was gold-aligned and later cited by an emitted Grounding Firewall claim",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 13,
+        "rate": 0.52,
+        "split": "development",
+        "timing_source": "accelerated scheduled replay; synthetic timestamps",
+        "unit": "stream",
+        "wilson_95": [
+          0.335,
+          0.6997
+        ]
+      },
+      "wasted_preparation_rate": {
+        "denominator": 11,
+        "eligibility": "CAPER provisional search completed",
+        "grounding_status": "not committed",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 8,
+        "rate": 0.7273,
+        "split": "development",
+        "timing_source": "actual task lifecycle",
+        "unit": "completed provisional search",
+        "wilson_95": [
+          0.4343,
+          0.9025
+        ]
+      }
+    },
+    "name": "C5_query_version_reconciliation",
+    "split": "development",
+    "status": "MEASURED"
+  },
+  "C6_bounded_async": {
+    "metrics": {
+      "caper_totals": {
+        "backpressure_rejections": 0,
+        "canceled_before_execution": 0,
+        "cancellation_requests": 0,
+        "committed": 3,
+        "completed_discarded": 0,
+        "decisions": 103,
+        "expired": 0,
+        "failed": 0,
+        "queued": 11,
+        "reused": 12,
+        "searches_completed": 11,
+        "searches_started": 11,
+        "validated": 9
+      },
+      "family_bootstrap_verified_early": {
+        "ci_95": [
+          0.32,
+          0.72
+        ],
+        "estimate": 0.52,
+        "families": 25,
+        "resampling_unit": "question_family",
+        "samples": 2000,
+        "seed": 42
+      },
+      "invalid_citation_rate": {
+        "denominator": 49,
+        "eligibility": "claim emitted after Grounding Firewall",
+        "grounding_status": "verified by Grounding Firewall",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 0,
+        "rate": 0.0,
+        "split": "development",
+        "timing_source": "not applicable",
+        "unit": "emitted claim",
+        "wilson_95": [
+          0.0,
+          0.0727
+        ]
+      },
+      "lead_time_ms": {
+        "count": 13,
+        "mean": 1818.7,
+        "median": 1296.8,
+        "timing_source": "synthetic stream clock; accelerated scheduled replay",
+        "unit": "ms"
+      },
+      "preparation_coverage_before_final": {
+        "denominator": 25,
+        "eligibility": "gold-labeled stream with at least one non-final prefix",
+        "grounding_status": "provisional only",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 10,
+        "rate": 0.4,
+        "split": "development",
+        "timing_source": "accelerated scheduled replay; synthetic timestamps",
+        "unit": "stream",
+        "wilson_95": [
+          0.234,
+          0.5926
+        ]
+      },
+      "retrieval_latency_ms": {
+        "count": 60,
+        "max": 2.809,
+        "measurement_source": "RetrievalCompleted latency_ms",
+        "p50": 1.087,
+        "p95": 1.828,
+        "unit": "ms"
+      },
+      "search_cost": {
+        "actual_hybrid_search_executions": 67,
+        "by_retrieval_type": {
+          "FINAL_FALLBACK": 25,
+          "PRIMARY": 20,
+          "PROVISIONAL": 11,
+          "REFINEMENT": 11
+        },
+        "cache_reuse_events": 4,
+        "canceled_before_execution": 0,
+        "cancellation_requests": 0,
+        "completed_but_discarded": 0,
+        "measurement_source": "HybridIndex.search execution registry"
+      },
+      "verified_useful_evidence_before_final": {
+        "denominator": 25,
+        "eligibility": "gold-labeled stream with at least one non-final prefix",
+        "grounding_status": "early evidence was gold-aligned and later cited by an emitted Grounding Firewall claim",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 13,
+        "rate": 0.52,
+        "split": "development",
+        "timing_source": "accelerated scheduled replay; synthetic timestamps",
+        "unit": "stream",
+        "wilson_95": [
+          0.335,
+          0.6997
+        ]
+      },
+      "wasted_preparation_rate": {
+        "denominator": 11,
+        "eligibility": "CAPER provisional search completed",
+        "grounding_status": "not committed",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 8,
+        "rate": 0.7273,
+        "split": "development",
+        "timing_source": "actual task lifecycle",
+        "unit": "completed provisional search",
+        "wilson_95": [
+          0.4343,
+          0.9025
+        ]
+      }
+    },
+    "name": "C6_bounded_async",
+    "split": "development",
+    "status": "MEASURED"
+  },
+  "C7_learned_prefetch": {
+    "name": "C7_learned_prefetch",
+    "reason": "No learned CAPER model was trained; deterministic policy evaluated first.",
+    "split": "development",
+    "status": "NOT_RUN"
+  },
+  "C8_full_caper_deterministic": {
+    "metrics": {
+      "caper_totals": {
+        "backpressure_rejections": 0,
+        "canceled_before_execution": 0,
+        "cancellation_requests": 0,
+        "committed": 3,
+        "completed_discarded": 0,
+        "decisions": 103,
+        "expired": 0,
+        "failed": 0,
+        "queued": 11,
+        "reused": 12,
+        "searches_completed": 11,
+        "searches_started": 11,
+        "validated": 9
+      },
+      "family_bootstrap_verified_early": {
+        "ci_95": [
+          0.32,
+          0.72
+        ],
+        "estimate": 0.52,
+        "families": 25,
+        "resampling_unit": "question_family",
+        "samples": 2000,
+        "seed": 42
+      },
+      "invalid_citation_rate": {
+        "denominator": 49,
+        "eligibility": "claim emitted after Grounding Firewall",
+        "grounding_status": "verified by Grounding Firewall",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 0,
+        "rate": 0.0,
+        "split": "development",
+        "timing_source": "not applicable",
+        "unit": "emitted claim",
+        "wilson_95": [
+          0.0,
+          0.0727
+        ]
+      },
+      "lead_time_ms": {
+        "count": 13,
+        "mean": 1819.223,
+        "median": 1296.1,
+        "timing_source": "synthetic stream clock; accelerated scheduled replay",
+        "unit": "ms"
+      },
+      "preparation_coverage_before_final": {
+        "denominator": 25,
+        "eligibility": "gold-labeled stream with at least one non-final prefix",
+        "grounding_status": "provisional only",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 10,
+        "rate": 0.4,
+        "split": "development",
+        "timing_source": "accelerated scheduled replay; synthetic timestamps",
+        "unit": "stream",
+        "wilson_95": [
+          0.234,
+          0.5926
+        ]
+      },
+      "retrieval_latency_ms": {
+        "count": 60,
+        "max": 5.523,
+        "measurement_source": "RetrievalCompleted latency_ms",
+        "p50": 0.968,
+        "p95": 1.678,
+        "unit": "ms"
+      },
+      "search_cost": {
+        "actual_hybrid_search_executions": 67,
+        "by_retrieval_type": {
+          "FINAL_FALLBACK": 25,
+          "PRIMARY": 20,
+          "PROVISIONAL": 11,
+          "REFINEMENT": 11
+        },
+        "cache_reuse_events": 4,
+        "canceled_before_execution": 0,
+        "cancellation_requests": 0,
+        "completed_but_discarded": 0,
+        "measurement_source": "HybridIndex.search execution registry"
+      },
+      "verified_useful_evidence_before_final": {
+        "denominator": 25,
+        "eligibility": "gold-labeled stream with at least one non-final prefix",
+        "grounding_status": "early evidence was gold-aligned and later cited by an emitted Grounding Firewall claim",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 13,
+        "rate": 0.52,
+        "split": "development",
+        "timing_source": "accelerated scheduled replay; synthetic timestamps",
+        "unit": "stream",
+        "wilson_95": [
+          0.335,
+          0.6997
+        ]
+      },
+      "wasted_preparation_rate": {
+        "denominator": 11,
+        "eligibility": "CAPER provisional search completed",
+        "grounding_status": "not committed",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 8,
+        "rate": 0.7273,
+        "split": "development",
+        "timing_source": "actual task lifecycle",
+        "unit": "completed provisional search",
+        "wilson_95": [
+          0.4343,
+          0.9025
+        ]
+      }
+    },
+    "name": "C8_full_caper_deterministic",
+    "split": "development",
+    "status": "MEASURED"
+  },
+  "C9_eager_bounded": {
+    "metrics": {
+      "caper_totals": {
+        "backpressure_rejections": 0,
+        "canceled_before_execution": 0,
+        "cancellation_requests": 10,
+        "committed": 4,
+        "completed_discarded": 0,
+        "decisions": 103,
+        "expired": 0,
+        "failed": 0,
+        "queued": 22,
+        "reused": 16,
+        "searches_completed": 22,
+        "searches_started": 22,
+        "validated": 21
+      },
+      "family_bootstrap_verified_early": {
+        "ci_95": [
+          0.44,
+          0.84
+        ],
+        "estimate": 0.64,
+        "families": 25,
+        "resampling_unit": "question_family",
+        "samples": 2000,
+        "seed": 42
+      },
+      "invalid_citation_rate": {
+        "denominator": 49,
+        "eligibility": "claim emitted after Grounding Firewall",
+        "grounding_status": "verified by Grounding Firewall",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 0,
+        "rate": 0.0,
+        "split": "development",
+        "timing_source": "not applicable",
+        "unit": "emitted claim",
+        "wilson_95": [
+          0.0,
+          0.0727
+        ]
+      },
+      "lead_time_ms": {
+        "count": 16,
+        "mean": 2146.6,
+        "median": 1497.8,
+        "timing_source": "synthetic stream clock; accelerated scheduled replay",
+        "unit": "ms"
+      },
+      "preparation_coverage_before_final": {
+        "denominator": 25,
+        "eligibility": "gold-labeled stream with at least one non-final prefix",
+        "grounding_status": "provisional only",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 18,
+        "rate": 0.72,
+        "split": "development",
+        "timing_source": "accelerated scheduled replay; synthetic timestamps",
+        "unit": "stream",
+        "wilson_95": [
+          0.5242,
+          0.8572
+        ]
+      },
+      "retrieval_latency_ms": {
+        "count": 60,
+        "max": 2.031,
+        "measurement_source": "RetrievalCompleted latency_ms",
+        "p50": 0.988,
+        "p95": 1.575,
+        "unit": "ms"
+      },
+      "search_cost": {
+        "actual_hybrid_search_executions": 76,
+        "by_retrieval_type": {
+          "FINAL_FALLBACK": 24,
+          "PRIMARY": 19,
+          "PROVISIONAL": 22,
+          "REFINEMENT": 11
+        },
+        "cache_reuse_events": 6,
+        "canceled_before_execution": 0,
+        "cancellation_requests": 10,
+        "completed_but_discarded": 0,
+        "measurement_source": "HybridIndex.search execution registry"
+      },
+      "verified_useful_evidence_before_final": {
+        "denominator": 25,
+        "eligibility": "gold-labeled stream with at least one non-final prefix",
+        "grounding_status": "early evidence was gold-aligned and later cited by an emitted Grounding Firewall claim",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 16,
+        "rate": 0.64,
+        "split": "development",
+        "timing_source": "accelerated scheduled replay; synthetic timestamps",
+        "unit": "stream",
+        "wilson_95": [
+          0.4452,
+          0.7975
+        ]
+      },
+      "wasted_preparation_rate": {
+        "denominator": 22,
+        "eligibility": "CAPER provisional search completed",
+        "grounding_status": "not committed",
+        "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+        "numerator": 18,
+        "rate": 0.8182,
+        "split": "development",
+        "timing_source": "actual task lifecycle",
+        "unit": "completed provisional search",
+        "wilson_95": [
+          0.6148,
+          0.9269
+        ]
+      }
+    },
+    "name": "C9_eager_bounded",
+    "split": "development",
+    "status": "MEASURED"
+  }
+}

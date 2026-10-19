@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "scanner": "built-in deterministic regex audit",
+  "gitleaks": "NOT_RUN_NOT_INSTALLED_OR_REQUIRED",
+  "working_tree_files_scanned": 591,
+  "git_history_status": "SCANNED",
+  "finding_counts": {
+    "openai_token": 1
+  },
+  "requiring_review": 0,
+  "findings": [
+    {
+      "source": "tests\\test_caper_v2_4.py",
+      "line": 150,
+      "pattern": "openai_token",
+      "classification": "SYNTHETIC_OR_DOCUMENTATION",
+      "value_disclosed": false
+    }
+  ],
+  "privacy_controls": {
+    "trace_content_default": false,
+    "nested_redaction": true,
+    "authorized_persistent_deletion": true,
+    "resume_token_in_url": false,
+    "resume_token_rotation": true
+  },
+  "limitations": [
+    "Regex scanning cannot prove that no secret exists.",
+    "Findings contain classifications and locations only; matched values are never serialized."
+  ]
+}

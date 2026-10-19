@@ -1,0 +1,28 @@
+{
+  "audited_reference": "a7ee6642e7975105721a97438162b3dcbbb536be",
+  "baseline_test_result": {
+    "failed": 0,
+    "passed": 67,
+    "warnings": 1
+  },
+  "benchmark_run_id": "20261019T070859Z",
+  "canonical_replay_event_counts": {
+    "conflict-demo": 25,
+    "multi-domain-stress": 111,
+    "pune-demo": 110,
+    "reimbursement-demo": 68,
+    "self-repair-demo": 37
+  },
+  "development_gates": {
+    "G2_early_retrieval": {
+      "status": "FAIL",
+      "value": 0.6875
+    },
+    "G3_grounded_claims": {
+      "status": "PASS",
+      "value": 0.9444
+    }
+  },
+  "semantic_run_id": "20261019T070917Z",
+  "timing": "captured before V2.4 production edits"
+}

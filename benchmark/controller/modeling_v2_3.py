@@ -5,7 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
-from collections import Counter
+from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 
@@ -15,7 +15,7 @@ from benchmark.controller.counterfactual import label_optimal_stopping, oracle_s
 from benchmark.controller.dataset_v2_3 import ROOT as DATA_ROOT
 from benchmark.controller.dataset_v2_3 import build_dataset, load_split
 from benchmark.controller.features_v2_3 import replay_feature_rows
-from benchmark.controller.metrics import calibration_metrics
+from benchmark.controller.metrics import calibration_metrics, wilson
 from kairos.config import Config, resolve_path
 from kairos.controller.features import FEATURE_SCHEMA_VERSION, feature_schema_hash
 from kairos.engine import EngineContext
@@ -105,25 +105,58 @@ def _apply_calibration(probabilities: list[float], calibration: dict[str, Any]) 
     return output
 
 
+def _sequential_selected(
+    rows: list[dict[str, Any]], probabilities: list[float], deltas: list[float], threshold: float
+) -> list[int]:
+    """Apply the deployable first-eligible-action rule once per intent lineage."""
+    grouped: defaultdict[tuple[str, str], list[int]] = defaultdict(list)
+    for index, row in enumerate(rows):
+        grouped[(row["stream_id"], row["candidate_id"])].append(index)
+    selected: list[int] = []
+    for indices in grouped.values():
+        indices.sort(key=lambda index: rows[index]["prefix_index"])
+        match = next((
+            index for index in indices
+            if not rows[index].get("is_final") and probabilities[index] >= threshold and deltas[index] > 0.0
+        ), None)
+        if match is not None:
+            selected.append(match)
+    return selected
+
+
 def _select_threshold(rows: list[dict[str, Any]], probabilities: list[float], deltas: list[float], max_risk: float = 0.20) -> dict[str, Any]:
     table = []
     best = None
     for threshold in [round(value / 100, 2) for value in range(35, 96, 5)]:
-        selected = [index for index, (probability, delta) in enumerate(zip(probabilities, deltas))
-                    if probability >= threshold and delta > 0.0]
-        unsafe = sum(rows[index]["targets"].get("strict_useful") != 1 for index in selected)
+        selected = _sequential_selected(rows, probabilities, deltas, threshold)
+        unsafe = sum(rows[index]["targets"].get("proxy_strict_useful",
+                                                rows[index]["targets"].get("strict_useful")) != 1
+                     for index in selected)
         useful = len(selected) - unsafe
-        risk = unsafe / len(selected) if selected else 0.0
-        recall_den = sum(row["targets"].get("strict_useful") == 1 for row in rows)
-        recall = useful / recall_den if recall_den else 0.0
+        risk = unsafe / len(selected) if selected else None
+        eligible_lineages = len({(row["stream_id"], row["candidate_id"]) for row in rows})
+        useful_lineages = {
+            (row["stream_id"], row["candidate_id"])
+            for row in rows if row["targets"].get("proxy_strict_useful", row["targets"].get("strict_useful")) == 1
+        }
+        recall_den = len(useful_lineages)
+        recall = useful / recall_den if recall_den else None
+        families = {rows[index]["question_family"] for index in selected}
         record = {"threshold": threshold, "selected": len(selected), "useful": useful, "unsafe": unsafe,
-                  "empirical_risk": round(risk, 6), "useful_recall": round(recall, 6),
-                  "eligible": risk <= max_risk}
+                  "coverage": round(len(selected) / eligible_lineages, 6) if eligible_lineages else None,
+                  "conditional_selected_action_risk": round(risk, 6) if risk is not None else None,
+                  "empirical_risk": round(risk, 6) if risk is not None else None,
+                  "selected_action_risk_wilson_95": wilson(unsafe, len(selected)) if selected else None,
+                  "useful_recall": round(recall, 6) if recall is not None else None,
+                  "selected_question_families": len(families),
+                  "promotion_eligible": bool(selected) and risk is not None and risk <= max_risk,
+                  "eligible": bool(selected) and risk is not None and risk <= max_risk}
         table.append(record)
         if record["eligible"] and (best is None or (useful, -risk, -threshold) > (best[0], -best[1], -best[2])):
             best = (useful, risk, threshold, record)
     chosen = best[3] if best else table[-1]
-    return {"max_empirical_risk": max_risk, "selected": chosen, "sweep": table}
+    return {"max_empirical_risk": max_risk, "selection_rule": "FIRST_ELIGIBLE_PREFIX_PER_INTENT_LINEAGE",
+            "risk_target": "PROXY_STRICT_USEFUL_NOT_VERIFIED_SAFETY", "selected": chosen, "sweep": table}
 
 
 def train_models(cfg: Config, artifact_dir: Path | None = None) -> dict[str, Any]:

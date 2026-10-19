@@ -203,11 +203,15 @@ def test_websocket_snapshot_protocol_and_resume(cfg, tmp_path):
             if message["type"] == "transcript_ack" and message["revision"] == 2:
                 break
 
-    with client.websocket_connect(
-        f"/ws?session_id={session_id}&resume_token={resume_token}&after_event_id={last_event_id}"
-    ) as ws:
+    # Resume capabilities travel in the first message, not the URL, so they
+    # cannot leak through browser history or reverse-proxy access logs.
+    with client.websocket_connect(f"/ws?session_id={session_id}") as ws:
+        ws.send_json({"type": "resume", "session_id": session_id,
+                      "resume_token": resume_token, "after_event_id": last_event_id})
         hello = ws.receive_json()
         assert hello["session_id"] == session_id and hello["resumed"] is True
+        assert hello["resume_token"] != resume_token
+        resume_token = hello["resume_token"]
         ws.send_json(snap("mic-1", 3, "I need a workshop venue in Pune for 30 people",
                           asr_final=True, end_of_turn=True).model_dump())
         event_types = []
@@ -227,7 +231,9 @@ def test_websocket_snapshot_protocol_and_resume(cfg, tmp_path):
     assert trace["validation"]["coverage"] == 1.0
 
     with pytest.raises(Exception):
-        with client.websocket_connect(f"/ws?session_id={session_id}&resume_token=wrong-token") as ws:
+        with client.websocket_connect(f"/ws?session_id={session_id}") as ws:
+            ws.send_json({"type": "resume", "session_id": session_id,
+                          "resume_token": "wrong-token"})
             ws.receive_json()
 
 

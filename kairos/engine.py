@@ -16,6 +16,7 @@ from dataclasses import dataclass, field
 from pydantic import BaseModel
 
 from kairos.config import Config, resolve_path
+from kairos.controller.caper import CaperManager, PreparedEvidence
 from kairos.controller.features import candidate_slot_snapshot
 from kairos.controller.policy import CandidateState, RetrievalController
 from kairos.controller.turns import TurnClassifier, TurnResult
@@ -83,12 +84,14 @@ class EngineContext:
         return {
             "controller_mode": c["controller"]["mode"],
             "controller_policy_variant": c["controller"].get("policy_variant", "baseline"),
+            "caper_enabled": bool(c["controller"].get("caper", {}).get("enabled", False)),
             "retrieval_mode": c["retrieval"]["mode"],
             "reranker": c["retrieval"]["reranker"],
             "synthesis_backend": getattr(self.synth, "name", "extractive"),
             "grounding_nli": c["grounding"]["nli"],
             "refinement": c["delta"]["refinement"],
             "corpus_profile": c["corpus"].get("profile", "sample"),
+            "persistent_trace_content": bool(c.get("telemetry", {}).get("trace_content", False)),
         }
 
 
@@ -170,6 +173,14 @@ class SessionEngine:
         self._lock = asyncio.Lock()
         self._revision_checkpoints: dict[str, _RevisionCheckpoint] = {}
         self._invalidated_event_ids: set[str] = set()
+        self.caper = CaperManager(
+            session_id=self.id,
+            index=self.ctx.index,
+            cache=self.controller.evidence_cache,
+            corpus_version=self.controller.corpus_version,
+            cfg=controller_cfg.get("caper", {}),
+            emit=self.emit,
+        )
 
     # ------------------------------------------------------------------ plumbing
     def now(self) -> float:
@@ -223,15 +234,17 @@ class SessionEngine:
         return self.emit("SessionStarted", payload={
             "corpus": self.ctx.corpus_status(), "config": self.ctx.config_summary(),
             "stability_model": self.controller.model.source,
+            "caper": {"enabled": self.caper.enabled, "status": "EXPERIMENTAL" if self.caper.enabled else "DISABLED"},
         }, t=0.0)
 
     async def end(self) -> Event:
         for u in list(self.utterances.values()):
             if not u.closed:
                 await self._commit(u)
+        await self.caper.close()
         ev = self.emit("SessionEnded", payload={
             "utterances": len(self.utterances), "answer_versions": len(self.versions),
-            "events": self._seq + 1, "purged": True,
+            "events": self._seq + 1, "purged": True, "caper": self.caper.snapshot()["stats"],
         })
         self.ended = True
         self.utterances.clear()
@@ -244,6 +257,7 @@ class SessionEngine:
         self.vocab.clear()
         self._revision_checkpoints.clear()
         self._invalidated_event_ids.clear()
+        self.controller.evidence_cache.invalidate_session(self.id)
         return ev
 
     async def begin_revisable_utterance(self, utterance_id: str) -> None:
@@ -296,6 +310,9 @@ class SessionEngine:
                 "authoritative_text": authoritative_text,
                 "reason": "ASR_CORRECTION_CROSSED_COMMITTED_PREFIX",
             })
+            self.caper.invalidate_utterance(
+                utterance_id, ev.event_id, "ASR_CORRECTION_CROSSED_COMMITTED_PREFIX"
+            )
             if authoritative_text:
                 u = UtteranceState(utterance_id, last_chunk_event=ev.event_id)
                 self.utterances[utterance_id] = u
@@ -476,6 +493,22 @@ class SessionEngine:
             "retriever": "bm25-probe",
             "cache": self.ctx.index.status()["probe_cache"],
         })
+        if self.caper.enabled:
+            for cand, _st, dec in decisions:
+                query = ctl.query_for(cand, frame, aw)
+                self.caper.observe(
+                    utterance_id=u.id,
+                    intent_id=cand.key,
+                    query_version=self.query_version,
+                    query=query,
+                    typed_constraints=[item.to_public() for item in cand.typed_constraints],
+                    probe=dec.probe,
+                    signals=dec.signals,
+                    is_final=is_final,
+                    parent_event_id=ev_probe.event_id,
+                    timestamp=self.now(),
+                    allow_prefetch=dec.action not in {"RETRIEVE", "REFINE"},
+                )
         if not decisions:
             self._emit_decision(u, ev_probe.event_id, "WAIT", "NONE", ["NO_CANDIDATE_NEED"], {}, [], u.turn)
             return
@@ -574,26 +607,52 @@ class SessionEngine:
             await self._constraint_stream(u, u.frame, u.last_frame_event, True)
 
     # ------------------------------------------------------------------ retrieval
-    def _timed_search(self, sq: SubQuery) -> tuple[SearchResult, float, float, bool, str]:
+    def _timed_search(
+        self,
+        sq: SubQuery,
+        trigger: str,
+        prepared: PreparedEvidence | None = None,
+    ) -> tuple[SearchResult, float, float, str, str, str | None]:
         start = time.perf_counter()
         reuse_cfg = self.cfg["controller"].get("evidence_reuse", {})
         fingerprint = self.controller.fingerprint(
             sq.query, objective=" ".join(sq.need_texts), typed_constraints=sq.typed_constraints
         )
-        res = None
-        if reuse_cfg.get("enabled", False):
+        res = copy.deepcopy(prepared.result) if prepared is not None else None
+        reuse_kind = "CAPER_VALIDATED" if prepared is not None else "NONE"
+        if res is None and reuse_cfg.get("enabled", False):
             res = self.controller.evidence_cache.get(fingerprint, self.controller.corpus_version)
-        reused = res is not None
+            if res is not None:
+                reuse_kind = "VALIDATED_CACHE"
         if res is None:
-            res = self.ctx.index.search(sq.query)
+            retrieval_type = {
+                "REFINE": "REFINEMENT",
+                "DELTA": "REFINEMENT",
+                "END_OF_UTTERANCE": "FINAL_FALLBACK",
+            }.get(trigger, "PRIMARY")
+            res = self.ctx.index.search(sq.query, execution_context={
+                "retrieval_type": retrieval_type,
+                "session_id": self.id,
+                "intent_id": sq.id,
+                "query_version": self.query_version,
+            })
             if reuse_cfg.get("enabled", False):
                 # Admission already ran inside HybridIndex.search; grounding still runs downstream.
                 self.controller.evidence_cache.put(
                     fingerprint, res, self.controller.corpus_version, validated=True
                 )
-        return res, start, time.perf_counter(), reused, fingerprint
+        return res, start, time.perf_counter(), reuse_kind, fingerprint, (
+            prepared.evidence_id if prepared is not None else None
+        )
 
     async def _retrieve(self, u: UtteranceState, jobs: list[tuple[SubQuery, str]], parent: str | None) -> list[Event]:
+        prepared: dict[str, PreparedEvidence] = {}
+        if self.caper.enabled:
+            for sq, trigger in jobs:
+                wait_s = self.caper.finalization_wait_s if trigger == "END_OF_UTTERANCE" else 0.0
+                record = await self.caper.validated_for(sq.candidate_keys, wait_s=wait_s)
+                if record is not None:
+                    prepared[sq.id] = record
         started: dict[str, Event] = {}
         for sq, trig in jobs:
             started[sq.id] = self.emit("RetrievalStarted", [parent], utterance_id=u.id,
@@ -602,15 +661,22 @@ class SessionEngine:
                 "query": sq.query.text, "terms": {k: round(v, 2) for k, v in sq.query.terms.items()},
                 "facet_constraints": sq.query.facet_constraints, "mode": self.cfg["retrieval"]["mode"],
                 "label": sq.label, "parallel_group": [j[0].id for j in jobs],
+                "prepared_evidence_id": prepared[sq.id].evidence_id if sq.id in prepared else None,
+                "full_search_planned": sq.id not in prepared,
             })
         base_t, base_perf = self.now(), time.perf_counter()
         if u.first_retrieval_t is None:
             u.first_retrieval_t = base_t
-        results = await asyncio.gather(*(asyncio.to_thread(self._timed_search, sq) for sq, _ in jobs))
+        results = await asyncio.gather(*(
+            asyncio.to_thread(self._timed_search, sq, trigger, prepared.get(sq.id))
+            for sq, trigger in jobs
+        ))
         completed: list[Event] = []
         all_ids: list[str] = []
         all_candidate_ids: list[str] = []
-        for (sq, trig), (res, start, end, reused, fingerprint) in zip(jobs, results):
+        for (sq, trig), (res, start, end, reuse_kind, fingerprint, prepared_id) in zip(jobs, results):
+            if sq.id in prepared:
+                self.caper.mark_consumed(prepared[sq.id])
             sq.candidate_hits = res.hits
             sq.hits = res.relevant_hits
             sq.status = "RETRIEVED"
@@ -654,7 +720,11 @@ class SessionEngine:
                 "domain_confidence": round(res.domain_confidence, 4),
                 "started_offset_ms": round((start - base_perf) * 1000, 3),
                 "ended_offset_ms": round(end_off * 1000, 3), "label": sq.label,
-                "search_executed": not reused, "cache_status": "REUSABLE" if reused else "MISS_STORED",
+                "search_executed": reuse_kind == "NONE",
+                "search_id": res.search_id if reuse_kind == "NONE" else None,
+                "retrieval_type": res.retrieval_type if reuse_kind == "NONE" else "REUSE",
+                "cache_status": reuse_kind if reuse_kind != "NONE" else "MISS_STORED",
+                "prepared_evidence_id": prepared_id,
                 "query_fingerprint": fingerprint,
                 "cache": self.controller.evidence_cache.status(),
             })
@@ -672,7 +742,7 @@ class SessionEngine:
             "candidate_evidence_count": len(set(all_candidate_ids)),
             "accepted_evidence_count": len(set(all_ids)),
             "shared_across_sub_queries": shared, "contradictions": contradictions,
-            "duplicates_collapsed": sum(len(r.duplicates) for r, _, _, _, _ in results),
+            "duplicates_collapsed": sum(len(item[0].duplicates) for item in results),
         })
         u.fused_events.append(fused.event_id)
         return completed
@@ -805,6 +875,12 @@ class SessionEngine:
                        payload={"results": results, "summary": summary, "checks": [
                            "CITATION_IN_SESSION_RETRIEVAL", "CORPUS_SHA_MATCH", "VERBATIM_QUOTE", "ANCHORS",
                            "SUPPORT_" + self.cfg["grounding"]["nli"].upper(), "NUMERIC_CONFLICT"]})
+        if self.caper.enabled:
+            self.caper.commit_grounded(
+                {chunk_id for claim in passed for chunk_id in claim.evidence},
+                ev.event_id,
+                self.query_version,
+            )
         return passed, ev
 
     def _conflict_notes(self, claims: list[Claim]) -> list[dict]:
@@ -1225,4 +1301,6 @@ class SessionEngine:
             "answer_version": version.version if version else None,
             "claims": len(version.claim_ids) if version else 0,
             "pipeline_latency_ema_s": round(self.controller.pipeline_latency_s, 4),
+            "actual_search_cost": self.ctx.index.search_cost_summary(session_id=self.id),
+            "caper": self.caper.snapshot()["stats"],
         })

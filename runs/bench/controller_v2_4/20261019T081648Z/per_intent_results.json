@@ -1,0 +1,1479 @@
+[
+  {
+    "arm": "C2_prefetch_no_reuse",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-bd020cda50f647a7",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S01-u1"
+  },
+  {
+    "arm": "C2_prefetch_no_reuse",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-0c7a4a0c1c714d6c",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S03-u1"
+  },
+  {
+    "arm": "C2_prefetch_no_reuse",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-1b9b19dc349f4df9",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S03-u1"
+  },
+  {
+    "arm": "C2_prefetch_no_reuse",
+    "chunk_ids": [
+      "D02:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-4b9bb84b22c544f9",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S07-u1"
+  },
+  {
+    "arm": "C2_prefetch_no_reuse",
+    "chunk_ids": [
+      "D06:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-f0e162842abe40b0",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S09-u1"
+  },
+  {
+    "arm": "C2_prefetch_no_reuse",
+    "chunk_ids": [
+      "D01:C02",
+      "D04:C01",
+      "D01:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-adacd1dd1c434df5",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S10-u1"
+  },
+  {
+    "arm": "C2_prefetch_no_reuse",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-8bd63ddc0d7f4d03",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S13-u1"
+  },
+  {
+    "arm": "C2_prefetch_no_reuse",
+    "chunk_ids": [
+      "D08:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-097f46e3b8c049cb",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S17-u1"
+  },
+  {
+    "arm": "C2_prefetch_no_reuse",
+    "chunk_ids": [
+      "D07:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-8a0b1d25f9a34078",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S21-u1"
+  },
+  {
+    "arm": "C2_prefetch_no_reuse",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-a4530809676f4914",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S23-u1"
+  },
+  {
+    "arm": "C2_prefetch_no_reuse",
+    "chunk_ids": [
+      "D01:C02",
+      "D01:C03"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-25a46e64158c43c8",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S25-u1"
+  },
+  {
+    "arm": "C3_provisional_cache_no_commit_reuse",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-a55d75ed9be747b1",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S01-u1"
+  },
+  {
+    "arm": "C3_provisional_cache_no_commit_reuse",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-2711280ad443408d",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S03-u1"
+  },
+  {
+    "arm": "C3_provisional_cache_no_commit_reuse",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-9871acd0197b465b",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S03-u1"
+  },
+  {
+    "arm": "C3_provisional_cache_no_commit_reuse",
+    "chunk_ids": [
+      "D02:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-bf61f171e55c40cb",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S07-u1"
+  },
+  {
+    "arm": "C3_provisional_cache_no_commit_reuse",
+    "chunk_ids": [
+      "D06:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-3b5244db0e114ed4",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S09-u1"
+  },
+  {
+    "arm": "C3_provisional_cache_no_commit_reuse",
+    "chunk_ids": [
+      "D01:C02",
+      "D04:C01",
+      "D01:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-9509435701ea48ba",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S10-u1"
+  },
+  {
+    "arm": "C3_provisional_cache_no_commit_reuse",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-7af4725e25534791",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S13-u1"
+  },
+  {
+    "arm": "C3_provisional_cache_no_commit_reuse",
+    "chunk_ids": [
+      "D08:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-633b2588532c4e1d",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S17-u1"
+  },
+  {
+    "arm": "C3_provisional_cache_no_commit_reuse",
+    "chunk_ids": [
+      "D07:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-5f4e56ab7bff4eed",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S21-u1"
+  },
+  {
+    "arm": "C3_provisional_cache_no_commit_reuse",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-ed89abff7df44006",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S23-u1"
+  },
+  {
+    "arm": "C3_provisional_cache_no_commit_reuse",
+    "chunk_ids": [
+      "D01:C02",
+      "D01:C03"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-ec7419a4003541db",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S25-u1"
+  },
+  {
+    "arm": "C4_strict_validated_reuse",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-10ceb5f0ca734b35",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S01-u1"
+  },
+  {
+    "arm": "C4_strict_validated_reuse",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-fa5d78c9a5cb4c9b",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S03-u1"
+  },
+  {
+    "arm": "C4_strict_validated_reuse",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-c47aee16ccb54233",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S03-u1"
+  },
+  {
+    "arm": "C4_strict_validated_reuse",
+    "chunk_ids": [
+      "D02:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-a2aa61bc70eb4c33",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S07-u1"
+  },
+  {
+    "arm": "C4_strict_validated_reuse",
+    "chunk_ids": [
+      "D02:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-a2aa61bc70eb4c33",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S07-u1"
+  },
+  {
+    "arm": "C4_strict_validated_reuse",
+    "chunk_ids": [
+      "D06:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-727cccf7b04e412b",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S09-u1"
+  },
+  {
+    "arm": "C4_strict_validated_reuse",
+    "chunk_ids": [
+      "D06:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-727cccf7b04e412b",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S09-u1"
+  },
+  {
+    "arm": "C4_strict_validated_reuse",
+    "chunk_ids": [
+      "D06:C01"
+    ],
+    "event_type": "EvidenceCommitted",
+    "evidence_id": "pe-727cccf7b04e412b",
+    "split": "development",
+    "state": "COMMITTED",
+    "stream_id": "kairos-dev-S09-u1"
+  },
+  {
+    "arm": "C4_strict_validated_reuse",
+    "chunk_ids": [
+      "D01:C02",
+      "D04:C01",
+      "D01:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-31c2ec6da8f440c4",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S10-u1"
+  },
+  {
+    "arm": "C4_strict_validated_reuse",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-e6da8c0e2810491e",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S13-u1"
+  },
+  {
+    "arm": "C4_strict_validated_reuse",
+    "chunk_ids": [
+      "D08:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-388fac48d85b40ef",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S17-u1"
+  },
+  {
+    "arm": "C4_strict_validated_reuse",
+    "chunk_ids": [
+      "D08:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-388fac48d85b40ef",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S17-u1"
+  },
+  {
+    "arm": "C4_strict_validated_reuse",
+    "chunk_ids": [
+      "D08:C01"
+    ],
+    "event_type": "EvidenceCommitted",
+    "evidence_id": "pe-388fac48d85b40ef",
+    "split": "development",
+    "state": "COMMITTED",
+    "stream_id": "kairos-dev-S17-u1"
+  },
+  {
+    "arm": "C4_strict_validated_reuse",
+    "chunk_ids": [
+      "D07:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-0d9fd13881e54a13",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S21-u1"
+  },
+  {
+    "arm": "C4_strict_validated_reuse",
+    "chunk_ids": [
+      "D07:C02"
+    ],
+    "event_type": "EvidenceCommitted",
+    "evidence_id": "pe-0d9fd13881e54a13",
+    "split": "development",
+    "state": "COMMITTED",
+    "stream_id": "kairos-dev-S21-u1"
+  },
+  {
+    "arm": "C4_strict_validated_reuse",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-2ae9d3819e7f4e0e",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S23-u1"
+  },
+  {
+    "arm": "C4_strict_validated_reuse",
+    "chunk_ids": [
+      "D01:C02",
+      "D01:C03"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-4a0246e459224b62",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S25-u1"
+  },
+  {
+    "arm": "C5_query_version_reconciliation",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-52fb785f08554c5b",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S01-u1"
+  },
+  {
+    "arm": "C5_query_version_reconciliation",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-118e02d6e78943d8",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S03-u1"
+  },
+  {
+    "arm": "C5_query_version_reconciliation",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-108d5ecd9f2f4b98",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S03-u1"
+  },
+  {
+    "arm": "C5_query_version_reconciliation",
+    "chunk_ids": [
+      "D02:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-eb72acbbb29d430f",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S07-u1"
+  },
+  {
+    "arm": "C5_query_version_reconciliation",
+    "chunk_ids": [
+      "D02:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-eb72acbbb29d430f",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S07-u1"
+  },
+  {
+    "arm": "C5_query_version_reconciliation",
+    "chunk_ids": [
+      "D06:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-2ab19967f0bc4a00",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S09-u1"
+  },
+  {
+    "arm": "C5_query_version_reconciliation",
+    "chunk_ids": [
+      "D06:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-2ab19967f0bc4a00",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S09-u1"
+  },
+  {
+    "arm": "C5_query_version_reconciliation",
+    "chunk_ids": [
+      "D06:C01"
+    ],
+    "event_type": "EvidenceCommitted",
+    "evidence_id": "pe-2ab19967f0bc4a00",
+    "split": "development",
+    "state": "COMMITTED",
+    "stream_id": "kairos-dev-S09-u1"
+  },
+  {
+    "arm": "C5_query_version_reconciliation",
+    "chunk_ids": [
+      "D01:C02",
+      "D04:C01",
+      "D01:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-ea2347cc8ebc4264",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S10-u1"
+  },
+  {
+    "arm": "C5_query_version_reconciliation",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-c1bd2ac197c64eeb",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S13-u1"
+  },
+  {
+    "arm": "C5_query_version_reconciliation",
+    "chunk_ids": [
+      "D08:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-edfa5327d6144e9f",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S17-u1"
+  },
+  {
+    "arm": "C5_query_version_reconciliation",
+    "chunk_ids": [
+      "D08:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-edfa5327d6144e9f",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S17-u1"
+  },
+  {
+    "arm": "C5_query_version_reconciliation",
+    "chunk_ids": [
+      "D08:C01"
+    ],
+    "event_type": "EvidenceCommitted",
+    "evidence_id": "pe-edfa5327d6144e9f",
+    "split": "development",
+    "state": "COMMITTED",
+    "stream_id": "kairos-dev-S17-u1"
+  },
+  {
+    "arm": "C5_query_version_reconciliation",
+    "chunk_ids": [
+      "D07:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-0a9d6b3f528e4b55",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S21-u1"
+  },
+  {
+    "arm": "C5_query_version_reconciliation",
+    "chunk_ids": [
+      "D07:C02"
+    ],
+    "event_type": "EvidenceCommitted",
+    "evidence_id": "pe-0a9d6b3f528e4b55",
+    "split": "development",
+    "state": "COMMITTED",
+    "stream_id": "kairos-dev-S21-u1"
+  },
+  {
+    "arm": "C5_query_version_reconciliation",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-ec2173195def480c",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S23-u1"
+  },
+  {
+    "arm": "C5_query_version_reconciliation",
+    "chunk_ids": [
+      "D01:C02",
+      "D01:C03"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-5a0520b974c34812",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S25-u1"
+  },
+  {
+    "arm": "C6_bounded_async",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-ebfb7bb1463c4cfd",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S01-u1"
+  },
+  {
+    "arm": "C6_bounded_async",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-67858206ab754068",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S03-u1"
+  },
+  {
+    "arm": "C6_bounded_async",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-ab1d89aec51843ee",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S03-u1"
+  },
+  {
+    "arm": "C6_bounded_async",
+    "chunk_ids": [
+      "D02:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-f2ed4d8a343e4cf1",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S07-u1"
+  },
+  {
+    "arm": "C6_bounded_async",
+    "chunk_ids": [
+      "D02:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-f2ed4d8a343e4cf1",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S07-u1"
+  },
+  {
+    "arm": "C6_bounded_async",
+    "chunk_ids": [
+      "D06:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-52393733bf0a4ca0",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S09-u1"
+  },
+  {
+    "arm": "C6_bounded_async",
+    "chunk_ids": [
+      "D06:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-52393733bf0a4ca0",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S09-u1"
+  },
+  {
+    "arm": "C6_bounded_async",
+    "chunk_ids": [
+      "D06:C01"
+    ],
+    "event_type": "EvidenceCommitted",
+    "evidence_id": "pe-52393733bf0a4ca0",
+    "split": "development",
+    "state": "COMMITTED",
+    "stream_id": "kairos-dev-S09-u1"
+  },
+  {
+    "arm": "C6_bounded_async",
+    "chunk_ids": [
+      "D01:C02",
+      "D04:C01",
+      "D01:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-26c00b65a52949da",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S10-u1"
+  },
+  {
+    "arm": "C6_bounded_async",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-9de40b754dd84b52",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S13-u1"
+  },
+  {
+    "arm": "C6_bounded_async",
+    "chunk_ids": [
+      "D08:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-ded268dfda8142a9",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S17-u1"
+  },
+  {
+    "arm": "C6_bounded_async",
+    "chunk_ids": [
+      "D08:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-ded268dfda8142a9",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S17-u1"
+  },
+  {
+    "arm": "C6_bounded_async",
+    "chunk_ids": [
+      "D08:C01"
+    ],
+    "event_type": "EvidenceCommitted",
+    "evidence_id": "pe-ded268dfda8142a9",
+    "split": "development",
+    "state": "COMMITTED",
+    "stream_id": "kairos-dev-S17-u1"
+  },
+  {
+    "arm": "C6_bounded_async",
+    "chunk_ids": [
+      "D07:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-891b1a025d934510",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S21-u1"
+  },
+  {
+    "arm": "C6_bounded_async",
+    "chunk_ids": [
+      "D07:C02"
+    ],
+    "event_type": "EvidenceCommitted",
+    "evidence_id": "pe-891b1a025d934510",
+    "split": "development",
+    "state": "COMMITTED",
+    "stream_id": "kairos-dev-S21-u1"
+  },
+  {
+    "arm": "C6_bounded_async",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-695594890ff34cde",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S23-u1"
+  },
+  {
+    "arm": "C6_bounded_async",
+    "chunk_ids": [
+      "D01:C02",
+      "D01:C03"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-1d394ec82cdc416c",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S25-u1"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-dab0085e595b4083",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S01-u1"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-25859ef7940f4d6d",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S03-u1"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-1001e5c6bbff4211",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S03-u1"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D02:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-9c82731901834501",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S07-u1"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D02:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-9c82731901834501",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S07-u1"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D06:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-5338399a31e54f2b",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S09-u1"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D06:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-5338399a31e54f2b",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S09-u1"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D06:C01"
+    ],
+    "event_type": "EvidenceCommitted",
+    "evidence_id": "pe-5338399a31e54f2b",
+    "split": "development",
+    "state": "COMMITTED",
+    "stream_id": "kairos-dev-S09-u1"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D01:C02",
+      "D04:C01",
+      "D01:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-dfbb2ecf66694526",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S10-u1"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-7e2a53d718354ad2",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S13-u1"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D08:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-4e684c5170a04179",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S17-u1"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D08:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-4e684c5170a04179",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S17-u1"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D08:C01"
+    ],
+    "event_type": "EvidenceCommitted",
+    "evidence_id": "pe-4e684c5170a04179",
+    "split": "development",
+    "state": "COMMITTED",
+    "stream_id": "kairos-dev-S17-u1"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D07:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-c1e4d16749d342fb",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S21-u1"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D07:C02"
+    ],
+    "event_type": "EvidenceCommitted",
+    "evidence_id": "pe-c1e4d16749d342fb",
+    "split": "development",
+    "state": "COMMITTED",
+    "stream_id": "kairos-dev-S21-u1"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-bbd170b7e6b64995",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S23-u1"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D01:C02",
+      "D01:C03"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-4de1c5d159bb40cd",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S25-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-2a5d057a4480436d",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S01-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D05:C03",
+      "D05:C04"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-0b29c177d6944b15",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S02-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-9f43add2d34a4890",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S03-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-f47d2476a7754fa6",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S03-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D08:C02",
+      "D03:C05"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-e9cfd16adac24947",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S04-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D08:C02",
+      "D03:C05"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-e9cfd16adac24947",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S04-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D04:C06",
+      "D05:C05"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-54e8364d476f4f44",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S05-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D03:C03",
+      "D03:C04"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-b6400cd625804594",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S06-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D03:C03",
+      "D03:C04"
+    ],
+    "event_type": "EvidenceCommitted",
+    "evidence_id": "pe-b6400cd625804594",
+    "split": "development",
+    "state": "COMMITTED",
+    "stream_id": "kairos-dev-S06-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D02:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-fc74cdea53de4e1f",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S07-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D02:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-fc74cdea53de4e1f",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S07-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D08:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-b8902b2fe81a4015",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S09-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D06:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-5bf0d379a91e4eed",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S09-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D06:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-5bf0d379a91e4eed",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S09-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D06:C01"
+    ],
+    "event_type": "EvidenceCommitted",
+    "evidence_id": "pe-5bf0d379a91e4eed",
+    "split": "development",
+    "state": "COMMITTED",
+    "stream_id": "kairos-dev-S09-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D04:C04",
+      "D04:C01",
+      "D04:C06",
+      "D04:C05",
+      "D04:C03"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-462e6e134fe4417d",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S10-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D01:C02",
+      "D04:C01",
+      "D01:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-fddf950bfb4140fa",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S10-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-4ed3a95e194c4e90",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S13-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D06:C04",
+      "D06:C01",
+      "D04:C03",
+      "D06:C02",
+      "D06:C03"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-a0ef60630c894ae1",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S15-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D08:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-d95074361dbd4e4d",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S17-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D08:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-d95074361dbd4e4d",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S17-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D08:C01"
+    ],
+    "event_type": "EvidenceCommitted",
+    "evidence_id": "pe-d95074361dbd4e4d",
+    "split": "development",
+    "state": "COMMITTED",
+    "stream_id": "kairos-dev-S17-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D03:C02",
+      "D03:C04"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-a07118cf028c4a84",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S18-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D04:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-2ad345311fdb476e",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S20-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D07:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-2b6aebbbe69d4608",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S21-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D07:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-0588c9fe5e724384",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S21-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D07:C02"
+    ],
+    "event_type": "EvidenceCommitted",
+    "evidence_id": "pe-0588c9fe5e724384",
+    "split": "development",
+    "state": "COMMITTED",
+    "stream_id": "kairos-dev-S21-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D06:C04",
+      "D08:C01",
+      "D01:C03",
+      "D02:C03",
+      "D04:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-cb0b4942db7448c1",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S22-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-8120d92f17384582",
+    "split": "development",
+    "state": "INVALIDATED",
+    "stream_id": "kairos-dev-S23-u1"
+  },
+  {
+    "arm": "C9_eager_bounded",
+    "chunk_ids": [
+      "D01:C02",
+      "D01:C03"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-e0b959d4bf1a4f2a",
+    "split": "development",
+    "state": "VALIDATED",
+    "stream_id": "kairos-dev-S25-u1"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-76e478dbeee841b3",
+    "split": "final",
+    "state": "INVALIDATED",
+    "stream_id": "iccos-final-F01"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D01:C03",
+      "D01:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-caa35a5664cf4053",
+    "split": "final",
+    "state": "VALIDATED",
+    "stream_id": "iccos-final-F03"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D01:C04"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-196effc9bbc54431",
+    "split": "final",
+    "state": "VALIDATED",
+    "stream_id": "iccos-final-F03"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D01:C04"
+    ],
+    "event_type": "EvidenceCommitted",
+    "evidence_id": "pe-196effc9bbc54431",
+    "split": "final",
+    "state": "COMMITTED",
+    "stream_id": "iccos-final-F03"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D04:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-f0822207eb7f4aac",
+    "split": "final",
+    "state": "VALIDATED",
+    "stream_id": "iccos-final-F04"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-f5dd341c54fe4e6d",
+    "split": "final",
+    "state": "INVALIDATED",
+    "stream_id": "iccos-final-F05"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [],
+    "event_type": "EvidenceInvalidated",
+    "evidence_id": "pe-8d315ec24a914dcb",
+    "split": "final",
+    "state": "INVALIDATED",
+    "stream_id": "iccos-final-F06"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D04:C06",
+      "D05:C05"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-67ce62b1c6c84efc",
+    "split": "final",
+    "state": "VALIDATED",
+    "stream_id": "iccos-final-F07"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D04:C06",
+      "D05:C05"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-67ce62b1c6c84efc",
+    "split": "final",
+    "state": "VALIDATED",
+    "stream_id": "iccos-final-F07"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D01:C05",
+      "D02:C04"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-75ccc4396ed54316",
+    "split": "final",
+    "state": "VALIDATED",
+    "stream_id": "iccos-final-F08"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D01:C05",
+      "D02:C04"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-75ccc4396ed54316",
+    "split": "final",
+    "state": "VALIDATED",
+    "stream_id": "iccos-final-F08"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D07:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-f918659660854bba",
+    "split": "final",
+    "state": "VALIDATED",
+    "stream_id": "iccos-final-F09"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D07:C03",
+      "D02:C03"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-f13f30a27c4f4f6b",
+    "split": "final",
+    "state": "VALIDATED",
+    "stream_id": "iccos-final-F09"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D07:C02"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-f918659660854bba",
+    "split": "final",
+    "state": "VALIDATED",
+    "stream_id": "iccos-final-F09"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D07:C02"
+    ],
+    "event_type": "EvidenceCommitted",
+    "evidence_id": "pe-f918659660854bba",
+    "split": "final",
+    "state": "COMMITTED",
+    "stream_id": "iccos-final-F09"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D06:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-a79d48e3f6434caa",
+    "split": "final",
+    "state": "VALIDATED",
+    "stream_id": "iccos-final-F12"
+  },
+  {
+    "arm": "C8_full_caper_deterministic",
+    "chunk_ids": [
+      "D06:C01"
+    ],
+    "event_type": "EvidenceValidated",
+    "evidence_id": "pe-a79d48e3f6434caa",
+    "split": "final",
+    "state": "VALIDATED",
+    "stream_id": "iccos-final-F12"
+  }
+]

@@ -376,7 +376,61 @@ python -m kairos controller-v2-3-report
 See the [V2.3 research report](docs/PSRC_V2_3_ICCOS_RESEARCH.md),
 [V2.3 engineering report](docs/PSRC_V2_3_ICCOS_ENGINEERING_REPORT.md), and the live `/benchmark` table.
 
+## KAIROS V2.4 — CAPER continuous evidence preparation
+
+V2.4 implements **Continuous Anticipatory Prefetch and Evidence Reconciliation (CAPER)** as two deliberately
+separate lanes. The preparation lane can start a bounded hybrid search while a request is still evolving. Its
+result is provisional: it cannot create a factual claim. The commitment lane checks the current session, intent
+and query version, critical constraints, corpus/source hashes, expiry, and relevance before evidence may be
+reused; the established Grounding Firewall remains mandatory before a claim is published. Query revisions can
+reuse compatible evidence or explicitly supersede/invalidate stale work. Session-local provisional caching and
+actual `HybridIndex.search` instrumentation make reuse and cost auditable.
+
+Frozen Stage-B run `20261019T081648Z` used the real `SessionEngine` with accelerated synthetic prefix timing:
+
+| Development arm | Verified useful evidence before final | Prepared before final | Unused completed preparation | Actual searches | Invalid citations |
+|---|---:|---:|---:|---:|---:|
+| C0 · PSRC baseline | 12/25 (48%) | 0/25 (0%) | undefined | 60 | 0/49 |
+| C1 · validated cache only | 12/25 (48%) | 0/25 (0%) | undefined | 48 | 0/49 |
+| C8 · deterministic CAPER | 13/25 (52%) | 10/25 (40%) | 8/11 (72.73%) | 67 | 0/49 |
+| C9 · eager bounded comparator | 16/25 (64%) | 18/25 (72%) | 18/22 (81.82%) | 76 | 0/49 |
+
+The release decision is **RETAIN AS EXPERIMENTAL**. CAPER is disabled by default and historical PSRC remains
+active. Deterministic CAPER improved the grounding-linked verified-early outcome by only one stream (4 percentage
+points) and stayed within the 1.5× search budget, but it failed both the preregistered ≥10-point meaningful-improvement gate and the ≤50% unused-preparation budget. No arm reached the historical 0.80
+engineering target under the new verified-evidence metric; no independent final collection was available; and
+physical microphone validation is pending. The project-authored post-freeze final check was tied (`2/11` for
+C8 and C0) and is limited validation, not external proof.
+
+Telemetry content is now off by default and recursively redacted when persisted. WebSocket resume capabilities
+are sent in the first message—not URLs—and rotate after successful resume. Authorized session data can be
+deleted from configured persistent sinks. Operators remain responsible for TLS, restrictive origins, filesystem
+permissions, retention, backups, and production security review.
+
+```bash
+python -m kairos controller-v2-4-data validate
+python -m kairos controller-v2-4-evaluate
+python -m kairos controller-v2-4-cache-bench
+python -m kairos controller-v2-4-security-audit
+python -m kairos controller-v2-4-compare
+python -m kairos controller-v2-4-select
+python -m kairos controller-v2-4-final
+python -m kairos controller-v2-4-report
+```
+
+See the [CAPER research report](docs/KAIROS_V2_4_CAPER_RESEARCH.md),
+[engineering report](docs/KAIROS_V2_4_CAPER_ENGINEERING.md),
+[baseline audit](docs/V2_4_BASELINE_AUDIT.md),
+[evaluation protocol](docs/V2_4_EVALUATION_PROTOCOL.md), and
+[security/privacy audit](docs/V2_4_SECURITY_PRIVACY_AUDIT.md). The `/benchmark` page reads the same measured
+JSON artifact as this table.
+
 ## Research Foundations and References
+
+- **Continuous-processing industry inspiration.** Tavus, “Griffin.” <https://www.tavus.io/griffin>.
+  Its public continuous/full-duplex framing inspired CAPER's repeated assessment and concurrent preparation.
+  It is not peer-reviewed evidence for KAIROS, and no proprietary Griffin implementation detail or benchmark is
+  attributed to CAPER.
 
 KAIROS's PSRC problem is sequential retrieval under uncertain, evolving speech: retrieve early enough to hide
 latency while avoiding irrelevant or soon-obsolete evidence. V2.2 adds policy-independent prefix coverage—not

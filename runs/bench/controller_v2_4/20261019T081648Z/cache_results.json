@@ -1,0 +1,311 @@
+{
+  "C0_baseline_psrc": {
+    "caper_totals": {
+      "backpressure_rejections": 0,
+      "canceled_before_execution": 0,
+      "cancellation_requests": 0,
+      "committed": 0,
+      "completed_discarded": 0,
+      "decisions": 0,
+      "expired": 0,
+      "failed": 0,
+      "queued": 0,
+      "reused": 0,
+      "searches_completed": 0,
+      "searches_started": 0,
+      "validated": 0
+    },
+    "search_cost": {
+      "actual_hybrid_search_executions": 60,
+      "by_retrieval_type": {
+        "FINAL_FALLBACK": 26,
+        "PRIMARY": 21,
+        "REFINEMENT": 13
+      },
+      "cache_reuse_events": 0,
+      "canceled_before_execution": 0,
+      "cancellation_requests": 0,
+      "completed_but_discarded": 0,
+      "measurement_source": "HybridIndex.search execution registry"
+    }
+  },
+  "C10_end_of_utterance": {
+    "caper_totals": {
+      "backpressure_rejections": 0,
+      "canceled_before_execution": 0,
+      "cancellation_requests": 0,
+      "committed": 0,
+      "completed_discarded": 0,
+      "decisions": 0,
+      "expired": 0,
+      "failed": 0,
+      "queued": 0,
+      "reused": 0,
+      "searches_completed": 0,
+      "searches_started": 0,
+      "validated": 0
+    },
+    "search_cost": {
+      "actual_hybrid_search_executions": 47,
+      "by_retrieval_type": {
+        "FINAL_FALLBACK": 47
+      },
+      "cache_reuse_events": 0,
+      "canceled_before_execution": 0,
+      "cancellation_requests": 0,
+      "completed_but_discarded": 0,
+      "measurement_source": "HybridIndex.search execution registry"
+    }
+  },
+  "C1_validated_cache_only": {
+    "caper_totals": {
+      "backpressure_rejections": 0,
+      "canceled_before_execution": 0,
+      "cancellation_requests": 0,
+      "committed": 0,
+      "completed_discarded": 0,
+      "decisions": 0,
+      "expired": 0,
+      "failed": 0,
+      "queued": 0,
+      "reused": 0,
+      "searches_completed": 0,
+      "searches_started": 0,
+      "validated": 0
+    },
+    "search_cost": {
+      "actual_hybrid_search_executions": 48,
+      "by_retrieval_type": {
+        "FINAL_FALLBACK": 26,
+        "PRIMARY": 21,
+        "REFINEMENT": 1
+      },
+      "cache_reuse_events": 12,
+      "canceled_before_execution": 0,
+      "cancellation_requests": 0,
+      "completed_but_discarded": 0,
+      "measurement_source": "HybridIndex.search execution registry"
+    }
+  },
+  "C2_prefetch_no_reuse": {
+    "caper_totals": {
+      "backpressure_rejections": 0,
+      "canceled_before_execution": 0,
+      "cancellation_requests": 0,
+      "committed": 0,
+      "completed_discarded": 0,
+      "decisions": 103,
+      "expired": 0,
+      "failed": 0,
+      "queued": 11,
+      "reused": 8,
+      "searches_completed": 11,
+      "searches_started": 11,
+      "validated": 6
+    },
+    "search_cost": {
+      "actual_hybrid_search_executions": 71,
+      "by_retrieval_type": {
+        "FINAL_FALLBACK": 26,
+        "PRIMARY": 21,
+        "PROVISIONAL": 11,
+        "REFINEMENT": 13
+      },
+      "cache_reuse_events": 0,
+      "canceled_before_execution": 0,
+      "cancellation_requests": 0,
+      "completed_but_discarded": 0,
+      "measurement_source": "HybridIndex.search execution registry"
+    }
+  },
+  "C3_provisional_cache_no_commit_reuse": {
+    "caper_totals": {
+      "backpressure_rejections": 0,
+      "canceled_before_execution": 0,
+      "cancellation_requests": 0,
+      "committed": 0,
+      "completed_discarded": 0,
+      "decisions": 103,
+      "expired": 0,
+      "failed": 0,
+      "queued": 11,
+      "reused": 8,
+      "searches_completed": 11,
+      "searches_started": 11,
+      "validated": 6
+    },
+    "search_cost": {
+      "actual_hybrid_search_executions": 71,
+      "by_retrieval_type": {
+        "FINAL_FALLBACK": 26,
+        "PRIMARY": 21,
+        "PROVISIONAL": 11,
+        "REFINEMENT": 13
+      },
+      "cache_reuse_events": 0,
+      "canceled_before_execution": 0,
+      "cancellation_requests": 0,
+      "completed_but_discarded": 0,
+      "measurement_source": "HybridIndex.search execution registry"
+    }
+  },
+  "C4_strict_validated_reuse": {
+    "caper_totals": {
+      "backpressure_rejections": 0,
+      "canceled_before_execution": 0,
+      "cancellation_requests": 0,
+      "committed": 3,
+      "completed_discarded": 0,
+      "decisions": 103,
+      "expired": 0,
+      "failed": 0,
+      "queued": 11,
+      "reused": 12,
+      "searches_completed": 11,
+      "searches_started": 11,
+      "validated": 9
+    },
+    "search_cost": {
+      "actual_hybrid_search_executions": 67,
+      "by_retrieval_type": {
+        "FINAL_FALLBACK": 25,
+        "PRIMARY": 20,
+        "PROVISIONAL": 11,
+        "REFINEMENT": 11
+      },
+      "cache_reuse_events": 4,
+      "canceled_before_execution": 0,
+      "cancellation_requests": 0,
+      "completed_but_discarded": 0,
+      "measurement_source": "HybridIndex.search execution registry"
+    }
+  },
+  "C5_query_version_reconciliation": {
+    "caper_totals": {
+      "backpressure_rejections": 0,
+      "canceled_before_execution": 0,
+      "cancellation_requests": 0,
+      "committed": 3,
+      "completed_discarded": 0,
+      "decisions": 103,
+      "expired": 0,
+      "failed": 0,
+      "queued": 11,
+      "reused": 12,
+      "searches_completed": 11,
+      "searches_started": 11,
+      "validated": 9
+    },
+    "search_cost": {
+      "actual_hybrid_search_executions": 67,
+      "by_retrieval_type": {
+        "FINAL_FALLBACK": 25,
+        "PRIMARY": 20,
+        "PROVISIONAL": 11,
+        "REFINEMENT": 11
+      },
+      "cache_reuse_events": 4,
+      "canceled_before_execution": 0,
+      "cancellation_requests": 0,
+      "completed_but_discarded": 0,
+      "measurement_source": "HybridIndex.search execution registry"
+    }
+  },
+  "C6_bounded_async": {
+    "caper_totals": {
+      "backpressure_rejections": 0,
+      "canceled_before_execution": 0,
+      "cancellation_requests": 0,
+      "committed": 3,
+      "completed_discarded": 0,
+      "decisions": 103,
+      "expired": 0,
+      "failed": 0,
+      "queued": 11,
+      "reused": 12,
+      "searches_completed": 11,
+      "searches_started": 11,
+      "validated": 9
+    },
+    "search_cost": {
+      "actual_hybrid_search_executions": 67,
+      "by_retrieval_type": {
+        "FINAL_FALLBACK": 25,
+        "PRIMARY": 20,
+        "PROVISIONAL": 11,
+        "REFINEMENT": 11
+      },
+      "cache_reuse_events": 4,
+      "canceled_before_execution": 0,
+      "cancellation_requests": 0,
+      "completed_but_discarded": 0,
+      "measurement_source": "HybridIndex.search execution registry"
+    }
+  },
+  "C7_learned_prefetch": {
+    "caper_totals": null,
+    "search_cost": null
+  },
+  "C8_full_caper_deterministic": {
+    "caper_totals": {
+      "backpressure_rejections": 0,
+      "canceled_before_execution": 0,
+      "cancellation_requests": 0,
+      "committed": 3,
+      "completed_discarded": 0,
+      "decisions": 103,
+      "expired": 0,
+      "failed": 0,
+      "queued": 11,
+      "reused": 12,
+      "searches_completed": 11,
+      "searches_started": 11,
+      "validated": 9
+    },
+    "search_cost": {
+      "actual_hybrid_search_executions": 67,
+      "by_retrieval_type": {
+        "FINAL_FALLBACK": 25,
+        "PRIMARY": 20,
+        "PROVISIONAL": 11,
+        "REFINEMENT": 11
+      },
+      "cache_reuse_events": 4,
+      "canceled_before_execution": 0,
+      "cancellation_requests": 0,
+      "completed_but_discarded": 0,
+      "measurement_source": "HybridIndex.search execution registry"
+    }
+  },
+  "C9_eager_bounded": {
+    "caper_totals": {
+      "backpressure_rejections": 0,
+      "canceled_before_execution": 0,
+      "cancellation_requests": 10,
+      "committed": 4,
+      "completed_discarded": 0,
+      "decisions": 103,
+      "expired": 0,
+      "failed": 0,
+      "queued": 22,
+      "reused": 16,
+      "searches_completed": 22,
+      "searches_started": 22,
+      "validated": 21
+    },
+    "search_cost": {
+      "actual_hybrid_search_executions": 76,
+      "by_retrieval_type": {
+        "FINAL_FALLBACK": 24,
+        "PRIMARY": 19,
+        "PROVISIONAL": 22,
+        "REFINEMENT": 11
+      },
+      "cache_reuse_events": 6,
+      "canceled_before_execution": 0,
+      "cancellation_requests": 10,
+      "completed_but_discarded": 0,
+      "measurement_source": "HybridIndex.search execution registry"
+    }
+  }
+}

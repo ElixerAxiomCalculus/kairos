@@ -1,0 +1,247 @@
+{
+  "independent_final": false,
+  "limitation": "Project-authored V2.3 final streams reuse the sample corpus and synthetic timing.",
+  "results": {
+    "C0_baseline_psrc": {
+      "metrics": {
+        "caper_totals": {
+          "backpressure_rejections": 0,
+          "canceled_before_execution": 0,
+          "cancellation_requests": 0,
+          "committed": 0,
+          "completed_discarded": 0,
+          "decisions": 0,
+          "expired": 0,
+          "failed": 0,
+          "queued": 0,
+          "reused": 0,
+          "searches_completed": 0,
+          "searches_started": 0,
+          "validated": 0
+        },
+        "family_bootstrap_verified_early": {
+          "ci_95": [
+            0.0,
+            0.454545
+          ],
+          "estimate": 0.181818,
+          "families": 11,
+          "resampling_unit": "question_family",
+          "samples": 2000,
+          "seed": 42
+        },
+        "invalid_citation_rate": {
+          "denominator": 10,
+          "eligibility": "claim emitted after Grounding Firewall",
+          "grounding_status": "verified by Grounding Firewall",
+          "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+          "numerator": 0,
+          "rate": 0.0,
+          "split": "final",
+          "timing_source": "not applicable",
+          "unit": "emitted claim",
+          "wilson_95": [
+            0.0,
+            0.2775
+          ]
+        },
+        "lead_time_ms": {
+          "count": 2,
+          "mean": 1343.15,
+          "median": 1343.15,
+          "timing_source": "synthetic stream clock; accelerated scheduled replay",
+          "unit": "ms"
+        },
+        "preparation_coverage_before_final": {
+          "denominator": 11,
+          "eligibility": "gold-labeled stream with at least one non-final prefix",
+          "grounding_status": "provisional only",
+          "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+          "numerator": 0,
+          "rate": 0.0,
+          "split": "final",
+          "timing_source": "accelerated scheduled replay; synthetic timestamps",
+          "unit": "stream",
+          "wilson_95": [
+            0.0,
+            0.2588
+          ]
+        },
+        "retrieval_latency_ms": {
+          "count": 27,
+          "max": 2.542,
+          "measurement_source": "RetrievalCompleted latency_ms",
+          "p50": 1.099,
+          "p95": 1.599,
+          "unit": "ms"
+        },
+        "search_cost": {
+          "actual_hybrid_search_executions": 27,
+          "by_retrieval_type": {
+            "FINAL_FALLBACK": 4,
+            "PRIMARY": 13,
+            "REFINEMENT": 10
+          },
+          "cache_reuse_events": 0,
+          "canceled_before_execution": 0,
+          "cancellation_requests": 0,
+          "completed_but_discarded": 0,
+          "measurement_source": "HybridIndex.search execution registry"
+        },
+        "verified_useful_evidence_before_final": {
+          "denominator": 11,
+          "eligibility": "gold-labeled stream with at least one non-final prefix",
+          "grounding_status": "early evidence was gold-aligned and later cited by an emitted Grounding Firewall claim",
+          "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+          "numerator": 2,
+          "rate": 0.1818,
+          "split": "final",
+          "timing_source": "accelerated scheduled replay; synthetic timestamps",
+          "unit": "stream",
+          "wilson_95": [
+            0.0514,
+            0.477
+          ]
+        },
+        "wasted_preparation_rate": {
+          "denominator": 0,
+          "eligibility": "CAPER provisional search completed",
+          "grounding_status": "not committed",
+          "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+          "numerator": 0,
+          "rate": null,
+          "split": "final",
+          "timing_source": "actual task lifecycle",
+          "unit": "completed provisional search",
+          "wilson_95": null
+        }
+      },
+      "name": "C0_baseline_psrc",
+      "split": "final",
+      "status": "MEASURED"
+    },
+    "C8_full_caper_deterministic": {
+      "metrics": {
+        "caper_totals": {
+          "backpressure_rejections": 0,
+          "canceled_before_execution": 0,
+          "cancellation_requests": 2,
+          "committed": 2,
+          "completed_discarded": 0,
+          "decisions": 54,
+          "expired": 0,
+          "failed": 0,
+          "queued": 11,
+          "reused": 14,
+          "searches_completed": 11,
+          "searches_started": 11,
+          "validated": 12
+        },
+        "family_bootstrap_verified_early": {
+          "ci_95": [
+            0.0,
+            0.454545
+          ],
+          "estimate": 0.181818,
+          "families": 11,
+          "resampling_unit": "question_family",
+          "samples": 2000,
+          "seed": 42
+        },
+        "invalid_citation_rate": {
+          "denominator": 9,
+          "eligibility": "claim emitted after Grounding Firewall",
+          "grounding_status": "verified by Grounding Firewall",
+          "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+          "numerator": 0,
+          "rate": 0.0,
+          "split": "final",
+          "timing_source": "not applicable",
+          "unit": "emitted claim",
+          "wilson_95": [
+            0.0,
+            0.2992
+          ]
+        },
+        "lead_time_ms": {
+          "count": 2,
+          "mean": 1845.5,
+          "median": 1845.5,
+          "timing_source": "synthetic stream clock; accelerated scheduled replay",
+          "unit": "ms"
+        },
+        "preparation_coverage_before_final": {
+          "denominator": 11,
+          "eligibility": "gold-labeled stream with at least one non-final prefix",
+          "grounding_status": "provisional only",
+          "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+          "numerator": 9,
+          "rate": 0.8182,
+          "split": "final",
+          "timing_source": "accelerated scheduled replay; synthetic timestamps",
+          "unit": "stream",
+          "wilson_95": [
+            0.523,
+            0.9486
+          ]
+        },
+        "retrieval_latency_ms": {
+          "count": 27,
+          "max": 2.672,
+          "measurement_source": "RetrievalCompleted latency_ms",
+          "p50": 0.996,
+          "p95": 1.61,
+          "unit": "ms"
+        },
+        "search_cost": {
+          "actual_hybrid_search_executions": 33,
+          "by_retrieval_type": {
+            "FINAL_FALLBACK": 3,
+            "PRIMARY": 11,
+            "PROVISIONAL": 11,
+            "REFINEMENT": 8
+          },
+          "cache_reuse_events": 5,
+          "canceled_before_execution": 0,
+          "cancellation_requests": 2,
+          "completed_but_discarded": 0,
+          "measurement_source": "HybridIndex.search execution registry"
+        },
+        "verified_useful_evidence_before_final": {
+          "denominator": 11,
+          "eligibility": "gold-labeled stream with at least one non-final prefix",
+          "grounding_status": "early evidence was gold-aligned and later cited by an emitted Grounding Firewall claim",
+          "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+          "numerator": 2,
+          "rate": 0.1818,
+          "split": "final",
+          "timing_source": "accelerated scheduled replay; synthetic timestamps",
+          "unit": "stream",
+          "wilson_95": [
+            0.0514,
+            0.477
+          ]
+        },
+        "wasted_preparation_rate": {
+          "denominator": 11,
+          "eligibility": "CAPER provisional search completed",
+          "grounding_status": "not committed",
+          "measurement_source": "ACTUAL_SESSION_ENGINE_EVENTS",
+          "numerator": 9,
+          "rate": 0.8182,
+          "split": "final",
+          "timing_source": "actual task lifecycle",
+          "unit": "completed provisional search",
+          "wilson_95": [
+            0.523,
+            0.9486
+          ]
+        }
+      },
+      "name": "C8_full_caper_deterministic",
+      "split": "final",
+      "status": "MEASURED"
+    }
+  },
+  "selection_frozen_before_access": true
+}

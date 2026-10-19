@@ -1,0 +1,11 @@
+{
+  "audited_reference_is_ancestor": true,
+  "audited_reference_sha": "a7ee6642e7975105721a97438162b3dcbbb536be",
+  "captured_at": "2026-10-19T08:16:48.899598+00:00",
+  "head_sha": "a7ee6642e7975105721a97438162b3dcbbb536be",
+  "node": "v22.17.1",
+  "npm": "10.9.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+  "working_tree_porcelain": "M .gitignore\n M README.md\n M benchmark/controller/counterfactual.py\n M benchmark/controller/experiments_v2_3.py\n M benchmark/controller/features_v2_3.py\n M benchmark/controller/intent_alignment.py\n M benchmark/controller/metrics_v2_3.py\n M benchmark/controller/modeling_v2_3.py\n M configs/default.yaml\n M kairos/__main__.py\n M kairos/api/server.py\n M kairos/controller/evidence_cache.py\n M kairos/engine.py\n M kairos/retrieval/index.py\n M kairos/schemas/events.py\n M kairos/session/store.py\n M kairos/telemetry/bus.py\n M runs/bench/benchmark/latest.json\n M runs/bench/semantic/latest.json\n M tests/test_transcript_ingestion.py\n M web/src/components/timeline/EventTimeline.tsx\n M web/src/features/replay/benchmarkData.ts\n M web/src/routes/BenchmarkRoute.tsx\n M web/src/schemas/events.ts\n M web/src/services/transport/WebSocketTransport.ts\n?? benchmark/controller/audit_v2_4.py\n?? benchmark/controller/dataset_v2_4.py\n?? benchmark/controller/metrics_v2_4.py\n?? benchmark/controller/security_v2_4.py\n?? benchmark/controller/v2_4.py\n?? benchmark/datasets/controller_v2_4/\n?? docs/KAIROS_V2_4_CAPER_ENGINEERING.md\n?? docs/KAIROS_V2_4_CAPER_RESEARCH.md\n?? docs/V2_4_BASELINE_AUDIT.md\n?? docs/V2_4_EVALUATION_PROTOCOL.md\n?? docs/V2_4_SECURITY_PRIVACY_AUDIT.md\n?? kairos/controller/caper.py\n?? runs/bench/controller_v2_4/\n?? tests/test_caper_v2_4.py"
+}

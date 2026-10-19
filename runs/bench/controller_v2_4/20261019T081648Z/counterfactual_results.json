@@ -1,0 +1,8 @@
+{
+  "selection_unit": "first eligible prefix per intent lineage",
+  "stage": "A_OFFLINE_METHOD_CORRECTION",
+  "status": "IMPLEMENTED_AND_UNIT_TESTED",
+  "terminal_value": "actual final-retrieval utility proxy, not zero",
+  "verified_strict_useful_unavailable_is_not_negative": true,
+  "zero_action_risk": null
+}

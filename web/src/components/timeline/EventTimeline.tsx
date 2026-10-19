@@ -11,9 +11,9 @@ import styles from "./timeline.module.css";
 
 const LANES = [
   { key: "INGEST", types: ["TranscriptChunkReceived", "QueryFrameUpdated", "TurnClassified", "SessionStarted", "SessionEnded"] },
-  { key: "CONTROL", types: ["ProbeExecuted", "RetrievalDecision", "SubQueriesGenerated", "RetrievalSuppressed"] },
-  { key: "RETRIEVAL", types: ["RetrievalStarted", "RetrievalCompleted", "EvidenceFused", "DeltaPlanComputed"] },
-  { key: "GROUNDING", types: ["ClaimsGenerated", "GroundingVerified", "TransformVerified", "TransformUnavailable"] },
+  { key: "CONTROL", types: ["ProbeExecuted", "PrefetchDecision", "PrefetchQueued", "RetrievalDecision", "SubQueriesGenerated", "RetrievalSuppressed"] },
+  { key: "RETRIEVAL", types: ["PrefetchStarted", "PrefetchCompleted", "PrefetchSuperseded", "PrefetchDiscarded", "RetrievalStarted", "RetrievalCompleted", "EvidenceFused", "DeltaPlanComputed"] },
+  { key: "GROUNDING", types: ["EvidenceValidationStarted", "EvidenceValidated", "EvidenceInvalidated", "EvidenceCommitted", "ClaimsGenerated", "GroundingVerified", "TransformVerified", "TransformUnavailable"] },
   { key: "ANSWER", types: ["AnswerVersionCreated", "TelemetryEmitted"] },
 ] as const;
 
@@ -29,6 +29,19 @@ function colorOf(e: WireEvent): string {
     case "RetrievalStarted":
     case "RetrievalCompleted":
       return e.retrieval_trigger === "DELTA" || e.retrieval_trigger === "REFINE" ? "var(--status-refine)" : "var(--status-retrieve)";
+    case "PrefetchDecision":
+    case "PrefetchQueued":
+    case "PrefetchStarted":
+    case "PrefetchCompleted":
+    case "EvidenceValidationStarted":
+      return "var(--status-wait)";
+    case "EvidenceValidated":
+    case "EvidenceCommitted":
+      return "var(--status-pass)";
+    case "PrefetchSuperseded":
+    case "PrefetchDiscarded":
+    case "EvidenceInvalidated":
+      return "var(--status-refine)";
     case "DeltaPlanComputed":
       return "var(--status-refine)";
     case "RetrievalSuppressed":
@@ -50,6 +63,12 @@ function labelOf(e: WireEvent): string | null {
   if (e.event_type === "AnswerVersionCreated") return `V${String(e.answer_version).padStart(2, "0")}`;
   if (e.event_type === "RetrievalSuppressed") return "SKIPPED";
   if (e.event_type === "DeltaPlanComputed") return "DELTA PLAN";
+  if (e.event_type === "PrefetchQueued") return "PREPARING";
+  if (e.event_type === "PrefetchCompleted") return "PROVISIONAL";
+  if (e.event_type === "EvidenceValidationStarted") return "VALIDATING";
+  if (e.event_type === "EvidenceValidated") return "VERIFIED";
+  if (e.event_type === "EvidenceInvalidated") return "INVALIDATED";
+  if (e.event_type === "EvidenceCommitted") return "COMMITTED";
   if (e.event_type === "SubQueriesGenerated") return `${(p.active as string[] | undefined)?.join(" ") ?? ""}`;
   return null;
 }

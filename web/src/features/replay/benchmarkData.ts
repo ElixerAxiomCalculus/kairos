@@ -190,6 +190,35 @@ const ControllerV23ReportSchema = z.object({
 }).passthrough();
 export type ControllerV23Report = z.infer<typeof ControllerV23ReportSchema>;
 
+const V24RateSchema = z.object({
+  numerator: z.number(), denominator: z.number(), rate: z.number().nullable(),
+  wilson_95: z.tuple([z.number(), z.number()]).nullable(),
+}).passthrough();
+const ControllerV24ArmSchema = z.object({
+  status: z.enum(["MEASURED", "NOT_RUN"]),
+  metrics: z.object({
+    verified_useful_evidence_before_final: V24RateSchema,
+    preparation_coverage_before_final: V24RateSchema,
+    wasted_preparation_rate: V24RateSchema,
+    invalid_citation_rate: V24RateSchema,
+    search_cost: z.object({
+      actual_hybrid_search_executions: z.number(), cache_reuse_events: z.number(),
+    }).passthrough(),
+  }).passthrough().optional(),
+}).passthrough();
+const ControllerV24ReportSchema = z.object({
+  run_id: z.string(),
+  stage: z.literal("B_REAL_SESSION_ENGINE"),
+  development: z.record(ControllerV24ArmSchema),
+  selection: z.object({
+    decision: z.string(), promotion_eligible: z.boolean(), runtime_default: z.string(),
+  }).passthrough(),
+  release_decision: z.string(),
+  active_runtime_policy: z.string(),
+  physical_microphone_validation: z.string(),
+}).passthrough();
+export type ControllerV24Report = z.infer<typeof ControllerV24ReportSchema>;
+
 async function fetchJson(url: string): Promise<unknown | null> {
   try {
     const res = await fetch(apiUrl(url));
@@ -250,6 +279,14 @@ export async function loadControllerV23(): Promise<{ report: ControllerV23Report
   const parsed = ControllerV23ReportSchema.safeParse(live);
   if (parsed.success) return { report: parsed.data, source: "BACKEND" };
   return { report: null, source: "NONE", error: "Backend returned a malformed V2.3 controller report." };
+}
+
+export async function loadControllerV24(): Promise<{ report: ControllerV24Report | null; source: Source; error?: string }> {
+  const live = await fetchJson("/api/controller-v2-4/latest");
+  if (!live) return { report: null, source: "NONE" };
+  const parsed = ControllerV24ReportSchema.safeParse(live);
+  if (parsed.success) return { report: parsed.data, source: "BACKEND" };
+  return { report: null, source: "NONE", error: "Backend returned a malformed V2.4 CAPER report." };
 }
 
 export interface ExperimentsReport {

@@ -1,0 +1,83 @@
+{
+  "C0_baseline_psrc": {
+    "count": 60,
+    "max": 4.338,
+    "measurement_source": "RetrievalCompleted latency_ms",
+    "p50": 1.538,
+    "p95": 3.389,
+    "unit": "ms"
+  },
+  "C10_end_of_utterance": {
+    "count": 47,
+    "max": 2.667,
+    "measurement_source": "RetrievalCompleted latency_ms",
+    "p50": 1.151,
+    "p95": 2.441,
+    "unit": "ms"
+  },
+  "C1_validated_cache_only": {
+    "count": 60,
+    "max": 3.853,
+    "measurement_source": "RetrievalCompleted latency_ms",
+    "p50": 1.456,
+    "p95": 2.525,
+    "unit": "ms"
+  },
+  "C2_prefetch_no_reuse": {
+    "count": 60,
+    "max": 3.169,
+    "measurement_source": "RetrievalCompleted latency_ms",
+    "p50": 1.174,
+    "p95": 2.05,
+    "unit": "ms"
+  },
+  "C3_provisional_cache_no_commit_reuse": {
+    "count": 60,
+    "max": 2.922,
+    "measurement_source": "RetrievalCompleted latency_ms",
+    "p50": 1.073,
+    "p95": 2.084,
+    "unit": "ms"
+  },
+  "C4_strict_validated_reuse": {
+    "count": 60,
+    "max": 2.688,
+    "measurement_source": "RetrievalCompleted latency_ms",
+    "p50": 1.048,
+    "p95": 1.938,
+    "unit": "ms"
+  },
+  "C5_query_version_reconciliation": {
+    "count": 60,
+    "max": 2.086,
+    "measurement_source": "RetrievalCompleted latency_ms",
+    "p50": 0.976,
+    "p95": 1.88,
+    "unit": "ms"
+  },
+  "C6_bounded_async": {
+    "count": 60,
+    "max": 2.809,
+    "measurement_source": "RetrievalCompleted latency_ms",
+    "p50": 1.087,
+    "p95": 1.828,
+    "unit": "ms"
+  },
+  "C7_learned_prefetch": null,
+  "C8_full_caper_deterministic": {
+    "count": 60,
+    "max": 5.523,
+    "measurement_source": "RetrievalCompleted latency_ms",
+    "p50": 0.968,
+    "p95": 1.678,
+    "unit": "ms"
+  },
+  "C9_eager_bounded": {
+    "count": 60,
+    "max": 2.031,
+    "measurement_source": "RetrievalCompleted latency_ms",
+    "p50": 0.988,
+    "p95": 1.575,
+    "unit": "ms"
+  }
+}

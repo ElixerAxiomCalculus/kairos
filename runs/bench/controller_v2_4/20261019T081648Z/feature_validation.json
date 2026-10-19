@@ -1,0 +1,12 @@
+{
+  "caper_learned_model": "NOT_TRAINED",
+  "future_text_features": 0,
+  "invariants": [
+    "session-scoped evidence",
+    "current constraint validation",
+    "source checksum validation",
+    "Grounding Firewall required after evidence reuse"
+  ],
+  "shared_query_path": "SessionEngine QueryFrame/EFIS/HybridIndex",
+  "status": "PASS"
+}

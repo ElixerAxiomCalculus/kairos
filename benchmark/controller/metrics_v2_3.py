@@ -27,7 +27,11 @@ def evaluate_policy(
     denominator = len(selections)
     selected_rows = [selected for _, _, selected in selections if selected is not None]
     useful_rows = [row for row in selected_rows if row["targets"].get("gold_relevance") == 1]
-    strict_rows = [row for row in selected_rows if row["targets"].get("strict_useful") == 1]
+    strict_rows = [row for row in selected_rows if row["targets"].get(
+        "proxy_strict_useful", row["targets"].get("strict_useful")) == 1]
+    verified_available = [row for row in selected_rows
+                          if row["targets"].get("verified_strict_useful") is not None]
+    verified_rows = [row for row in verified_available if row["targets"].get("verified_strict_useful") == 1]
     safe_rows = [row for row in strict_rows if row.get("beneficial_stop") == 1]
     unsafe = len(selected_rows) - len(strict_rows)
     first_useful_elapsed = [row["prefix_timestamp_s"] * 1000 for row in strict_rows]
@@ -47,6 +51,15 @@ def evaluate_policy(
                              "rate": ratio(len(useful_rows), denominator), "wilson_95": wilson(len(useful_rows), denominator)},
         "strict_useful_early": {"numerator": len(strict_rows), "denominator": denominator,
                                "rate": ratio(len(strict_rows), denominator), "wilson_95": wilson(len(strict_rows), denominator)},
+        "proxy_strict_useful_early": {"numerator": len(strict_rows), "denominator": denominator,
+                                     "rate": ratio(len(strict_rows), denominator),
+                                     "wilson_95": wilson(len(strict_rows), denominator)},
+        "verified_strict_useful_early": {
+            "numerator": len(verified_rows), "denominator": len(verified_available),
+            "rate": ratio(len(verified_rows), len(verified_available)),
+            "wilson_95": wilson(len(verified_rows), len(verified_available)),
+            "unavailable": len(selected_rows) - len(verified_available),
+        },
         "strict_safe_early": {"numerator": len(safe_rows), "denominator": denominator,
                              "rate": ratio(len(safe_rows), denominator), "wilson_95": wilson(len(safe_rows), denominator)},
         "premature": {"numerator": unsafe, "denominator": len(selected_rows),
@@ -60,8 +73,10 @@ def evaluate_policy(
             "lead_before_end_ms_mean": round(statistics.mean(lead), 3) if lead else None,
         },
         "costs": {
-            "full_searches": full_searches,
-            "primary_searches": full_searches,
+            "measurement_source": "OFFLINE_LINEAGE_ASSUMPTION",
+            "actual_execution_measured": False,
+            "estimated_full_searches": full_searches,
+            "estimated_primary_searches": full_searches,
             "shadow_searches": 0,
             "speculative_searches": 0,
             "refinement_searches": 0,
@@ -77,7 +92,9 @@ def evaluate_policy(
             "intent_denominator": "candidate lineages with at least one non-final opportunity",
             "raw_early": "lineage has a selected non-final retrieval",
             "gold_useful_early": "selected prefix retrieves its aligned gold evidence",
-            "strict_useful_early": "gold relevance + constraints + survival + answerability + grounding eligibility",
+            "strict_useful_early": "historical alias of proxy strict-usefulness; not verified claim safety",
+            "proxy_strict_useful_early": "gold relevance + proxy constraints/survival/answerability/grounding eligibility",
+            "verified_strict_useful_early": "actual relevant validation pathway; unavailable when no claim was executed",
             "strict_safe_early": "strict useful and counterfactual action advantage is positive",
         },
     }

@@ -16,6 +16,14 @@ class AlignmentStatus(StrEnum):
     OUT_OF_DOMAIN = "OUT_OF_DOMAIN"
     UNDEFINED_ALIGNMENT = "UNDEFINED_ALIGNMENT"
     MISSING_GOLD_ANNOTATION = "MISSING_GOLD_ANNOTATION"
+    # V2.4 evaluation states.  Historical names above remain stable so frozen
+    # V2.3 artifacts can still be read without reinterpretation.
+    MISSING_GOLD = "MISSING_GOLD"
+    UNDEFINED_INTENT_ALIGNMENT = "UNDEFINED_INTENT_ALIGNMENT"
+    UNSUPPORTED_DOMAIN = "UNSUPPORTED_DOMAIN"
+    NO_ACCEPTED_EVIDENCE = "NO_ACCEPTED_EVIDENCE"
+    NO_FINAL_REFERENCE = "NO_FINAL_REFERENCE"
+    INCOMPATIBLE_CONSTRAINTS = "INCOMPATIBLE_CONSTRAINTS"
 
 
 @dataclass(frozen=True)
@@ -75,6 +83,33 @@ def classify_final_alignment(
         return AlignmentStatus.OUT_OF_DOMAIN
     if identity is None or not identity.chunks:
         return AlignmentStatus.NO_RELEVANT_EVIDENCE
+    if matching_gold_intents(identity, gold_intents):
+        return AlignmentStatus.SUPPORTED_GOLD_EVIDENCE
+    return AlignmentStatus.RELEVANT_BUT_CHANGED_EVIDENCE
+
+
+def classify_v2_4_label_state(
+    *,
+    identity: EvidenceIdentity | None,
+    gold_intents: list[dict[str, Any]],
+    domain_available: bool,
+    lineage_defined: bool,
+    final_reference_available: bool,
+    constraints_compatible: bool | None,
+) -> AlignmentStatus:
+    """Lossless V2.4 label-state classification; unknown never means negative."""
+    if not lineage_defined:
+        return AlignmentStatus.UNDEFINED_INTENT_ALIGNMENT
+    if not final_reference_available:
+        return AlignmentStatus.NO_FINAL_REFERENCE
+    if not gold_intents:
+        return AlignmentStatus.MISSING_GOLD
+    if not domain_available:
+        return AlignmentStatus.UNSUPPORTED_DOMAIN
+    if constraints_compatible is False:
+        return AlignmentStatus.INCOMPATIBLE_CONSTRAINTS
+    if identity is None or not identity.chunks:
+        return AlignmentStatus.NO_ACCEPTED_EVIDENCE
     if matching_gold_intents(identity, gold_intents):
         return AlignmentStatus.SUPPORTED_GOLD_EVIDENCE
     return AlignmentStatus.RELEVANT_BUT_CHANGED_EVIDENCE

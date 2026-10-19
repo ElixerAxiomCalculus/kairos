@@ -110,6 +110,25 @@ controller:
     max_constraint_revision_risk: 0.70
     max_uncertainty: 0.70
     minimum_delta_q: 0.0
+  caper:
+    enabled: false             # experimental until the frozen V2.4 release gates pass
+    policy: deterministic      # deterministic | eager (benchmark comparator only)
+    deterministic_prefetch: true
+    learned_prefetch:
+      enabled: false
+      model_path: models/controller_v2_4/caper.json
+    min_content_terms: 2
+    min_probe_relevance: 0.10
+    min_revision_term_overlap: 0.45
+    debounce_ms: 80
+    provisional_ttl_s: 30.0
+    finalization_wait_ms: 250
+    max_active_prefetches_per_session: 2
+    max_active_prefetches_per_intent: 1
+    max_queued_prefetches_per_session: 4
+    provisional_cache_enabled: true
+    validated_reuse_enabled: true
+    strict_commit_validation: true
   intent_scheduling:
     enabled: false
 
@@ -163,11 +182,14 @@ live:
   max_utterance_chars: 4000    # hard limit for one cumulative microphone transcript
   max_message_bytes: 16384     # WebSocket inbound payload limit
   outbound_queue_size: 256     # bounded per-client engine-event queue
+  resume_auth_timeout_s: 5.0   # resume capability must arrive in the first WebSocket message
 
 telemetry:
   trace_dir: runs/traces
   sqlite_path: runs/telemetry.sqlite
-  trace_content: true
+  # Privacy-conscious default: persisted JSONL/SQLite telemetry excludes transcript and arbitrary strings.
+  # Synthetic benchmark commands explicitly opt in when full content is required.
+  trace_content: false
 
 bench:
   results_dir: runs/bench

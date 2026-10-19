@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "name": "kairos-controller-v2.4-caper-evaluation",
+  "parent": "kairos-controller-v2.3-iccos",
+  "parent_manifest_sha256": "7d596a8815dacb9fc1d30c6d3c517162af14054ef9d4557de3f23ceb7e315b2c",
+  "split_file_sha256": {
+    "train": "7e10450db7fc98f842314f3c21e96940aed2a78cca1cf4a46192d21ab901b781",
+    "calibration": "40fcb359ba4f2227ac9d1cab5cb15f7dae87cc2012189012cbb65fce3f11c5b1",
+    "development": "716bfeb1a1b28ebb443a115682b56c466c07d2653810e592c7eb2e9495b4e09b",
+    "historical_frozen": "4d0c9761f3419ba31f53f202778e18665924a8ec461b7e2cab34ff31552d8104",
+    "external": "cb97dc4cb880b516a8ea9dfa9941f9bdb1a3d0007e226f4624a9de2b277ce94a",
+    "final": "f803f26e04c08a7f550ab7400fb3dabed2e085ae42f64e0be1a3977002e66a74"
+  },
+  "counts": {
+    "train": 54,
+    "calibration": 9,
+    "development": 36,
+    "historical_frozen": 8,
+    "external": 10,
+    "final": 12
+  },
+  "validation": {
+    "status": "PASS",
+    "errors": [],
+    "warnings": [
+      {
+        "code": "NO_NEW_INDEPENDENT_FINAL_COLLECTION",
+        "detail": "V2.4 reuses the frozen, project-authored V2.3 final set; it is not independent evidence for generalization."
+      }
+    ]
+  },
+  "independent_final_available": false,
+  "timing_scope": "synthetic written-question prefix timestamps; not microphone timing"
+}

@@ -1,0 +1,24 @@
+{
+  "comparison_baseline": "C0_baseline_psrc",
+  "decision": "RETAIN_AS_EXPERIMENTAL",
+  "development_dataset_hash": "716bfeb1a1b28ebb443a115682b56c466c07d2653810e592c7eb2e9495b4e09b",
+  "development_gates": {
+    "independent_final_available": false,
+    "invalid_citations_zero": true,
+    "search_cost_at_most_1_5x_baseline": true,
+    "verified_early_absolute_delta_at_least_0_10": false,
+    "wasted_preparation_at_most_0_50": false
+  },
+  "frozen_at": "2026-10-19T08:17:10.723914+00:00",
+  "frozen_before_final_evaluation": true,
+  "preregistered_budgets": {
+    "max_search_cost_multiplier": 1.5,
+    "max_wasted_preparation_rate": 0.5,
+    "required_invalid_citations": 0,
+    "required_verified_early_absolute_delta": 0.1
+  },
+  "promotion_eligible": false,
+  "reason": "At least one preregistered gate failed; independent final evidence is unavailable.",
+  "runtime_default": "historical PSRC; CAPER disabled",
+  "selected_candidate": "C8_full_caper_deterministic"
+}

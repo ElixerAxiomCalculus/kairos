@@ -14,6 +14,7 @@
   python -m kairos controller-v2-3-data build  build the IC-COS lineage dataset
   python -m kairos controller-v2-3-train       train/calibrate IC-COS models
   python -m kairos controller-v2-3-experiments run frozen A0-A8 evaluation
+  python -m kairos controller-v2-4-evaluate    run CAPER real-engine ablations and freeze a release decision
   python -m kairos record-demo         record demo traces as frontend fixtures
   python -m kairos reproduce           train → bench (2 repeats) → ablate, in one command
 """
@@ -286,6 +287,53 @@ def cmd_controller_v23_report(args) -> None:
                       "engineering_report": str(resolve_path("docs/PSRC_V2_3_ICCOS_ENGINEERING_REPORT.md"))}, indent=2))
 
 
+def cmd_controller_v24_data(args) -> None:
+    from benchmark.controller.dataset_v2_4 import validate_dataset
+
+    print(json.dumps(validate_dataset(), indent=2))
+
+
+def cmd_controller_v24_evaluate(args) -> None:
+    from benchmark.controller.v2_4 import run_v2_4
+
+    report = run_v2_4(_cfg(args))
+    print(json.dumps({"run_id": report["run_id"], "stage": report["stage"],
+                      "selection": report["selection"],
+                      "release_decision": report["release_decision"]}, indent=2))
+
+
+def cmd_controller_v24_artifact(args) -> None:
+    from benchmark.controller.v2_4 import latest_artifact
+
+    print(json.dumps(latest_artifact(args.artifact), indent=2))
+
+
+def cmd_controller_v24_security(args) -> None:
+    from datetime import datetime, timezone
+    from benchmark.controller.security_v2_4 import write_security_audit
+
+    path = resolve_path("runs/bench/controller_v2_4") / (
+        "security-audit-" + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + ".json"
+    )
+    print(json.dumps(write_security_audit(path), indent=2))
+    print(f"written: {path}")
+
+
+def cmd_controller_v24_train(args) -> None:
+    print(json.dumps({"status": "NOT_RUN", "reason":
+                      "Deterministic CAPER must demonstrate value before optional learned prefetch training."}, indent=2))
+
+
+def cmd_controller_v24_report(args) -> None:
+    from benchmark.controller.v2_4 import load_latest
+
+    report = load_latest()
+    print(json.dumps({"run_id": report["run_id"], "release_decision": report["release_decision"],
+                      "research_report": str(resolve_path("docs/KAIROS_V2_4_CAPER_RESEARCH.md")),
+                      "engineering_report": str(resolve_path("docs/KAIROS_V2_4_CAPER_ENGINEERING.md")),
+                      "security_report": str(resolve_path("docs/V2_4_SECURITY_PRIVACY_AUDIT.md"))}, indent=2))
+
+
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(prog="kairos", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--config", default=None, help="YAML merged over configs/default.yaml")
@@ -374,6 +422,32 @@ def main(argv: list[str] | None = None) -> None:
     )
     sub.add_parser("controller-v2-3-report", help="show V2.3 selection and report locations").set_defaults(
         fn=cmd_controller_v23_report
+    )
+    p = sub.add_parser("controller-v2-4-data", help="validate the append-only CAPER evaluation manifest")
+    p.add_argument("action", choices=["validate"])
+    p.set_defaults(fn=cmd_controller_v24_data)
+    sub.add_parser("controller-v2-4-evaluate", help="run C0-C10 real-engine CAPER evaluation").set_defaults(
+        fn=cmd_controller_v24_evaluate
+    )
+    sub.add_parser("controller-v2-4-prefetch-bench", help="run the full CAPER prefetch benchmark").set_defaults(
+        fn=cmd_controller_v24_evaluate
+    )
+    for command, artifact, help_text in (
+        ("controller-v2-4-cache-bench", "cache_results.json", "show latest measured cache results"),
+        ("controller-v2-4-compare", "ablation_results.json", "show latest real-engine comparison"),
+        ("controller-v2-4-select", "selection_freeze.json", "show frozen CAPER selection"),
+        ("controller-v2-4-final", "heldout_results.json", "show post-freeze final evaluation"),
+    ):
+        p = sub.add_parser(command, help=help_text)
+        p.set_defaults(fn=cmd_controller_v24_artifact, artifact=artifact)
+    sub.add_parser("controller-v2-4-security-audit", help="scan working tree and Git history without disclosing matches").set_defaults(
+        fn=cmd_controller_v24_security
+    )
+    sub.add_parser("controller-v2-4-train", help="report optional learned-prefetch training status").set_defaults(
+        fn=cmd_controller_v24_train
+    )
+    sub.add_parser("controller-v2-4-report", help="show V2.4 selection and report locations").set_defaults(
+        fn=cmd_controller_v24_report
     )
     args = parser.parse_args(argv)
     args.fn(args)

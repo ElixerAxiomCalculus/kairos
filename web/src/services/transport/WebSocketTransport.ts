@@ -36,8 +36,6 @@ export class WebSocketTransport implements StreamingTransport {
     return new Promise((resolve, reject) => {
       const params = new URLSearchParams();
       if (this.sessionId) params.set("session_id", this.sessionId);
-      if (this.resumeToken) params.set("resume_token", this.resumeToken);
-      if (this.lastEventId) params.set("after_event_id", this.lastEventId);
       const url = params.size ? `${this.url}?${params.toString()}` : this.url;
       const socket = new WebSocket(url);
       this.socket = socket;
@@ -45,6 +43,16 @@ export class WebSocketTransport implements StreamingTransport {
       socket.onopen = () => {
         opened = true;
         this.attempt = 0;
+        // Resume capabilities travel in the first WebSocket message, never in
+        // the URL where reverse proxies and browser history may record them.
+        if (this.sessionId && this.resumeToken) {
+          socket.send(JSON.stringify({
+            type: "resume",
+            session_id: this.sessionId,
+            resume_token: this.resumeToken,
+            after_event_id: this.lastEventId,
+          }));
+        }
         handlers.onStatus("LIVE");
         resolve();
       };

@@ -40,7 +40,13 @@ def retrieve_utility(row: dict[str, Any], weights: UtilityWeights = UtilityWeigh
 
 
 def label_optimal_stopping(rows: list[dict[str, Any]], weights: UtilityWeights = UtilityWeights()) -> list[dict[str, Any]]:
-    """Backward induction over each candidate lineage; final observations are excluded."""
+    """Backward induction with an explicit end-of-utterance retrieval value.
+
+    Final observations remain excluded from early-action training rows, but
+    their measured retrieval/relevance/answerability/grounding targets and cost
+    initialize the continuation value.  This corrects the historical V2.3
+    zero-value terminal assumption.
+    """
     grouped: defaultdict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
     for row in rows:
         grouped[(row["stream_id"], row["candidate_id"])].append(row)
@@ -52,9 +58,10 @@ def label_optimal_stopping(rows: list[dict[str, Any]], weights: UtilityWeights =
         reverse_rows = []
         for row in reversed(trajectory):
             if row["is_final"]:
-                # End-of-utterance retrieval is the terminal fallback, not an
-                # early-stopping opportunity or oracle candidate.
-                future_value = 0.0
+                # End-of-utterance retrieval is not an early action, but it is
+                # a real fallback with evidence value, execution cost, and
+                # response-latency consequences.
+                future_value, terminal_components = retrieve_utility(row, weights)
                 future_action = "END_OF_UTTERANCE"
                 continue
             q_retrieve, components = retrieve_utility(row, weights)
@@ -72,6 +79,12 @@ def label_optimal_stopping(rows: list[dict[str, Any]], weights: UtilityWeights =
                 "continuation_action": future_action,
                 "utility_components": {key: round(value, 8) for key, value in components.items()},
                 "counterfactual_stage": "A_DETERMINISTIC_REPLAY",
+                "terminal_fallback": {
+                    "value": round(future_value, 8) if future_action == "END_OF_UTTERANCE" else None,
+                    "source": "FINAL_PREFIX_RETRIEVAL_PROXY" if future_action == "END_OF_UTTERANCE" else None,
+                    "components": ({key: round(value, 8) for key, value in terminal_components.items()}
+                                   if future_action == "END_OF_UTTERANCE" else None),
+                },
             })
             reverse_rows.append(enriched)
             future_value, future_action = value, optimal

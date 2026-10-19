@@ -137,6 +137,13 @@ def replay_feature_rows(ctx, stream: dict[str, Any]) -> list[dict[str, Any]]:
                 "time_saved_s": round(max(0.0, end_time - row["prefix_timestamp_s"]), 6),
                 "revision_cost": round(float(row["features"]["constraint_revision_risk"]), 6),
                 "grounding_eligibility": int(grounding_eligible),
+                "proxy_strict_useful": int(useful),
+                # Prefix feature replay does not execute generated claims
+                # through GroundingFirewall.  Verification is therefore
+                # unavailable, not a negative outcome.
+                "verified_strict_useful": None,
+                "verified_strict_useful_status": "UNAVAILABLE_NO_CLAIM_EXECUTION",
+                # Historical alias retained solely for V2.3 reproducibility.
                 "strict_useful": int(useful),
             },
             **survival_values,

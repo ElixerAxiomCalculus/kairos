@@ -192,13 +192,14 @@ def run_v2_3(cfg: Config) -> dict[str, Any]:
         "A7_iccos_cache": (lambda row: _hard_guards(row) and delta(row) > 0.0 and calibrated(row) >= model.decision_threshold,
                            calibrated, "A6 policy with cache treated as an independent execution optimization"),
         "A8_full_integration": (lambda row: _hard_guards(row) and delta(row) > 0.0 and calibrated(row) >= model.decision_threshold,
-                                calibrated, "full guarded IC-COS integration"),
+                                calibrated, "historically named A8; Stage-A offline guarded policy predicate, not full-engine integration"),
         "fixed_4": (lambda row: row["features"]["prefix_length"] * 16 >= 4, None, "retrieve at four content terms"),
         "fixed_8": (lambda row: row["features"]["prefix_length"] * 16 >= 8, None, "retrieve at eight content terms"),
         "end_of_utterance": (lambda row: False, None, "no non-final retrieval"),
     }
     variants = {
-        name: {"description": description, "metrics": evaluate_policy(development, decision, probability=probability)}
+        name: {"description": description, "evaluation_stage": "A_OFFLINE_POLICY_SIMULATION",
+               "metrics": evaluate_policy(development, decision, probability=probability)}
         for name, (decision, probability, description) in policies.items()
     }
     variants["A0_historical_psrc"] = {
@@ -292,6 +293,12 @@ def run_v2_3(cfg: Config) -> dict[str, Any]:
         "post_selection": post_selection,
         "profile_evaluation": profile_evaluation,
         "counterfactual_stage_b": stage_b,
+        "experiment_stages": {
+            "A": "offline evidence and sequential policy simulation",
+            "B": f"real SessionEngine paired branches ({len(stage_b)} development cases)",
+            "C": "not measured in V2.3",
+            "correction": "The historical A8 name did not denote an end-to-end SessionEngine evaluation.",
+        },
         "v2_2_anomaly_audit": {key: value for key, value in anomaly.items() if key != "rows"},
         "metric_reconciliation": {
             "historical_G2": {"value": h0["early_retrieval_rate"], "numerator": 11, "denominator": 16,

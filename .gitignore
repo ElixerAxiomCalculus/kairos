@@ -45,6 +45,11 @@ runs/bench/controller_v2_3/modeling/
 # Keep the frozen V2.3 IC-COS selection/final-evaluation bundle; ignore rerun churn.
 !runs/bench/controller_v2_3/20261019T051008Z/
 !runs/bench/controller_v2_3/20261019T051008Z/**
+runs/bench/controller_v2_4/20*/
+runs/bench/controller_v2_4/security-audit-*.json
+# Keep the corrected V2.4 Stage-B evaluation bundle; later reruns remain local churn.
+!runs/bench/controller_v2_4/20261019T081648Z/
+!runs/bench/controller_v2_4/20261019T081648Z/**
 *.log
 !runs/baselines/**/*.log
 *.pid

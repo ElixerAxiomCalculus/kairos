@@ -13,7 +13,7 @@ import re
 import threading
 import time
 from collections import OrderedDict
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import StrEnum
 from typing import Any
 
@@ -27,6 +27,7 @@ class CacheState(StrEnum):
     REUSABLE = "REUSABLE"
     STALE = "STALE"
     INVALIDATED = "INVALIDATED"
+    EXPIRED = "EXPIRED"
 
 
 _POLITENESS = re.compile(r"\b(?:please|could you|can you|would you|tell me|explain|about)\b", re.I)
@@ -79,6 +80,11 @@ class EvidenceCacheEntry:
     created_monotonic: float
     expires_monotonic: float
     source_hash: str
+    session_id: str | None = None
+    intent_id: str | None = None
+    query_version: int | None = None
+    constraint_fingerprint: str | None = None
+    source_hashes: dict[str, str] = field(default_factory=dict)
     hits: int = 0
 
 
@@ -95,20 +101,90 @@ class EvidenceCache:
         self.invalidations = 0
         self.evictions = 0
 
-    def put(self, fingerprint: str, result: SearchResult, source_hash: str, *, validated: bool) -> None:
+    def _put(
+        self,
+        fingerprint: str,
+        result: SearchResult,
+        source_hash: str,
+        *,
+        state: CacheState,
+        session_id: str | None = None,
+        intent_id: str | None = None,
+        query_version: int | None = None,
+        constraint_fingerprint: str | None = None,
+        source_hashes: dict[str, str] | None = None,
+    ) -> None:
         now = time.monotonic()
-        state = CacheState.VALIDATED if validated else CacheState.PROVISIONAL
         with self._lock:
             entry = EvidenceCacheEntry(
-                fingerprint, copy.deepcopy(result), state, now, now + self.ttl_s, source_hash
+                fingerprint, copy.deepcopy(result), state, now, now + self.ttl_s, source_hash,
+                session_id=session_id, intent_id=intent_id, query_version=query_version,
+                constraint_fingerprint=constraint_fingerprint, source_hashes=dict(source_hashes or {}),
             )
-            if validated:
-                entry.state = CacheState.REUSABLE
             self._entries[fingerprint] = entry
             self._entries.move_to_end(fingerprint)
             while len(self._entries) > self.max_entries:
                 self._entries.popitem(last=False)
                 self.evictions += 1
+
+    def put(self, fingerprint: str, result: SearchResult, source_hash: str, *, validated: bool) -> None:
+        """Historical validated-cache API retained for PSRC compatibility."""
+        self._put(
+            fingerprint, result, source_hash,
+            state=CacheState.REUSABLE if validated else CacheState.PROVISIONAL,
+        )
+
+    def put_provisional(
+        self,
+        fingerprint: str,
+        result: SearchResult,
+        source_hash: str,
+        *,
+        session_id: str,
+        intent_id: str,
+        query_version: int,
+        constraint_fingerprint: str,
+        source_hashes: dict[str, str],
+    ) -> None:
+        self._put(
+            fingerprint, result, source_hash, state=CacheState.PROVISIONAL,
+            session_id=session_id, intent_id=intent_id, query_version=query_version,
+            constraint_fingerprint=constraint_fingerprint, source_hashes=source_hashes,
+        )
+
+    def promote(
+        self,
+        fingerprint: str,
+        source_hash: str,
+        *,
+        session_id: str,
+        intent_id: str,
+        query_version: int,
+        constraint_fingerprint: str,
+        source_hashes: dict[str, str],
+    ) -> bool:
+        """Promote a provisional entry only when all provenance fields still match."""
+        now = time.monotonic()
+        with self._lock:
+            entry = self._entries.get(fingerprint)
+            if entry is None or entry.state != CacheState.PROVISIONAL:
+                return False
+            checks = (
+                entry.expires_monotonic > now,
+                entry.source_hash == source_hash,
+                entry.session_id == session_id,
+                entry.intent_id == intent_id,
+                entry.query_version == query_version,
+                entry.constraint_fingerprint == constraint_fingerprint,
+                entry.source_hashes == source_hashes,
+            )
+            if not all(checks):
+                entry.state = CacheState.INVALIDATED
+                self.invalidations += 1
+                return False
+            entry.state = CacheState.VALIDATED
+            entry.state = CacheState.REUSABLE
+            return True
 
     def get(self, fingerprint: str, source_hash: str) -> SearchResult | None:
         now = time.monotonic()
@@ -118,13 +194,13 @@ class EvidenceCache:
                 self.misses += 1
                 return None
             if entry.expires_monotonic <= now:
-                entry.state = CacheState.STALE
+                entry.state = CacheState.EXPIRED
             if entry.source_hash != source_hash:
                 entry.state = CacheState.INVALIDATED
                 self.invalidations += 1
             if entry.state != CacheState.REUSABLE:
                 self.misses += 1
-                if entry.state in {CacheState.STALE, CacheState.INVALIDATED}:
+                if entry.state in {CacheState.STALE, CacheState.INVALIDATED, CacheState.EXPIRED}:
                     self._entries.pop(fingerprint, None)
                 return None
             entry.hits += 1
@@ -154,6 +230,19 @@ class EvidenceCache:
             if entry is not None:
                 entry.state = CacheState.INVALIDATED
                 self.invalidations += 1
+
+    def invalidate_session(self, session_id: str) -> int:
+        """Invalidate and remove every entry owned by one session."""
+        removed = 0
+        with self._lock:
+            for fingerprint, entry in list(self._entries.items()):
+                if entry.session_id != session_id:
+                    continue
+                entry.state = CacheState.INVALIDATED
+                self._entries.pop(fingerprint, None)
+                removed += 1
+            self.invalidations += removed
+        return removed
 
     def status(self) -> dict[str, int]:
         with self._lock:

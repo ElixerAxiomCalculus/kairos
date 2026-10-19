@@ -13,7 +13,10 @@ from __future__ import annotations
 
 import time
 import re
+import threading
+import uuid
 from dataclasses import dataclass, field
+from typing import Any
 
 import numpy as np
 
@@ -115,10 +118,46 @@ class SearchResult:
     domain: str = "unknown"
     domain_confidence: float = 0.0
     domain_fallback_used: bool = False
+    search_id: str | None = None
+    retrieval_type: str = "PRIMARY"
 
     @property
     def relevant_hits(self) -> list[Hit]:
         return [hit for hit in self.hits if hit.accepted]
+
+
+@dataclass
+class SearchExecution:
+    search_id: str
+    retrieval_type: str
+    session_id: str | None
+    intent_id: str | None
+    query_version: int | None
+    evidence_id: str | None
+    execution_started: float
+    execution_completed: float | None = None
+    execution_canceled_before_start: bool = False
+    result_discarded: bool = False
+    cache_reused: bool = False
+    failed: bool = False
+    error_type: str | None = None
+
+    def public(self) -> dict[str, Any]:
+        return {
+            "search_id": self.search_id,
+            "retrieval_type": self.retrieval_type,
+            "session_id": self.session_id,
+            "intent_id": self.intent_id,
+            "query_version": self.query_version,
+            "evidence_id": self.evidence_id,
+            "execution_started": self.execution_started,
+            "execution_completed": self.execution_completed,
+            "execution_canceled_before_start": self.execution_canceled_before_start,
+            "result_discarded": self.result_discarded,
+            "cache_reused": self.cache_reused,
+            "failed": self.failed,
+            "error_type": self.error_type,
+        }
 
 
 class HybridIndex:
@@ -154,6 +193,8 @@ class HybridIndex:
         self.chunk_places = [self.term_sets[i] & corpus.places for i in range(len(self.chunks))]
         self.chunk_domains = [self._infer_chunk_domain(c, self.term_sets[i]) for i, c in enumerate(self.chunks)]
         self.available_domains = {d for d in self.chunk_domains if d != "unknown"}
+        self._search_lock = threading.RLock()
+        self._search_executions: dict[str, SearchExecution] = {}
 
     # ------------------------------------------------------------------ helpers
     @staticmethod
@@ -261,7 +302,80 @@ class HybridIndex:
         return out
 
     # ------------------------------------------------------------------ search
-    def search(self, query: RetrievalQuery, top_k: int | None = None, mode: str | None = None) -> SearchResult:
+    def search(
+        self,
+        query: RetrievalQuery,
+        top_k: int | None = None,
+        mode: str | None = None,
+        execution_context: dict[str, Any] | None = None,
+    ) -> SearchResult:
+        """Execute one authoritative full search and record its actual work.
+
+        Cache hits never call this method.  A coroutine cancellation after this
+        method starts therefore cannot erase the recorded underlying work.
+        """
+        context = execution_context or {}
+        search_id = str(context.get("search_id") or f"search-{uuid.uuid4().hex[:16]}")
+        record = SearchExecution(
+            search_id=search_id,
+            retrieval_type=str(context.get("retrieval_type", "PRIMARY")),
+            session_id=context.get("session_id"),
+            intent_id=context.get("intent_id"),
+            query_version=context.get("query_version"),
+            evidence_id=context.get("evidence_id"),
+            execution_started=time.perf_counter(),
+        )
+        with self._search_lock:
+            self._search_executions[search_id] = record
+        try:
+            result = self._search_impl(query, top_k=top_k, mode=mode)
+        except Exception as exc:
+            with self._search_lock:
+                record.execution_completed = time.perf_counter()
+                record.failed = True
+                record.error_type = type(exc).__name__
+            raise
+        with self._search_lock:
+            record.execution_completed = time.perf_counter()
+        result.search_id = search_id
+        result.retrieval_type = record.retrieval_type
+        return result
+
+    def mark_search_discarded(self, search_id: str | None) -> None:
+        if not search_id:
+            return
+        with self._search_lock:
+            if search_id in self._search_executions:
+                self._search_executions[search_id].result_discarded = True
+
+    def search_executions(self, *, session_id: str | None = None) -> list[dict[str, Any]]:
+        with self._search_lock:
+            records = list(self._search_executions.values())
+            if session_id is not None:
+                records = [record for record in records if record.session_id == session_id]
+            return [record.public() for record in records]
+
+    def search_cost_summary(self, *, session_id: str | None = None) -> dict[str, Any]:
+        records = self.search_executions(session_id=session_id)
+        types: dict[str, int] = {}
+        for record in records:
+            key = str(record["retrieval_type"])
+            types[key] = types.get(key, 0) + 1
+        durations = [
+            (float(record["execution_completed"]) - float(record["execution_started"])) * 1000
+            for record in records if record["execution_completed"] is not None
+        ]
+        return {
+            "actual_hybrid_search_executions": len(records),
+            "by_retrieval_type": types,
+            "completed": sum(record["execution_completed"] is not None for record in records),
+            "failed": sum(bool(record["failed"]) for record in records),
+            "completed_but_discarded": sum(bool(record["result_discarded"]) for record in records),
+            "execution_wall_ms_total": round(sum(durations), 3),
+            "executions": records,
+        }
+
+    def _search_impl(self, query: RetrievalQuery, top_k: int | None = None, mode: str | None = None) -> SearchResult:
         cfg = self.cfg
         top_k = top_k or cfg["top_k"]
         mode = mode or cfg["mode"]

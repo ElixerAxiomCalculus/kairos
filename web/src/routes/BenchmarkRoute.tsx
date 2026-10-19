@@ -5,11 +5,13 @@ import {
   loadBenchmark,
   loadControllerBenchmark,
   loadControllerV23,
+  loadControllerV24,
   loadHardeningBenchmark,
   loadSemanticBenchmark,
   type BenchmarkReport,
   type ControllerBenchmarkReport,
   type ControllerV23Report,
+  type ControllerV24Report,
   type HardeningBenchmarkReport,
   type SemanticBenchmarkReport,
   type Source,
@@ -44,13 +46,15 @@ export default function BenchmarkRoute() {
   const [hardeningState, setHardeningState] = useState<ReportState<HardeningBenchmarkReport> | null>(null);
   const [controllerState, setControllerState] = useState<ReportState<ControllerBenchmarkReport> | null>(null);
   const [controllerV23State, setControllerV23State] = useState<ReportState<ControllerV23Report> | null>(null);
+  const [controllerV24State, setControllerV24State] = useState<ReportState<ControllerV24Report> | null>(null);
   useEffect(() => {
-    void Promise.all([loadBenchmark(), loadSemanticBenchmark(), loadHardeningBenchmark(), loadControllerBenchmark(), loadControllerV23()]).then(([development, semantic, hardening, controller, controllerV23]) => {
+    void Promise.all([loadBenchmark(), loadSemanticBenchmark(), loadHardeningBenchmark(), loadControllerBenchmark(), loadControllerV23(), loadControllerV24()]).then(([development, semantic, hardening, controller, controllerV23, controllerV24]) => {
       setState(development);
       setSemanticState(semantic);
       setHardeningState(hardening);
       setControllerState(controller);
       setControllerV23State(controllerV23);
+      setControllerV24State(controllerV24);
     });
   }, []);
   const r = state?.report ?? null;
@@ -58,6 +62,7 @@ export default function BenchmarkRoute() {
   const hardening = hardeningState?.report ?? null;
   const controller = controllerState?.report ?? null;
   const controllerV23 = controllerV23State?.report ?? null;
+  const controllerV24 = controllerV24State?.report ?? null;
   const measured = r?.status === "MEASURED";
   return (
     <main className={styles.page} data-testid="benchmark-page">
@@ -80,6 +85,7 @@ export default function BenchmarkRoute() {
       {hardeningState?.error ? <div className="px" style={{ color: "var(--status-fail)" }}>{hardeningState.error}</div> : null}
       {controllerState?.error ? <div className="px" style={{ color: "var(--status-fail)" }}>{controllerState.error}</div> : null}
       {controllerV23State?.error ? <div className="px" style={{ color: "var(--status-fail)" }}>{controllerV23State.error}</div> : null}
+      {controllerV24State?.error ? <div className="px" style={{ color: "var(--status-fail)" }}>{controllerV24State.error}</div> : null}
       {state && !r ? <EmptyState label="No benchmark report">Run <code>python -m kairos bench</code> to measure.</EmptyState> : null}
       {r ? (
         <>
@@ -93,6 +99,40 @@ export default function BenchmarkRoute() {
             system; treat these as development measurements, not a claim about the official benchmark.
           </p>
         </>
+      ) : null}
+      {controllerV24 ? (
+        <section className="panel" style={{ padding: 0 }} data-testid="controller-v2-4-benchmark">
+          <header className="panel-head">
+            <span className="px secondary">V2.4 CAPER · REAL SESSIONENGINE RUN {controllerV24.run_id}</span>
+          </header>
+          <div style={{ overflowX: "auto" }}>
+            <table className={styles.table}>
+              <thead><tr><th>POLICY</th><th>VERIFIED USEFUL BEFORE FINAL</th><th>PREPARED BEFORE FINAL</th><th>WASTED PREPARATION</th><th>ACTUAL SEARCHES</th><th>CACHE REUSES</th></tr></thead>
+              <tbody>
+                {(["C0_baseline_psrc", "C8_full_caper_deterministic", "C9_eager_bounded"] as const).map((name) => {
+                  const arm = controllerV24.development[name];
+                  const metrics = arm?.metrics;
+                  if (!metrics) return null;
+                  const show = (item: { numerator: number; denominator: number; rate: number | null }) =>
+                    `${item.numerator}/${item.denominator} (${item.rate?.toFixed(4) ?? "—"})`;
+                  return <tr key={name}>
+                    <td>{name}</td>
+                    <td>{show(metrics.verified_useful_evidence_before_final)}</td>
+                    <td>{show(metrics.preparation_coverage_before_final)}</td>
+                    <td>{show(metrics.wasted_preparation_rate)}</td>
+                    <td>{metrics.search_cost.actual_hybrid_search_executions}</td>
+                    <td>{metrics.search_cost.cache_reuse_events}</td>
+                  </tr>;
+                })}
+              </tbody>
+            </table>
+          </div>
+          <p className={styles.note} style={{ padding: "0 var(--sp-4) var(--sp-4)", margin: 0 }}>
+            Release decision: {controllerV24.release_decision}. Runtime: {controllerV24.active_runtime_policy}.
+            CAPER prepares evidence asynchronously but only validated evidence can enter grounding. The development set is small,
+            project-authored, and uses accelerated synthetic prefix timing; physical microphone validation is {controllerV24.physical_microphone_validation.toLowerCase()}.
+          </p>
+        </section>
       ) : null}
       {controllerV23 ? (
         <section className="panel" style={{ padding: 0 }} data-testid="controller-v2-3-benchmark">

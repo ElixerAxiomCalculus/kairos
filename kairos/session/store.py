@@ -62,6 +62,18 @@ class SessionStore:
         await engine.end()
         return True
 
+    async def delete(self, session_id: str, token: str | None) -> dict:
+        """End an authorized session and delete its managed persistent traces.
+
+        This covers the configured JSONL and SQLite sinks.  It intentionally
+        makes no claim about operator backups or already exported artifacts.
+        """
+        if not self.authorized(session_id, token):
+            return {"authorized": False, "ended": False, "persistent": {}}
+        ended = await self.end(session_id)
+        persistent = self.ctx.bus.delete_session(session_id)
+        return {"authorized": True, "ended": ended, "persistent": persistent}
+
     def ingestion(self, session_id: str) -> TranscriptIngestionCoordinator | None:
         return self._ingestion.get(session_id)
 
@@ -71,6 +83,14 @@ class SessionStore:
     def authorized(self, session_id: str, token: str | None) -> bool:
         expected = self._tokens.get(session_id)
         return bool(expected and token and secrets.compare_digest(expected, token))
+
+    def rotate_token(self, session_id: str, presented: str | None) -> str | None:
+        """One-use resume capability rotation; the presented token becomes invalid."""
+        if not self.authorized(session_id, presented):
+            return None
+        replacement = secrets.token_urlsafe(32)
+        self._tokens[session_id] = replacement
+        return replacement
 
     def evict_expired(self) -> list[str]:
         now = time.time()

@@ -1,0 +1,142 @@
+{
+  "controller": {
+    "adapt_latency": false,
+    "budget_per_utterance": 6,
+    "calibration": {
+      "enabled": false,
+      "intercept": 0.0,
+      "method": "identity",
+      "slope": 1.0
+    },
+    "caper": {
+      "debounce_ms": 80,
+      "deterministic_prefetch": true,
+      "enabled": false,
+      "finalization_wait_ms": 250,
+      "learned_prefetch": {
+        "enabled": false,
+        "model_path": "models/controller_v2_4/caper.json"
+      },
+      "max_active_prefetches_per_intent": 1,
+      "max_active_prefetches_per_session": 2,
+      "max_queued_prefetches_per_session": 4,
+      "min_content_terms": 2,
+      "min_probe_relevance": 0.1,
+      "min_revision_term_overlap": 0.45,
+      "policy": "deterministic",
+      "provisional_cache_enabled": true,
+      "provisional_ttl_s": 30.0,
+      "strict_commit_validation": true,
+      "validated_reuse_enabled": true
+    },
+    "cold_start": {
+      "calibration": {
+        "enabled": false,
+        "intercept": 0.0,
+        "method": "platt",
+        "slope": 1.0
+      },
+      "enabled": false,
+      "kappa_min": 0.3,
+      "max_constraint_risk": 0.45,
+      "min_constraint_readiness": 0.75,
+      "min_relevance": 0.45,
+      "threshold": 0.68,
+      "variant": "CS0_original_heuristic"
+    },
+    "cost_noise": 0.6,
+    "cost_retrieval": 0.4,
+    "default_weights": {
+      "bias": -4.2,
+      "chi": 2.0,
+      "cont": 1.2,
+      "kappa": 2.4,
+      "rho": 2.2,
+      "sigma": 0.8
+    },
+    "evidence_reuse": {
+      "enabled": false,
+      "max_entries": 64,
+      "ttl_s": 300.0
+    },
+    "fixed_tokens_n": 6,
+    "hysteresis": 0.05,
+    "iccos": {
+      "enabled": false,
+      "max_constraint_revision_risk": 0.7,
+      "max_uncertainty": 0.7,
+      "min_constraint_readiness": 0.75,
+      "min_evidence_relevance": 0.16,
+      "minimum_delta_q": 0.0,
+      "model_path": "models/controller_v2_3/iccos_v1.json"
+    },
+    "intent_completion": {
+      "enabled": false,
+      "guarded_first_observation_bypass": false,
+      "max_constraint_risk": 0.35,
+      "min_evidence_relevance": 0.45,
+      "threshold": 0.76
+    },
+    "intent_scheduling": {
+      "enabled": false
+    },
+    "kappa_min": 0.45,
+    "lambda_latency": 0.5,
+    "mode": "psrc",
+    "nu_min": 0.08,
+    "pipeline_latency_prior_s": 1.2,
+    "policy_variant": "baseline",
+    "remaining_prior_s": 1.5,
+    "rho_min": 0.3,
+    "speculative": {
+      "enabled": false,
+      "min_term_jaccard": 0.75
+    },
+    "stability_model": "models/stability.json",
+    "tau_refine": 0.6,
+    "theta_max": 0.9,
+    "theta_min": 0.3,
+    "utility": {
+      "enabled": false,
+      "extra_retrieval_cost": 0.12,
+      "latency_scale_s": 1.2,
+      "max_predicted_risk": 0.35,
+      "refinement_cost": 0.45,
+      "wait_utility": 0.0
+    }
+  },
+  "retrieval": {
+    "bm25_b": 0.75,
+    "bm25_k1": 1.5,
+    "candidates": 10,
+    "cross_encoder_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "dedup_threshold": 0.92,
+    "dense_backend": "lsa",
+    "dense_model": "BAAI/bge-small-en-v1.5",
+    "domain_routing": true,
+    "domain_routing_min_confidence": 0.25,
+    "facet_bonus": 0.1,
+    "heading_boost": 2,
+    "heading_focus_bonus": 0.12,
+    "lsa_dims": 128,
+    "mode": "hybrid",
+    "place_mismatch_penalty": 0.5,
+    "probe_cache_enabled": true,
+    "probe_cache_size": 4096,
+    "probe_k": 10,
+    "relevance_gate": true,
+    "relevance_min_coverage": 0.16,
+    "relevance_min_dense": 0.08,
+    "relevance_min_focus_terms": 1,
+    "relevance_min_objective_coverage": 0.3,
+    "relevance_min_rerank": 0.28,
+    "reranker": "hybrid-linear",
+    "rrf_k": 60,
+    "top_k": 5
+  },
+  "telemetry": {
+    "sqlite_path": "runs/telemetry.sqlite",
+    "trace_content": false,
+    "trace_dir": "runs/traces"
+  }
+}

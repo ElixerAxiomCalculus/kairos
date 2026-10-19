@@ -91,6 +91,15 @@ def create_app(cfg: Config) -> FastAPI:
             raise HTTPException(403, "invalid session capability")
         return {"ended": await store.end(session_id)}
 
+    @app.delete("/api/sessions/{session_id}/data")
+    async def delete_session_data(
+        session_id: str, x_kairos_session_token: str | None = Header(default=None)
+    ) -> dict:
+        result = await store.delete(session_id, x_kairos_session_token)
+        if not result["authorized"]:
+            raise HTTPException(403, "invalid session capability")
+        return result
+
     def _latest(kind: str) -> JSONResponse:
         path = resolve_path(cfg["bench"]["results_dir"]) / kind / "latest.json"
         if not path.exists():
@@ -117,6 +126,10 @@ def create_app(cfg: Config) -> FastAPI:
     def controller_v2_3_latest() -> JSONResponse:
         return _latest("controller_v2_3")
 
+    @app.get("/api/controller-v2-4/latest")
+    def controller_v2_4_latest() -> JSONResponse:
+        return _latest("controller_v2_4")
+
     @app.get("/api/experiments/latest")
     def experiments_latest() -> JSONResponse:
         return _latest("experiments")
@@ -130,15 +143,36 @@ def create_app(cfg: Config) -> FastAPI:
             await websocket.close(code=1008, reason="origin not allowed")
             return
         requested = websocket.query_params.get("session_id")
-        resume_token = websocket.query_params.get("resume_token")
-        if requested and store.get(requested) is not None and not store.authorized(requested, resume_token):
-            await websocket.close(code=1008, reason="invalid session capability")
-            return
         await websocket.accept()
         live_cfg = cfg.get("live", {})
+        max_message_bytes = int(live_cfg.get("max_message_bytes", 16384))
+        after_event_id = None
+        rotated_token = None
+        engine = None
+        resumed = False
+        if requested:
+            try:
+                auth_raw = await asyncio.wait_for(
+                    websocket.receive_text(), timeout=float(live_cfg.get("resume_auth_timeout_s", 5.0))
+                )
+                if len(auth_raw.encode("utf-8")) > max_message_bytes:
+                    raise ValueError("resume message too large")
+                auth = json.loads(auth_raw)
+                if not isinstance(auth, dict) or auth.get("type") != "resume":
+                    raise ValueError("authenticated resume message required")
+                if auth.get("session_id") != requested:
+                    raise ValueError("resume session mismatch")
+            except (asyncio.TimeoutError, json.JSONDecodeError, ValueError, TypeError):
+                await websocket.close(code=1008, reason="invalid session capability")
+                return
+            engine = store.get(requested)
+            rotated_token = store.rotate_token(requested, auth.get("resume_token")) if engine is not None else None
+            if engine is None or rotated_token is None:
+                await websocket.close(code=1008, reason="invalid session capability")
+                return
+            resumed = True
+            after_event_id = auth.get("after_event_id")
         queue: asyncio.Queue = asyncio.Queue(maxsize=int(live_cfg.get("outbound_queue_size", 256)))
-        engine = store.get(requested) if requested else None
-        resumed = engine is not None
         loop = asyncio.get_running_loop()
         sink = None
         if engine is None:
@@ -159,12 +193,12 @@ def create_app(cfg: Config) -> FastAPI:
             async with send_lock:
                 await websocket.send_json(payload)
 
-        await send_json({"type": "hello", "session_id": engine.id, "resume_token": store.token_for(engine.id),
+        await send_json({"type": "hello", "session_id": engine.id,
+                         "resume_token": rotated_token or store.token_for(engine.id),
                          "resumed": resumed,
                          "corpus": ctx.corpus_status(), "config": ctx.config_summary()})
 
         if resumed:
-            after_event_id = websocket.query_params.get("after_event_id")
             active = engine.active_events()
             start = 0
             if after_event_id:
@@ -201,7 +235,7 @@ def create_app(cfg: Config) -> FastAPI:
         try:
             while True:
                 raw = await websocket.receive_text()
-                if len(raw.encode("utf-8")) > int(live_cfg.get("max_message_bytes", 16384)):
+                if len(raw.encode("utf-8")) > max_message_bytes:
                     await websocket.close(code=1009, reason="message too large")
                     return
                 try:
