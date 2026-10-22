@@ -9,7 +9,7 @@ corpus before it is shown, and every decision is an event you can trace.
 ## Demo videos
 
 > [!NOTE]
-> **Full Kairos tutorial on YouTube — coming soon.** The published YouTube link will be added here.
+Link : https://drive.google.com/file/d/10ZU6_6933r6aSz_fugXZgX3lAU5YRcy0/view?usp=sharing
 
 ### Live voice demonstration
 
